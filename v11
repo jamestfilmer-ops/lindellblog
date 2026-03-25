@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>'Tis but a Flesh Wound — Shortlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&family=Cinzel:wght@400;600&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400;1,700&family=Frank+Ruhl+Libre:wght@300;400;700&family=Cardo:ital,wght@0,400;0,700;1,400&family=Italiana&family=GFS+Didot:ital@0;1&family=Gilda+Display&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #ECECEC;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #1a1208;
+  overflow-x: hidden;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+  background: #0d0d0d;
+  padding: 64px 64px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::after {
+  content: 'SHORTLIST';
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 110px;
+  font-weight: 200;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.025);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.ph-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 16px;
+}
+.ph-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 300;
+  color: #f0ece4;
+  line-height: 1.05;
+}
+.ph-title em { font-style: italic; color: #c8a96e; }
+.ph-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: #444;
+  margin-top: 12px;
+}
+.ph-meta {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.ph-meta-item {
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #444;
+}
+.ph-meta-item span { display: block; color: #777; margin-top: 3px; font-size: 9px; letter-spacing: 0.1em; }
+
+/* ===== SECTION ===== */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 56px 64px 32px;
+}
+.section-head hr { flex: 1; border: none; border-top: 1px solid #C8C4BC; }
+.sh-label {
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #888;
+  white-space: nowrap;
+}
+.sh-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #C0B898;
+  white-space: nowrap;
+}
+
+/* ===== THEME BLOCK ===== */
+.theme-block {
+  margin: 0 64px 4px;
+  position: relative;
+}
+
+.theme-frame {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+}
+.theme-frame:hover { transform: translateY(-3px); box-shadow: 0 16px 56px rgba(0,0,0,0.18); }
+
+.theme-label {
+  background: white;
+  padding: 16px 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-top: 1px solid #E8E4DC;
+  gap: 24px;
+}
+.tl-name {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: #1a1208;
+}
+.tl-note {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #B0A890;
+  margin-top: 2px;
+}
+.tl-fonts {
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  color: #C0B8A8;
+  text-align: right;
+  line-height: 1.6;
+}
+.tl-fonts strong { font-weight: 400; color: #888; }
+
+/* ===== VARIANT PAIR ===== */
+.variant-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 0 64px 4px;
+}
+.variant-pair .theme-block { margin: 0; }
+
+/* ===== PAGE FOOTER ===== */
+.page-footer {
+  background: #0d0d0d;
+  padding: 48px 64px;
+  text-align: center;
+  margin-top: 64px;
+}
+.pf-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: #f0ece4;
+  margin-bottom: 10px;
+}
+.pf-note {
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* =====================================================
+   THEME MOCKUPS — FULL FIDELITY
+   ===================================================== */
+
+/* ----- FERRARI MARANELLO (RED) ----- */
+.ferrari {
+  background: #FDFCFA;
+  font-family: 'Cormorant Garamond', serif;
+  color: #0D0D0D;
+  min-height: 640px;
+}
+.ferrari-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: #FDFCFA;
+  border-bottom: 1px solid #E2DDD6;
+}
+.ferrari-nav::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: #CC0000;
+}
+.fn-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #0D0D0D;
+}
+.fn-logo em { color: #CC0000; font-style: normal; }
+.fn-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.fn-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #888;
+}
+.fn-issue {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: #AAA;
+}
+
+.ferrari-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 440px;
+}
+.fh-left {
+  background: #0D0D0D;
+  padding: 64px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+.fh-left::before {
+  content: 'I';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 320px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(204,0,0,0.055);
+  line-height: 1;
+  pointer-events: none;
+}
+.fh-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #CC0000;
+  margin-bottom: 20px;
+}
+.fh-title {
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  color: #FDFCFA;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.fh-excerpt {
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.75;
+  max-width: 380px;
+  margin-bottom: 32px;
+}
+.fh-byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.fh-byline-line { width: 28px; height: 1px; background: #CC0000; }
+.fh-byline-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #555;
+}
+.fh-right {
+  padding: 52px 48px;
+  border-left: 1px solid #E2DDD6;
+  display: flex;
+  flex-direction: column;
+}
+.fh-right-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #BBB;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2DDD6;
+}
+.fh-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #E2DDD6;
+  transition: padding-left 0.25s;
+  cursor: pointer;
+}
+.fh-item:hover { padding-left: 10px; }
+.fh-item-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #CC0000;
+  margin-bottom: 6px;
+}
+.fh-item-title {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: #0D0D0D;
+  line-height: 1.2;
+}
+
+.ferrari-rule { height: 3px; background: #CC0000; }
+
+.ferrari-grid-wrap { padding: 40px 52px; }
+.fg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+.fg-header-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+}
+.fg-header-link {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #CC0000;
+}
+.ferrari-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: #E2DDD6;
+}
+.fg-card {
+  background: #FDFCFA;
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.fg-card:hover { background: #F5F2EB; }
+.fg-num {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #E2DDD6;
+  margin-bottom: 14px;
+}
+.fg-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #CC0000;
+  margin-bottom: 8px;
+}
+.fg-title {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: #0D0D0D;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.fg-excerpt {
+  font-size: 12px;
+  font-weight: 300;
+  color: #777;
+  line-height: 1.7;
+}
+
+/* ----- BRG / BRITISH RACING GREEN VARIANT ----- */
+.brg {
+  background: #FDFCFA;
+  font-family: 'Cormorant Garamond', serif;
+  color: #0A1A0A;
+  min-height: 640px;
+}
+.brg-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: #FDFCFA;
+  border-bottom: 1px solid #D8DFCE;
+}
+.brg-nav::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: #1B4332;
+}
+.brg-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: #0A1A0A;
+}
+.brg-logo em { color: #1B4332; font-style: normal; }
+.brg-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.brg-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #888;
+}
+.brg-issue {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: #B8A050;
+}
+
+.brg-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 440px;
+}
+.brg-left {
+  background: #0A1A0A;
+  padding: 64px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+.brg-left::before {
+  content: 'I';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 320px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(27,67,50,0.2);
+  line-height: 1;
+  pointer-events: none;
+}
+.brg-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #B8A050;
+  margin-bottom: 20px;
+}
+.brg-title {
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  color: #FDFCFA;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.brg-excerpt {
+  font-size: 14px;
+  font-weight: 300;
+  color: #5A7060;
+  line-height: 1.75;
+  max-width: 380px;
+  margin-bottom: 32px;
+}
+.brg-byline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brg-byline-line { width: 28px; height: 1px; background: #B8A050; }
+.brg-byline-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #4A6050;
+}
+.brg-right {
+  padding: 52px 48px;
+  border-left: 1px solid #D8DFCE;
+  display: flex;
+  flex-direction: column;
+}
+.brg-right-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #B8C0A8;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #D8DFCE;
+}
+.brg-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #D8DFCE;
+  cursor: pointer;
+  transition: padding-left 0.25s;
+}
+.brg-item:hover { padding-left: 10px; }
+.brg-item-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #B8A050;
+  margin-bottom: 6px;
+}
+.brg-item-title {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: #0A1A0A;
+  line-height: 1.2;
+}
+.brg-rule { height: 3px; background: #1B4332; }
+.brg-grid-wrap { padding: 40px 52px; }
+.brg-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: #D8DFCE;
+}
+.brg-card {
+  background: #FDFCFA;
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.brg-card:hover { background: #F2F5EE; }
+.brg-card-num {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #D8DFCE;
+  margin-bottom: 14px;
+}
+.brg-card-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #B8A050;
+  margin-bottom: 8px;
+}
+.brg-card-title {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: #0A1A0A;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.brg-card-dek {
+  font-size: 12px;
+  font-weight: 300;
+  color: #6A7A68;
+  line-height: 1.7;
+}
+.brg-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+}
+.brg-grid-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #0A1A0A;
+}
+.brg-grid-link {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B8A050;
+}
+
+/* ----- LAKE COMO OLD MONEY ----- */
+.lake-como {
+  background: #FDFDFA;
+  font-family: 'Gilda Display', serif;
+  color: #1A1208;
+  min-height: 640px;
+}
+.lc-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: #FDFDFA;
+  border-bottom: 1px solid #E0D8C0;
+}
+.lc-logo {
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: #1A1208;
+}
+.lc-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.lc-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B0A080;
+}
+.lc-issue {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.3em;
+  color: #C8B888;
+}
+.lc-hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 420px;
+}
+.lc-main {
+  padding: 64px 52px;
+  border-right: 1px solid #E0D8C0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.lc-main-top {}
+.lc-hero-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #9A8A68;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lc-hero-eyebrow::after { content: ''; flex: 0 0 40px; height: 1px; background: #E0D8C0; }
+.lc-hero-title {
+  font-size: clamp(28px, 3vw, 48px);
+  color: #1A1208;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.lc-hero-dek {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #8A7A60;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.lc-main-bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid #E0D8C0;
+}
+.lc-read-link {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #6A7A50;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.lc-read-arrow { width: 24px; height: 1px; background: #6A7A50; }
+.lc-read-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #C0B088;
+}
+.lc-sidebar {
+  padding: 52px 40px;
+  background: #F8F4EC;
+  display: flex;
+  flex-direction: column;
+}
+.lc-sb-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #C0B088;
+  margin-bottom: 32px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E0D8C0;
+}
+.lc-sb-item {
+  padding: 18px 0;
+  border-bottom: 1px solid #E0D8C0;
+  cursor: pointer;
+  transition: padding-left 0.2s;
+}
+.lc-sb-item:hover { padding-left: 8px; }
+.lc-sb-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #6A7A50;
+  opacity: 0.8;
+  margin-bottom: 6px;
+}
+.lc-sb-title {
+  font-size: 18px;
+  color: #1A1208;
+  line-height: 1.2;
+}
+.lc-sb-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.2em;
+  color: #C0B088;
+  margin-top: 4px;
+}
+.lc-rule { height: 2px; background: linear-gradient(to right, #6A7A50 20%, #C8B850 60%, transparent); opacity: 0.5; }
+.lc-grid-wrap { padding: 36px 52px; }
+.lc-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+.lc-gi {
+  padding: 20px;
+  background: rgba(106,122,80,0.04);
+  border-left: 2px solid rgba(106,122,80,0.2);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.lc-gi:hover { background: rgba(106,122,80,0.08); }
+.lc-gi-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #6A7A50;
+  margin-bottom: 6px;
+}
+.lc-gi-title { font-size: 16px; color: #1A1208; line-height: 1.25; }
+
+/* ----- THE GODFATHER ----- */
+.godfather {
+  background: #FDFAF4;
+  font-family: 'Cormorant Garamond', serif;
+  color: #1A0808;
+  min-height: 640px;
+}
+.gf-top-band {
+  background: #1A0808;
+  height: 3px;
+}
+.gf-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: #FDFAF4;
+  border-bottom: 1px solid #D8CEBC;
+}
+.gf-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: #1A0808;
+}
+.gf-sep { height: 1px; background: linear-gradient(to right, transparent, #C8A050, transparent); flex: 1; margin: 0 24px; }
+.gf-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.gf-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #9A8878;
+}
+.gf-hero {
+  padding: 56px 52px 40px;
+}
+.gf-hero-rule { height: 2px; background: #8A1818; margin-bottom: 32px; }
+.gf-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 52px;
+}
+.gf-hero-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 20px;
+}
+.gf-hero-title {
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 300;
+  color: #1A0808;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.gf-hero-quote {
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  color: #7A6A50;
+  line-height: 1.75;
+  border-left: 3px solid #C8A050;
+  padding-left: 20px;
+  margin-bottom: 28px;
+}
+.gf-hero-readmore {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A1818;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gf-hero-readmore::after { content: ''; display: block; width: 24px; height: 1px; background: #8A1818; transition: width 0.3s; }
+.gf-sidebar {}
+.gf-sb-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C0A880;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #D8CEBC;
+}
+.gf-sb-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #D8CEBC;
+  cursor: pointer;
+}
+.gf-sb-item-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+.gf-sb-item-title { font-size: 17px; font-style: italic; font-weight: 300; color: #1A0808; line-height: 1.2; }
+.gf-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  background: #D8CEBC;
+  margin: 0 52px 40px;
+}
+.gf-card {
+  background: #FDFAF4;
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.gf-card:hover { background: #F5EDDA; }
+.gf-card-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 8px;
+}
+.gf-card-title { font-size: 18px; font-style: italic; font-weight: 300; color: #1A0808; line-height: 1.2; margin-bottom: 8px; }
+.gf-card-dek { font-size: 12px; font-weight: 300; color: #7A6A50; line-height: 1.7; }
+
+/* ----- GOODFELLAS ----- */
+.goodfellas {
+  background: #FDFCF8;
+  font-family: 'Libre Baskerville', serif;
+  color: #1A0808;
+  min-height: 640px;
+}
+.gfl-stripe { height: 5px; background: #1A0808; }
+.gfl-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 60px;
+  background: #FDFCF8;
+  border-bottom: 1px solid #DDD8C8;
+}
+.gfl-logo {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+  color: #1A0808;
+  letter-spacing: 0.03em;
+}
+.gfl-links {
+  display: flex; gap: 28px; list-style: none;
+}
+.gfl-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #9A8878;
+}
+.gfl-hero {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  min-height: 400px;
+}
+.gfl-hero-main {
+  padding: 52px 52px 40px;
+  border-right: 1px solid #DDD8C8;
+}
+.gfl-hero-rule { height: 2px; background: #1A0808; margin-bottom: 28px; }
+.gfl-hero-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 16px;
+}
+.gfl-hero-title {
+  font-size: clamp(28px, 3vw, 48px);
+  font-weight: 700;
+  color: #1A0808;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.gfl-hero-sub-rule { height: 1px; background: #1A0808; margin-bottom: 20px; }
+.gfl-hero-dek {
+  font-size: 14px;
+  color: #5A4A38;
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+.gfl-hero-read {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A1818;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gfl-hero-read::after { content: ''; display: block; width: 20px; height: 1px; background: #8A1818; }
+.gfl-sidebar {
+  background: #F5F0E4;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+}
+.gfl-sb-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #AAA098;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #DDD8C8;
+}
+.gfl-sb-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #DDD8C8;
+  cursor: pointer;
+}
+.gfl-sb-item-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+.gfl-sb-item-title { font-size: 16px; font-style: italic; color: #1A0808; line-height: 1.2; }
+.gfl-list-section { padding: 0 52px 40px; }
+.gfl-list-header {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #1A0808;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1A0808;
+  display: flex;
+  justify-content: space-between;
+}
+.gfl-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: #DDD8C8;
+}
+.gfl-row-item {
+  background: #FDFCF8;
+  padding: 20px 22px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gfl-row-item:hover { background: #F5EDDA; }
+.gfl-ri-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A1818;
+  margin-bottom: 6px;
+}
+.gfl-ri-title { font-size: 16px; font-style: italic; color: #1A0808; line-height: 1.2; margin-bottom: 6px; }
+.gfl-ri-dek { font-size: 11px; color: #6A5848; line-height: 1.6; }
+
+/* ----- DISPATCH NEWSPAPER ----- */
+.dispatch {
+  background: #FDFDF8;
+  font-family: 'Old Standard TT', serif;
+  color: #1A1008;
+  min-height: 640px;
+}
+.disp-datebar {
+  background: #1A1008;
+  padding: 7px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.disp-datebar span {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #555;
+}
+.disp-masthead {
+  padding: 20px 52px 16px;
+  text-align: center;
+  border-bottom: 3px double #1A1008;
+}
+.disp-logo {
+  font-family: 'Old Standard TT', serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  color: #1A1008;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.disp-logo em { font-style: italic; font-weight: 400; }
+.disp-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 6px;
+}
+.disp-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 10px;
+  border-bottom: 1px solid #1A1008;
+  list-style: none;
+}
+.disp-nav li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #1A1008;
+}
+.disp-nav .nav-dot { width: 3px; height: 3px; border-radius: 50%; background: #C8A050; }
+.disp-broadsheet {
+  display: grid;
+  grid-template-columns: 1fr 2px 2fr 2px 1fr;
+  padding: 24px 52px;
+  gap: 0;
+  min-height: 360px;
+}
+.disp-col-rule { background: #D8D0B8; }
+.disp-col { padding: 0 24px; }
+.disp-col:first-child { padding-left: 0; }
+.disp-col:last-child { padding-right: 0; }
+.disp-col-head {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #C8A050;
+  border-bottom: 1px solid #D8D0B8;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+.disp-col-title {
+  font-family: 'Old Standard TT', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: #1A1008;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.disp-col-body {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.75;
+}
+.disp-center-kicker {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #C8A050;
+  margin-bottom: 10px;
+}
+.disp-center-title {
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 700;
+  color: #1A1008;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.disp-drop-cap-text {
+  font-size: 13px;
+  color: #3A3028;
+  line-height: 1.85;
+  column-count: 1;
+}
+.disp-drop-cap-text::first-letter {
+  font-family: 'Old Standard TT', serif;
+  font-size: 56px;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  margin-right: 6px;
+  margin-top: 6px;
+  color: #1A1008;
+}
+.disp-quote-band {
+  background: #1A1008;
+  padding: 32px 120px;
+  text-align: center;
+}
+.disp-quote-text {
+  font-family: 'Old Standard TT', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: rgba(253,253,248,0.75);
+  line-height: 1.5;
+}
+.disp-quote-attr {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C8A050;
+  margin-top: 12px;
+}
+
+/* ----- POLAR EXPEDITION (WHITE) ----- */
+.polar {
+  background: #FDFEFF;
+  font-family: 'Frank Ruhl Libre', serif;
+  color: #0F1E30;
+  min-height: 640px;
+}
+.polar-topstrip { height: 3px; background: #0F1E30; }
+.polar-masthead {
+  padding: 20px 52px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #DCE4EC;
+}
+.polar-mh-left {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A9AAA;
+}
+.polar-logo {
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: #0F1E30;
+  text-align: center;
+}
+.polar-logo-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.7em;
+  text-transform: uppercase;
+  color: #8A6A30;
+  text-align: center;
+  margin-top: 4px;
+}
+.polar-mh-right {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8A9AAA;
+  text-align: right;
+}
+.polar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 10px;
+  border-bottom: 1px solid #DCE4EC;
+  list-style: none;
+}
+.polar-nav li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #0F1E30;
+}
+.polar-nav .polar-dot { width: 4px; height: 4px; border-radius: 50%; background: #8A6A30; opacity: 0.4; }
+.polar-hero {
+  display: grid;
+  grid-template-columns: 3fr 1px 2fr;
+  min-height: 380px;
+}
+.polar-hero-left {
+  padding: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.polar-hero-left-top {}
+.polar-h-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8A6A30;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.polar-h-tag::before { content: ''; display: block; width: 16px; height: 1px; background: #8A6A30; }
+.polar-h-title {
+  font-size: clamp(28px, 3vw, 52px);
+  font-weight: 300;
+  color: #0F1E30;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.polar-h-dek {
+  font-family: 'Cardo', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: #506070;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.polar-h-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  border-top: 1px solid #DCE4EC;
+}
+.polar-read-btn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #0F1E30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: gap 0.3s;
+}
+.polar-read-btn::after { content: '→'; }
+.polar-h-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #8A9AAA;
+}
+.polar-vert-rule { background: #DCE4EC; }
+.polar-sidebar {
+  display: flex;
+  flex-direction: column;
+}
+.polar-sb-label {
+  padding: 20px 36px;
+  border-bottom: 1px solid #DCE4EC;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8A9AAA;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.polar-sb-label::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: #8A6A30; opacity: 0.4; }
+.polar-sb-item {
+  flex: 1;
+  padding: 20px 36px;
+  border-bottom: 1px solid #DCE4EC;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.polar-sb-item:hover { background: #F0F4F8; }
+.polar-sb-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A6A30;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+.polar-sb-title {
+  font-family: 'Cardo', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: #0F1E30;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.polar-sb-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.15em;
+  color: #8A9AAA;
+}
+.polar-navy-band {
+  background: #0F1E30;
+  padding: 32px 52px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+}
+.polar-nb-item {
+  padding: 24px 28px;
+  border-right: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+}
+.polar-nb-item:last-child { border-right: none; }
+.polar-nbi-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #B8902A;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+.polar-nbi-title {
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(240,244,248,0.65);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.polar-nbi-dek {
+  font-family: 'Cardo', serif;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.6;
+}
+
+/* ----- RIVA / ITALIAN YACHT (WHITE) ----- */
+.riva {
+  background: #FDFCFA;
+  font-family: 'Italiana', serif;
+  color: #1A0A02;
+  min-height: 640px;
+}
+.riva-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: #FDFCFA;
+  border-bottom: 1px solid #D8CEB0;
+}
+.riva-logo {
+  font-size: 24px;
+  color: #1A0A02;
+  letter-spacing: 0.05em;
+}
+.riva-nav-rule { width: 48px; height: 2px; background: #8A3A10; }
+.riva-links {
+  display: flex; gap: 32px; list-style: none;
+}
+.riva-links li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #B09060;
+}
+.riva-hero {
+  padding: 56px 52px 36px;
+}
+.riva-hero-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8A3A10;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.riva-hero-tag::before { content: ''; display: block; width: 24px; height: 2px; background: #8A3A10; }
+.riva-hero-title {
+  font-size: clamp(32px, 4vw, 60px);
+  color: #1A0A02;
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+.riva-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+}
+.riva-hero-dek {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #8A6840;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.riva-hero-bottom {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #D8CEB0;
+}
+.riva-read {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A3A10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.riva-read::after { content: ''; display: block; width: 24px; height: 1px; background: #8A3A10; }
+.riva-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: #C0A070;
+}
+.riva-sidebar {}
+.riva-sb-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C0A070;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #D8CEB0;
+}
+.riva-sb-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #D8CEB0;
+  cursor: pointer;
+}
+.riva-sb-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A3A10;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+.riva-sb-title { font-size: 17px; color: #1A0A02; line-height: 1.2; }
+.riva-accent-band {
+  height: 3px;
+  background: linear-gradient(to right, #8A3A10, #C8980C 40%, #1A0A02);
+}
+.riva-grid-wrap { padding: 32px 52px; }
+.riva-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.riva-card {
+  border-top: 2px solid #8A3A10;
+  padding-top: 16px;
+  cursor: pointer;
+}
+.riva-card-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8A3A10;
+  margin-bottom: 6px;
+}
+.riva-card-title { font-size: 17px; color: #1A0A02; line-height: 1.2; margin-bottom: 6px; }
+.riva-card-dek { font-family: 'Josefin Sans', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.1em; color: #9A7848; line-height: 1.6; }
+
+/* ----- PLAYBOY / MAGAZINE (WHITE) ----- */
+.playboy {
+  background: #FFFFFF;
+  font-family: 'Bodoni Moda', serif;
+  color: #1A1208;
+  min-height: 640px;
+}
+.pb-top-rule { height: 2px; background: #1A1208; }
+.pb-masthead {
+  padding: 20px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E8E0D0;
+}
+.pb-mh-left {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #B0A080;
+}
+.pb-logo {
+  font-size: clamp(24px, 4vw, 48px);
+  font-style: italic;
+  font-weight: 700;
+  color: #1A1208;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+.pb-mh-right {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B0A080;
+  text-align: right;
+}
+.pb-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding: 10px;
+  border-top: 1px solid #E8E0D0;
+  border-bottom: 2px solid #1A1208;
+  list-style: none;
+}
+.pb-nav li {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #1A1208;
+}
+.pb-nav .pb-dot { width: 3px; height: 3px; border-radius: 50%; background: #1A1208; opacity: 0.3; }
+.pb-hero {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  min-height: 360px;
+  border-bottom: 1px solid #E8E0D0;
+}
+.pb-hero-main {
+  padding: 52px;
+  border-right: 1px solid #E8E0D0;
+}
+.pb-hero-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #1A1208;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.pb-hero-title {
+  font-size: clamp(28px, 3vw, 48px);
+  font-style: italic;
+  font-weight: 700;
+  color: #1A1208;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+.pb-hero-rule { height: 2px; background: #1A1208; margin-bottom: 20px; }
+.pb-hero-dek {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: #7A6A50;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.pb-hero-read {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #1A1208;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pb-hero-read::after { content: ''; display: block; width: 24px; height: 2px; background: #1A1208; }
+.pb-sidebar {
+  padding: 40px 36px;
+  background: #FAFAF5;
+}
+.pb-sb-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #B0A080;
+  margin-bottom: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E8E0D0;
+}
+.pb-sb-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #E8E0D0;
+  cursor: pointer;
+}
+.pb-sb-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #1A1208;
+  opacity: 0.4;
+  margin-bottom: 5px;
+}
+.pb-sb-title { font-size: 17px; font-style: italic; color: #1A1208; line-height: 1.2; }
+.pb-bottom-rule { height: 2px; background: #1A1208; }
+.pb-grid-wrap { padding: 32px 52px; }
+.pb-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: #E8E0D0;
+}
+.pb-card {
+  background: #FFFFFF;
+  padding: 22px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pb-card:hover { background: #FAFAF5; }
+.pb-card-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #1A1208;
+  opacity: 0.4;
+  margin-bottom: 6px;
+}
+.pb-card-title { font-size: 16px; font-style: italic; color: #1A1208; line-height: 1.2; margin-bottom: 6px; }
+.pb-card-meta { font-family: 'Josefin Sans', sans-serif; font-size: 7px; letter-spacing: 0.15em; color: #B0A080; }
+
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-eyebrow">Shortlist · 8 Favorites + 1 Variant</div>
+  <div class="ph-title">'Tis but a <em>Flesh Wound</em></div>
+  <div class="ph-sub">Full-fidelity mockups with white backgrounds</div>
+  <div class="ph-meta">
+    <div class="ph-meta-item">Backgrounds<span>Pure White · No Texture</span></div>
+    <div class="ph-meta-item">Favorites<span>8 Themes</span></div>
+    <div class="ph-meta-item">Variant<span>Ferrari → BRG + Gold</span></div>
+    <div class="ph-meta-item">New<span>Polar · Riva · Playboy on White</span></div>
+  </div>
+</div>
+
+<!-- ===== FERRARI MARANELLO vs BRG SIDE BY SIDE ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">Side-by-Side Variant</span>
+  <span class="sh-num">Ferrari Red vs British Racing Green</span>
+  <hr>
+</div>
+
+<div class="variant-pair">
+  <div class="theme-block">
+    <div class="theme-frame">
+      <div class="ferrari">
+        <div class="ferrari-nav">
+          <span class="fn-logo">'Tis but a <em>Flesh</em> Wound</span>
+          <ul class="fn-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+          <span class="fn-issue">Est. MMXXV</span>
+        </div>
+        <div class="ferrari-hero">
+          <div class="fh-left">
+            <div class="fh-cat">Think Pieces · Featured</div>
+            <div class="fh-title">Everything I Know About Failure I Learned at Speed</div>
+            <div class="fh-excerpt">A meditation on what the racetrack teaches that the classroom never could.</div>
+            <div class="fh-byline"><div class="fh-byline-line"></div><span class="fh-byline-text">12 min read</span></div>
+          </div>
+          <div class="fh-right">
+            <div class="fh-right-label">Also in this issue</div>
+            <div class="fh-item"><div class="fh-item-cat">Short Stories</div><div class="fh-item-title">The Man Who Collected Silences</div></div>
+            <div class="fh-item"><div class="fh-item-cat">Poems</div><div class="fh-item-title">Ode to the Last Train North</div></div>
+            <div class="fh-item"><div class="fh-item-cat">Think Pieces</div><div class="fh-item-title">In Defence of Not Having an Opinion</div></div>
+            <div class="fh-item"><div class="fh-item-cat">Short Stories</div><div class="fh-item-title">Tuesday, Probably</div></div>
+          </div>
+        </div>
+        <div class="ferrari-rule"></div>
+        <div class="ferrari-grid-wrap">
+          <div class="fg-header"><span class="fg-header-title">Recent Work</span><span class="fg-header-link">View Archive →</span></div>
+          <div class="ferrari-grid">
+            <div class="fg-card"><div class="fg-num">001</div><div class="fg-cat">Think Pieces</div><div class="fg-title">The Case for Knowing Nothing</div><div class="fg-excerpt">Why certainty is the enemy of insight.</div></div>
+            <div class="fg-card"><div class="fg-num">002</div><div class="fg-cat">Short Stories</div><div class="fg-title">A Room with Two Windows</div><div class="fg-excerpt">She watched the street for forty years.</div></div>
+            <div class="fg-card"><div class="fg-num">003</div><div class="fg-cat">Poems</div><div class="fg-title">Self-Portrait as a Tuesday</div><div class="fg-excerpt">Unremarkable by design. Essential by absence.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-label">
+      <div><div class="tl-name">Ferrari · Maranello Red</div><div class="tl-note">Original — Rosso Corsa on Carbon</div></div>
+      <div class="tl-fonts"><strong>Primary:</strong> Cormorant Garamond<br><strong>Secondary:</strong> Cinzel + Josefin Sans<br><strong>Accent:</strong> #CC0000</div>
+    </div>
+  </div>
+
+  <div class="theme-block">
+    <div class="theme-frame">
+      <div class="brg">
+        <div class="brg-nav">
+          <span class="brg-logo">'Tis but a <em>Flesh</em> Wound</span>
+          <ul class="brg-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+          <span class="brg-issue">Est. MMXXV</span>
+        </div>
+        <div class="brg-hero">
+          <div class="brg-left">
+            <div class="brg-cat">Think Pieces · Featured</div>
+            <div class="brg-title">Everything I Know About Failure I Learned at Speed</div>
+            <div class="brg-excerpt">A meditation on what the racetrack teaches that the classroom never could. The discipline of controlled loss.</div>
+            <div class="brg-byline"><div class="brg-byline-line"></div><span class="brg-byline-text">12 min read</span></div>
+          </div>
+          <div class="brg-right">
+            <div class="brg-right-label">Also in this issue</div>
+            <div class="brg-item"><div class="brg-item-cat">Short Stories</div><div class="brg-item-title">The Man Who Collected Silences</div></div>
+            <div class="brg-item"><div class="brg-item-cat">Poems</div><div class="brg-item-title">Ode to the Last Train North</div></div>
+            <div class="brg-item"><div class="brg-item-cat">Think Pieces</div><div class="brg-item-title">In Defence of Not Having an Opinion</div></div>
+            <div class="brg-item"><div class="brg-item-cat">Short Stories</div><div class="brg-item-title">Tuesday, Probably</div></div>
+          </div>
+        </div>
+        <div class="brg-rule"></div>
+        <div class="brg-grid-wrap">
+          <div class="brg-grid-header"><span class="brg-grid-title">Recent Work</span><span class="brg-grid-link">View Archive →</span></div>
+          <div class="brg-grid">
+            <div class="brg-card"><div class="brg-card-num">001</div><div class="brg-card-cat">Think Pieces</div><div class="brg-card-title">The Case for Knowing Nothing</div><div class="brg-card-dek">Why certainty is the enemy of insight.</div></div>
+            <div class="brg-card"><div class="brg-card-num">002</div><div class="brg-card-cat">Short Stories</div><div class="brg-card-title">A Room with Two Windows</div><div class="brg-card-dek">She watched the street for forty years.</div></div>
+            <div class="brg-card"><div class="brg-card-num">003</div><div class="brg-card-cat">Poems</div><div class="brg-card-title">Self-Portrait as a Tuesday</div><div class="brg-card-dek">Unremarkable by design. Essential by absence.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-label">
+      <div><div class="tl-name">British Racing Green + Gold</div><div class="tl-note">Same structure — BRG #1B4332 · Gold #B8A050</div></div>
+      <div class="tl-fonts"><strong>Primary:</strong> Cormorant Garamond<br><strong>Secondary:</strong> Cinzel + Josefin Sans<br><strong>Accent:</strong> #1B4332 + #B8A050</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LAKE COMO ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">Favorite 02</span>
+  <span class="sh-num">Lake Como · Old Money</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="lake-como">
+      <div class="lc-nav">
+        <span class="lc-logo">'Tis but a Flesh Wound</span>
+        <ul class="lc-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+        <span class="lc-issue">Est. MMXXV</span>
+      </div>
+      <div class="lc-hero">
+        <div class="lc-main">
+          <div class="lc-main-top">
+            <div class="lc-hero-eyebrow">Featured Essay</div>
+            <div class="lc-hero-title">The Quiet English Art of Saying Everything by Saying Nothing</div>
+            <div class="lc-hero-dek">There is a particular genius in the English way of not saying things. The nod that means disapproval. The "quite" that means catastrophic. The invitation for tea that means "I'd like you to leave now, and possibly forever."</div>
+          </div>
+          <div class="lc-main-bottom">
+            <a class="lc-read-link" href="#"><span>Continue reading</span><div class="lc-read-arrow"></div></a>
+            <span class="lc-read-meta">Think Pieces · 11 min read</span>
+          </div>
+        </div>
+        <div class="lc-sidebar">
+          <div class="lc-sb-label">Also in this issue</div>
+          <div class="lc-sb-item"><div class="lc-sb-type">Short Stories</div><div class="lc-sb-title">The Watchmaker of Broad Street</div><div class="lc-sb-meta">6 min read</div></div>
+          <div class="lc-sb-item"><div class="lc-sb-type">Poems</div><div class="lc-sb-title">Elegy for a Postbox</div><div class="lc-sb-meta">2 min read</div></div>
+          <div class="lc-sb-item"><div class="lc-sb-type">Think Pieces</div><div class="lc-sb-title">Against the Considered Opinion</div><div class="lc-sb-meta">9 min read</div></div>
+          <div class="lc-sb-item"><div class="lc-sb-type">Short Stories</div><div class="lc-sb-title">The Last Passenger on the 6:18</div><div class="lc-sb-meta">5 min read</div></div>
+        </div>
+      </div>
+      <div class="lc-rule"></div>
+      <div class="lc-grid-wrap">
+        <div class="lc-grid">
+          <div class="lc-gi"><div class="lc-gi-tag">Think Pieces</div><div class="lc-gi-title">The Case for Knowing Nothing</div></div>
+          <div class="lc-gi"><div class="lc-gi-tag">Short Stories</div><div class="lc-gi-title">A Room with Two Windows</div></div>
+          <div class="lc-gi"><div class="lc-gi-tag">Poems</div><div class="lc-gi-title">Self-Portrait as a Tuesday</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Lake Como · Old Money</div><div class="tl-note">Warm ivory · sage green · antique gold</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Gilda Display · <strong>Secondary:</strong> Josefin Sans<br><strong>Accents:</strong> #6A7A50 sage + #C8B850 gold</div>
+  </div>
+</div>
+
+<!-- ===== GODFATHER ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">Favorite 03</span>
+  <span class="sh-num">The Godfather</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="godfather">
+      <div class="gf-top-band"></div>
+      <div class="gf-nav">
+        <span class="gf-logo">'Tis but a Flesh Wound</span>
+        <div class="gf-sep"></div>
+        <ul class="gf-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+      </div>
+      <div class="gf-hero">
+        <div class="gf-hero-rule"></div>
+        <div class="gf-hero-inner">
+          <div>
+            <div class="gf-hero-tag">Featured Essay</div>
+            <div class="gf-hero-title">The Geography of Everything You Can't Say</div>
+            <div class="gf-hero-quote">There are ideas that have no name yet. They live in the white space of the map — the unmapped territories between what is known and what can be said. This is about that country.</div>
+            <div class="gf-hero-readmore">Read the piece</div>
+          </div>
+          <div class="gf-sidebar">
+            <div class="gf-sb-label">Also in this issue</div>
+            <div class="gf-sb-item"><div class="gf-sb-item-cat">Short Stories</div><div class="gf-sb-item-title">The Lighthouse Keeper's Register</div></div>
+            <div class="gf-sb-item"><div class="gf-sb-item-cat">Poems</div><div class="gf-sb-item-title">Coordinates</div></div>
+            <div class="gf-sb-item"><div class="gf-sb-item-cat">Think Pieces</div><div class="gf-sb-item-title">In Praise of Not Arriving</div></div>
+            <div class="gf-sb-item"><div class="gf-sb-item-cat">Short Stories</div><div class="gf-sb-item-title">The Correspondent</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="gf-grid">
+        <div class="gf-card"><div class="gf-card-cat">Think Pieces</div><div class="gf-card-title">The Case for the Slow Conclusion</div><div class="gf-card-dek">What you lose when you decide too quickly. On the underrated art of keeping the question open.</div></div>
+        <div class="gf-card"><div class="gf-card-cat">Short Stories</div><div class="gf-card-title">The Cartographer's Mistake</div><div class="gf-card-dek">He mapped the coastline twice. The second version was wrong. It was also more beautiful.</div></div>
+        <div class="gf-card"><div class="gf-card-cat">Poems</div><div class="gf-card-title">Equinox</div><div class="gf-card-dek">The day that belongs to no season. The moment the year changes its mind.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">The Godfather</div><div class="tl-note">Warm vellum · deep crimson · antique gold rule</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Cormorant Garamond · <strong>Secondary:</strong> Josefin Sans<br><strong>Accent:</strong> #8A1818 crimson + #C8A050 gold</div>
+  </div>
+</div>
+
+<!-- ===== GOODFELLAS ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">Favorite 04</span>
+  <span class="sh-num">Goodfellas</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="goodfellas">
+      <div class="gfl-stripe"></div>
+      <div class="gfl-nav">
+        <span class="gfl-logo">'Tis but a Flesh Wound</span>
+        <ul class="gfl-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+      </div>
+      <div class="gfl-hero">
+        <div class="gfl-hero-main">
+          <div class="gfl-hero-rule"></div>
+          <div class="gfl-hero-tag">Featured Essay</div>
+          <div class="gfl-hero-title">The Long Argument I Never Finished</div>
+          <div class="gfl-hero-sub-rule"></div>
+          <div class="gfl-hero-dek">Some conversations deserve to remain open. On the virtue of the unresolved position — and the discipline of remaining uncertain long enough to find something worth saying.</div>
+          <div class="gfl-hero-read">Read the piece</div>
+        </div>
+        <div class="gfl-sidebar">
+          <div class="gfl-sb-label">Also in this issue</div>
+          <div class="gfl-sb-item"><div class="gfl-sb-item-cat">Short Stories</div><div class="gfl-sb-item-title">The Man Who Collected Silences</div></div>
+          <div class="gfl-sb-item"><div class="gfl-sb-item-cat">Poems</div><div class="gfl-sb-item-title">Ode to the Last Train North</div></div>
+          <div class="gfl-sb-item"><div class="gfl-sb-item-cat">Think Pieces</div><div class="gfl-sb-item-title">The Case for Knowing Nothing</div></div>
+          <div class="gfl-sb-item"><div class="gfl-sb-item-cat">Short Stories</div><div class="gfl-sb-item-title">Tuesday, Probably</div></div>
+        </div>
+      </div>
+      <div class="gfl-list-section">
+        <div class="gfl-list-header"><span>Recent Work</span><span>View Archive →</span></div>
+        <div class="gfl-row">
+          <div class="gfl-row-item"><div class="gfl-ri-cat">Think Pieces</div><div class="gfl-ri-title">The Case for Knowing Nothing</div><div class="gfl-ri-dek">Why certainty is the enemy of insight, and what a lifetime of being wrong has given me.</div></div>
+          <div class="gfl-row-item"><div class="gfl-ri-cat">Short Stories</div><div class="gfl-ri-title">A Room with Two Windows</div><div class="gfl-ri-dek">She watched the street for forty years. She saw everything. She told no one.</div></div>
+          <div class="gfl-row-item"><div class="gfl-ri-cat">Poems</div><div class="gfl-ri-title">Self-Portrait as a Tuesday</div><div class="gfl-ri-dek">Unremarkable by design. Essential by absence. The day the week forgets to name.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Goodfellas</div><div class="tl-note">Heavy black stripes · stark typography · no apologies</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Libre Baskerville · <strong>Secondary:</strong> Josefin Sans<br><strong>Accent:</strong> #8A1818 deep red + flat black rules</div>
+  </div>
+</div>
+
+<!-- ===== DISPATCH NEWSPAPER ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">Favorite 05</span>
+  <span class="sh-num">Dispatch Newspaper</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="dispatch">
+      <div class="disp-datebar">
+        <span>Independent · Est. MMXXV · No Advertisements</span>
+        <span>Short Stories · Think Pieces · Poems</span>
+        <span>No Comments · No Ads</span>
+      </div>
+      <div class="disp-masthead">
+        <div class="disp-logo"><em>'Tis but a</em> Flesh Wound</div>
+        <div class="disp-sub">Short Stories · Think Pieces · Poems · An Independent Journal</div>
+      </div>
+      <ul class="disp-nav">
+        <li>Short Stories</li><div class="nav-dot disp-nav"></div><li>Think Pieces</li><div class="disp-nav nav-dot"></div><li>Poems</li><div class="disp-nav nav-dot"></div><li>Archive</li>
+      </ul>
+      <div class="disp-broadsheet">
+        <div class="disp-col">
+          <div class="disp-col-head">Short Stories</div>
+          <div class="disp-col-title">The Watchmaker of Broad Street</div>
+          <div class="disp-col-body">He had repaired the same clock four hundred times. He suspected it preferred to be broken.</div>
+          <br>
+          <div class="disp-col-title">The Last Passenger on the 6:18</div>
+          <div class="disp-col-body">He rode the same train for thirty years. When they cancelled the line, he didn't know what to do with Tuesdays.</div>
+        </div>
+        <div class="disp-col-rule"></div>
+        <div class="disp-col">
+          <div class="disp-center-kicker">Featured · Think Pieces</div>
+          <div class="disp-center-title">The Quiet English Art of Saying Everything by Saying Nothing</div>
+          <div class="disp-drop-cap-text">There is a particular genius in the English way of not saying things. It is misread, constantly, by everyone who doesn't grow up inside it. The nod that means disapproval. The "quite" that means catastrophic. The invitation for tea that means "I'd like you to leave now, and possibly forever." This is not dishonesty. It is something more interesting — a language of implication so precise that it conveys more than direct speech could. Outsiders see reserve. Insiders see an entire emotional library.</div>
+        </div>
+        <div class="disp-col-rule"></div>
+        <div class="disp-col">
+          <div class="disp-col-head">Poems</div>
+          <div class="disp-col-title">Elegy for a Postbox</div>
+          <div class="disp-col-body">They painted it gold for the Games. I preferred it red and slightly wrong.</div>
+          <br>
+          <div class="disp-col-head">Think Pieces</div>
+          <div class="disp-col-title">Against the Considered Opinion</div>
+          <div class="disp-col-body">There is a particular arrogance in the person who knows exactly what they think. A short defence of the honest muddle.</div>
+        </div>
+      </div>
+      <div class="disp-quote-band">
+        <div class="disp-quote-text">"Writing is the long way round to saying something short."</div>
+        <div class="disp-quote-attr">The Flesh Wound · Independent Journal · Est. MMXXV</div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Dispatch Newspaper · Broadsheet</div><div class="tl-note">Three-column broadsheet · drop cap · double-rule masthead</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Old Standard TT · <strong>Secondary:</strong> Josefin Sans<br><strong>Accent:</strong> #C8A050 gold on ink black</div>
+  </div>
+</div>
+
+<!-- ===== POLAR EXPEDITION (WHITE) ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">New on White · 06</span>
+  <span class="sh-num">Polar Expedition — White Background</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="polar">
+      <div class="polar-topstrip"></div>
+      <div class="polar-masthead">
+        <div class="polar-mh-left">Independent · Est. MMXXV<br>Short Stories · Think Pieces</div>
+        <div>
+          <div class="polar-logo">'Tis but a Flesh Wound</div>
+          <div class="polar-logo-sub">An Independent Journal</div>
+        </div>
+        <div class="polar-mh-right">No Comments<br>No Advertisements</div>
+      </div>
+      <ul class="polar-nav">
+        <li>Short Stories</li><li class="polar-dot"></li><li>Think Pieces</li><li class="polar-dot"></li><li>Poems</li><li class="polar-dot"></li><li>Archive</li>
+      </ul>
+      <div class="polar-hero">
+        <div class="polar-hero-left">
+          <div class="polar-hero-left-top">
+            <div class="polar-h-tag">Featured Essay</div>
+            <div class="polar-h-title">The Geography of Everything You Can't Say</div>
+            <div class="polar-h-dek">There are ideas that have no name yet. They live in the white space of the map — the unmapped territories between what is known and what can be said. This is about that country.</div>
+          </div>
+          <div class="polar-h-bottom">
+            <a href="#" class="polar-read-btn">Read the Piece</a>
+            <span class="polar-h-meta">Think Pieces · 13 min read</span>
+          </div>
+        </div>
+        <div class="polar-vert-rule"></div>
+        <div class="polar-sidebar">
+          <div class="polar-sb-label">Also in this issue</div>
+          <div class="polar-sb-item"><div class="polar-sb-type">Short Stories</div><div class="polar-sb-title">The Lighthouse Keeper's Register</div><div class="polar-sb-meta">7 min read</div></div>
+          <div class="polar-sb-item"><div class="polar-sb-type">Poems</div><div class="polar-sb-title">Coordinates</div><div class="polar-sb-meta">3 min read</div></div>
+          <div class="polar-sb-item"><div class="polar-sb-type">Think Pieces</div><div class="polar-sb-title">In Praise of Not Arriving</div><div class="polar-sb-meta">9 min read</div></div>
+          <div class="polar-sb-item"><div class="polar-sb-type">Short Stories</div><div class="polar-sb-title">The Correspondent</div><div class="polar-sb-meta">6 min read</div></div>
+        </div>
+      </div>
+      <div class="polar-navy-band">
+        <div class="polar-nb-item"><div class="polar-nbi-type">Think Pieces</div><div class="polar-nbi-title">The Case for the Slow Conclusion</div><div class="polar-nbi-dek">What you lose when you decide too quickly.</div></div>
+        <div class="polar-nb-item"><div class="polar-nbi-type">Short Stories</div><div class="polar-nbi-title">The Cartographer's Mistake</div><div class="polar-nbi-dek">He mapped the coastline twice. The second was wrong. More beautiful.</div></div>
+        <div class="polar-nb-item"><div class="polar-nbi-type">Poems</div><div class="polar-nbi-title">Equinox</div><div class="polar-nbi-dek">The day the year changes its mind.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Polar Expedition · White</div><div class="tl-note">Deep navy 3px stripe · brass gold · crisp white — no cream</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Frank Ruhl Libre · <strong>Secondary:</strong> Cardo + Josefin Sans<br><strong>Accent:</strong> #0F1E30 navy + #8A6A30 brass</div>
+  </div>
+</div>
+
+<!-- ===== RIVA (WHITE) ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">New on White · 07</span>
+  <span class="sh-num">Riva · Italian Wooden Yacht — White Background</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="riva">
+      <div class="riva-nav">
+        <span class="riva-logo">'Tis but a Flesh Wound</span>
+        <div class="riva-nav-rule"></div>
+        <ul class="riva-links"><li>Short Stories</li><li>Think Pieces</li><li>Poems</li></ul>
+      </div>
+      <div class="riva-hero">
+        <div class="riva-hero-tag">Featured Essay</div>
+        <div class="riva-hero-title">Everything I Know About Failure I Learned at Speed</div>
+        <div class="riva-hero-inner">
+          <div>
+            <div class="riva-hero-dek">A meditation on what the racetrack teaches that the classroom never could. On pressure, precision, and the strange mercy of the unforgiving machine. On the beauty of the controlled loss.</div>
+            <div class="riva-hero-bottom">
+              <div class="riva-read">Read the piece</div>
+              <span class="riva-meta">Think Pieces · 12 min read</span>
+            </div>
+          </div>
+          <div class="riva-sidebar">
+            <div class="riva-sb-label">Also in this issue</div>
+            <div class="riva-sb-item"><div class="riva-sb-type">Short Stories</div><div class="riva-sb-title">The Man Who Collected Silences</div></div>
+            <div class="riva-sb-item"><div class="riva-sb-type">Poems</div><div class="riva-sb-title">Ode to the Last Train North</div></div>
+            <div class="riva-sb-item"><div class="riva-sb-type">Think Pieces</div><div class="riva-sb-title">In Defence of Not Having an Opinion</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="riva-accent-band"></div>
+      <div class="riva-grid-wrap">
+        <div class="riva-grid">
+          <div class="riva-card"><div class="riva-card-cat">Think Pieces</div><div class="riva-card-title">The Case for Knowing Nothing</div><div class="riva-card-dek">Why certainty is the enemy of insight, and what a lifetime of being wrong has given me.</div></div>
+          <div class="riva-card"><div class="riva-card-cat">Short Stories</div><div class="riva-card-title">A Room with Two Windows</div><div class="riva-card-dek">She watched the street for forty years. She saw everything. She told no one.</div></div>
+          <div class="riva-card"><div class="riva-card-cat">Poems</div><div class="riva-card-title">Self-Portrait as a Tuesday</div><div class="riva-card-dek">Unremarkable by design. Essential by absence. The day the week forgets to name.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Riva · Italian Wooden Yacht · White</div><div class="tl-note">Mahogany red · warm gold gradient rule · Italiana serif</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Italiana · <strong>Secondary:</strong> Josefin Sans<br><strong>Accent:</strong> #8A3A10 mahogany + #C8980C gold</div>
+  </div>
+</div>
+
+<!-- ===== PLAYBOY (WHITE) ===== -->
+<div class="section-head">
+  <hr>
+  <span class="sh-label">New on White · 08</span>
+  <span class="sh-num">Playboy · 60s Magazine — Pure White</span>
+  <hr>
+</div>
+
+<div class="theme-block">
+  <div class="theme-frame">
+    <div class="playboy">
+      <div class="pb-top-rule"></div>
+      <div class="pb-masthead">
+        <div class="pb-mh-left">Independent · Est. MMXXV<br>Short Stories · Think Pieces</div>
+        <div class="pb-logo">'Tis but a Flesh Wound</div>
+        <div class="pb-mh-right">No Comments<br>No Advertisements</div>
+      </div>
+      <ul class="pb-nav">
+        <li>Short Stories</li><li class="pb-dot"></li><li>Think Pieces</li><li class="pb-dot"></li><li>Poems</li><li class="pb-dot"></li><li>Archive</li>
+      </ul>
+      <div class="pb-hero">
+        <div class="pb-hero-main">
+          <div class="pb-hero-tag">Featured Essay</div>
+          <div class="pb-hero-title">The Quiet English Art of Saying Everything by Saying Nothing</div>
+          <div class="pb-hero-rule"></div>
+          <div class="pb-hero-dek">There is a particular genius in the English way of not saying things. It is misread, constantly, by everyone who doesn't grow up inside it. The nod that means disapproval. The "quite" that means catastrophic. The invitation for tea that means "I'd like you to leave now, and possibly forever."</div>
+          <div class="pb-hero-read">Continue reading</div>
+        </div>
+        <div class="pb-sidebar">
+          <div class="pb-sb-label">Also in this issue</div>
+          <div class="pb-sb-item"><div class="pb-sb-type">Short Stories</div><div class="pb-sb-title">The Watchmaker of Broad Street</div></div>
+          <div class="pb-sb-item"><div class="pb-sb-type">Poems</div><div class="pb-sb-title">Elegy for a Postbox</div></div>
+          <div class="pb-sb-item"><div class="pb-sb-type">Think Pieces</div><div class="pb-sb-title">Against the Considered Opinion</div></div>
+          <div class="pb-sb-item"><div class="pb-sb-type">Short Stories</div><div class="pb-sb-title">The Last Passenger on the 6:18</div></div>
+        </div>
+      </div>
+      <div class="pb-bottom-rule"></div>
+      <div class="pb-grid-wrap">
+        <div class="pb-grid">
+          <div class="pb-card"><div class="pb-card-cat">Think Pieces</div><div class="pb-card-title">The Case for Knowing Nothing</div><div class="pb-card-meta">8 min read</div></div>
+          <div class="pb-card"><div class="pb-card-cat">Short Stories</div><div class="pb-card-title">A Room with Two Windows</div><div class="pb-card-meta">6 min read</div></div>
+          <div class="pb-card"><div class="pb-card-cat">Poems</div><div class="pb-card-title">Self-Portrait as a Tuesday</div><div class="pb-card-meta">2 min read</div></div>
+          <div class="pb-card"><div class="pb-card-cat">Think Pieces</div><div class="pb-card-title">In Defence of Not Having an Opinion</div><div class="pb-card-meta">9 min read</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="theme-label">
+    <div><div class="tl-name">Playboy · 60s Magazine · Pure White</div><div class="tl-note">Bodoni masthead · double rule · black + white only</div></div>
+    <div class="tl-fonts"><strong>Primary:</strong> Bodoni Moda · <strong>Secondary:</strong> Josefin Sans<br><strong>Palette:</strong> Pure black + white — zero color</div>
+  </div>
+</div>
+
+<!-- PAGE FOOTER -->
+<div class="page-footer">
+  <div class="pf-logo">'Tis but a Flesh Wound · An Blog</div>
+  <div class="pf-note" style="margin-top:8px">Shortlist · 8 Favorites + BRG Variant · Ready for Build</div>
+</div>
+
+</body>
+</html>
