@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpine Writer — CSS Design Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   ALPINE WRITER — COMPLETE CSS DESIGN SYSTEM
+   Generated for Claude prompting & developer handoff
+   ============================================================ */
+
+/* ── ROOT TOKENS ─────────────────────────────────────────── */
+:root {
+
+  /* Backgrounds — universal, near-white, no hue identity */
+  --bg:          #F8F8F6;   /* page background */
+  --surface:     #F2F2F0;   /* recessed panels, footers, hovers */
+  --surface-deep:#EAEAE7;   /* deepest inset, rarely used */
+
+  /* Borders */
+  --border:      #DDE0E2;   /* standard 1px border */
+  --border-soft: #E8EAEC;   /* hairline 0.5px dividers */
+
+  /* Blues — the soul of the palette (60/30) */
+  --deep:        #042B44;   /* headings, site name */
+  --secondary:   #2A4A5C;   /* body prose */
+  --teal:        #096B90;   /* mid blue, essay tags */
+  --sky:         #A1CCDC;   /* light blue, decorative */
+  --steel:       #71B7D5;   /* story tags, secondary accent */
+  --midnight:    #08171E;   /* darkest, sparingly */
+  --muted:       #7A8C94;   /* metadata, timestamps, hints */
+
+  /* Alpenglow — the 4% accent */
+  --glow:        #C8660A;   /* THE accent. use sparingly. */
+  --glow-lt:     #FDF2EA;   /* glow background tint */
+  --glow-border: #EDD0B4;   /* glow pill borders */
+
+  /* Typography */
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:   'Lora', Georgia, serif;
+  --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing scale */
+  --space-xs:    8px;
+  --space-sm:    14px;
+  --space-md:    20px;
+  --space-lg:    32px;
+  --space-xl:    48px;
+  --space-2xl:   72px;
+
+  /* Typography scale */
+  --text-xs:     11px;
+  --text-sm:     12px;
+  --text-base:   14px;
+  --text-md:     16px;
+  --text-lg:     18px;
+  --text-xl:     22px;
+  --text-2xl:    28px;
+  --text-3xl:    36px;
+
+  /* Reading */
+  --measure:     65ch;       /* max line length for prose */
+  --line-prose:  1.78;       /* body text line height */
+  --line-title:  1.22;       /* heading line height */
+
+  /* Borders & radius */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-pill: 20px;
+
+  /* Border weights */
+  --border-hairline: 0.5px;
+  --border-fine:     1px;
+  --border-rule:     1.5px;
+  --border-accent:   2px;
+}
+
+/* ── RESET & BASE ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-prose);
+  color: var(--secondary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── GUIDE CHROME ────────────────────────────────────────── */
+.guide-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+
+.guide-header {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.guide-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--deep);
+  line-height: var(--line-title);
+  margin-bottom: 8px;
+}
+
+.guide-sub {
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--muted);
+}
+
+.guide-nav {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.guide-nav a {
+  font-size: var(--text-xs);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.guide-nav a:hover { color: var(--deep); }
+
+.section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--deep);
+  margin-bottom: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-desc {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 24px;
+  margin-top: 8px;
+}
+
+.subsection {
+  margin-bottom: 36px;
+}
+
+.subsection-title {
+  font-size: var(--text-xs);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* ── CODE BLOCKS ─────────────────────────────────────────── */
+pre {
+  background: var(--midnight);
+  color: #A1CCDC;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin-bottom: 16px;
+  border: 1px solid #0F2A36;
+}
+
+pre .comment { color: #4A7A8A; font-style: italic; }
+pre .key     { color: #71B7D5; }
+pre .val     { color: #E8C97A; }
+pre .accent  { color: #C8660A; }
+pre .str     { color: #A8D8A8; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--surface);
+  color: var(--deep);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+}
+
+/* ── COLOR PALETTE DISPLAY ───────────────────────────────── */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.color-chip {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.chip-swatch {
+  height: 60px;
+}
+
+.chip-info {
+  padding: 8px 10px;
+  background: var(--bg);
+}
+
+.chip-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--deep);
+  letter-spacing: .3px;
+}
+
+.chip-hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.chip-role {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.ratio-bar {
+  display: flex;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+.ratio-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  letter-spacing: .5px;
+}
+
+/* ── SPACING DISPLAY ─────────────────────────────────────── */
+.space-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.space-table th {
+  font-size: var(--text-xs);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.space-table td {
+  padding: 10px 12px;
+  font-size: var(--text-sm);
+  color: var(--secondary);
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: middle;
+}
+
+.space-table tr:last-child td { border-bottom: none; }
+
+.space-bar-wrap { display: flex; align-items: center; gap: 10px; }
+
+.space-bar {
+  background: var(--teal);
+  height: 8px;
+  border-radius: 2px;
+  opacity: .5;
+}
+
+.mono { font-family: var(--font-mono); font-size: 11px; color: var(--deep); }
+
+/* ── TYPOGRAPHY DISPLAY ──────────────────────────────────── */
+.type-specimen {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.type-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 100px;
+  align-items: baseline;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-soft);
+  gap: 16px;
+}
+
+.type-row:last-child { border-bottom: none; }
+
+.type-label {
+  font-size: var(--text-xs);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.type-meta {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
+/* ── BORDER DISPLAY ──────────────────────────────────────── */
+.border-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.border-card {
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+}
+
+.border-label {
+  font-size: var(--text-xs);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.border-demo {
+  height: 36px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.border-spec { font-family: var(--font-mono); font-size: 11px; color: var(--deep); }
+.border-use  { font-size: 11px; font-style: italic; color: var(--muted); margin-top: 4px; }
+
+/* ── RADIUS DISPLAY ──────────────────────────────────────── */
+.radius-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.radius-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.radius-box {
+  width: 48px;
+  height: 48px;
+  background: var(--teal);
+  opacity: .7;
+}
+
+.radius-name { font-size: 11px; color: var(--deep); font-weight: 500; }
+.radius-val  { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.radius-use  { font-size: 10px; font-style: italic; color: var(--muted); text-align: center; }
+
+/* ── COMPONENT DEMOS ─────────────────────────────────────── */
+.demo-frame {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+/* ── ACTUAL SITE COMPONENTS ──────────────────────────────── */
+
+/* Progress bar */
+.progress-bar { height: 3px; background: var(--border); width: 100%; }
+.progress-fill { height: 3px; background: var(--glow); width: 55%; }
+
+/* Nav */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-name {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--deep);
+}
+
+.site-tagline {
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  font-family: var(--font-body);
+  margin-left: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  letter-spacing: .4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-link:hover { color: var(--deep); }
+
+.mood-pill {
+  font-size: var(--text-xs);
+  color: var(--glow);
+  background: var(--glow-lt);
+  border: 1px solid var(--glow-border);
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  letter-spacing: .3px;
+}
+
+/* Genre tabs */
+.genre-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.genre-tab {
+  padding: 10px 18px;
+  font-size: var(--text-xs);
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font-body);
+  transition: all .2s;
+}
+
+.genre-tab:hover { color: var(--deep); }
+
+.genre-tab.active {
+  color: var(--deep);
+  border-bottom-color: var(--glow);
+}
+
+/* Genre tags inline */
+.tag-essay  { color: var(--teal); }
+.tag-story  { color: var(--steel); }
+.tag-poem   { color: var(--glow); }
+
+/* Genre tag element */
+.genre-tag-label {
+  font-size: var(--text-xs);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+}
+
+/* Article card */
+.article-card {
+  padding: 20px 22px;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.article-card:hover { background: var(--surface); }
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  line-height: var(--line-title);
+  color: var(--deep);
+  margin-bottom: 7px;
+}
+
+.card-excerpt {
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--secondary);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.card-meta {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  letter-spacing: .3px;
+}
+
+.card-note {
+  font-size: 10px;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Honest badge */
+.honest-badge {
+  font-size: 10px;
+  background: var(--glow-lt);
+  border: 1px solid var(--glow-border);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  color: var(--glow);
+  font-style: italic;
+}
+
+/* Pull quote */
+.pull-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--deep);
+  border-left: 2px solid var(--glow);
+  padding-left: 16px;
+  border-radius: 0;
+}
+
+.pull-attr {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: .3px;
+}
+
+/* Newsletter footer */
+.nl-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.nl-input {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--deep);
+  width: 170px;
+}
+
+.nl-input:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(9, 107, 144, .1);
+}
+
+.nl-btn {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--deep);
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.nl-btn:hover { background: var(--surface-deep); }
+
+/* Reading progress */
+.reading-progress {
+  height: 3px;
+  background: var(--glow);
+  width: 0%;
+  transition: width .1s linear;
+}
+
+/* Article body */
+.article-body {
+  max-width: var(--measure);
+  font-size: var(--text-md);
+  line-height: var(--line-prose);
+  color: var(--secondary);
+}
+
+.article-body p { margin-bottom: 1.4em; }
+
+.article-body h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--deep);
+  line-height: var(--line-title);
+  margin: 2em 0 .6em;
+}
+
+.article-body blockquote {
+  border-left: 2px solid var(--glow);
+  padding-left: 20px;
+  margin: 2em 0;
+  border-radius: 0;
+}
+
+.article-body blockquote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--deep);
+  margin-bottom: 0;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: var(--surface);
+  border-radius: 3px;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { opacity: .5; }
+  50%  { opacity: 1; }
+  100% { opacity: .5; }
+}
+
+/* Scroll fade animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.fade-up:nth-child(1) { transition-delay: .05s; }
+.fade-up:nth-child(2) { transition-delay: .15s; }
+.fade-up:nth-child(3) { transition-delay: .25s; }
+
+/* Sticky nav (shrink on scroll) */
+.site-nav.scrolled {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: padding .3s ease;
+}
+
+/* ── UTILITY CLASSES ─────────────────────────────────────── */
+.text-deep      { color: var(--deep); }
+.text-secondary { color: var(--secondary); }
+.text-muted     { color: var(--muted); }
+.text-glow      { color: var(--glow); }
+.text-teal      { color: var(--teal); }
+.text-steel     { color: var(--steel); }
+
+.serif { font-family: var(--font-serif); }
+.italic { font-style: italic; }
+.caps { text-transform: uppercase; letter-spacing: 1.5px; font-size: .85em; }
+
+.bg-surface { background: var(--surface); }
+.bg-glow-lt { background: var(--glow-lt); }
+
+/* ── GUIDE LAYOUT HELPERS ────────────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+
+.rule { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+.note-box {
+  background: var(--glow-lt);
+  border: 1px solid var(--glow-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: var(--text-sm);
+  color: var(--secondary);
+  margin-bottom: 16px;
+}
+
+.note-box strong { color: var(--glow); }
+
+.do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.do-box, .dont-box {
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+}
+
+.do-box {
+  background: #F0F7F0;
+  border: 1px solid #C0DBC0;
+}
+
+.dont-box {
+  background: #FDF0F0;
+  border: 1px solid #DCC0C0;
+}
+
+.do-label  { font-size: var(--text-xs); letter-spacing: 1px; text-transform: uppercase; color: #4A7A4A; margin-bottom: 6px; }
+.dont-label{ font-size: var(--text-xs); letter-spacing: 1px; text-transform: uppercase; color: #7A4A4A; margin-bottom: 6px; }
+
+</style>
+</head>
+<body>
+
+<div class="guide-wrap">
+
+  <!-- HEADER -->
+  <div class="guide-header">
+    <div class="guide-title">Alpine Writer — CSS Design Guide</div>
+    <div class="guide-sub">Complete token reference & component library for Claude prompting and developer handoff</div>
+    <nav class="guide-nav">
+      <a href="#palette">Color</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#borders">Borders & Radius</a>
+      <a href="#components">Components</a>
+      <a href="#animation">Animation</a>
+      <a href="#do-dont">Do & Don't</a>
+      <a href="#full-css">Full CSS</a>
+    </nav>
+  </div>
+
+
+  <!-- ── 1. COLOR ─────────────────────────────────────────── -->
+  <section class="section" id="palette">
+    <div class="section-title">1. Color palette</div>
+    <div class="section-desc">Built from an alpine photograph — deep water blues with a single moment of alpenglow orange. Backgrounds are universal near-whites with no hue identity of their own.</div>
+
+    <div class="subsection">
+      <div class="subsection-title">60 / 30 / 10 + 4% accent ratio</div>
+      <div class="ratio-bar">
+        <div class="ratio-seg" style="flex:6;background:#F8F8F6;color:#7A8C94;border-right:1px solid #DDE0E2;">60% bg</div>
+        <div class="ratio-seg" style="flex:3;background:#096B90;color:#A1CCDC;">30% blue</div>
+        <div class="ratio-seg" style="flex:1;background:#042B44;color:#71B7D5;">10%</div>
+        <div class="ratio-seg" style="flex:.4;background:#C8660A;color:#FDF2EA;font-size:9px;">4%</div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Background tokens — near-white, no hue</div>
+      <div class="palette-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#F8F8F6;border-bottom:1px solid #DDE0E2;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--bg</div>
+            <div class="chip-hex">#F8F8F6</div>
+            <div class="chip-role">Page background</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#F2F2F0;border-bottom:1px solid #DDE0E2;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--surface</div>
+            <div class="chip-hex">#F2F2F0</div>
+            <div class="chip-role">Panels, footers, hovers</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#EAEAE7;border-bottom:1px solid #DDE0E2;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--surface-deep</div>
+            <div class="chip-hex">#EAEAE7</div>
+            <div class="chip-role">Deepest inset, rarely</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Blue family — the body of the palette</div>
+      <div class="palette-grid">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#042B44;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--deep</div>
+            <div class="chip-hex">#042B44</div>
+            <div class="chip-role">Headings, site name</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#2A4A5C;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--secondary</div>
+            <div class="chip-hex">#2A4A5C</div>
+            <div class="chip-role">Body prose text</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#096B90;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--teal</div>
+            <div class="chip-hex">#096B90</div>
+            <div class="chip-role">Essay tags, mid blue</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#71B7D5;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--steel</div>
+            <div class="chip-hex">#71B7D5</div>
+            <div class="chip-role">Story tags, soft accent</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#A1CCDC;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--sky</div>
+            <div class="chip-hex">#A1CCDC</div>
+            <div class="chip-role">Light blue, decorative</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#7A8C94;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--muted</div>
+            <div class="chip-hex">#7A8C94</div>
+            <div class="chip-role">Timestamps, metadata</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#DDE0E2;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--border</div>
+            <div class="chip-hex">#DDE0E2</div>
+            <div class="chip-role">Standard borders</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#08171E;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--midnight</div>
+            <div class="chip-hex">#08171E</div>
+            <div class="chip-role">Code bg, darkest text</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Alpenglow — the 4% accent (use sparingly)</div>
+      <div class="palette-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#C8660A;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--glow</div>
+            <div class="chip-hex">#C8660A</div>
+            <div class="chip-role">THE accent color</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#FDF2EA;border-bottom:1px solid #EDD0B4;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--glow-lt</div>
+            <div class="chip-hex">#FDF2EA</div>
+            <div class="chip-role">Pill & badge backgrounds</div>
+          </div>
+        </div>
+        <div class="color-chip">
+          <div class="chip-swatch" style="background:#EDD0B4;"></div>
+          <div class="chip-info">
+            <div class="chip-name">--glow-border</div>
+            <div class="chip-hex">#EDD0B4</div>
+            <div class="chip-role">Pill borders</div>
+          </div>
+        </div>
+      </div>
+      <div class="note-box">
+        <strong>The 4% rule:</strong> The alpenglow orange appears in exactly 4 places site-wide: (1) the reading progress bar, (2) genre tags on featured pieces, (3) the pull-quote left border, (4) the "currently:" mood pill. Adding a 5th use dilutes the effect. Its power comes from restraint.
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 2. TYPOGRAPHY ─────────────────────────────────────── -->
+  <section class="section" id="typography">
+    <div class="section-title">2. Typography</div>
+    <div class="section-desc">Three typefaces, each with a distinct job. The serif pair creates the literary register; the mono is only for code.</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Font families</div>
+      <div class="type-specimen">
+        <div class="type-row">
+          <div class="type-label">Display / Headings</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:#042B44;line-height:1.2;">Playfair Display</div>
+          <div class="type-meta">--font-serif</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Body / UI</div>
+          <div style="font-family:'Lora',serif;font-size:16px;color:#2A4A5C;">Lora — for everything you read</div>
+          <div class="type-meta">--font-body</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">Code only</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#042B44;">JetBrains Mono</div>
+          <div class="type-meta">--font-mono</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Type scale</div>
+      <div class="type-specimen">
+        <div class="type-row">
+          <div class="type-label">--text-3xl</div>
+          <div style="font-family:'Playfair Display',serif;font-size:36px;color:#042B44;line-height:1.2;">Site title / hero</div>
+          <div class="type-meta">36px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-2xl</div>
+          <div style="font-family:'Playfair Display',serif;font-size:28px;color:#042B44;line-height:1.25;">Article h2 heading</div>
+          <div class="type-meta">28px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-xl</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:#042B44;">Nav name / section title</div>
+          <div class="type-meta">22px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-lg</div>
+          <div style="font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:#042B44;">"Pull quotes and block quotes"</div>
+          <div class="type-meta">18px · serif italic</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-md</div>
+          <div style="font-family:'Lora',serif;font-size:16px;color:#2A4A5C;">Article body — the primary reading size</div>
+          <div class="type-meta">16px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-base</div>
+          <div style="font-family:'Lora',serif;font-size:14px;color:#2A4A5C;">Card excerpts, nav links, UI text</div>
+          <div class="type-meta">14px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-sm</div>
+          <div style="font-family:'Lora',serif;font-size:12px;color:#7A8C94;">Metadata, dates, read time</div>
+          <div class="type-meta">12px</div>
+        </div>
+        <div class="type-row">
+          <div class="type-label">--text-xs</div>
+          <div style="font-family:'Lora',serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#7A8C94;">Genre labels · section headers</div>
+          <div class="type-meta">11px · caps</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Reading constraints</div>
+      <div class="space-table" style="border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;">
+        <table class="space-table" style="width:100%;">
+          <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">--measure</td><td class="mono">65ch</td><td>Max line length for article body — never wider</td></tr>
+            <tr><td class="mono">--line-prose</td><td class="mono">1.78</td><td>Body text line height — generous for long reads</td></tr>
+            <tr><td class="mono">--line-title</td><td class="mono">1.22</td><td>Heading line height — tighter for display type</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 3. SPACING ────────────────────────────────────────── -->
+  <section class="section" id="spacing">
+    <div class="section-title">3. Spacing scale</div>
+    <div class="section-desc">Use rem for vertical rhythm between sections; use px tokens for internal component gaps. Never invent a value — pick the nearest token.</div>
+
+    <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+      <table class="space-table" style="width:100%;">
+        <thead><tr><th>Token</th><th>Value</th><th>Visual</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="mono">--space-xs</td>
+            <td class="mono">8px</td>
+            <td><div class="space-bar" style="width:8px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Icon gaps, tag internal padding</td>
+          </tr>
+          <tr>
+            <td class="mono">--space-sm</td>
+            <td class="mono">14px</td>
+            <td><div class="space-bar" style="width:14px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Compact card padding, tight nav</td>
+          </tr>
+          <tr>
+            <td class="mono">--space-md</td>
+            <td class="mono">20px</td>
+            <td><div class="space-bar" style="width:20px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Standard card padding (horizontal)</td>
+          </tr>
+          <tr>
+            <td class="mono">--space-lg</td>
+            <td class="mono">32px</td>
+            <td><div class="space-bar" style="width:32px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Hero section padding, section gaps</td>
+          </tr>
+          <tr>
+            <td class="mono">--space-xl</td>
+            <td class="mono">48px</td>
+            <td><div class="space-bar" style="width:48px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Large section padding, desktop hero</td>
+          </tr>
+          <tr>
+            <td class="mono">--space-2xl</td>
+            <td class="mono">72px</td>
+            <td><div class="space-bar" style="width:72px;height:8px;border-radius:2px;display:inline-block;"></div></td>
+            <td>Page outer margins on wide screens</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 4. BORDERS & RADIUS ───────────────────────────────── -->
+  <section class="section" id="borders">
+    <div class="section-title">4. Borders & corner radius</div>
+    <div class="section-desc">Borders carry the structure. Radius carries the personality. Each has a defined job — don't swap them.</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Border weights</div>
+      <div class="border-grid">
+        <div class="border-card" style="border:0.5px solid var(--border);">
+          <div class="border-label">Hairline</div>
+          <div class="border-demo" style="border:0.5px solid var(--border);"></div>
+          <div class="border-spec">0.5px solid #DDE0E2</div>
+          <div class="border-use">Dividers within sections, subtle grid lines</div>
+        </div>
+        <div class="border-card" style="border:1px solid var(--border);">
+          <div class="border-label">Fine — the workhorse</div>
+          <div class="border-demo" style="border:1px solid var(--border);"></div>
+          <div class="border-spec">1px solid #DDE0E2</div>
+          <div class="border-use">Cards, inputs, outer frames, nav bottom</div>
+        </div>
+        <div class="border-card" style="border:1px solid var(--border);">
+          <div class="border-label">Rule — emphasis only</div>
+          <div class="border-demo" style="border:1.5px solid var(--border);"></div>
+          <div class="border-spec">1.5px solid #DDE0E2</div>
+          <div class="border-use">Featured card frame, selected state</div>
+        </div>
+        <div class="border-card" style="border:1px solid var(--border);">
+          <div class="border-label">Accent rule — glow only</div>
+          <div class="border-demo" style="border-left:2px solid var(--glow);border-radius:0;padding-left:12px;height:36px;display:flex;align-items:center;font-style:italic;font-family:'Playfair Display',serif;color:var(--deep);font-size:14px;">"a sentence worth pausing on"</div>
+          <div class="border-spec">2px solid #C8660A — left only</div>
+          <div class="border-use">Pull quotes, block quotes — never elsewhere</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Corner radius</div>
+      <div class="radius-row">
+        <div class="radius-chip" style="border-radius:4px;">
+          <div class="radius-box" style="border-radius:0;"></div>
+          <div class="radius-name">None</div>
+          <div class="radius-val">0px</div>
+          <div class="radius-use">Pull-quote borders, horizontal rules</div>
+        </div>
+        <div class="radius-chip" style="border-radius:4px;">
+          <div class="radius-box" style="border-radius:4px;"></div>
+          <div class="radius-name">--radius-sm</div>
+          <div class="radius-val">4px</div>
+          <div class="radius-use">Inputs, buttons, tabs, inline badges</div>
+        </div>
+        <div class="radius-chip" style="border-radius:4px;">
+          <div class="radius-box" style="border-radius:8px;"></div>
+          <div class="radius-name">--radius-md</div>
+          <div class="radius-val">8px</div>
+          <div class="radius-use">Cards, token displays, code blocks</div>
+        </div>
+        <div class="radius-chip" style="border-radius:4px;">
+          <div class="radius-box" style="border-radius:12px;"></div>
+          <div class="radius-name">--radius-lg</div>
+          <div class="radius-val">12px</div>
+          <div class="radius-use">Outer frame, demo wrappers</div>
+        </div>
+        <div class="radius-chip" style="border-radius:4px;">
+          <div class="radius-box" style="border-radius:24px;"></div>
+          <div class="radius-name">--radius-pill</div>
+          <div class="radius-val">20px</div>
+          <div class="radius-use">Mood pill, honest badge only</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 5. COMPONENTS ─────────────────────────────────────── -->
+  <section class="section" id="components">
+    <div class="section-title">5. Components</div>
+    <div class="section-desc">Every component rendered live in the actual palette. Copy the CSS class names directly.</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Navigation bar</div>
+      <div class="demo-frame">
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+        <div class="site-nav">
+          <div>
+            <span class="site-name">Your Name</span>
+            <span class="site-tagline">writes things down</span>
+          </div>
+          <div class="nav-links">
+            <a class="nav-link" href="#">Writing</a>
+            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Archive</a>
+            <span class="mood-pill">currently: reading too much</span>
+          </div>
+        </div>
+      </div>
+      <pre><span class="comment">/* Site name + tagline */</span>
+<span class="key">.site-name</span>  { font-family: var(--font-serif); font-size: var(--text-xl); color: var(--deep); }
+<span class="key">.site-tagline</span>{ font-style: italic; font-size: var(--text-sm); color: var(--muted); }
+
+<span class="comment">/* Mood pill — the playful touch */</span>
+<span class="key">.mood-pill</span> {
+  font-size: var(--text-xs); color: <span class="accent">var(--glow)</span>;
+  background: var(--glow-lt); border: 1px solid var(--glow-border);
+  padding: 4px 11px; border-radius: var(--radius-pill);
+}</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Genre tabs</div>
+      <div class="demo-frame">
+        <div class="genre-tabs">
+          <div class="genre-tab active">All</div>
+          <div class="genre-tab">Essays</div>
+          <div class="genre-tab">Stories</div>
+          <div class="genre-tab">Poems</div>
+        </div>
+      </div>
+      <pre><span class="key">.genre-tab</span> {
+  padding: 10px 18px; font-size: var(--text-xs); letter-spacing: .8px;
+  text-transform: uppercase; color: var(--muted);
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: all .2s;
+}
+<span class="key">.genre-tab.active</span> { color: var(--deep); border-bottom-color: <span class="accent">var(--glow)</span>; }</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Article cards</div>
+      <div class="demo-frame">
+        <div class="three-col">
+          <div class="article-card">
+            <div class="genre-tag-label tag-essay" style="margin-bottom:8px;">Essay</div>
+            <div class="card-title">Against Productivity Culture</div>
+            <div class="card-excerpt">We confused making things with living well, and nobody flagged it.</div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="card-meta">Jan 30 · 6 min</span>
+              <span class="card-note">mildly ranty</span>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="genre-tag-label tag-story" style="margin-bottom:8px;">Short Story</div>
+            <div class="card-title">The Man Who Returned the Keys</div>
+            <div class="card-excerpt">Two hundred miles to return something he never should have kept.</div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="card-meta">Feb 28 · 12 min</span>
+              <span class="card-note">my favorite so far</span>
+            </div>
+          </div>
+          <div class="article-card" style="border-right:none;">
+            <div class="genre-tag-label tag-poem" style="margin-bottom:8px;">Poem</div>
+            <div class="card-title">Pastoral, With Disturbance</div>
+            <div class="card-excerpt">The field was lovely / until it wasn't.</div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="card-meta">Feb 11 · 2 min</span>
+              <span class="card-note">short on purpose</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pre><span class="key">.tag-essay</span> { color: var(--teal); }   <span class="comment">/* #096B90 */</span>
+<span class="key">.tag-story</span> { color: var(--steel); }  <span class="comment">/* #71B7D5 */</span>
+<span class="key">.tag-poem</span>  { color: <span class="accent">var(--glow)</span>; }   <span class="comment">/* #C8660A — only genre using the accent */</span>
+
+<span class="key">.article-card</span> { padding: 20px 22px; transition: background .15s; }
+<span class="key">.article-card:hover</span> { background: var(--surface); }
+<span class="key">.card-title</span> { font-family: var(--font-serif); font-size: var(--text-md); color: var(--deep); }</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Pull quote</div>
+      <div class="demo-frame" style="padding:28px 32px;background:var(--surface);">
+        <div class="pull-quote">"The question is not whether we suffer — it is whether we suffer toward something."</div>
+        <div class="pull-attr">— from the essay above, written at 11pm</div>
+      </div>
+      <pre><span class="key">.pull-quote</span> {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: var(--text-lg); line-height: 1.6; color: var(--deep);
+  border-left: 2px solid <span class="accent">var(--glow)</span>; <span class="comment">/* THE accent use */</span>
+  padding-left: 16px; border-radius: 0;
+}
+<span class="key">.pull-attr</span> { font-size: var(--text-xs); color: var(--muted); margin-top: 10px; }</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Honest badges & mood pills</div>
+      <div class="demo-frame" style="padding:20px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <span class="mood-pill">currently: reading too much</span>
+        <span class="honest-badge">took me three weeks to finish</span>
+        <span class="honest-badge">mildly ranty</span>
+        <span class="honest-badge">my favorite so far</span>
+      </div>
+      <pre><span class="key">.mood-pill, .honest-badge</span> {
+  font-size: 10px; color: <span class="accent">var(--glow)</span>; background: var(--glow-lt);
+  border: 1px solid var(--glow-border);
+  padding: 3px 9px; border-radius: var(--radius-pill);
+  font-style: italic;
+}</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Newsletter footer</div>
+      <div class="demo-frame">
+        <div class="nl-bar">
+          <div>
+            <div style="font-size:13px;color:var(--secondary);">New pieces, when I finish them —</div>
+            <div style="font-size:11px;font-style:italic;color:var(--muted);">no schedule, no digest, just the writing</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input class="nl-input" placeholder="your@email.com">
+            <button class="nl-btn">Subscribe</button>
+          </div>
+          <div style="font-size:11px;color:var(--muted);font-style:italic;text-align:right;line-height:1.7;">No ads · no algorithm<br>just me and a word processor</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Skeleton loading</div>
+      <div class="demo-frame" style="padding:20px 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+        <div style="padding:0 20px 0 0;border-right:1px solid var(--border);">
+          <div class="skeleton" style="height:10px;width:40%;margin-bottom:10px;"></div>
+          <div class="skeleton" style="height:14px;width:90%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:12px;width:65%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:10px;width:30%;margin-top:6px;"></div>
+        </div>
+        <div style="padding:0 20px;border-right:1px solid var(--border);">
+          <div class="skeleton" style="height:10px;width:45%;margin-bottom:10px;"></div>
+          <div class="skeleton" style="height:14px;width:85%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:12px;width:70%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:10px;width:35%;margin-top:6px;"></div>
+        </div>
+        <div style="padding-left:20px;">
+          <div class="skeleton" style="height:10px;width:35%;margin-bottom:10px;"></div>
+          <div class="skeleton" style="height:14px;width:80%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:12px;width:55%;margin-bottom:8px;"></div>
+          <div class="skeleton" style="height:10px;width:30%;margin-top:6px;"></div>
+        </div>
+      </div>
+      <pre><span class="key">.skeleton</span> {
+  background: var(--surface);
+  border-radius: 3px;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+<span class="key">@keyframes shimmer</span> {
+  0%   { opacity: .5; }
+  50%  { opacity: 1; }
+  100% { opacity: .5; }
+}</pre>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 6. ANIMATION ──────────────────────────────────────── -->
+  <section class="section" id="animation">
+    <div class="section-title">6. Animation</div>
+    <div class="section-desc">Three animation patterns only. Each is purposeful. None are decorative.</div>
+
+    <div class="subsection">
+      <div class="subsection-title">Scroll fade-up — card entrances</div>
+      <pre><span class="key">.fade-up</span> {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .45s ease, transform .45s ease;
+}
+<span class="key">.fade-up.visible</span> { opacity: 1; transform: translateY(0); }
+
+<span class="comment">/* Stagger children */</span>
+<span class="key">.fade-up:nth-child(1)</span> { transition-delay: .05s; }
+<span class="key">.fade-up:nth-child(2)</span> { transition-delay: .15s; }
+<span class="key">.fade-up:nth-child(3)</span> { transition-delay: .25s; }
+
+<span class="comment">/* Trigger with IntersectionObserver */</span>
+<span class="str">const</span> io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add(<span class="str">'visible'</span>); });
+}, { threshold: 0.1 });
+document.querySelectorAll(<span class="str">'.fade-up'</span>).forEach(el => io.observe(el));</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Reading progress bar</div>
+      <pre><span class="comment">/* HTML: sits at very top of page, above nav */</span>
+&lt;div style=<span class="str">"height:3px;background:var(--border);"</span>&gt;
+  &lt;div id=<span class="str">"reading-progress"</span> style=<span class="str">"height:3px;background:var(--glow);width:0%;transition:width .1s linear;"</span>&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+<span class="comment">/* JS */</span>
+window.addEventListener(<span class="str">'scroll'</span>, () => {
+  <span class="str">const</span> doc = document.documentElement;
+  <span class="str">const</span> pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+  document.getElementById(<span class="str">'reading-progress'</span>).style.width = pct + <span class="str">'%'</span>;
+});</pre>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Sticky nav shrink on scroll</div>
+      <pre><span class="key">.site-nav</span> { padding: 14px 28px; transition: padding .3s ease; }
+<span class="key">.site-nav.scrolled</span> { padding: 8px 28px; }
+
+<span class="comment">/* JS */</span>
+window.addEventListener(<span class="str">'scroll'</span>, () => {
+  document.querySelector(<span class="str">'.site-nav'</span>).classList.toggle(<span class="str">'scrolled'</span>, window.scrollY > 60);
+});</pre>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 7. DO & DON'T ─────────────────────────────────────── -->
+  <section class="section" id="do-dont">
+    <div class="section-title">7. Do & don't</div>
+    <div class="section-desc">The rules that protect the personality of the design.</div>
+
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Use <code>--bg</code> (#F8F8F6) for the page — it disappears
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Use a blue-tinted background — the palette fights itself
+      </div>
+    </div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Use <code>--glow</code> in exactly 4 places: progress bar, featured genre tag, pull-quote border, mood pill
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Use the orange on links, hover states, or decorative elements — it loses its meaning
+      </div>
+    </div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Keep article body at <code>max-width: 65ch</code> with <code>line-height: 1.78</code>
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Let prose span full width — reading lines over 75ch cause fatigue
+      </div>
+    </div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Use <code>border-radius: 0</code> on pull-quote left borders — rounded corners with single-sided borders look wrong
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Round a border that only exists on one side
+      </div>
+    </div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Use Playfair Display for all titles — it's the "face" of the site
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Use system fonts or sans-serifs in headings — the literary register collapses
+      </div>
+    </div>
+    <div class="do-dont">
+      <div class="do-box">
+        <div class="do-label">Do</div>
+        Keep hover states as <code>background: var(--surface)</code> — a 3% shift is enough
+      </div>
+      <div class="dont-box">
+        <div class="dont-label">Don't</div>
+        Add drop shadows or color shifts on hover — it breaks the flat calm of the palette
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ── 8. FULL CSS ────────────────────────────────────────── -->
+  <section class="section" id="full-css">
+    <div class="section-title">8. Full :root token block</div>
+    <div class="section-desc">Paste this into the top of your stylesheet. Every component in this guide references these variables.</div>
+    <pre><span class="key">:root</span> {
+
+  <span class="comment">/* ── Backgrounds ─────────────────────────────── */</span>
+  <span class="key">--bg</span>:          <span class="val">#F8F8F6</span>;   <span class="comment">/* page — near-white, no hue */</span>
+  <span class="key">--surface</span>:     <span class="val">#F2F2F0</span>;   <span class="comment">/* panels, footers, card hovers */</span>
+  <span class="key">--surface-deep</span>:<span class="val">#EAEAE7</span>;   <span class="comment">/* deepest inset, rarely used */</span>
+
+  <span class="comment">/* ── Borders ──────────────────────────────────── */</span>
+  <span class="key">--border</span>:      <span class="val">#DDE0E2</span>;   <span class="comment">/* standard 1px border */</span>
+  <span class="key">--border-soft</span>: <span class="val">#E8EAEC</span>;   <span class="comment">/* hairline 0.5px dividers */</span>
+
+  <span class="comment">/* ── Blues ────────────────────────────────────── */</span>
+  <span class="key">--deep</span>:        <span class="val">#042B44</span>;   <span class="comment">/* headings, site name */</span>
+  <span class="key">--secondary</span>:   <span class="val">#2A4A5C</span>;   <span class="comment">/* body prose */</span>
+  <span class="key">--teal</span>:        <span class="val">#096B90</span>;   <span class="comment">/* essay tags, mid blue */</span>
+  <span class="key">--sky</span>:         <span class="val">#A1CCDC</span>;   <span class="comment">/* decorative only */</span>
+  <span class="key">--steel</span>:       <span class="val">#71B7D5</span>;   <span class="comment">/* story tags */</span>
+  <span class="key">--midnight</span>:    <span class="val">#08171E</span>;   <span class="comment">/* code backgrounds */</span>
+  <span class="key">--muted</span>:       <span class="val">#7A8C94</span>;   <span class="comment">/* metadata, timestamps */</span>
+
+  <span class="comment">/* ── Alpenglow (4% — use sparingly) ───────────── */</span>
+  <span class="key">--glow</span>:        <span class="val">#C8660A</span>;   <span class="comment">/* progress bar, featured tag, pull-quote border, mood pill */</span>
+  <span class="key">--glow-lt</span>:     <span class="val">#FDF2EA</span>;   <span class="comment">/* pill backgrounds */</span>
+  <span class="key">--glow-border</span>: <span class="val">#EDD0B4</span>;   <span class="comment">/* pill borders */</span>
+
+  <span class="comment">/* ── Typography ───────────────────────────────── */</span>
+  <span class="key">--font-serif</span>:  <span class="val">'Playfair Display'</span>, Georgia, serif;
+  <span class="key">--font-body</span>:   <span class="val">'Lora'</span>, Georgia, serif;
+  <span class="key">--font-mono</span>:   <span class="val">'JetBrains Mono'</span>, monospace;
+
+  <span class="comment">/* ── Type scale ───────────────────────────────── */</span>
+  <span class="key">--text-xs</span>:  <span class="val">11px</span>;
+  <span class="key">--text-sm</span>:  <span class="val">12px</span>;
+  <span class="key">--text-base</span>:<span class="val">14px</span>;
+  <span class="key">--text-md</span>:  <span class="val">16px</span>;
+  <span class="key">--text-lg</span>:  <span class="val">18px</span>;
+  <span class="key">--text-xl</span>:  <span class="val">22px</span>;
+  <span class="key">--text-2xl</span>: <span class="val">28px</span>;
+  <span class="key">--text-3xl</span>: <span class="val">36px</span>;
+
+  <span class="comment">/* ── Spacing ──────────────────────────────────── */</span>
+  <span class="key">--space-xs</span>:  <span class="val">8px</span>;
+  <span class="key">--space-sm</span>:  <span class="val">14px</span>;
+  <span class="key">--space-md</span>:  <span class="val">20px</span>;
+  <span class="key">--space-lg</span>:  <span class="val">32px</span>;
+  <span class="key">--space-xl</span>:  <span class="val">48px</span>;
+  <span class="key">--space-2xl</span>: <span class="val">72px</span>;
+
+  <span class="comment">/* ── Reading ──────────────────────────────────── */</span>
+  <span class="key">--measure</span>:     <span class="val">65ch</span>;    <span class="comment">/* max prose line length */</span>
+  <span class="key">--line-prose</span>:  <span class="val">1.78</span>;   <span class="comment">/* body line height */</span>
+  <span class="key">--line-title</span>:  <span class="val">1.22</span>;   <span class="comment">/* heading line height */</span>
+
+  <span class="comment">/* ── Radius ───────────────────────────────────── */</span>
+  <span class="key">--radius-sm</span>:   <span class="val">4px</span>;    <span class="comment">/* inputs, buttons */</span>
+  <span class="key">--radius-md</span>:   <span class="val">8px</span>;    <span class="comment">/* cards, code blocks */</span>
+  <span class="key">--radius-lg</span>:   <span class="val">12px</span>;   <span class="comment">/* outer frames */</span>
+  <span class="key">--radius-pill</span>: <span class="val">20px</span>;   <span class="comment">/* mood pill, badges */</span>
+}</pre>
+  </section>
+
+</div>
+</body>
+</html>
