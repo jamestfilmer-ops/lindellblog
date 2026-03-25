@@ -1,0 +1,231 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; padding: 4px 0; }
+.card { border-radius: 10px; overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+.bar { display: flex; height: 36px; }
+.seg { display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; }
+.info { padding: 7px 9px; background: var(--color-background-primary); }
+.name { font-size: 11px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 2px; }
+.hex { font-size: 10px; color: var(--color-text-secondary); font-family: var(--font-mono); }
+</style>
+
+<div class="grid">
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F2EDE4;flex:0.6;color:#8c8070;">60</div>
+    <div class="seg" style="background:#1C1C1C;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#E8633A;flex:0.1;color:#7a2a10;">10</div>
+  </div>
+  <div class="info"><div class="name">Script & ember</div><div class="hex">#F2EDE4 · #1C1C1C · #E8633A</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EEF2F0;flex:0.6;color:#7a9080;">60</div>
+    <div class="seg" style="background:#1F2E28;flex:0.3;color:#6b9080;">30</div>
+    <div class="seg" style="background:#F5A623;flex:0.1;color:#7a4d00;">10</div>
+  </div>
+  <div class="info"><div class="name">Stage light</div><div class="hex">#EEF2F0 · #1F2E28 · #F5A623</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FDF6EC;flex:0.6;color:#b09060;">60</div>
+    <div class="seg" style="background:#2B2320;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#0096C7;flex:0.1;color:#003d5c;">10</div>
+  </div>
+  <div class="info"><div class="name">Parchment & sky</div><div class="hex">#FDF6EC · #2B2320 · #0096C7</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F0F4F8;flex:0.6;color:#7a90a0;">60</div>
+    <div class="seg" style="background:#1A2B3C;flex:0.3;color:#6b90b0;">30</div>
+    <div class="seg" style="background:#FF6B6B;flex:0.1;color:#7a1c1c;">10</div>
+  </div>
+  <div class="info"><div class="name">Blueprint & blood</div><div class="hex">#F0F4F8 · #1A2B3C · #FF6B6B</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FBF7F0;flex:0.6;color:#b09870;">60</div>
+    <div class="seg" style="background:#3D2B1F;flex:0.3;color:#9c7050;">30</div>
+    <div class="seg" style="background:#00B4A0;flex:0.1;color:#004d44;">10</div>
+  </div>
+  <div class="info"><div class="name">Linen & jade</div><div class="hex">#FBF7F0 · #3D2B1F · #00B4A0</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F5F0FB;flex:0.6;color:#8070a0;">60</div>
+    <div class="seg" style="background:#1E1A2E;flex:0.3;color:#7060b0;">30</div>
+    <div class="seg" style="background:#FFD166;flex:0.1;color:#7a5500;">10</div>
+  </div>
+  <div class="info"><div class="name">Lavender & gold</div><div class="hex">#F5F0FB · #1E1A2E · #FFD166</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FAFAF5;flex:0.6;color:#909080;">60</div>
+    <div class="seg" style="background:#2C2C24;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#E63946;flex:0.1;color:#7a0010;">10</div>
+  </div>
+  <div class="info"><div class="name">Studio white & red</div><div class="hex">#FAFAF5 · #2C2C24 · #E63946</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EFF6F3;flex:0.6;color:#608070;">60</div>
+    <div class="seg" style="background:#163027;flex:0.3;color:#5a9080;">30</div>
+    <div class="seg" style="background:#FF8C42;flex:0.1;color:#7a3300;">10</div>
+  </div>
+  <div class="info"><div class="name">Mint & flame</div><div class="hex">#EFF6F3 · #163027 · #FF8C42</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FEF4F2;flex:0.6;color:#b08070;">60</div>
+    <div class="seg" style="background:#2A1A17;flex:0.3;color:#9c6050;">30</div>
+    <div class="seg" style="background:#2EC4B6;flex:0.1;color:#0d5b55;">10</div>
+  </div>
+  <div class="info"><div class="name">Blush & teal</div><div class="hex">#FEF4F2 · #2A1A17 · #2EC4B6</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F4F1EB;flex:0.6;color:#908070;">60</div>
+    <div class="seg" style="background:#26221A;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#6C63FF;flex:0.1;color:#1a155c;">10</div>
+  </div>
+  <div class="info"><div class="name">Warm paper & violet</div><div class="hex">#F4F1EB · #26221A · #6C63FF</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EDF4FF;flex:0.6;color:#6080b0;">60</div>
+    <div class="seg" style="background:#0D1F3C;flex:0.3;color:#5070a0;">30</div>
+    <div class="seg" style="background:#F72585;flex:0.1;color:#7a003d;">10</div>
+  </div>
+  <div class="info"><div class="name">Ice & magenta</div><div class="hex">#EDF4FF · #0D1F3C · #F72585</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F9F5EE;flex:0.6;color:#a09070;">60</div>
+    <div class="seg" style="background:#292015;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#06D6A0;flex:0.1;color:#025c45;">10</div>
+  </div>
+  <div class="info"><div class="name">Aged ivory & mint</div><div class="hex">#F9F5EE · #292015 · #06D6A0</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F2F7F5;flex:0.6;color:#608878;">60</div>
+    <div class="seg" style="background:#1B2D27;flex:0.3;color:#5a8070;">30</div>
+    <div class="seg" style="background:#FF4D6D;flex:0.1;color:#7a0020;">10</div>
+  </div>
+  <div class="info"><div class="name">Sea glass & rose</div><div class="hex">#F2F7F5 · #1B2D27 · #FF4D6D</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FFF8F0;flex:0.6;color:#b09060;">60</div>
+    <div class="seg" style="background:#2D1F0E;flex:0.3;color:#907040;">30</div>
+    <div class="seg" style="background:#118AB2;flex:0.1;color:#043a50;">10</div>
+  </div>
+  <div class="info"><div class="name">Sunlit page & ocean</div><div class="hex">#FFF8F0 · #2D1F0E · #118AB2</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F6F0F8;flex:0.6;color:#906890;">60</div>
+    <div class="seg" style="background:#221828;flex:0.3;color:#806080;">30</div>
+    <div class="seg" style="background:#FFC43D;flex:0.1;color:#7a5000;">10</div>
+  </div>
+  <div class="info"><div class="name">Dusk & honey</div><div class="hex">#F6F0F8 · #221828 · #FFC43D</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EBF5EC;flex:0.6;color:#507060;">60</div>
+    <div class="seg" style="background:#142918;flex:0.3;color:#407050;">30</div>
+    <div class="seg" style="background:#FF595E;flex:0.1;color:#7a1015;">10</div>
+  </div>
+  <div class="info"><div class="name">Clover & cherry</div><div class="hex">#EBF5EC · #142918 · #FF595E</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FFFCF5;flex:0.6;color:#b0a060;">60</div>
+    <div class="seg" style="background:#1E1A00;flex:0.3;color:#888040;">30</div>
+    <div class="seg" style="background:#C77DFF;flex:0.1;color:#4a0080;">10</div>
+  </div>
+  <div class="info"><div class="name">Cream & electric violet</div><div class="hex">#FFFCF5 · #1E1A00 · #C77DFF</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F0F5F5;flex:0.6;color:#608080;">60</div>
+    <div class="seg" style="background:#142626;flex:0.3;color:#408080;">30</div>
+    <div class="seg" style="background:#F4845F;flex:0.1;color:#7a2a10;">10</div>
+  </div>
+  <div class="info"><div class="name">Fog & terracotta</div><div class="hex">#F0F5F5 · #142626 · #F4845F</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FBF0F5;flex:0.6;color:#a06080;">60</div>
+    <div class="seg" style="background:#2A0F1E;flex:0.3;color:#905070;">30</div>
+    <div class="seg" style="background:#43BCCD;flex:0.1;color:#0d4f5c;">10</div>
+  </div>
+  <div class="info"><div class="name">Petal & lagoon</div><div class="hex">#FBF0F5 · #2A0F1E · #43BCCD</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F5F5F0;flex:0.6;color:#808070;">60</div>
+    <div class="seg" style="background:#22221A;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#FF9F1C;flex:0.1;color:#7a4400;">10</div>
+  </div>
+  <div class="info"><div class="name">Chalk & amber</div><div class="hex">#F5F5F0 · #22221A · #FF9F1C</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EFF3FA;flex:0.6;color:#607090;">60</div>
+    <div class="seg" style="background:#16213E;flex:0.3;color:#506090;">30</div>
+    <div class="seg" style="background:#0ACF83;flex:0.1;color:#025c3a;">10</div>
+  </div>
+  <div class="info"><div class="name">Moonlight & neon mint</div><div class="hex">#EFF3FA · #16213E · #0ACF83</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#FDF0E8;flex:0.6;color:#b07050;">60</div>
+    <div class="seg" style="background:#2E1500;flex:0.3;color:#906030;">30</div>
+    <div class="seg" style="background:#4361EE;flex:0.1;color:#0a1560;">10</div>
+  </div>
+  <div class="info"><div class="name">Peach & indigo</div><div class="hex">#FDF0E8 · #2E1500 · #4361EE</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#F3F3F0;flex:0.6;color:#808070;">60</div>
+    <div class="seg" style="background:#1A1A14;flex:0.3;color:#888;">30</div>
+    <div class="seg" style="background:#EF233C;flex:0.1;color:#7a0010;">10</div>
+  </div>
+  <div class="info"><div class="name">Studio grey & crimson</div><div class="hex">#F3F3F0 · #1A1A14 · #EF233C</div></div>
+</div>
+
+<div class="card">
+  <div class="bar">
+    <div class="seg" style="background:#EAF0F8;flex:0.6;color:#506880;">60</div>
+    <div class="seg" style="background:#0E1E30;flex:0.3;color:#405870;">30</div>
+    <div class="seg" style="background:#FFB703;flex:0.1;color:#7a5000;">10</div>
+  </div>
+  <div class="info"><div class="name">Silver blue & sun</div><div class="hex">#EAF0F8 · #0E1E30 · #FFB703</div></div>
+</div>
+
+</div>

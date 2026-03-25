@@ -1,0 +1,154 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .section { margin-bottom: 2.5rem; }
+  .palette-label { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .swatches { display: flex; gap: 0; border-radius: 10px; overflow: hidden; margin-bottom: 1rem; height: 56px; }
+  .swatch { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; }
+  .mock { border-radius: 12px; overflow: hidden; border: 0.5px solid var(--color-border-tertiary); }
+  .mock-nav { display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; }
+  .mock-nav-links { display: flex; gap: 16px; font-size: 11px; }
+  .mock-hero { padding: 28px 18px 22px; }
+  .mock-tag { display: inline-block; font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .mock-h1 { font-size: 20px; font-weight: 500; line-height: 1.25; margin-bottom: 6px; }
+  .mock-sub { font-size: 12px; line-height: 1.6; opacity: 0.75; margin-bottom: 14px; max-width: 300px; }
+  .mock-btn { display: inline-block; font-size: 11px; font-weight: 500; padding: 7px 16px; border-radius: 6px; letter-spacing: 0.03em; }
+  .mock-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 0 18px 18px; }
+  .mock-card { border-radius: 8px; padding: 10px 12px; }
+  .mock-card-label { font-size: 10px; font-weight: 500; opacity: 0.6; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .mock-card-val { font-size: 13px; font-weight: 500; }
+  .pct-label { font-size: 11px; }
+</style>
+
+<!-- PALETTE 1: Midnight Navy / Cream / Electric Teal -->
+<div class="section">
+  <div class="palette-label">1 — "Fade In" · Midnight ink · Antique cream · Electric teal</div>
+  <div class="swatches">
+    <div class="swatch" style="background:#111827; flex:0.6; color:#9ca3af;">
+      <span class="pct-label">60%</span>
+    </div>
+    <div class="swatch" style="background:#F5F0E8; flex:0.3; color:#6b7280;">
+      <span class="pct-label">30%</span>
+    </div>
+    <div class="swatch" style="background:#00D4B8; flex:0.1; color:#003d35;">
+      <span class="pct-label">10%</span>
+    </div>
+  </div>
+  <div class="mock">
+    <div class="mock-nav" style="background:#111827;">
+      <span style="font-size:13px; font-weight:500; color:#F5F0E8;">Script&Co.</span>
+      <div class="mock-nav-links" style="color:#9ca3af;">
+        <span>Courses</span><span>Tools</span><span>Library</span>
+      </div>
+    </div>
+    <div class="mock-hero" style="background:#111827;">
+      <div class="mock-tag" style="background:#00D4B8; color:#003d35;">Master the craft</div>
+      <div class="mock-h1" style="color:#F5F0E8;">Write scripts that<br>get you noticed.</div>
+      <div class="mock-sub" style="color:#F5F0E8;">From logline to final draft — everything a working screenwriter needs in one place.</div>
+      <div class="mock-btn" style="background:#00D4B8; color:#003d35;">Start writing →</div>
+    </div>
+    <div class="mock-cards" style="background:#F5F0E8;">
+      <div class="mock-card" style="background:#e8e3db;">
+        <div class="mock-card-label" style="color:#111827;">Format</div>
+        <div class="mock-card-val" style="color:#111827;">Industry std.</div>
+      </div>
+      <div class="mock-card" style="background:#e8e3db;">
+        <div class="mock-card-label" style="color:#111827;">Templates</div>
+        <div class="mock-card-val" style="color:#111827;">200+ scripts</div>
+      </div>
+      <div class="mock-card" style="background:#00D4B8;">
+        <div class="mock-card-label" style="color:#003d35;">Community</div>
+        <div class="mock-card-val" style="color:#003d35;">Live notes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PALETTE 2: Warm White / Charcoal / Coral Red -->
+<div class="section">
+  <div class="palette-label">2 — "Scene Break" · Off-white · Charcoal · Warm coral</div>
+  <div class="swatches">
+    <div class="swatch" style="background:#F7F4EF; flex:0.6; color:#a09d97;">
+      <span class="pct-label">60%</span>
+    </div>
+    <div class="swatch" style="background:#2A2824; flex:0.3; color:#9ca3af;">
+      <span class="pct-label">30%</span>
+    </div>
+    <div class="swatch" style="background:#E84F30; flex:0.1; color:#fff;">
+      <span class="pct-label">10%</span>
+    </div>
+  </div>
+  <div class="mock">
+    <div class="mock-nav" style="background:#F7F4EF; border-bottom:0.5px solid #e5e0d9;">
+      <span style="font-size:13px; font-weight:500; color:#2A2824;">Draft Room</span>
+      <div class="mock-nav-links" style="color:#6b6560;">
+        <span>Workshops</span><span>Feedback</span><span>Pros</span>
+      </div>
+    </div>
+    <div class="mock-hero" style="background:#F7F4EF; padding: 28px 18px 22px;">
+      <div class="mock-tag" style="background:#E84F30; color:#fff;">New season</div>
+      <div class="mock-h1" style="color:#2A2824;">Your next great<br>screenplay starts here.</div>
+      <div class="mock-sub" style="color:#2A2824;">Professional workshops. Real feedback from working writers. No fluff.</div>
+      <div class="mock-btn" style="background:#2A2824; color:#F7F4EF;">Join the room →</div>
+    </div>
+    <div class="mock-cards" style="background:#2A2824; padding-top:14px;">
+      <div class="mock-card" style="background:#3a3733;">
+        <div class="mock-card-label" style="color:#9ca3af;">Genre</div>
+        <div class="mock-card-val" style="color:#F7F4EF;">All formats</div>
+      </div>
+      <div class="mock-card" style="background:#3a3733;">
+        <div class="mock-card-label" style="color:#9ca3af;">Mentors</div>
+        <div class="mock-card-val" style="color:#F7F4EF;">WGA alumni</div>
+      </div>
+      <div class="mock-card" style="background:#E84F30;">
+        <div class="mock-card-label" style="color:#ffd4cc;">Apply now</div>
+        <div class="mock-card-val" style="color:#fff;">Rolling admit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PALETTE 3: Forest Green / Ivory / Amber Gold -->
+<div class="section" style="margin-bottom:0;">
+  <div class="palette-label">3 — "The Writer's Room" · Deep forest · Warm ivory · Amber gold</div>
+  <div class="swatches">
+    <div class="swatch" style="background:#1A3328; flex:0.6; color:#6b9e85;">
+      <span class="pct-label">60%</span>
+    </div>
+    <div class="swatch" style="background:#F8F3EB; flex:0.3; color:#a09d97;">
+      <span class="pct-label">30%</span>
+    </div>
+    <div class="swatch" style="background:#F0A500; flex:0.1; color:#5c3d00;">
+      <span class="pct-label">10%</span>
+    </div>
+  </div>
+  <div class="mock">
+    <div class="mock-nav" style="background:#1A3328;">
+      <span style="font-size:13px; font-weight:500; color:#F8F3EB;">StoryBoard</span>
+      <div class="mock-nav-links" style="color:#6b9e85;">
+        <span>Craft</span><span>Archive</span><span>Pitch</span>
+      </div>
+    </div>
+    <div class="mock-hero" style="background:#1A3328;">
+      <div class="mock-tag" style="background:#F0A500; color:#5c3d00;">Writers' toolkit</div>
+      <div class="mock-h1" style="color:#F8F3EB;">Tell stories worth<br>putting on screen.</div>
+      <div class="mock-sub" style="color:#F8F3EB;">Screenwriting resources, beat sheets, and inspiration — all in one room.</div>
+      <div class="mock-btn" style="background:#F0A500; color:#5c3d00;">Explore the craft →</div>
+    </div>
+    <div class="mock-cards" style="background:#F8F3EB;">
+      <div class="mock-card" style="background:#eee8de;">
+        <div class="mock-card-label" style="color:#1A3328;">Beat sheets</div>
+        <div class="mock-card-val" style="color:#1A3328;">Save the Cat</div>
+      </div>
+      <div class="mock-card" style="background:#eee8de;">
+        <div class="mock-card-label" style="color:#1A3328;">Analysis</div>
+        <div class="mock-card-val" style="color:#1A3328;">300+ films</div>
+      </div>
+      <div class="mock-card" style="background:#F0A500;">
+        <div class="mock-card-label" style="color:#5c3d00;">Pitch deck</div>
+        <div class="mock-card-val" style="color:#5c3d00;">Generator</div>
+      </div>
+    </div>
+  </div>
+</div>
