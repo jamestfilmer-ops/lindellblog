@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell's Blog — Brand Concepts v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,100;1,9..144,300;1,9..144,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,700&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200&family=Tenor+Sans&family=Questrial&family=Sorts+Mill+Goudy:ital@0;1&family=GFS+Didot:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  --chrome-bg: #F7F4EF;
+  --chrome-border: #e0d8cc;
+  --chrome-text: #1a1a1a;
+  --chrome-muted: #888;
+  --chrome-accent: #2a2a2a;
+}
+
+body {
+  background: var(--chrome-bg);
+  color: var(--chrome-text);
+  font-family: 'EB Garamond', Georgia, serif;
+  min-height: 100vh;
+}
+
+/* ── CHROME ── */
+.page-header {
+  padding: 3rem 3rem 0;
+  border-bottom: 1px solid var(--chrome-border);
+}
+.page-header-top {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding-bottom: 1.5rem;
+}
+.header-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--chrome-muted); margin-bottom: 0.5rem;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300; color: #111; line-height: 1;
+}
+.header-title em { font-style: italic; color: #555; }
+.header-sub {
+  font-size: 0.88rem; color: var(--chrome-muted); font-style: italic;
+  max-width: 340px; line-height: 1.5; text-align: right;
+}
+
+/* Tab nav */
+.tab-row {
+  display: flex; gap: 0;
+}
+.tab-btn {
+  background: transparent; border: none;
+  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--chrome-muted);
+  padding: 0.9rem 1.5rem; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: #333; }
+.tab-btn.active { color: #111; border-bottom-color: #111; }
+
+/* Filter row */
+.filter-row {
+  padding: 1rem 3rem;
+  display: flex; gap: 0.5rem; align-items: center;
+  border-bottom: 1px solid var(--chrome-border);
+}
+.filter-label {
+  font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--chrome-muted); margin-right: 0.5rem;
+}
+.filter-chip {
+  background: transparent; border: 1px solid var(--chrome-border);
+  color: var(--chrome-muted); font-family: 'Cinzel', serif;
+  font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.3rem 0.8rem; cursor: pointer; border-radius: 20px;
+  transition: all 0.2s;
+}
+.filter-chip.active, .filter-chip:hover {
+  background: #111; color: #fff; border-color: #111;
+}
+
+/* ── GRID ── */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 1px;
+  background: var(--chrome-border);
+  border-top: 1px solid var(--chrome-border);
+}
+
+.concept-card {
+  background: var(--chrome-bg);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.concept-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.12); z-index: 5; }
+
+.concept-preview {
+  height: 540px;
+  overflow: hidden;
+  position: relative;
+  display: flex; flex-direction: column;
+}
+
+/* hover reveal */
+.concept-meta {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.2rem 1.5rem;
+  background: rgba(255,255,255,0.95);
+  border-top: 1px solid rgba(0,0,0,0.07);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 20;
+}
+.concept-card:hover .concept-meta { transform: translateY(0); }
+.meta-number {
+  font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.25em;
+  color: #bbb; margin-bottom: 0.2rem;
+}
+.meta-name {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: #111;
+  font-style: italic;
+}
+.meta-sub { font-size: 0.78rem; color: #888; margin-top: 0.1rem; }
+.meta-fonts { font-size: 0.7rem; color: #aaa; margin-top: 0.35rem; font-style: italic; }
+.meta-choose {
+  margin-top: 0.75rem;
+  background: #111; color: #fff; border: none;
+  font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 0.5rem 1.2rem; cursor: pointer;
+  transition: background 0.2s;
+}
+.meta-choose:hover { background: #333; }
+
+.card-badge {
+  position: absolute; top: 1rem; left: 1rem; z-index: 10;
+  font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.2em;
+  text-transform: uppercase; padding: 0.28rem 0.7rem;
+  background: rgba(255,255,255,0.9); color: #555;
+  border: 1px solid rgba(0,0,0,0.1); border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════════
+   CONCEPT A: VIA COMO — Classic
+   Cormorant Garamond + terracotta + lake blue
+══════════════════════════════════════════════ */
+.pa { background: #FAFAF7; font-family: 'Cormorant Garamond', serif; }
+.pa-nav {
+  padding: 1.1rem 1.8rem; display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid #e8e0d4;
+}
+.pa-logo { font-size: 1.05rem; color: #1a3040; font-weight: 300; letter-spacing: 0.05em; font-style: italic; }
+.pa-tabs {
+  display: flex; gap: 0;
+}
+.pa-tab {
+  font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em;
+  text-transform: uppercase; padding: 0.3rem 0.9rem; color: #aaa;
+  border-bottom: 1.5px solid transparent;
+}
+.pa-tab.active { color: #1a3040; border-bottom-color: #C86A4A; }
+.pa-feature { padding: 1.5rem 1.8rem; border-bottom: 1px solid #e8e0d4; }
+.pa-label { color: #C86A4A; font-size: 0.58rem; letter-spacing: 0.3em; font-family: 'Cinzel', serif; text-transform: uppercase; margin-bottom: 0.5rem; }
+.pa-title { color: #1a2830; font-size: 2.1rem; font-weight: 300; line-height: 1.1; margin-bottom: 0.2rem; }
+.pa-title em { font-style: italic; font-weight: 400; }
+.pa-loc { color: #6FA3B8; font-size: 0.72rem; font-style: italic; letter-spacing: 0.05em; margin-bottom: 0.65rem; }
+.pa-text { color: #3a3028; font-size: 0.87rem; line-height: 1.8; }
+.pa-rule { height: 1px; background: linear-gradient(to right, #C86A4A, #6FA3B8, transparent); opacity: 0.3; margin: 1rem 1.8rem; }
+.pa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pa-card { padding: 1rem 1.8rem; border-top: 1px solid #e8e0d4; }
+.pa-card:first-child { border-right: 1px solid #e8e0d4; }
+.pa-card-label { color: #C86A4A; font-size: 0.55rem; letter-spacing: 0.25em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+.pa-card-title { color: #1a2830; font-size: 0.92rem; margin-top: 0.2rem; font-style: italic; line-height: 1.3; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT B: VIA COMO — Modern Bold
+   Bodoni Moda display + sans accent, cleaner
+══════════════════════════════════════════════ */
+.pb { background: #FFFFFF; font-family: 'Bodoni Moda', serif; }
+.pb-nav {
+  padding: 1.2rem 2rem; display: flex; align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #111;
+}
+.pb-logo { font-size: 1rem; color: #111; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'Josefin Sans', sans-serif; }
+.pb-tabs { display: flex; gap: 0; }
+.pb-tab { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 1rem; color: #ccc; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.pb-tab.active { color: #111; border-bottom-color: #6FA3B8; }
+.pb-hero { padding: 2rem 2rem 1.2rem; }
+.pb-kicker { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: #6FA3B8; margin-bottom: 0.6rem; }
+.pb-title { font-size: 3rem; font-weight: 700; line-height: 0.95; color: #111; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+.pb-title em { font-style: italic; font-weight: 400; color: #666; }
+.pb-meta { font-family: 'Josefin Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; color: #bbb; text-transform: uppercase; margin-bottom: 0.8rem; }
+.pb-text { font-size: 0.88rem; line-height: 1.75; color: #444; font-family: 'Crimson Pro', serif; }
+.pb-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid #eee; }
+.pb-card { padding: 1rem 2rem; }
+.pb-card:first-child { border-right: 1px solid #eee; }
+.pb-card-kicker { font-family: 'Josefin Sans', sans-serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #6FA3B8; }
+.pb-card-title { font-size: 1rem; margin-top: 0.2rem; color: #111; font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT C: REGATTA — Classic
+   Libre Baskerville + Navy + Red
+══════════════════════════════════════════════ */
+.pc { background: #F8F7F4; font-family: 'Libre Baskerville', serif; }
+.pc-header { background: #1E2F44; padding: 0 1.8rem; display: flex; align-items: center; justify-content: space-between; }
+.pc-logo { color: #fff; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'Cinzel', serif; padding: 1.1rem 0; }
+.pc-tabs { display: flex; }
+.pc-tab { font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 1.1rem 0.9rem; color: rgba(255,255,255,0.4); border-bottom: 2px solid transparent; }
+.pc-tab.active { color: #fff; border-bottom-color: #B23A2B; }
+.pc-red { height: 3px; background: #B23A2B; }
+.pc-body { padding: 1.5rem 1.8rem; }
+.pc-edition { font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.3em; text-transform: uppercase; color: #B23A2B; margin-bottom: 0.5rem; }
+.pc-title { font-size: 2rem; line-height: 1.1; color: #1E2F44; margin-bottom: 0.25rem; }
+.pc-byline { font-size: 0.7rem; font-style: italic; color: #8a9aaa; margin-bottom: 0.75rem; }
+.pc-text { font-size: 0.84rem; line-height: 1.72; color: #2a3545; }
+.pc-rule { border: none; border-top: 1px solid #dde3ea; margin: 1rem 0; }
+.pc-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.pc-card { border-top: 3px solid #1E2F44; padding-top: 0.6rem; }
+.pc-card-ed { font-family: 'Cinzel', serif; font-size: 0.53rem; letter-spacing: 0.18em; text-transform: uppercase; color: #B23A2B; }
+.pc-card-title { font-size: 0.88rem; margin-top: 0.2rem; color: #1E2F44; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT D: REGATTA — Superyacht Modern
+   Raleway ultralight + sharp navy geometry
+══════════════════════════════════════════════ */
+.pd { background: #F5F7FA; font-family: 'Raleway', sans-serif; }
+.pd-nav {
+  background: #fff;
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid #e0e6ee;
+  box-shadow: 0 1px 0 rgba(30,47,68,0.04);
+}
+.pd-logo { font-weight: 200; font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; color: #1E2F44; padding: 1.2rem 0; }
+.pd-tabs { display: flex; }
+.pd-tab { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 400; padding: 1.2rem 1rem; color: #bbb; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.pd-tab.active { color: #1E2F44; border-bottom-color: #1E2F44; }
+.pd-hero { padding: 2.5rem 2rem 1.5rem; background: #fff; border-bottom: 1px solid #e8ecf2; }
+.pd-kicker { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: #7a9fc0; font-weight: 300; margin-bottom: 0.6rem; }
+.pd-title { font-size: 2.8rem; font-weight: 200; line-height: 1; color: #0d1f35; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+.pd-title strong { font-weight: 600; }
+.pd-date { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #bbb; font-weight: 300; margin-bottom: 0.8rem; }
+.pd-text { font-size: 0.83rem; line-height: 1.8; color: #445; font-family: 'Crimson Pro', serif; font-weight: 300; }
+.pd-cards { display: grid; grid-template-columns: 1fr 1fr; background: #F5F7FA; }
+.pd-card { padding: 1.2rem 2rem; border-right: 1px solid #e0e6ee; }
+.pd-card:last-child { border-right: none; }
+.pd-card-kicker { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: #7a9fc0; font-weight: 300; }
+.pd-card-title { font-size: 0.9rem; font-weight: 300; color: #0d1f35; margin-top: 0.2rem; font-family: 'Raleway', sans-serif; letter-spacing: 0.03em; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT E: WHITE SAIL — Pure Literary
+   Sorts Mill Goudy, single gold rule
+══════════════════════════════════════════════ */
+.pe { background: #FDFCF9; font-family: 'Sorts Mill Goudy', serif; }
+.pe-nav { padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ece6dc; }
+.pe-logo { font-size: 1.05rem; color: #1a1a1a; letter-spacing: 0.04em; }
+.pe-gold { height: 1px; background: #b8965a; width: 36px; margin-top: 0.3rem; }
+.pe-tabs { display: flex; gap: 0; }
+.pe-tab { font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0 0.9rem; color: #ccc; border-bottom: 1px solid transparent; padding-bottom: 0.1rem; }
+.pe-tab.active { color: #1a1a1a; border-bottom-color: #b8965a; }
+.pe-body { padding: 2rem 2.5rem; }
+.pe-title { font-size: 2.3rem; line-height: 1.05; color: #1a1a1a; margin-bottom: 0.25rem; }
+.pe-date { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.2em; color: #b8965a; margin-bottom: 1rem; }
+.pe-text { font-size: 0.9rem; line-height: 1.88; color: #2a2520; }
+.pe-text::first-letter { font-size: 3.5rem; float: left; line-height: 0.72; margin: 0.05rem 0.4rem 0 0; color: #1a1a1a; }
+.pe-rule { border: none; border-top: 1px solid #ece6dc; margin: 1.2rem 0; }
+.pe-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.pe-card-title { font-size: 0.92rem; color: #1a1a1a; font-style: italic; line-height: 1.3; }
+.pe-card-date { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.15em; color: #b8965a; margin-top: 0.2rem; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT F: WHITE SAIL — Elevated Modern
+   Fraunces optical variable, ultra clean
+══════════════════════════════════════════════ */
+.pf { background: #FEFEFE; font-family: 'Fraunces', serif; }
+.pf-nav { padding: 1.4rem 2.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f0ebe3; }
+.pf-logo { font-size: 1.1rem; font-weight: 100; letter-spacing: 0.08em; color: #111; }
+.pf-logo span { font-weight: 400; font-style: italic; }
+.pf-tabs { display: flex; }
+.pf-tab { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0 0.8rem; color: #ddd; font-weight: 300; }
+.pf-tab.active { color: #111; }
+.pf-body { padding: 2.2rem 2.5rem; }
+.pf-eyebrow { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: #bbb; font-weight: 300; margin-bottom: 0.6rem; }
+.pf-title { font-size: 2.6rem; font-weight: 300; line-height: 1; color: #111; margin-bottom: 0.3rem; font-style: italic; }
+.pf-title span { font-style: normal; font-weight: 100; color: #aaa; font-size: 1.8rem; }
+.pf-sub { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: #ccc; font-weight: 300; margin-bottom: 0.9rem; }
+.pf-text { font-size: 0.87rem; line-height: 1.85; color: #333; font-weight: 300; }
+.pf-divider { display: flex; align-items: center; gap: 0.75rem; margin: 1rem 0; }
+.pf-divider-line { flex: 1; height: 1px; background: #f0ebe3; }
+.pf-divider-dot { width: 4px; height: 4px; background: #ccc; border-radius: 50%; }
+.pf-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.pf-card-title { font-size: 0.95rem; font-weight: 300; font-style: italic; color: #222; }
+.pf-card-sub { font-family: 'Josefin Sans', sans-serif; font-size: 0.53rem; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-top: 0.2rem; font-weight: 300; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT G: THE ATLAS — Classic
+   GFS Didot + corner ornaments
+══════════════════════════════════════════════ */
+.pg { background: #F6F1E9; font-family: 'GFS Didot', serif; position: relative; }
+.pg-corner { position: absolute; width: 18px; height: 18px; border-color: #8B6B3A; border-style: solid; z-index: 5; }
+.pg-corner.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+.pg-corner.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+.pg-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+.pg-corner.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+.pg-nav { padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(80,60,30,0.2); }
+.pg-logo { font-size: 1.1rem; color: #2C1F10; font-style: italic; }
+.pg-logo span { color: #8B6B3A; font-style: normal; }
+.pg-tabs { display: flex; }
+.pg-tab { font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0 0.8rem; color: #c5b090; border-bottom: 1px solid transparent; }
+.pg-tab.active { color: #2C1F10; border-bottom-color: #8B6B3A; }
+.pg-body { padding: 1.4rem 2rem; }
+.pg-roman { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8B6B3A; margin-bottom: 0.5rem; }
+.pg-title { font-size: 2rem; line-height: 1.1; color: #1a1008; margin-bottom: 0.2rem; }
+.pg-place { font-size: 0.75rem; color: #8B6B3A; font-style: italic; margin-bottom: 0.7rem; }
+.pg-text { font-size: 0.85rem; line-height: 1.75; color: #2a1f14; }
+.pg-rule { height: 1px; background: linear-gradient(to right, transparent, rgba(80,60,30,0.3), transparent); margin: 0.9rem 0; }
+.pg-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.pg-card { border: 1px solid rgba(80,60,30,0.15); padding: 0.75rem; }
+.pg-card-roman { font-family: 'Cinzel', serif; font-size: 0.53rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8B6B3A; }
+.pg-card-title { font-size: 0.88rem; color: #2a1f14; font-style: italic; margin-top: 0.15rem; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT H: THE ATLAS — Luxury Travel Magazine
+   Tenor Sans + DM Serif, modern-luxe
+══════════════════════════════════════════════ */
+.ph { background: #FAFAF8; font-family: 'DM Serif Display', serif; }
+.ph-nav { background: #fff; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eeebe4; }
+.ph-logo { font-family: 'Tenor Sans', sans-serif; font-size: 0.85rem; letter-spacing: 0.28em; text-transform: uppercase; color: #111; padding: 1.2rem 0; }
+.ph-tabs { display: flex; }
+.ph-tab { font-family: 'Tenor Sans', sans-serif; font-size: 0.57rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 1.2rem 0.9rem; color: #ccc; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ph-tab.active { color: #111; border-bottom-color: #c9a050; }
+.ph-feature { padding: 1.8rem 2rem 1.2rem; border-bottom: 1px solid #eeebe4; }
+.ph-tag { font-family: 'Tenor Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: #c9a050; margin-bottom: 0.55rem; }
+.ph-title { font-size: 2.4rem; line-height: 1.05; color: #111; margin-bottom: 0.2rem; }
+.ph-title em { font-style: italic; }
+.ph-dest { font-family: 'Tenor Sans', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #bbb; margin-bottom: 0.8rem; }
+.ph-text { font-size: 0.86rem; line-height: 1.78; color: #3a3830; font-family: 'Crimson Pro', serif; }
+.ph-rule { border: none; border-top: 1px solid #eeebe4; margin: 1rem 0; }
+.ph-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.ph-card { padding: 1rem 2rem; background: #fff; }
+.ph-card:first-child { border-right: 1px solid #eeebe4; }
+.ph-card-tag { font-family: 'Tenor Sans', sans-serif; font-size: 0.54rem; letter-spacing: 0.22em; text-transform: uppercase; color: #c9a050; }
+.ph-card-title { font-size: 0.95rem; color: #111; margin-top: 0.2rem; font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT I: PUB NOTEBOOK — Classic
+   Libre Baskerville + racing green + cream
+══════════════════════════════════════════════ */
+.pi { background: #F5EDD8; font-family: 'Libre Baskerville', serif; position: relative; }
+.pi-noise {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+.pi-header { background: #1B4332; padding: 0 1.8rem; display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2; }
+.pi-logo { color: #F5EDD8; font-size: 1.05rem; font-weight: 700; padding: 1rem 0; }
+.pi-tabs { display: flex; }
+.pi-tab { font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem 0.8rem; color: rgba(245,237,216,0.4); border-bottom: 2px solid transparent; }
+.pi-tab.active { color: #F5EDD8; border-bottom-color: #C9A84C; }
+.pi-gold-rule { height: 2px; background: linear-gradient(to right, #1B4332, #C9A84C, #1B4332); position: relative; z-index: 2; }
+.pi-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+.pi-kicker { color: #1B4332; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
+.pi-title { color: #1C1008; font-size: 2rem; line-height: 1.1; margin-bottom: 0.25rem; }
+.pi-date { color: #8B6B47; font-size: 0.72rem; font-style: italic; margin-bottom: 0.75rem; }
+.pi-text { color: #2C1F10; font-size: 0.85rem; line-height: 1.78; }
+.pi-text::first-letter { font-size: 3rem; float: left; line-height: 0.8; margin: 0.05rem 0.4rem 0 0; color: #1B4332; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+.pi-divider { border: none; border-top: 1px solid rgba(201,168,76,0.4); margin: 1rem 0; }
+.pi-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; position: relative; z-index: 2; }
+.pi-card { border-left: 2px solid #C9A84C; padding-left: 0.75rem; }
+.pi-card-cat { color: #1B4332; font-size: 0.53rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+.pi-card-title { color: #1C1008; font-size: 0.88rem; margin-top: 0.15rem; font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT J: PUB NOTEBOOK — Modern Editorial
+   Playfair + Questrial, elevated & airy
+══════════════════════════════════════════════ */
+.pj { background: #F8F5EE; font-family: 'Playfair Display', serif; }
+.pj-nav { padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; background: #fff; border-bottom: 1px solid #ede6d8; }
+.pj-logo { font-size: 1.1rem; font-style: italic; color: #111; padding: 1.1rem 0; letter-spacing: 0.02em; }
+.pj-right { display: flex; align-items: center; gap: 0; }
+.pj-tabs { display: flex; }
+.pj-tab { font-family: 'Questrial', sans-serif; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 1.1rem 0.9rem; color: #bbb; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.pj-tab.active { color: #2B4A38; border-bottom-color: #2B4A38; }
+.pj-body { padding: 1.6rem 2rem; }
+.pj-tag { font-family: 'Questrial', sans-serif; font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: #C5883A; margin-bottom: 0.5rem; }
+.pj-title { font-size: 2.1rem; line-height: 1.1; color: #111; margin-bottom: 0.25rem; font-style: italic; }
+.pj-byline { font-family: 'Questrial', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: #bbb; margin-bottom: 0.8rem; }
+.pj-text { font-size: 0.87rem; line-height: 1.8; color: #2a2018; }
+.pj-rule { border: none; border-top: 1px solid #ede6d8; margin: 1rem 0; }
+.pj-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pj-card { padding: 0.9rem 0; }
+.pj-card:first-child { padding-right: 1.5rem; border-right: 1px solid #ede6d8; }
+.pj-card:last-child { padding-left: 1.5rem; }
+.pj-card-tag { font-family: 'Questrial', sans-serif; font-size: 0.53rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C5883A; }
+.pj-card-title { font-size: 0.92rem; color: #111; margin-top: 0.2rem; font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT K: PORTOFINO — Luxury Travel Mag 1
+   Bodoni headline + Raleway subtext, billionaire
+══════════════════════════════════════════════ */
+.pk { background: #FFFFFF; font-family: 'Bodoni Moda', serif; }
+.pk-banner { background: #0a1628; padding: 0.3rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.pk-banner-text { font-family: 'Josefin Sans', sans-serif; font-size: 0.5rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.pk-nav { padding: 0 2rem; background: #fff; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f0ebe2; }
+.pk-logo { font-size: 1.4rem; font-weight: 700; color: #0a1628; letter-spacing: -0.02em; padding: 1rem 0; }
+.pk-logo sup { font-size: 0.45em; letter-spacing: 0.1em; color: #9a8060; vertical-align: super; font-style: italic; font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+.pk-tabs { display: flex; }
+.pk-tab { font-family: 'Josefin Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 1rem 1rem; color: #ccc; border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 300; }
+.pk-tab.active { color: #0a1628; border-bottom-color: #9a8060; }
+.pk-feature { padding: 1.8rem 2rem 1.2rem; }
+.pk-cat { font-family: 'Josefin Sans', sans-serif; font-size: 0.56rem; letter-spacing: 0.35em; text-transform: uppercase; color: #9a8060; font-weight: 300; margin-bottom: 0.6rem; }
+.pk-title { font-size: 2.6rem; font-weight: 700; line-height: 0.95; color: #0a1628; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+.pk-title em { font-weight: 400; font-style: italic; color: #444; }
+.pk-desc { font-family: 'Josefin Sans', sans-serif; font-size: 0.7rem; color: #999; letter-spacing: 0.1em; font-weight: 300; line-height: 1.6; margin-bottom: 0.6rem; }
+.pk-text { font-size: 0.88rem; line-height: 1.78; color: #333; font-family: 'Crimson Pro', serif; }
+.pk-line { height: 1px; background: #f0ebe2; margin: 1rem 0; }
+.pk-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pk-card { padding: 1rem 2rem 1rem 0; }
+.pk-card:last-child { padding-left: 2rem; border-left: 1px solid #f0ebe2; }
+.pk-card-cat { font-family: 'Josefin Sans', sans-serif; font-size: 0.53rem; letter-spacing: 0.25em; text-transform: uppercase; color: #9a8060; font-weight: 300; }
+.pk-card-title { font-size: 1rem; color: #0a1628; margin-top: 0.2rem; font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT L: RIVA — Italian Motorboat Magazine
+   Cinzel + Crimson Pro, sea-glass & ivory
+══════════════════════════════════════════════ */
+.pl { background: #F7F9F8; font-family: 'Crimson Pro', serif; }
+.pl-nav { background: #fff; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #2C5F5A; }
+.pl-logo { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.3em; text-transform: uppercase; color: #2C5F5A; font-weight: 600; padding: 1.1rem 0; }
+.pl-tabs { display: flex; }
+.pl-tab { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1.1rem 0.9rem; color: #bbb; border-bottom: 3px solid transparent; margin-bottom: -2px; font-weight: 400; }
+.pl-tab.active { color: #2C5F5A; border-bottom-color: #C8A96E; }
+.pl-feature { padding: 1.6rem 2rem 1.2rem; }
+.pl-kicker { font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: #C8A96E; margin-bottom: 0.5rem; }
+.pl-title { font-size: 2.2rem; line-height: 1.1; color: #1a2e2c; margin-bottom: 0.2rem; font-weight: 300; }
+.pl-title em { font-style: italic; font-weight: 600; }
+.pl-dateline { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.18em; color: #2C5F5A; margin-bottom: 0.7rem; }
+.pl-text { font-size: 0.92rem; line-height: 1.8; color: #2a3530; font-weight: 300; }
+.pl-rule { height: 1px; background: linear-gradient(to right, #2C5F5A, #C8A96E, transparent); margin: 1rem 0; opacity: 0.3; }
+.pl-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pl-card { padding: 1rem 2rem 1rem 0; }
+.pl-card:last-child { padding-left: 2rem; border-left: 1px solid rgba(44,95,90,0.12); }
+.pl-card-kicker { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: #C8A96E; }
+.pl-card-title { font-size: 0.95rem; color: #1a2e2c; margin-top: 0.2rem; font-weight: 300; }
+.pl-card-title em { font-style: italic; }
+
+/* ══════════════════════════════════════════════
+   CONCEPT M: THE MERIDIAN — High-end Travel 2
+   Questrial + Cormorant, warm ivory ultra-clean
+══════════════════════════════════════════════ */
+.pm { background: #FEFCF8; font-family: 'Cormorant Garamond', serif; }
+.pm-topbar { background: #1a1208; padding: 0.35rem 2rem; display: flex; justify-content: center; }
+.pm-topbar-text { font-family: 'Josefin Sans', sans-serif; font-size: 0.5rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.pm-nav { padding: 0 2rem; background: #FEFCF8; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ede5d4; }
+.pm-logo { font-size: 1.4rem; font-weight: 300; color: #111; font-style: italic; letter-spacing: 0.04em; padding: 1rem 0; }
+.pm-tabs { display: flex; }
+.pm-tab { font-family: 'Questrial', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 0.9rem; color: #ccc; border-bottom: 1px solid transparent; margin-bottom: -1px; }
+.pm-tab.active { color: #111; border-bottom-color: #111; }
+.pm-feature { padding: 1.8rem 2rem 1.2rem; border-bottom: 1px solid #ede5d4; }
+.pm-tag { font-family: 'Questrial', sans-serif; font-size: 0.56rem; letter-spacing: 0.3em; text-transform: uppercase; color: #C8923A; margin-bottom: 0.55rem; }
+.pm-title { font-size: 2.4rem; font-weight: 300; line-height: 1.05; color: #111; margin-bottom: 0.25rem; }
+.pm-title em { font-weight: 500; font-style: italic; }
+.pm-loc { font-family: 'Questrial', sans-serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: #bbb; margin-bottom: 0.8rem; }
+.pm-text { font-size: 0.9rem; line-height: 1.82; color: #2a2010; }
+.pm-divider { display: flex; align-items: center; gap: 1rem; margin: 1rem 0; }
+.pm-divider-line { flex: 1; height: 1px; background: #ede5d4; }
+.pm-divider-icon { font-size: 0.6rem; color: #C8923A; }
+.pm-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.pm-card { padding: 1rem 2rem 1rem 0; }
+.pm-card:last-child { padding-left: 2rem; border-left: 1px solid #ede5d4; }
+.pm-card-tag { font-family: 'Questrial', sans-serif; font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: #C8923A; }
+.pm-card-title { font-size: 1rem; color: #111; margin-top: 0.2rem; font-style: italic; font-weight: 300; }
+
+/* ── FOOTER / legend ── */
+.page-footer {
+  padding: 2.5rem 3rem;
+  border-top: 1px solid var(--chrome-border);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.font-legend-item { }
+.fl-label { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: #888; margin-bottom: 0.3rem; }
+.fl-name { font-size: 0.85rem; color: #333; }
+.fl-detail { font-size: 0.75rem; color: #aaa; font-style: italic; margin-top: 0.1rem; }
+</style>
+</head>
+<body>
+
+<!-- ── CHROME HEADER ── -->
+<header class="page-header">
+  <div class="page-header-top">
+    <div>
+      <div class="header-eyebrow">Isaac Lindell · Blog Branding · v2</div>
+      <h1 class="header-title">Refined Concepts<br><em>& Font Pairings</em></h1>
+    </div>
+    <div class="header-sub">Solid light backgrounds. Short Stories &amp; Think Pieces tabs. Your top 5 reworked + 3 new luxury/travel magazine directions.</div>
+  </div>
+  <div class="tab-row">
+    <button class="tab-btn active">All Concepts</button>
+    <button class="tab-btn">Your Top 5</button>
+    <button class="tab-btn">Luxury / Modern</button>
+  </div>
+</header>
+
+<div class="filter-row">
+  <span class="filter-label">Style:</span>
+  <button class="filter-chip active">All</button>
+  <button class="filter-chip">Classic Literary</button>
+  <button class="filter-chip">Modern / Magazine</button>
+  <button class="filter-chip">Nautical</button>
+  <button class="filter-chip">Travel</button>
+</div>
+
+<!-- ── GRID ── -->
+<div class="concepts-grid">
+
+  <!-- A: VIA COMO classic -->
+  <div class="concept-card">
+    <div class="card-badge">Via Como — Classic</div>
+    <div class="concept-preview pa">
+      <div class="pa-nav">
+        <div class="pa-logo">Isaac Lindell</div>
+        <div class="pa-tabs">
+          <div class="pa-tab active">Short Stories</div>
+          <div class="pa-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pa-feature">
+        <div class="pa-label">Fiction · Wyoming</div>
+        <div class="pa-title">Dirt</div>
+        <div class="pa-loc">☀ Wyoming Desert · August 1958</div>
+        <div class="pa-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+      </div>
+      <div class="pa-rule"></div>
+      <div class="pa-grid">
+        <div class="pa-card">
+          <div class="pa-card-label">Adventure</div>
+          <div class="pa-card-title">The Greatest Beer Run of All Time</div>
+        </div>
+        <div class="pa-card">
+          <div class="pa-card-label">Commentary</div>
+          <div class="pa-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept A</div>
+      <div class="meta-name">Via Como — Classic</div>
+      <div class="meta-sub">Italian lakeside. Terracotta + lake blue + warm ivory.</div>
+      <div class="meta-fonts">📖 Cormorant Garamond (headers) · EB Garamond (body) · Cinzel (labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- B: VIA COMO modern bold -->
+  <div class="concept-card">
+    <div class="card-badge">Via Como — Modern Bold</div>
+    <div class="concept-preview pb">
+      <div class="pb-nav">
+        <div class="pb-logo">Lindell</div>
+        <div class="pb-tabs">
+          <div class="pb-tab active">Short Stories</div>
+          <div class="pb-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pb-hero">
+        <div class="pb-kicker">Fiction · Short Story</div>
+        <div class="pb-title">Dirt</div>
+        <div class="pb-meta">Wyoming · August 1958 · 6 min read</div>
+        <div class="pb-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+      </div>
+      <div class="pb-cards">
+        <div class="pb-card">
+          <div class="pb-card-kicker">Adventure</div>
+          <div class="pb-card-title">The Greatest Beer Run</div>
+        </div>
+        <div class="pb-card">
+          <div class="pb-card-kicker">Commentary</div>
+          <div class="pb-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept B</div>
+      <div class="meta-name">Via Como — Modern Bold</div>
+      <div class="meta-sub">Same warmth, bolder grid. White background, strong contrast.</div>
+      <div class="meta-fonts">📖 Bodoni Moda (display) · Crimson Pro (body) · Josefin Sans (UI labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- C: REGATTA classic -->
+  <div class="concept-card">
+    <div class="card-badge">Regatta — Classic</div>
+    <div class="concept-preview pc">
+      <div class="pc-header">
+        <div class="pc-logo">Isaac Lindell</div>
+        <div class="pc-tabs">
+          <div class="pc-tab active">Short Stories</div>
+          <div class="pc-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pc-red"></div>
+      <div class="pc-body">
+        <div class="pc-edition">Edition No. 7 · Fiction</div>
+        <div class="pc-title">Dirt</div>
+        <div class="pc-byline">Isaac Lindell · November 2025 · Wyoming, 1958</div>
+        <div class="pc-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <hr class="pc-rule">
+        <div class="pc-cards">
+          <div class="pc-card">
+            <div class="pc-card-ed">Ed. 5 · Travel</div>
+            <div class="pc-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="pc-card">
+            <div class="pc-card-ed">Ed. 6 · Commentary</div>
+            <div class="pc-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept C</div>
+      <div class="meta-name">Regatta — Classic</div>
+      <div class="meta-sub">Navy header, regatta red, warm off-white. Yacht club newsletter energy.</div>
+      <div class="meta-fonts">📖 Libre Baskerville (all) · Cinzel (nav + labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- D: REGATTA superyacht -->
+  <div class="concept-card">
+    <div class="card-badge">Regatta — Superyacht</div>
+    <div class="concept-preview pd">
+      <div class="pd-nav">
+        <div class="pd-logo">Lindell</div>
+        <div class="pd-tabs">
+          <div class="pd-tab active">Short Stories</div>
+          <div class="pd-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pd-hero">
+        <div class="pd-kicker">Short Fiction · Wyoming</div>
+        <div class="pd-title"><strong>Dirt</strong></div>
+        <div class="pd-date">November 2025 · 6 min</div>
+        <div class="pd-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+      </div>
+      <div class="pd-cards">
+        <div class="pd-card">
+          <div class="pd-card-kicker">Adventure</div>
+          <div class="pd-card-title">The Greatest Beer Run</div>
+        </div>
+        <div class="pd-card">
+          <div class="pd-card-kicker">Commentary</div>
+          <div class="pd-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept D</div>
+      <div class="meta-name">Regatta — Superyacht</div>
+      <div class="meta-sub">Ultralight weight, airy grid, pale steel blue. Robb Report meets a sailing journal.</div>
+      <div class="meta-fonts">📖 Raleway 200 (headers) · Crimson Pro 300 (body) · Raleway 300 (nav)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- E: WHITE SAIL classic -->
+  <div class="concept-card">
+    <div class="card-badge">White Sail — Pure</div>
+    <div class="concept-preview pe">
+      <div class="pe-nav">
+        <div>
+          <div class="pe-logo">Isaac Lindell</div>
+          <div class="pe-gold"></div>
+        </div>
+        <div class="pe-tabs">
+          <div class="pe-tab active">Short Stories</div>
+          <div class="pe-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pe-body">
+        <div class="pe-title">Dirt</div>
+        <div class="pe-date">November · 2025</div>
+        <div class="pe-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+        <hr class="pe-rule">
+        <div class="pe-cards">
+          <div>
+            <div class="pe-card-title">The Greatest Beer Run of All Time</div>
+            <div class="pe-card-date">May · 2025</div>
+          </div>
+          <div>
+            <div class="pe-card-title">RIP Charlie Kirk</div>
+            <div class="pe-card-date">September · 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept E</div>
+      <div class="meta-name">White Sail — Pure</div>
+      <div class="meta-sub">Extreme minimalism. Cream paper, single gold rule, drop caps. Nothing else.</div>
+      <div class="meta-fonts">📖 Sorts Mill Goudy (entire site) · Cinzel (dates only)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- F: WHITE SAIL elevated -->
+  <div class="concept-card">
+    <div class="card-badge">White Sail — Elevated</div>
+    <div class="concept-preview pf">
+      <div class="pf-nav">
+        <div class="pf-logo">Isaac <span>Lindell</span></div>
+        <div class="pf-tabs">
+          <div class="pf-tab active">Short Stories</div>
+          <div class="pf-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pf-body">
+        <div class="pf-eyebrow">Short Fiction · November 2025</div>
+        <div class="pf-title">Dirt <span>—</span></div>
+        <div class="pf-sub">Wyoming Desert · 1958 · 6 min</div>
+        <div class="pf-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies were not from excitement.</div>
+        <div class="pf-divider"><div class="pf-divider-line"></div><div class="pf-divider-dot"></div><div class="pf-divider-line"></div></div>
+        <div class="pf-cards">
+          <div>
+            <div class="pf-card-title">The Greatest Beer Run of All Time</div>
+            <div class="pf-card-sub">Adventure · May 2025</div>
+          </div>
+          <div>
+            <div class="pf-card-title">RIP Charlie Kirk</div>
+            <div class="pf-card-sub">Commentary · Sep 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept F</div>
+      <div class="meta-name">White Sail — Elevated</div>
+      <div class="meta-sub">Fraunces optical serif (heavier optically, lighter in feel). Paired with Josefin Sans for labels. Very contemporary luxury.</div>
+      <div class="meta-fonts">📖 Fraunces 300 italic (headers) · Fraunces 300 (body) · Josefin Sans 200 (UI)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- G: ATLAS classic -->
+  <div class="concept-card">
+    <div class="card-badge">The Atlas — Classic</div>
+    <div class="concept-preview pg">
+      <div class="pg-corner tl"></div><div class="pg-corner tr"></div>
+      <div class="pg-corner bl"></div><div class="pg-corner br"></div>
+      <div class="pg-nav">
+        <div class="pg-logo">The <span>Lindell</span> Atlas</div>
+        <div class="pg-tabs">
+          <div class="pg-tab active">Short Stories</div>
+          <div class="pg-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pg-body">
+        <div class="pg-roman">Entry I · Short Fiction</div>
+        <div class="pg-title">Dirt</div>
+        <div class="pg-place">Wyoming Territory · August, 1958</div>
+        <div class="pg-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="pg-rule"></div>
+        <div class="pg-cards">
+          <div class="pg-card">
+            <div class="pg-card-roman">Entry V · Travel</div>
+            <div class="pg-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="pg-card">
+            <div class="pg-card-roman">Entry VI · Commentary</div>
+            <div class="pg-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept G</div>
+      <div class="meta-name">The Atlas — Classic</div>
+      <div class="meta-sub">Warm parchment, corner ornaments, Roman numerals. Antique illustrated travel tome.</div>
+      <div class="meta-fonts">📖 GFS Didot (headers) · GFS Didot (body) · Cinzel (labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- H: ATLAS luxury -->
+  <div class="concept-card">
+    <div class="card-badge">The Atlas — Luxury Edition</div>
+    <div class="concept-preview ph">
+      <div class="ph-nav">
+        <div class="ph-logo">Isaac Lindell</div>
+        <div class="ph-tabs">
+          <div class="ph-tab active">Short Stories</div>
+          <div class="ph-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="ph-feature">
+        <div class="ph-tag">Fiction · Short Story</div>
+        <div class="ph-title">Dirt</div>
+        <div class="ph-dest">Wyoming, 1958 · 6 min read</div>
+        <div class="ph-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+      </div>
+      <hr class="ph-rule">
+      <div class="ph-cards">
+        <div class="ph-card">
+          <div class="ph-card-tag">Travel</div>
+          <div class="ph-card-title">The Greatest Beer Run</div>
+        </div>
+        <div class="ph-card">
+          <div class="ph-card-tag">Commentary</div>
+          <div class="ph-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept H</div>
+      <div class="meta-name">The Atlas — Luxury Edition</div>
+      <div class="meta-sub">Elevated, magazine-ready. DM Serif Display for headlines, Tenor Sans for UI, Crimson Pro for body. Town & Country energy.</div>
+      <div class="meta-fonts">📖 DM Serif Display italic (headers) · Crimson Pro 300 (body) · Tenor Sans (nav)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- I: PUB NOTEBOOK classic -->
+  <div class="concept-card">
+    <div class="card-badge">Pub Notebook — Classic</div>
+    <div class="concept-preview pi">
+      <div class="pi-noise"></div>
+      <div class="pi-header">
+        <div class="pi-logo">Lindell</div>
+        <div class="pi-tabs">
+          <div class="pi-tab active">Short Stories</div>
+          <div class="pi-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pi-gold-rule"></div>
+      <div class="pi-body">
+        <div class="pi-kicker">Short Story · Creative Writing</div>
+        <div class="pi-title">Dirt</div>
+        <div class="pi-date">16 November, 2025</div>
+        <div class="pi-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        <hr class="pi-divider">
+        <div class="pi-cards">
+          <div class="pi-card">
+            <div class="pi-card-cat">Travel</div>
+            <div class="pi-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="pi-card">
+            <div class="pi-card-cat">Commentary</div>
+            <div class="pi-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept I</div>
+      <div class="meta-name">Pub Notebook — Classic</div>
+      <div class="meta-sub">British racing green header, warm cream paper texture, gold dividers. Drop caps.</div>
+      <div class="meta-fonts">📖 Libre Baskerville (all text) · Cormorant Garamond (drop caps) · Cinzel (labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- J: PUB NOTEBOOK elevated -->
+  <div class="concept-card">
+    <div class="card-badge">Pub Notebook — Modern Editorial</div>
+    <div class="concept-preview pj">
+      <div class="pj-nav">
+        <div class="pj-logo">Isaac Lindell</div>
+        <div class="pj-right">
+          <div class="pj-tabs">
+            <div class="pj-tab active">Short Stories</div>
+            <div class="pj-tab">Think Pieces</div>
+          </div>
+        </div>
+      </div>
+      <div class="pj-body">
+        <div class="pj-tag">Short Fiction · November 2025</div>
+        <div class="pj-title">Dirt</div>
+        <div class="pj-byline">Isaac Lindell · Wyoming, 1958</div>
+        <div class="pj-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+        <hr class="pj-rule">
+        <div class="pj-cards">
+          <div class="pj-card">
+            <div class="pj-card-tag">Travel</div>
+            <div class="pj-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="pj-card">
+            <div class="pj-card-tag">Commentary</div>
+            <div class="pj-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept J</div>
+      <div class="meta-name">Pub Notebook — Modern Editorial</div>
+      <div class="meta-sub">Same warmth, cleaned up. White header card, warmer body. Playfair + Questrial pairing is punchy and editorial.</div>
+      <div class="meta-fonts">📖 Playfair Display italic (headers) · EB Garamond (body) · Questrial (nav + labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- K: PORTOFINO luxury 1 -->
+  <div class="concept-card">
+    <div class="card-badge">★ New — Portofino</div>
+    <div class="concept-preview pk">
+      <div class="pk-banner">
+        <span class="pk-banner-text">Short Stories</span>
+        <span class="pk-banner-text">Est. 2024 · Nashville, TN</span>
+        <span class="pk-banner-text">Think Pieces</span>
+      </div>
+      <div class="pk-nav">
+        <div class="pk-logo">Lindell<sup>journal</sup></div>
+        <div class="pk-tabs">
+          <div class="pk-tab active">Short Stories</div>
+          <div class="pk-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pk-feature">
+        <div class="pk-cat">Short Fiction</div>
+        <div class="pk-title">Dirt</div>
+        <div class="pk-desc">Wyoming Desert · August 1958 · 6 min read</div>
+        <div class="pk-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+      </div>
+      <hr class="pk-line">
+      <div class="pk-cards">
+        <div class="pk-card">
+          <div class="pk-card-cat">Travel</div>
+          <div class="pk-card-title">The Greatest Beer Run</div>
+        </div>
+        <div class="pk-card">
+          <div class="pk-card-cat">Commentary</div>
+          <div class="pk-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept K — NEW</div>
+      <div class="meta-name">Portofino</div>
+      <div class="meta-sub">Deep navy + warm gold. Bodoni display — the Vogue/Harper's Bazaar treatment. "Journal" superscript adds character. Uber-wealthy magazine feel.</div>
+      <div class="meta-fonts">📖 Bodoni Moda 700 (display) · Crimson Pro (body) · Josefin Sans 300 (all UI)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- L: RIVA luxury 2 -->
+  <div class="concept-card">
+    <div class="card-badge">★ New — Riva</div>
+    <div class="concept-preview pl">
+      <div class="pl-nav">
+        <div class="pl-logo">Lindell</div>
+        <div class="pl-tabs">
+          <div class="pl-tab active">Short Stories</div>
+          <div class="pl-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pl-feature">
+        <div class="pl-kicker">Short Fiction</div>
+        <div class="pl-title"><em>Dirt</em></div>
+        <div class="pl-dateline">Wyoming · August 1958</div>
+        <div class="pl-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+      </div>
+      <div class="pl-rule"></div>
+      <div class="pl-cards">
+        <div class="pl-card">
+          <div class="pl-card-kicker">Travel</div>
+          <div class="pl-card-title"><em>The Greatest Beer Run</em></div>
+        </div>
+        <div class="pl-card">
+          <div class="pl-card-kicker">Commentary</div>
+          <div class="pl-card-title"><em>RIP Charlie Kirk</em></div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept L — NEW</div>
+      <div class="meta-name">Riva</div>
+      <div class="meta-sub">Named for the Italian speedboat. Sea-glass teal + warm brass gold. Cinzel nav gives it a trophy feel. Nautical luxury without being heavy.</div>
+      <div class="meta-fonts">📖 Crimson Pro 300 italic (headers) · Crimson Pro 300 (body) · Cinzel (nav + all labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+  <!-- M: THE MERIDIAN luxury 3 -->
+  <div class="concept-card">
+    <div class="card-badge">★ New — The Meridian</div>
+    <div class="concept-preview pm">
+      <div class="pm-topbar">
+        <span class="pm-topbar-text">Short Stories · Think Pieces · Est. Nashville, TN</span>
+      </div>
+      <div class="pm-nav">
+        <div class="pm-logo">The Meridian</div>
+        <div class="pm-tabs">
+          <div class="pm-tab active">Short Stories</div>
+          <div class="pm-tab">Think Pieces</div>
+        </div>
+      </div>
+      <div class="pm-feature">
+        <div class="pm-tag">Short Fiction</div>
+        <div class="pm-title"><em>Dirt</em></div>
+        <div class="pm-loc">Wyoming · August 1958</div>
+        <div class="pm-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+      </div>
+      <div class="pm-divider"><div class="pm-divider-line"></div><div class="pm-divider-icon">✦</div><div class="pm-divider-line"></div></div>
+      <div class="pm-cards">
+        <div class="pm-card">
+          <div class="pm-card-tag">Travel</div>
+          <div class="pm-card-title">The Greatest Beer Run</div>
+        </div>
+        <div class="pm-card">
+          <div class="pm-card-tag">Commentary</div>
+          <div class="pm-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-meta">
+      <div class="meta-number">Concept M — NEW</div>
+      <div class="meta-name">The Meridian</div>
+      <div class="meta-sub">Named like a fine travel magazine. Warm ivory, amber accents, dark masthead strip. Cormorant Garamond's finest hour. Condé Nast Traveler energy.</div>
+      <div class="meta-fonts">📖 Cormorant Garamond 300 italic (headers) · Cormorant Garamond 300 (body) · Questrial (nav + labels)</div>
+      <button class="meta-choose">Select this concept →</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FONT LEGEND ── -->
+<footer class="page-footer">
+  <div>
+    <div class="fl-label">Classic Serif Pairings</div>
+    <div class="fl-name">Cormorant Garamond + Cinzel</div>
+    <div class="fl-detail">Timeless. Old-money. Elegant spacing.</div>
+  </div>
+  <div>
+    <div class="fl-label">Literary Drop-Cap</div>
+    <div class="fl-name">Sorts Mill Goudy</div>
+    <div class="fl-detail">Best for fiction. Warm, book-like.</div>
+  </div>
+  <div>
+    <div class="fl-label">Modern Luxury</div>
+    <div class="fl-name">Bodoni Moda + Josefin Sans</div>
+    <div class="fl-detail">Fashion magazine. High contrast. Bold.</div>
+  </div>
+  <div>
+    <div class="fl-label">Airy &amp; Minimal</div>
+    <div class="fl-name">Raleway 200 + Crimson Pro</div>
+    <div class="fl-detail">Superyacht light. Robb Report feel.</div>
+  </div>
+  <div>
+    <div class="fl-label">Contemporary Serif</div>
+    <div class="fl-name">Fraunces + Josefin Sans</div>
+    <div class="fl-detail">Variable optical. Modern literary.</div>
+  </div>
+  <div>
+    <div class="fl-label">Travel Magazine</div>
+    <div class="fl-name">DM Serif Display + Tenor Sans</div>
+    <div class="fl-detail">Town &amp; Country / Atlas Obscura.</div>
+  </div>
+  <div>
+    <div class="fl-label">Nautical Prestige</div>
+    <div class="fl-name">Cinzel + Crimson Pro</div>
+    <div class="fl-detail">Trophy shelf. Riva speedboat.</div>
+  </div>
+  <div>
+    <div class="fl-label">Condé Nast Traveler</div>
+    <div class="fl-name">Cormorant Garamond + Questrial</div>
+    <div class="fl-detail">Warm ivory, amber, restrained.</div>
+  </div>
+</footer>
+
+</body>
+</html>
