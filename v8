@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>'Tis but a Flesh Wound — Isaac Lindell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  --white:       #ffffff;
+  --off:         #f6f5f2;
+  --surface:     #eeecea;
+  --border:      #dddbd6;
+  --border-soft: #e8e6e1;
+
+  --blue-deep:   #2c5f72;
+  --blue-mid:    #3d7d96;
+  --blue-light:  #5a9db5;
+  --blue-pale:   #c8dfe8;
+  --blue-wash:   #eaf3f7;
+
+  --mah-dark:    #4a1e0e;
+  --mah-mid:     #7c3b1e;
+  --mah-warm:    #a05030;
+  --mah-light:   #c47850;
+  --mah-pale:    #f0ddd0;
+
+  --brass:       #b08040;
+  --brass-pale:  #f0e4c8;
+
+  --ink:         #1a1612;
+  --ink-mid:     #3a3228;
+  --muted:       #7a7060;
+  --faint:       #b0a898;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-ui:      'Jost', sans-serif;
+
+  --ease:  0.22s ease;
+  --ease-enter: 0.5s ease;
+}
+
+/* ─────────────────────────────────────────
+   RESET
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body { background: var(--white); color: var(--ink); font-family: var(--font-ui); font-weight: 300; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font-ui); cursor: pointer; border: none; background: none; }
+
+/* ─────────────────────────────────────────
+   PROGRESS BAR
+───────────────────────────────────────── */
+.progress-bar { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 999; background: transparent; pointer-events: none; }
+.progress-fill { height: 2px; width: 0%; background: linear-gradient(90deg, var(--blue-deep), var(--mah-warm)); transition: width 0.08s linear; }
+
+/* ─────────────────────────────────────────
+   PAGE SWITCHER
+───────────────────────────────────────── */
+.bl-page { display: none; }
+.bl-page.active { display: block; }
+
+/* ─────────────────────────────────────────
+   CONDENSED HEADER
+   Row 1: date | title | links
+   Row 2: nav tabs
+───────────────────────────────────────── */
+/* ── SITE HEADER — two compact rows ── */
+.site-header {
+  position: sticky; top: 0; z-index: 300;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--ink);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0 3.5rem;
+  height: 42px;
+  gap: 0;
+}
+
+/* Left — date · title as one banner line */
+.header-left {
+  display: flex; align-items: center; gap: 0;
+  height: 100%;
+  padding-right: 2rem;
+  border-right: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+.header-date {
+  font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--faint); white-space: nowrap; padding-right: 1rem;
+  border-right: 1px solid var(--border-soft); margin-right: 1rem;
+}
+.header-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400; letter-spacing: 0em; line-height: 1;
+  color: var(--ink); cursor: pointer;
+  transition: color var(--ease); white-space: nowrap;
+}
+.header-name:hover { color: var(--blue-deep); }
+
+/* Center — nav tabs */
+.nav-tabs {
+  display: flex; justify-content: center; align-items: center;
+  gap: 0; height: 100%;
+}
+.nav-tab {
+  font-size: 0.54rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--faint); padding: 0 1rem;
+  height: 100%; display: flex; align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color var(--ease), border-color var(--ease);
+}
+.nav-tab.active, .nav-tab:hover { color: var(--ink); }
+.nav-tab.active { border-bottom-color: var(--blue-mid); }
+
+/* Right — links */
+.header-links {
+  display: flex; gap: 1.4rem; justify-content: flex-end; align-items: center;
+  height: 100%;
+  border-left: 1px solid var(--border-soft);
+  padding-left: 2rem;
+}
+.header-link {
+  font-size: 0.54rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: color var(--ease);
+  background: none; border: none; font-family: var(--font-ui); padding: 0;
+}
+.header-link:hover { color: var(--blue-deep); }
+
+/* legacy .top-bar used in article/about pages — slim version */
+.top-bar {
+  border-bottom: 1px solid var(--border-soft);
+  padding: 0.45rem 3.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--white);
+  position: sticky; top: 0; z-index: 300;
+}
+.top-date { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+.top-links { display: flex; gap: 1.6rem; }
+.top-link {
+  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: color var(--ease);
+  background: none; border: none; font-family: var(--font-ui); padding: 0;
+}
+.top-link:hover { color: var(--blue-deep); }
+
+/* ─────────────────────────────────────────
+   SITE WRAP
+───────────────────────────────────────── */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 3.5rem; }
+
+/* ─────────────────────────────────────────
+   HERO SECTION
+───────────────────────────────────────── */
+.hero-section {
+  display: grid; grid-template-columns: 3fr 1px 2fr; gap: 0 2.5rem;
+  padding: 2.8rem 0 2.8rem; border-bottom: 1px solid var(--border-soft);
+  opacity: 0; animation: fadeUp 0.55s 0.1s ease forwards;
+}
+.hero-divider { background: var(--border-soft); }
+
+.hero-kicker {
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--mah-warm); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.hero-kicker::after { content: ''; width: 20px; height: 1px; background: var(--mah-warm); }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  font-weight: 400; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 1.1rem;
+  cursor: pointer; transition: color var(--ease);
+}
+.hero-title:hover { color: var(--mah-mid); }
+
+.hero-dek {
+  font-family: var(--font-display); font-size: 1.15rem; font-style: italic;
+  line-height: 1.85; color: var(--ink-mid); margin-bottom: 1.4rem; max-width: 54ch;
+}
+.hero-byline {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--faint); display: flex; align-items: center; gap: 0.6rem;
+}
+.byline-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
+
+/* hero read button */
+.hero-read {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--white); background: var(--blue-deep);
+  padding: 0.75rem 1.5rem; margin-top: 1.6rem;
+  transition: background var(--ease);
+}
+.hero-read:hover { background: var(--blue-mid); }
+
+/* sidebar */
+.sidebar { display: flex; flex-direction: column; padding-left: 0.25rem; }
+.side-item {
+  padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 1.5rem; cursor: pointer;
+}
+.side-item:last-child { border: none; margin: 0; padding: 0; }
+.side-item:hover .side-title { color: var(--blue-mid); }
+.side-kicker {
+  font-size: 0.58rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--blue-mid); margin-bottom: 0.4rem;
+}
+.side-title {
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 400;
+  line-height: 1.28; color: var(--ink); margin-bottom: 0.35rem;
+  transition: color var(--ease);
+}
+.side-dek {
+  font-family: var(--font-display); font-size: 0.92rem; font-style: italic;
+  line-height: 1.7; color: var(--muted);
+}
+.side-meta { font-size: 0.62rem; color: var(--faint); margin-top: 0.5rem; letter-spacing: 0.1em; }
+
+/* ─────────────────────────────────────────
+   SECTION RULE
+───────────────────────────────────────── */
+.section-rule {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 2.5rem 0 1.8rem;
+}
+.section-rule-label {
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink); white-space: nowrap;
+}
+.section-rule-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ─────────────────────────────────────────
+   FILTER BAR
+───────────────────────────────────────── */
+.filter-bar { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--border-soft); }
+.filter-tab {
+  font-size: 0.62rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); padding: 0.75rem 0; margin-right: 2rem;
+  border-bottom: 1.5px solid transparent; margin-bottom: -1px;
+  transition: color var(--ease), border-color var(--ease);
+}
+.filter-tab.active { color: var(--ink); border-bottom-color: var(--blue-mid); }
+.filter-tab:hover:not(.active) { color: var(--ink-mid); }
+
+/* ─────────────────────────────────────────
+   CARD GRID
+───────────────────────────────────────── */
+.cards-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid var(--ink);
+  margin-bottom: 5rem;
+}
+.piece-card {
+  padding: 1.5rem 1.6rem;
+  border-right: 1px solid var(--border-soft);
+  cursor: pointer;
+  opacity: 0; transform: translateY(18px);
+  transition: opacity var(--ease-enter), transform var(--ease-enter), background var(--ease);
+  position: relative;
+}
+.piece-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--blue-pale);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.piece-card:hover::after { transform: scaleX(1); }
+.piece-card:last-child { border-right: none; }
+.piece-card:hover { background: var(--blue-wash); }
+.piece-card.visible { opacity: 1; transform: translateY(0); }
+
+.card-genre {
+  font-size: 0.58rem; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.genre-story  { color: var(--mah-warm); }
+.genre-think  { color: var(--blue-mid); }
+.genre-film   { color: var(--blue-mid); }
+.genre-book   { color: var(--brass); }
+.genre-poem   { color: var(--brass); }
+
+.card-title {
+  font-family: var(--font-display); font-size: 1.15rem; font-weight: 400;
+  line-height: 1.3; color: var(--ink); margin-bottom: 0.5rem;
+  transition: color var(--ease);
+}
+.piece-card:hover .card-title { color: var(--blue-deep); }
+.card-excerpt {
+  font-family: var(--font-display); font-size: 0.88rem; font-style: italic;
+  line-height: 1.75; color: var(--muted); margin-bottom: 1rem;
+}
+.card-meta { display: flex; justify-content: space-between; align-items: center; }
+.card-date { font-size: 0.62rem; color: var(--faint); letter-spacing: 0.1em; }
+.card-arrow {
+  font-size: 0.75rem; color: var(--blue-pale);
+  transition: color var(--ease), transform var(--ease);
+}
+.piece-card:hover .card-arrow { color: var(--blue-mid); transform: translateX(3px); }
+
+/* ─────────────────────────────────────────
+   ARTICLE PAGE
+───────────────────────────────────────── */
+.article-outer { background: var(--white); min-height: 100vh; }
+.article-wrap  { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+.article-back {
+  font-size: 0.62rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 2.5rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: color var(--ease), gap var(--ease);
+}
+.article-back:hover { color: var(--blue-deep); gap: 0.85rem; }
+
+.article-genre {
+  font-size: 0.58rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+  display: block; margin-bottom: 0.8rem;
+}
+.article-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400; line-height: 1.05; letter-spacing: -0.015em;
+  color: var(--ink); margin-bottom: 1.2rem;
+}
+.article-dateline {
+  font-size: 0.65rem; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--faint); padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-soft); margin-bottom: 2.8rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.dateline-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border); }
+
+/* ─────────────────────────────────────────
+   PROSE
+───────────────────────────────────────── */
+.prose {
+  font-family: var(--font-display);
+  font-size: 1.2rem; line-height: 1.92;
+  color: var(--ink-mid); max-width: 65ch;
+}
+.prose p { margin-bottom: 1.6em; }
+.prose p:first-of-type::first-letter {
+  font-size: 4.5rem; font-weight: 700; font-style: normal;
+  float: left; line-height: 0.8; margin: 0.08em 0.1em 0 0;
+  color: var(--mah-mid);
+}
+.prose h2 {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 400;
+  color: var(--ink); margin: 2.5em 0 0.7em; letter-spacing: -0.01em;
+}
+.prose h3 {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--muted); margin: 2.5em 0 1em;
+}
+.prose blockquote {
+  border-left: 2px solid var(--blue-mid);
+  padding: 0.25rem 0 0.25rem 1.4rem;
+  font-style: italic; color: var(--muted);
+  margin: 2.2em 0; font-size: 1.12rem; line-height: 1.88;
+}
+.prose ul { margin: 1em 0 1.6em 1.2em; }
+.prose li { margin-bottom: 0.7em; font-size: 1.2rem; line-height: 1.8; }
+.prose strong { font-weight: 600; color: var(--ink); }
+.prose em { font-style: italic; }
+.prose a { color: var(--blue-mid); text-decoration: underline; text-decoration-color: var(--blue-pale); transition: text-decoration-color var(--ease); }
+.prose a:hover { text-decoration-color: var(--blue-mid); }
+.prose hr { border: none; border-top: 1px solid var(--border-soft); margin: 3rem 0; }
+.datestamp {
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mah-warm); margin: 2.2em 0 0.7em;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.datestamp::after { content: ''; flex: 0 0 20px; height: 1px; background: var(--mah-warm); }
+
+/* ─────────────────────────────────────────
+   ABOUT PAGE
+───────────────────────────────────────── */
+.about-outer { background: var(--white); min-height: 100vh; }
+.about-wrap { max-width: 640px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+.about-eyebrow {
+  font-size: 0.6rem; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--mah-warm); margin-bottom: 0.8rem;
+}
+.about-title {
+  font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400; color: var(--ink); margin-bottom: 2rem;
+  padding-bottom: 2rem; border-bottom: 1px solid var(--border-soft);
+  line-height: 1.05; letter-spacing: -0.015em;
+}
+.about-body {
+  font-family: var(--font-display); font-size: 1.18rem;
+  line-height: 1.9; color: var(--ink-mid);
+}
+.about-body p { margin-bottom: 1.4em; }
+.about-body a { color: var(--blue-mid); text-decoration: underline; text-decoration-color: var(--blue-pale); }
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer {
+  background: var(--blue-deep);
+  padding: 2.8rem 3.5rem;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem; align-items: center;
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--mah-mid), var(--blue-light), var(--brass), var(--blue-mid));
+}
+.footer-name {
+  font-family: var(--font-display); font-size: 1.35rem; font-weight: 400;
+  color: rgba(255,255,255,0.88);
+}
+.footer-sub {
+  font-family: var(--font-display); font-size: 0.88rem; font-style: italic;
+  color: rgba(200,223,232,0.4); margin-top: 0.3rem;
+}
+.footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a, .footer-links button {
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(200,223,232,0.38); font-family: var(--font-ui); font-weight: 300;
+  transition: color var(--ease); padding: 0;
+}
+.footer-links a:hover, .footer-links button:hover { color: rgba(255,255,255,0.88); }
+.footer-right { display: flex; justify-content: flex-end; align-items: center; gap: 0.7rem; }
+.footer-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue-pale); }
+.footer-rule { width: 36px; height: 2px; background: var(--mah-light); }
+
+/* ─────────────────────────────────────────
+   ANIMATIONS + UTILS
+───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--ease-enter), transform var(--ease-enter); }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .cards-row { grid-template-columns: 1fr 1fr; }
+  .piece-card:nth-child(2n) { border-right: none; }
+  .hero-section { grid-template-columns: 1fr; gap: 2rem 0; }
+  .hero-divider { display: none; }
+  .wrap { padding: 0 1.5rem; }
+  .site-header { padding: 0 1.5rem; }
+  .header-links { gap: 1rem; }
+  .top-bar, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  footer { grid-template-columns: 1fr; }
+  .footer-right { justify-content: flex-start; }
+}
+@media (max-width: 640px) {
+  .site-header { grid-template-columns: 1fr; height: auto; padding: 0.5rem 1.5rem; gap: 0.3rem; }
+  .header-left { border-right: none; padding-right: 0; flex-wrap: wrap; gap: 0.4rem; }
+  .header-date { border-right: none; padding-right: 0; margin-right: 0; }
+  .header-links { border-left: none; padding-left: 0; justify-content: flex-start; }
+  .nav-tabs { justify-content: flex-start; flex-wrap: wrap; }
+  .cards-row { grid-template-columns: 1fr; }
+  .piece-card { border-right: none; border-bottom: 1px solid var(--border-soft); }
+  .article-wrap, .about-wrap { padding: 2.5rem 1.5rem 5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- ══ HOME ══ -->
+<div id="page-home" class="bl-page active">
+
+  <header class="site-header">
+    <div class="header-left">
+      <span class="header-date">Nashville, TN &nbsp;·&nbsp; <span id="today-date"></span></span>
+      <span class="header-name" onclick="showHome()">'Tis but a Flesh Wound</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="filterSection('all',this)">All</button>
+      <button class="nav-tab" onclick="filterSection('story',this)">Stories</button>
+      <button class="nav-tab" onclick="filterSection('think-piece',this)">Think Pieces</button>
+      <button class="nav-tab" onclick="filterSection('film-review',this)">Film Reviews</button>
+      <button class="nav-tab" onclick="showAbout()">About</button>
+    </div>
+    <div class="header-links">
+      <a class="header-link" href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>
+      <a class="header-link" href="https://lindellsblog.blogspot.com" target="_blank">Archive</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <div class="hero-section" id="hero-section">
+      <div>
+        <div class="hero-kicker" id="hero-kicker">Featured Story</div>
+        <h1 class="hero-title" id="hero-title" onclick="">Dirt</h1>
+        <p class="hero-dek" id="hero-dek">The butterflies in Paisley's stomach were not from nervous excitement. These were yellowjackets — sharp pangs of terror as she drove the dusty soil on Oil Springs Road into the Wyoming desert, 1958.</p>
+        <div class="hero-byline">
+          Isaac Lindell
+          <span class="byline-dot"></span>
+          <span id="hero-date">November 16, 2025</span>
+          <span class="byline-dot"></span>
+          <span id="hero-mins">25 min read</span>
+        </div>
+        <button class="hero-read" id="hero-read">Read Story →</button>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="sidebar" id="sidebar"></div>
+    </div>
+
+    <div class="section-rule reveal">
+      <div class="section-rule-label">More Writing</div>
+      <div class="section-rule-line"></div>
+    </div>
+
+    <div class="filter-bar reveal">
+      <button class="filter-tab active" onclick="filterGrid('all',this)" id="ftab-all">All</button>
+      <button class="filter-tab" onclick="filterGrid('story',this)" id="ftab-story">Stories</button>
+      <button class="filter-tab" onclick="filterGrid('think-piece',this)" id="ftab-think">Think Pieces</button>
+      <button class="filter-tab" onclick="filterGrid('film-review',this)" id="ftab-film">Film Reviews</button>
+    </div>
+
+    <div class="cards-row" id="cards-row"></div>
+
+  </div>
+
+  <footer class="reveal">
+    <div>
+      <div class="footer-name">'Tis but a Flesh Wound</div>
+      <div class="footer-sub">An Blog by Isaac Lindell</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>
+      <a href="https://lindellsblog.blogspot.com" target="_blank">Blogger Archive</a>
+      <button onclick="showAbout()">About</button>
+    </div>
+    <div class="footer-right">
+      <div class="footer-dot"></div>
+      <div class="footer-rule"></div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ══ ARTICLE ══ -->
+<div id="page-article" class="bl-page">
+  <div class="article-outer">
+    <div class="top-bar">
+      <button class="top-link article-back" onclick="showHome()">← All Writing</button>
+      <div class="top-links">
+        <a class="top-link" href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>
+      </div>
+    </div>
+    <div class="article-wrap">
+      <span class="article-genre" id="art-genre"></span>
+      <h1 class="article-title" id="art-title"></h1>
+      <div class="article-dateline" id="art-dateline"></div>
+      <div class="prose" id="art-body"></div>
+    </div>
+    <footer>
+      <div>
+        <div class="footer-name">'Tis but a Flesh Wound</div>
+        <div class="footer-sub">An Blog by Isaac Lindell</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>
+        <button onclick="showHome()">← All Writing</button>
+      </div>
+      <div class="footer-right"><div class="footer-dot"></div><div class="footer-rule"></div></div>
+    </footer>
+  </div>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<div id="page-about" class="bl-page">
+  <div class="about-outer">
+    <div class="top-bar">
+      <button class="top-link article-back" onclick="showHome()">← Back</button>
+      <div class="top-links">
+        <a class="top-link" href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>
+      </div>
+    </div>
+    <div class="about-wrap">
+      <div class="about-eyebrow">About</div>
+      <h1 class="about-title">'Tis but a<br>Flesh Wound</h1>
+      <div class="about-body">
+        <p>As a mentor of mine once said: clearly, I wasn't getting enough attention.</p>
+        <p>This is a place for writing. Stories, think pieces, film takes, and whatever else feels worth saying out loud. The name is from Monty Python and the Holy Grail. It felt right — most things are flesh wounds, in the end. You keep going.</p>
+        <p>I'm Isaac Lindell. I live in Nashville with my wife Rebecca. I write because I can't not. You can follow my film diary on <a href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a>.</p>
+      </div>
+    </div>
+    <footer>
+      <div><div class="footer-name">'Tis but a Flesh Wound</div><div class="footer-sub">An Blog by Isaac Lindell</div></div>
+      <div class="footer-links"><a href="https://letterboxd.com/isaaclindell/" target="_blank">Letterboxd</a><button onclick="showHome()">← Home</button></div>
+      <div class="footer-right"><div class="footer-dot"></div><div class="footer-rule"></div></div>
+    </footer>
+  </div>
+</div>
+
+<script>
+const posts = [
+  { id:'dirt', title:'Dirt', section:'story', label:'Short Story', date:'November 16, 2025', mins:'25 min read',
+    excerpt:'The butterflies in Paisley\'s stomach were not from nervous excitement. These were yellowjackets — sharp pangs of terror on Oil Springs Road.',
+    dek:'The butterflies in Paisley\'s stomach were not from nervous excitement. These were yellowjackets — sharp pangs of terror as she drove the dusty soil on Oil Springs Road into the Wyoming desert, 1958.',
+    body:`<p class="datestamp">August 9th, 1958</p><p>The butterflies in Paisley's stomach were not from nervous excitement. No, the last time she felt those was when Brady Jenkins asked her to the Junior Prom. These were bees, yellowjackets, even, swarming rampantly. Uneasiness met with subtle, but nonetheless sharp, pangs of terror as she drove atop the dusty soil on Oil Springs Road. Despite the summer heat and dirt clinging to her sweaty skin, she felt chills, goosebumps rising on her arms and legs.</p><p><em>Perhaps this is normal,</em> she thought. Heading into the middle of the Wyoming desert with a guy you met last week, camping with a professor rumored to have a screw loose and a drinking problem — under these circumstances, anyone without fear would be worth studying. <em>Keep your eye on the prize, Pais.</em></p><p>Cameron awoke, opening his eyes and positioning himself slowly into the center of the seat. Paisley's Nash Metropolitan was not the most comfortable. He did not know her well, only that she was not well-off. Of course, neither was he. They both were alone in this world, after all.</p><p>"So, uh, what is your favorite movie?" Cameron fired a flare into the mute conversation. To Paisley, it felt like a cannon ball hitting still water.</p><p>"Don't watch 'em much." Did she sound like a battleaxe? His voice, for a moment, had quieted the yellowjackets.</p><p>"Although," she started, "Rear Window was good." Cameron agreed. For the next few hours, they made great conversation.</p><hr><p class="datestamp">August 10th, 1958</p><p>It took only a few minutes to understand the whispers. Carvill drank — it seemed his hand was glued to his flask. Carvill smoked — his cracked, leathery lips shaped to hold a Camel in the corner. The worst was Carvill's voice; never satisfied, spoken from a tongue that treated decency as foreign.</p><p>In the wall of the trench, angular bones jettisoned out into the sun. At about eight feet long, Paisley was stunned by the symmetry and condition the skeleton exhibited. It was like nothing they had ever seen.</p><p><em>"Proeliator Lacertus"</em> — the Warrior Lizard. Entombed in rusty clay and dirt lay a specimen millions of years old. Even Leslie smiled, her wounds seemingly repaired only minutes after the public lashing. Here was her future. Lips sealed.</p><hr><p class="datestamp">August 22nd, 1958</p><p>Cameron opened his tent. The moon adorned the landscape in shades of blue and steel. Above, millions of stars glistened — a sequin tapestry — and yet, his focus lay on Paisley, crouched before him.</p><p>"I have an idea."</p><hr><p class="datestamp">August 23rd, 1958</p><p>The floor was more earth than wood. Luckily, there was no need for a light as there were no drapes on the windows, and the moon shined through just fine.</p><p>Shovels and trowels lined the wall. On the right bench stood chisels, brushes, latex gloves; the left displayed saws, wood files… a bucket of paint… and a white skull surrounded by vertebrae, also sand-dollar white. A horse's head. Its teeth had been removed and filed into points.</p><p>She made eye contact with Cameron. He was holding the bucket of paint. On the label: <strong>POTASSIUM BICHROMATE</strong>. It was dye. The man was a fraud. A charlatan. Carvill, a modern Victor Frankenstein, pursuing dead creatures to preserve his life. The students acted as launderers, verifying the findings.</p><p>Cameron was enraged, Paisley bewildered. They were so enthralled by what they saw; they did not hear Carvill return or the click of the blinding bulb. They would not see the sun again.</p><hr><p class="datestamp">June 4th, 2025 — Hallow County Sheriff Department</p><p>At this time, we believe we have identified the bodies discovered in Hallow County, Wyoming two weeks ago — the remains of Paisley Winter and Cameron Bodega, two University of Oklahoma students who went missing before the Fall Semester in 1958.</p><p>We now believe Dr. Jacob Carvill and his wife, Regina Carvill, murdered Paisley and Cameron. Dr. Carvill was stripped of tenure following independent studies of his work in 1974. He and his wife both passed away in 1987. We are considering this case closed.</p>`},
+  { id:'charlie-kirk', title:'RIP Charlie Kirk', section:'think-piece', label:'Think Piece', date:'September 10, 2025', mins:'4 min read',
+    excerpt:'A dad lost his son, a wife lost her husband, and two kids lost their dad. A moment to sit and reflect.',
+    dek:'This is an incredibly sad and frightening time for our country. A moment to sit and reflect on rhetoric, violence, and the America we want to live in.',
+    body:`<p>This is an incredibly sad and frightening time for our country.</p><p>Of course, there is no official motive yet, but if it is indeed found to be politically motivated, it would only compound this tragedy.</p><p>There is a USA where we disagree fervently on issues but respect one another, and love one another not because of who you vote for or for what you believe, but because we are made in Christ's image.</p><p>As small and as insignificant as my voice and this platform may be, I ask two things: Do <strong>not</strong> let this motivate you or your friends towards violence. A dad lost his son, a wife lost her husband, and two kids lost their dad. They should have their dad to hold them in this world. Do <strong>not</strong> retaliate.</p><blockquote>In the words of MLK Jr., "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that."</blockquote><p>I find it hard to imagine Charlie wishing retaliation to be the next step. Please, let this bring light to a very real problem: that our rhetoric and the public's capacity for violence is a major issue worth reflecting upon.</p><p>I love my coworkers and friends and family who disagree vehemently on some of the hardest issues. But I respect them. They are human beings. I can still share beers and laugh and hug them. I don't want them dead.</p><p>Please join me in praying for Charlie's kids and his wife, Erika. Please pray for our country, and that this will be a turning point towards a culture of peace and goodwill.</p>`},
+  { id:'beer-run', title:"A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport", section:'think-piece', label:'Think Piece', date:'May 4, 2025', mins:'8 min read',
+    excerpt:'Circumnavigating the globe for a few pints. A modest, deeply irresponsible proposal.',
+    dek:'In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized and more difficult fashions.',
+    body:`<p>In the olden days, explorers would seek investments from prosperous businessmen and governments to finance their grand adventures. Now consider the current day — there is nothing left to explore except the depths of the sea and the vastness of space. Instead, we have it so plentiful that we must make the same journeys, but in stylized and more difficult fashions. We have already gone down the road to share a drink with some friends — but what if we circumnavigated the globe for a few pints, instead?</p><h2>North America</h2><p>My favorite pick is <a href="https://www.thebellinhand.com/about" target="_blank">The Bell in Hand Tavern</a>, America's oldest, opening its doors in 1795 in Boston, MA. It's also an excuse to stop at Fenway Park.</p><h2>Europe</h2><p><a href="https://oxfordvisit.com/places-to-see/things-to-do/gastronomy-hotels/pubs/the-eagle-and-child/" target="_blank">The Eagle and Child</a> wins out. As a fan of C.S. Lewis, visiting the meeting place of the Inklings in St. Giles, Oxford would be special. Also worth considering: U Fleků in Prague (established 1499) and Sean's Bar in Athlone, Ireland (opened 900 AD — just imagine a glass of Guinness there).</p><h2>Africa</h2><p>Khufu's — a rooftop dining spot overlooking the pyramids in Cairo, Egypt. Named after Pharaoh Khufu, who commissioned the pyramids around 2580 BC.</p><h2>Asia</h2><p>MO Bar in Singapore. Swankier than the others but a rooftop experience next to a major airport that's too good to pass up.</p><h2>Oceania</h2><p>Lord Nelson's — the oldest licensed pub in Sydney. And for my friend Zuri, if he's reading this: The Green Dragon Inn in Hobbiton, New Zealand. Come on, man. Let's get this planned.</p><h2>Antarctica</h2><p>Vernadsky Research Base. The southernmost bar in the world. This is the part of the trip that Rebecca would skip.</p><h2>South America</h2><p>For fans of <em>Butch Cassidy & the Sundance Kid</em>, Museo Bar La Legal in Cholila, Argentina is not far from where the duo lived for years while on the run.</p><hr><p>Total cost flying economy, one night per stop: about $8,500. Remove Antarctica and it drops to $3–4k. The underlying goal stays the same: explore and enjoy in your life with friends, and cherish those memories.</p><p>Lastly, what's a little credit card debt? (For legal reasons, this is a joke.)</p>`},
+  { id:'artist', title:'The Artist: A Short Story That May Never Have an Ending', section:'story', label:'Short Story', date:'April 30, 2025', mins:'15 min read',
+    excerpt:'"Oh, High Almighty! What a tempest you\'ve brought forth!" A ship, a storm, and a captain who will not yield.',
+    dek:'"Oh, High Almighty! What a tempest you\'ve brought forth!" Captain Hugo proclaimed, shadowed by a behemoth in the sky above.',
+    body:`<blockquote><em>If the highest aim of a captain is to preserve his ship, he would keep it in port forever.</em> — Thomas Aquinas</blockquote><p>"Oh, High Almighty! What a tempest you've brought forth!" Captain Hugo proclaimed, shadowed by an evolving creature — no, a behemoth — in the sky above. Bolts of pain engulfed men's hands as they hurled the various woven cords amidst the rain. Harrowing winds harpooned droplets at their skin and eyes like a frozen death. Blue, turquoise, green, grey, black was the ocean beneath; swirls of thrashing waters clamored against the hull of <em>The Artist</em>, echoing into the night.</p><p>Lightning hurled silhouettes of beasts below the water's surface, like spirits from the deep aching for dominion of the depths. Thunder shot into their hearts and shook their teeth — war drums of unseen armies.</p><p>In the near distance, Louis heard the chaotic chorus of his fellow crewmen. Each man's voice betrayed a particular shade of fear — some raw, some resigned, some almost reverent in the face of what was coming down on them.</p><p><em>This story is ongoing. Check back for new chapters.</em></p>`},
+  { id:'lead-mouth', title:'The Hunt for "Lead Mouth" Benton', section:'story', label:'Short Story', date:'April 8, 2025', mins:'10 min read',
+    excerpt:'This little town was your honey hole for sin. If you believe in that sort of thing.',
+    dek:'This little town was your honey hole for sin. If you believe in that sort of thing. It had nothing really going for it — except sometimes a bounty.',
+    body:`<p>This little town was your honey hole for sin. If you believe in that sort of thing. It had nothing really goin' for it other than a man could ride in on Friday, whore around and sip whiskey that night through Sunday mornin' before draggin' himself to the small little box of pews on the outskirt of town. I ne'r really did go to that. Reckoned I wasn't a bad enough person.</p><p>Well anyhow, there was a few years ago — maybe three, maybe four — I was twenty-two years old and I rode into this town on a Tuesday. The worst day of the week. Tuesday don't got nothing for it. Except sometimes a bounty.</p><p>They called him Lead Mouth Benton on account of how he talked — slow, deliberate, like each word cost something. Most men out here talked fast, nervous, filling up silence because silence meant thinking and thinking meant fear. Not Benton. Benton let the silence do the talking and then said one thing, one careful thing, and that was the end of it.</p><p>I'd been tracking him for eleven days across four counties. The kind of tracking that makes you philosophical. You spend enough time alone on a horse following a man you've never met and you start to wonder if the difference between a bounty hunter and the man he's hunting is just paperwork.</p><p>I found him in the back of the saloon, playing cards with three men who looked like they'd rather be anywhere else.</p><p>"You Benton?" I said.</p><p>He looked up slow. Took me in. Looked back at his cards.</p><p>"Depends," he said, "on what you need him to be."</p>`},
+  { id:'movie-talk', title:'Movie Talk', section:'film-review', label:'Film Review', date:'April 2, 2025', mins:'12 min read',
+    excerpt:'"All of life\'s riddles are answered in the movies." My top 10 favorites and the 10 most overrated.',
+    dek:'"All of life\'s riddles are answered in the movies." My top 10 favorites, and the 10 most overrated. All judgments are final and correct.',
+    body:`<blockquote><em>"That's part of your problem — you haven't seen enough movies. All of life's riddles are answered in the movies."</em> — Steve Martin, Grand Canyon (1991)</blockquote><p>My grandmother grew up in the Golden Age of Hollywood in Beverly Hills. Once at a restaurant, her mother got up to use the bathroom and placed a young Alice on Frank Sinatra's lap for safe keeping. Through her, I developed my love of movies and attending the theater. Every year, I fill out a ballot for the Golden Globes and the Oscars — not just to compete with my family over the Golden Yoda — but because I like to pretend I know what deserves to win.</p><h2>My Top 10 Favorites</h2><ul><li><strong>The Green Mile (1999)</strong> — Easily the saddest movie on this list, and yet my favorite. You will only watch it once. Schedule an ice cream afterward.</li><li><strong>The Godfather I & II (1972 & 1974)</strong> — Every shot is like a painting. No movie has delivered more iconic quotes.</li><li><strong>Interstellar (2014)</strong> — I watch it once a year. One of the best scores of all time.</li><li><strong>Wall-E (2008)</strong> — Romance, sci-fi, drama, bundled into a clever cartoon. A work from the golden era of Pixar.</li><li><strong>All Quiet on the Western Front (2022)</strong> — One of the few films that emphasize not only the cruelty of war, but the nihilism.</li><li><strong>Indiana Jones I, II, & III</strong> — Stop making new ones. The first three are daring, fun, and adventurous.</li><li><strong>The Iron Giant (1999)</strong> — "Who are you? What will you be?"</li><li><strong>The Departed (2006)</strong> — I'd argue it's Scorsese's best. Violent and gritty, but so are half the movies on this list.</li><li><strong>Ferris Bueller's Day Off (1986)</strong> — There's something about running off with your friends and forgetting about tomorrow.</li><li><strong>Pirates of the Caribbean (2003)</strong> — The Golden Age of Piracy is fascinating. Ghost ships, great casting. Hard not to include.</li></ul><h2>My 10 Most Overrated</h2><ul><li><strong>The Wolf of Wall Street (2013)</strong> — No substantive narrative. Just flat out crimes and sex. Take away DiCaprio and no one sees this movie.</li><li><strong>Planes, Trains, & Automobiles (1987)</strong> — I only felt grief for Candy's character. Not funny. Just sad.</li><li><strong>12 Angry Men (1957)</strong> — Good? Yes. But a guilty man possibly walks free, and that doesn't get addressed.</li><li><strong>The Shining (1980)</strong> — Overrated and weird. The book is in a million ways better.</li><li><strong>Silence of the Lambs (1991)</strong> — I thought it'd be creepier. It felt disjointed.</li><li><strong>2001: A Space Odyssey (1968)</strong> — Can we stop pretending? It's dull.</li><li><strong>Tár (2022)</strong> — I stopped after 45 minutes and nothing substantive had happened.</li><li><strong>Every Marvel movie after Endgame.</strong> — Multiverse, AI-generated slop. Every single one.</li></ul><p>All judgments are final and correct.</p>`},
+  { id:'a-blog', title:'A Blog', section:'think-piece', label:'Think Piece', date:'March 30, 2025', mins:'2 min read',
+    excerpt:'As a mentor of mine might say: clearly, I wasn\'t getting enough attention.',
+    dek:'As a mentor of mine might say: clearly, I wasn\'t getting enough attention. An introduction.',
+    body:`<p>As Scott, a mentor of mine and the officiant at my wedding might say: clearly, I wasn't getting enough attention.</p><p>This will be a collection of thoughts, some short stories, and perhaps some spot-on movie critiques. I don't foresee this project lasting more than a few months, but I have come up with an agenda. On the docket:</p><ul><li>The 5Cs. What are they, and how did all my friends get dates?</li><li>After 24 years, what has remained in my Special Box? A Russian Ruebel, a few broken watches, and other items that have meant the world to me.</li><li>My Top 10 Favorite Commercials (and 10 Least).</li><li>An insider's take on Baskin-Robbins' 31 flavors.</li><li>What is OCD, and why is Monica from Friends only an okay example?</li><li>Pineapple on pizza, reclining on the plane, and other cultural issues every politician is scared to discuss.</li><li>How I fell in love with books again after being force-fed Shakespeare and Jane Austen.</li><li>Three quotes that have shaped how I see the world.</li></ul><p>Stay tuned. Or don't. Either way, I'll be here.</p>`}
+];
+
+const genreClass = { story:'genre-story', 'think-piece':'genre-think', 'film-review':'genre-film', 'book-review':'genre-book', poem:'genre-poem' };
+
+function buildSidebar(excludeId) {
+  const el = document.getElementById('sidebar');
+  const items = posts.filter(p => p.id !== excludeId).slice(0, 3);
+  el.innerHTML = items.map(p => `
+    <div class="side-item" onclick="openPost('${p.id}')">
+      <div class="side-kicker">${p.label}</div>
+      <div class="side-title">${p.title}</div>
+      <div class="side-dek">${p.dek}</div>
+      <div class="side-meta">${p.date} &nbsp;·&nbsp; ${p.mins}</div>
+    </div>`).join('');
+}
+
+function buildGrid(filter) {
+  const row = document.getElementById('cards-row');
+  const filtered = filter === 'all' ? posts : posts.filter(p => p.section === filter);
+  row.innerHTML = filtered.map((p, i) => `
+    <div class="piece-card" onclick="openPost('${p.id}')" style="transition-delay:${i*0.07}s">
+      <div class="card-genre ${genreClass[p.section]||'genre-think'}">${p.label}</div>
+      <div class="card-title">${p.title}</div>
+      <div class="card-excerpt">${p.excerpt}</div>
+      <div class="card-meta">
+        <span class="card-date">${p.date} &nbsp;·&nbsp; ${p.mins}</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </div>`).join('');
+  observeCards();
+}
+
+function filterSection(section, btn) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const featured = section === 'all' ? posts[0] : (posts.find(p => p.section === section) || posts[0]);
+  document.getElementById('hero-kicker').textContent = 'Featured — ' + featured.label;
+  document.getElementById('hero-title').textContent = featured.title;
+  document.getElementById('hero-dek').textContent = featured.dek;
+  document.getElementById('hero-date').textContent = featured.date;
+  document.getElementById('hero-mins').textContent = featured.mins;
+  document.getElementById('hero-title').onclick = () => openPost(featured.id);
+  document.getElementById('hero-read').onclick = () => openPost(featured.id);
+  buildSidebar(featured.id);
+  buildGrid(section === 'all' ? 'all' : section);
+  const ftabMap = {all:'ftab-all', story:'ftab-story', 'think-piece':'ftab-think', 'film-review':'ftab-film'};
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  const ftab = document.getElementById(ftabMap[section]||'ftab-all');
+  if (ftab) ftab.classList.add('active');
+}
+
+function filterGrid(section, btn) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  buildGrid(section);
+}
+
+function openPost(id) {
+  const post = posts.find(p => p.id === id);
+  if (!post) return;
+  const gc = genreClass[post.section] || 'genre-think';
+  document.getElementById('art-genre').textContent = post.label;
+  document.getElementById('art-genre').className = 'article-genre ' + gc;
+  document.getElementById('art-title').textContent = post.title;
+  const dl = document.getElementById('art-dateline');
+  dl.innerHTML = `${post.date}<span class="dateline-dot"></span>${post.mins}<span class="dateline-dot"></span>Isaac Lindell`;
+  document.getElementById('art-body').innerHTML = post.body;
+  document.querySelectorAll('.bl-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-article').classList.add('active');
+  window.scrollTo(0,0);
+  initProgress();
+}
+
+function showHome() {
+  document.querySelectorAll('.bl-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+  document.getElementById('progress').style.width = '0%';
+  window.scrollTo(0,0);
+  observeCards();
+}
+
+function showAbout() {
+  document.querySelectorAll('.bl-page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-about').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function initProgress() {
+  const update = () => {
+    const el = document.documentElement;
+    const pct = (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100;
+    document.getElementById('progress').style.width = Math.min(pct,100) + '%';
+  };
+  window.removeEventListener('scroll', update);
+  window.addEventListener('scroll', update, { passive: true });
+}
+
+function observeCards() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.piece-card, .reveal').forEach(el => obs.observe(el));
+}
+
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+filterSection('all', null);
+observeCards();
+</script>
+</body>
+</html>
