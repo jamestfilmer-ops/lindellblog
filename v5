@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell's Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  /* ── LIGHT (primary ~40%) */
+  --white:       #ffffff;
+  --off:         #f6f5f2;
+  --surface:     #eeecea;
+  --border:      #dddbd6;
+  --border-soft: #e8e6e1;
+
+  /* ── LAKE BLUE (30%) */
+  --blue-deep:   #2c5f72;
+  --blue-mid:    #3d7d96;
+  --blue-light:  #5a9db5;
+  --blue-pale:   #c8dfe8;
+  --blue-wash:   #eaf3f7;
+
+  /* ── MAHOGANY (30%) */
+  --mah-dark:    #4a1e0e;
+  --mah-mid:     #7c3b1e;
+  --mah-warm:    #a05030;
+  --mah-light:   #c47850;
+  --mah-pale:    #f0ddd0;
+
+  /* ── ACCENTS (brass / gold) */
+  --brass:       #b08040;
+  --brass-light: #c89850;
+  --brass-pale:  #f0e4c8;
+
+  /* ── TEXT */
+  --ink:         #1a1612;
+  --ink-mid:     #3a3228;
+  --muted:       #7a7060;
+  --faint:       #b0a898;
+
+  --nav-h: 66px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════
+   NAV
+════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3.5rem;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.solid {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: var(--border);
+  box-shadow: 0 1px 24px rgba(44,95,114,0.06);
+}
+.nav-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav.solid .nav-logo { color: var(--blue-deep); }
+.nav-links { display: flex; gap: 2.8rem; list-style: none; }
+.nav-links a {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+.nav.solid .nav-links a { color: var(--muted); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--blue-mid);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+.nav-links a:hover { color: var(--blue-mid) !important; }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ════════════════════════════
+   HERO — full Italian photo
+════════════════════════════ */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.04) 0%,
+      rgba(255,255,255,0.0)  20%,
+      rgba(255,255,255,0.0)  50%,
+      rgba(26,22,18,0.55)   82%,
+      rgba(26,22,18,0.85)   100%
+    ),
+    url('/mnt/user-data/uploads/1773805067650_image.png') center 45%/cover no-repeat;
+  will-change: transform;
+  transform: scale(1.06);
+}
+/* subtle blue tint on the water zone */
+.hero-water-tint {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 55% at 50% 55%,
+    rgba(44,95,114,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 3.5rem 3.8rem;
+}
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.hero-left { flex: 1; }
+.hero-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.9rem;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.2s forwards;
+}
+.hero h1 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: #fff;
+  opacity: 0;
+  animation: fadeUp 0.95s ease 0.35s forwards;
+  text-shadow: 0 4px 40px rgba(26,22,18,0.5);
+}
+.hero-right {
+  flex-shrink: 0;
+  max-width: 280px;
+  text-align: right;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.55s forwards;
+  padding-bottom: 0.5rem;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.12rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 1.4rem;
+}
+.hero-cta {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hero-cta:hover { color: #fff; border-color: rgba(255,255,255,0.9); }
+
+/* scroll dots */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.1s forwards;
+}
+.sd { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.5); animation: blink 2.2s ease-in-out infinite; }
+.sd:nth-child(2) { animation-delay: 0.22s; }
+.sd:nth-child(3) { animation-delay: 0.44s; }
+@keyframes blink { 0%,100%{opacity:.2;transform:scale(.8)} 50%{opacity:1;transform:scale(1)} }
+
+/* ════════════════════════════
+   CATEGORY BAND — lake blue
+════════════════════════════ */
+.cat-band {
+  background: var(--blue-deep);
+  padding: 1.1rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+  position: relative;
+}
+.cat-band::before,
+.cat-band::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.cat-band::before { left: 0; background: linear-gradient(90deg, var(--blue-deep), transparent); }
+.cat-band::after  { right: 0; background: linear-gradient(-90deg, var(--blue-deep), transparent); }
+.cat-item {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(200,223,232,0.75);
+  flex-shrink: 0;
+  padding: 0 1.8rem;
+  border-right: 1px solid rgba(90,157,181,0.3);
+}
+.cat-item:last-child { border-right: none; }
+
+/* ════════════════════════════
+   MAIN BODY — light
+════════════════════════════ */
+.page-wrap {
+  background: var(--white);
+}
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 3.5rem;
+}
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 0;
+  padding: 5.5rem 0 7rem;
+  align-items: start;
+}
+.main-col {
+  padding-right: 4.5rem;
+  border-right: 1px solid var(--border-soft);
+}
+.side-col {
+  padding-left: 3.5rem;
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+}
+
+/* section eyebrow */
+.eyebrow {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+.eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ════════════════════════════
+   FEATURED — mahogany accent
+════════════════════════════ */
+.featured {
+  padding-bottom: 3.8rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: 3.8rem;
+}
+.feat-cat {
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--mah-warm);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+}
+.feat-cat::before { content: ''; width: 20px; height: 1px; background: var(--mah-warm); display: block; }
+
+.featured h2 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+.featured h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.featured h2 a:hover { color: var(--mah-mid); }
+
+.feat-meta {
+  font-size: 0.64rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.8rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.dot { color: var(--border); }
+
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.16rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--ink-mid);
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+.excerpt::first-letter {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem;
+  font-weight: 600;
+  font-style: normal;
+  float: left;
+  line-height: 0.8;
+  margin: 0.08em 0.1em 0 0;
+  color: var(--mah-mid);
+}
+
+/* Read More — blue pill */
+.btn-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  background: var(--blue-deep);
+  padding: 0.85rem 1.8rem;
+  transition: background 0.22s;
+}
+.btn-read:hover { background: var(--blue-mid); }
+.btn-arrow { transition: transform 0.2s; }
+.btn-read:hover .btn-arrow { transform: translateX(4px); }
+
+/* ════════════════════════════
+   POST ROWS
+════════════════════════════ */
+.posts-head {
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
+}
+.post-list { list-style: none; }
+.post-row {
+  display: grid;
+  grid-template-columns: 58px 1fr 18px;
+  align-items: start;
+  gap: 0 1.8rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s, transform 0.5s, background 0.18s;
+}
+.post-row.show { opacity: 1; transform: none; }
+.post-row:hover { background: var(--blue-wash); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+.post-row:hover .prow-title { color: var(--blue-deep); }
+
+.prow-date {
+  text-align: right;
+  border-right: 1px solid var(--border);
+  padding-right: 1.4rem;
+  padding-top: 0.2rem;
+}
+.prow-day {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: var(--blue-mid);
+  line-height: 1;
+}
+.prow-mon {
+  display: block;
+  font-size: 0.54rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 2px;
+}
+.prow-cat {
+  font-size: 0.57rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mah-warm);
+  margin-bottom: 0.3rem;
+}
+.prow-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.28rem;
+  font-weight: 400;
+  line-height: 1.28;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  transition: color 0.2s;
+}
+.prow-snip {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.prow-arrow {
+  align-self: center;
+  color: var(--faint);
+  font-size: 0.85rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.post-row:hover .prow-arrow { color: var(--blue-mid); transform: translateX(3px); }
+
+/* ════════════════════════════
+   SIDEBAR
+════════════════════════════ */
+.sb-block {
+  margin-bottom: 2.8rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.sb-block.show { opacity: 1; transform: none; }
+.sb-label {
+  font-size: 0.57rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--mah-pale);
+  margin-bottom: 1.3rem;
+  position: relative;
+}
+.sb-label::before {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 28px; height: 2px;
+  background: var(--mah-mid);
+}
+
+/* author */
+.author-wrap {
+  background: var(--off);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--mah-mid);
+  padding: 1.4rem;
+}
+.author-img {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--mah-light);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+.author-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.12rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 0.25rem;
+}
+.author-bio {
+  font-size: 0.84rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* archive */
+.arch-list { list-style: none; }
+.arch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.arch-row:last-child { border-bottom: none; }
+.arch-row a {
+  font-size: 0.87rem;
+  font-weight: 300;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.arch-row a:hover { color: var(--blue-deep); }
+.arch-n {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: var(--blue-mid);
+  background: var(--blue-wash);
+  border: 1px solid var(--blue-pale);
+  padding: 0.12rem 0.5rem;
+  border-radius: 20px;
+}
+
+/* tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 0.28rem 0.65rem;
+  transition: all 0.18s;
+}
+.tag:hover {
+  color: var(--blue-deep);
+  border-color: var(--blue-pale);
+  background: var(--blue-wash);
+}
+
+/* ════════════════════════════
+   MAHOGANY QUOTE BAND
+════════════════════════════ */
+.quote-band {
+  background: var(--mah-dark);
+  position: relative;
+  padding: 5.5rem 3.5rem;
+  text-align: center;
+  overflow: hidden;
+}
+/* blue tonal wash */
+.quote-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 80% at 50% 50%,
+    rgba(44,95,114,0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+/* brass top rule */
+.quote-band::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brass), transparent);
+}
+.quote-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+.quote-inner.show { opacity: 1; transform: none; }
+.q-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem;
+  font-weight: 300;
+  color: rgba(184,128,64,0.3);
+  line-height: 0.6;
+  margin-bottom: 1.2rem;
+  display: block;
+}
+.quote-band blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+  font-weight: 300;
+  line-height: 1.62;
+  color: var(--mah-pale);
+  margin-bottom: 1.5rem;
+}
+.quote-band cite {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  opacity: 0.7;
+}
+
+/* ════════════════════════════
+   FOOTER — blue
+════════════════════════════ */
+footer {
+  background: var(--blue-deep);
+  padding: 3.5rem 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+}
+.foot-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.05em;
+}
+.foot-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(200,223,232,0.6);
+}
+.foot-rule { width: 40px; height: 1px; background: rgba(255,255,255,0.15); margin: 0.3rem 0; }
+.foot-copy {
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ════════════════════════════
+   ANIMATIONS
+════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s, transform 0.65s; }
+.reveal.show { opacity: 1; transform: none; }
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  .main-grid { grid-template-columns: 1fr; }
+  .main-col { padding-right: 0; border-right: none; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+  .side-col { position: static; padding-left: 0; padding-top: 3rem; }
+  .nav, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .hero-content { padding: 0 1.5rem 2.5rem; }
+  .hero-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .hero-right { text-align: left; max-width: 100%; }
+  .cat-band { padding: 1rem 1.5rem; flex-wrap: wrap; justify-content: flex-start; gap: 0.4rem; }
+  .cat-item { border: none; padding: 0.1rem 0.6rem; }
+  .quote-band { padding: 3.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Lindell</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Stories</a></li>
+    <li><a href="#">Essays</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — Italian lake photo -->
+<section class="hero">
+  <div class="hero-photo" id="hero-photo"></div>
+  <div class="hero-water-tint"></div>
+
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Isaac Lindell &nbsp;·&nbsp; Nashville, TN &nbsp;·&nbsp; Est. 2025</p>
+        <h1>Lindell's<br>Blog</h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-sub">Stories, reflections &amp; the occasional spirited argument</p>
+        <a class="hero-cta" href="#main">Read the latest ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="sd"></div><div class="sd"></div><div class="sd"></div>
+  </div>
+</section>
+
+<!-- BLUE CATEGORY BAND -->
+<div class="cat-band">
+  <span class="cat-item">Essays</span>
+  <span class="cat-item">Fiction</span>
+  <span class="cat-item">Cultural Commentary</span>
+  <span class="cat-item">Humor &amp; Debate</span>
+  <span class="cat-item">Sports</span>
+  <span class="cat-item">Travel</span>
+</div>
+
+<!-- LIGHT BODY -->
+<div class="page-wrap" id="main">
+  <div class="container">
+    <div class="main-grid">
+
+      <!-- MAIN -->
+      <main class="main-col">
+
+        <div class="eyebrow" style="padding-top:5.5rem;">Featured</div>
+
+        <article class="featured reveal" id="featured">
+          <div class="feat-cat">Creative Writing</div>
+          <h2><a href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">DIRT</a></h2>
+          <div class="feat-meta">
+            <span>November 16, 2025</span>
+            <span class="dot">·</span>
+            <span>Short Story</span>
+          </div>
+          <p class="excerpt">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. The butterflies in Paisley's stomach were not from nervous excitement. These were bees, yellowjackets, swarming rampantly as she drove atop the dusty soil on Oil Springs Road...</p>
+          <a class="btn-read" href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">
+            Continue Reading <span class="btn-arrow">→</span>
+          </a>
+        </article>
+
+        <div class="posts-head">Recent Posts</div>
+        <ul class="post-list">
+
+          <li class="post-row" onclick="window.open('https://lindellsblog.blogspot.com/2025/09/rip-charlie-kirk.html')">
+            <div class="prow-date"><span class="prow-day">10</span><span class="prow-mon">Sep '25</span></div>
+            <div>
+              <div class="prow-cat">Personal Reflections</div>
+              <div class="prow-title">RIP Charlie Kirk</div>
+              <p class="prow-snip">A call for grace in a frightening moment. A dad lost his son. Don't retaliate. Sit and reflect.</p>
+            </div>
+            <div class="prow-arrow">→</div>
+          </li>
+
+          <li class="post-row" onclick="window.open('https://lindellsblog.blogspot.com/2025/05/a-plan-for-greatest-beer-run-of-all.html')">
+            <div class="prow-date"><span class="prow-day">04</span><span class="prow-mon">May '25</span></div>
+            <div>
+              <div class="prow-cat">Travel · Humor</div>
+              <div class="prow-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+              <p class="prow-snip">Nothing left to explore — so we must make the same journeys in impossibly stylised and difficult fashions.</p>
+            </div>
+            <div class="prow-arrow">→</div>
+          </li>
+
+          <li class="post-row" onclick="window.open('https://lindellsblog.blogspot.com/2025/04/')">
+            <div class="prow-date"><span class="prow-day">—</span><span class="prow-mon">Apr '25</span></div>
+            <div>
+              <div class="prow-cat">Archive · 3 Posts</div>
+              <div class="prow-title">April 2025 Collection</div>
+              <p class="prow-snip">Books, culture, relationships, and everyday debates from a productive spring.</p>
+            </div>
+            <div class="prow-arrow">→</div>
+          </li>
+
+          <li class="post-row" onclick="window.open('https://lindellsblog.blogspot.com/2025/03/')">
+            <div class="prow-date"><span class="prow-day">—</span><span class="prow-mon">Mar '25</span></div>
+            <div>
+              <div class="prow-cat">Origins</div>
+              <div class="prow-title">March 2025</div>
+              <p class="prow-snip">Where it all began.</p>
+            </div>
+            <div class="prow-arrow">→</div>
+          </li>
+
+        </ul>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside class="side-col">
+
+        <div style="padding-top:5.5rem;">
+
+          <div class="sb-block" id="sb1">
+            <div class="sb-label">The Author</div>
+            <div class="author-wrap">
+              <img class="author-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEeoUn0cBcf1xWSoc2HNSWRh-JgSBt9D0jKY6TAMNC3sXegXQw6Ww_FO80eMKLOCeFPBiGqwCbhhFgWW6WzFeS4jKc7JBz4A77q2zDV1o35KrjKqia1bc_pipxybX53DgFtwz9MDc1CortTfPBXKy6ev4IiWgPuvVoJICp4FpkkvFmV1c/s220/IMG_5233.JPG" alt="Isaac Lindell">
+              <div class="author-name">Isaac Lindell</div>
+              <p class="author-bio">Writer. Storyteller. Arguing about things that matter and some that definitely don't.</p>
+            </div>
+          </div>
+
+          <div class="sb-block" id="sb2">
+            <div class="sb-label">Archive</div>
+            <ul class="arch-list">
+              <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/11/">November 2025</a><span class="arch-n">1</span></li>
+              <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/09/">September 2025</a><span class="arch-n">1</span></li>
+              <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/05/">May 2025</a><span class="arch-n">1</span></li>
+              <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/04/">April 2025</a><span class="arch-n">3</span></li>
+              <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/03/">March 2025</a><span class="arch-n">1</span></li>
+            </ul>
+          </div>
+
+          <div class="sb-block" id="sb3">
+            <div class="sb-label">Topics</div>
+            <div class="tags">
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/creative%20writing">Writing</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/humor">Humor</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Sports">Sports</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Books">Books</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/travel">Travel</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Cultural%20Commentary">Culture</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Movies">Movies</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Personal%20Reflections">Reflections</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/short%20story">Short Story</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Relationships">Relationships</a>
+              <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Everyday%20Debates">Debates</a>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</div>
+
+<!-- MAHOGANY QUOTE BAND -->
+<div class="quote-band">
+  <div class="quote-inner" id="quote-inner">
+    <span class="q-mark">"</span>
+    <blockquote>There is nothing left to explore except the depths of the sea and the vastness of space — so we must make the same journeys, but in stylised and more difficult fashions.</blockquote>
+    <cite>— Isaac Lindell, May 2025</cite>
+  </div>
+</div>
+
+<!-- FOOTER — blue -->
+<footer>
+  <div class="foot-logo">Lindell</div>
+  <div class="foot-sub">A blog by Isaac Lindell</div>
+  <div class="foot-rule"></div>
+  <div class="foot-copy">Nashville, Tennessee &nbsp;·&nbsp; Est. 2025 &nbsp;·&nbsp; All Rights Reserved</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const photo = document.getElementById('hero-photo');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  nav.classList.toggle('solid', y > 55);
+  if (photo) photo.style.transform = `scale(1.06) translateY(${y * 0.2}px)`;
+}, { passive: true });
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    if (el.classList.contains('post-row')) {
+      const rows = [...document.querySelectorAll('.post-row')];
+      setTimeout(() => el.classList.add('show'), rows.indexOf(el) * 100);
+    } else {
+      el.classList.add('show');
+    }
+    io.unobserve(el);
+  });
+}, { threshold: 0.1 });
+
+['featured','sb1','sb2','sb3','quote-inner'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) io.observe(el);
+});
+document.querySelectorAll('.post-row').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
