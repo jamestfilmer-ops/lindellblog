@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell's Blog — Brand Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=UnifrakturMaguntia&family=Cinzel:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&family=GFS+Didot:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ui-bg: #0e0e0e;
+    --ui-surface: #161616;
+    --ui-border: #2a2a2a;
+    --ui-text: #c8c0b4;
+    --ui-accent: #b8965a;
+    --ui-muted: #5a5a5a;
+  }
+
+  body {
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---- CHROME ---- */
+  .chrome-header {
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--ui-border);
+    position: relative;
+  }
+  .chrome-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(184,150,90,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .chrome-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ui-accent);
+    margin-bottom: 1rem;
+  }
+  .chrome-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: #e8dfd0;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .chrome-sub {
+    font-size: 1.05rem;
+    color: var(--ui-muted);
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--ui-border);
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--ui-border);
+    color: var(--ui-muted);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--ui-accent);
+    color: var(--ui-accent);
+    background: rgba(184,150,90,0.06);
+  }
+
+  /* ---- GRID ---- */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .concept-card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  .concept-card:hover { z-index: 10; transform: scale(1.01); }
+
+  .concept-preview {
+    width: 100%;
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .concept-card:hover .card-overlay { opacity: 1; }
+  .overlay-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: #fff;
+    margin-bottom: 0.25rem;
+  }
+  .overlay-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+  }
+
+  .concept-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    padding: 0.3rem 0.6rem;
+    background: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    z-index: 30;
+    border-radius: 2px;
+  }
+
+  /* ===================================================
+     CONCEPT 1: THE LOGBOOK — Nautical Captain's Journal
+  =================================================== */
+  .preview-1 {
+    background: #0B2545;
+    font-family: 'Playfair Display', serif;
+    padding: 0;
+  }
+  .p1-header {
+    background: #071830;
+    padding: 1.4rem 1.8rem;
+    border-bottom: 2px solid #B08D57;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .p1-logo { color: #FAF8F3; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; }
+  .p1-nav { display: flex; gap: 1.2rem; }
+  .p1-nav span { color: #B08D57; font-size: 0.65rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p1-hero {
+    padding: 1.8rem;
+    border-bottom: 1px solid rgba(176,141,87,0.25);
+  }
+  .p1-coords { color: #3E6C8F; font-size: 0.65rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-bottom: 0.4rem; }
+  .p1-entry-label { color: #B08D57; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.6rem; }
+  .p1-title { color: #FAF8F3; font-size: 1.8rem; line-height: 1.15; margin-bottom: 0.5rem; font-style: italic; }
+  .p1-dateline { color: #3E6C8F; font-size: 0.75rem; font-style: italic; margin-bottom: 0.8rem; }
+  .p1-excerpt { color: rgba(250,248,243,0.7); font-size: 0.85rem; line-height: 1.65; font-family: 'EB Garamond', serif; }
+  .p1-divider { height: 1px; background: linear-gradient(to right, transparent, #B08D57, transparent); margin: 0.8rem 0; }
+  .p1-cards { padding: 1rem 1.8rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .p1-card { border: 1px solid rgba(176,141,87,0.2); padding: 0.8rem; }
+  .p1-card-coords { color: #3E6C8F; font-size: 0.55rem; letter-spacing: 0.15em; font-family: 'Cinzel', serif; }
+  .p1-card-title { color: #FAF8F3; font-size: 0.85rem; margin-top: 0.2rem; font-style: italic; }
+  .p1-anchor { position: absolute; bottom: 1.2rem; left: 1.8rem; color: rgba(176,141,87,0.3); font-size: 2.5rem; }
+
+  /* ===================================================
+     CONCEPT 2: PUB NOTEBOOK — Irish Literary Corner
+  =================================================== */
+  .preview-2 {
+    background: #F5EDD8;
+    font-family: 'Libre Baskerville', serif;
+    position: relative;
+  }
+  .p2-noise {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1;
+  }
+  .p2-header {
+    background: #1B4332;
+    padding: 1.2rem 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p2-logo { color: #F5EDD8; font-size: 1.15rem; font-weight: 700; }
+  .p2-nav span { color: rgba(245,237,216,0.65); font-size: 0.62rem; letter-spacing: 0.18em; font-family: 'Cinzel', serif; margin-left: 1rem; }
+  .p2-gold-rule { height: 2px; background: linear-gradient(to right, #1B4332, #C9A84C, #1B4332); position: relative; z-index: 2; }
+  .p2-body { padding: 1.6rem 1.8rem; position: relative; z-index: 2; }
+  .p2-kicker { color: #1B4332; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
+  .p2-title { color: #1C1008; font-size: 1.9rem; line-height: 1.15; margin-bottom: 0.3rem; }
+  .p2-title em { color: #4A3728; }
+  .p2-date { color: #8B6B47; font-size: 0.75rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p2-text { color: #2C1F10; font-size: 0.83rem; line-height: 1.75; }
+  .p2-text::first-letter { font-size: 2.8rem; float: left; line-height: 0.8; margin: 0.1rem 0.4rem 0 0; color: #1B4332; font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+  .p2-divider { border: none; border-top: 1px solid #C9A84C; margin: 1rem 0; opacity: 0.5; }
+  .p2-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .p2-card { border-left: 2px solid #C9A84C; padding-left: 0.75rem; }
+  .p2-card-cat { color: #1B4332; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p2-card-title { color: #1C1008; font-size: 0.82rem; margin-top: 0.15rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 3: THE FIELD DISPATCH — Explorer's Journal
+  =================================================== */
+  .preview-3 {
+    background: #F4ECD8;
+    font-family: 'Cormorant Garamond', serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .p3-map-bg {
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image:
+      repeating-linear-gradient(0deg, #5A3B27 0, #5A3B27 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(90deg, #5A3B27 0, #5A3B27 1px, transparent 0, transparent 50%);
+    background-size: 30px 30px;
+  }
+  .p3-header {
+    background: #5A3B27;
+    padding: 1.1rem 1.8rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p3-logo { color: #F4ECD8; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em; font-style: italic; }
+  .p3-compass { color: #C9A05A; font-size: 1.2rem; }
+  .p3-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p3-tag { display: inline-block; border: 1px solid #5A3B27; color: #5A3B27; font-size: 0.58rem; letter-spacing: 0.25em; padding: 0.2rem 0.6rem; font-family: 'Cinzel', serif; text-transform: uppercase; margin-bottom: 0.7rem; }
+  .p3-title { color: #1C1C1C; font-size: 2rem; line-height: 1.1; font-weight: 600; margin-bottom: 0.25rem; }
+  .p3-title em { font-weight: 300; }
+  .p3-sub { color: #6C7A5B; font-size: 0.78rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p3-text { color: #2a1f14; font-size: 0.85rem; line-height: 1.7; }
+  .p3-text::first-letter { font-size: 3rem; float: left; line-height: 0.75; margin: 0.05rem 0.35rem 0 0; color: #5A3B27; font-weight: 700; }
+  .p3-dotpath { display: flex; align-items: center; gap: 0.3rem; margin: 0.9rem 0; }
+  .p3-dot { width: 4px; height: 4px; border-radius: 50%; background: #5A3B27; opacity: 0.5; }
+  .p3-path { flex: 1; border-top: 1px dashed #5A3B27; opacity: 0.35; }
+  .p3-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p3-card { background: rgba(90,59,39,0.07); padding: 0.75rem; border-top: 2px solid #5A3B27; }
+  .p3-card-tag { color: #5A3B27; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p3-card-title { color: #1C1C1C; font-size: 0.83rem; margin-top: 0.2rem; font-style: italic; }
+  .p3-watermark { position: absolute; bottom: -10px; right: -10px; font-size: 7rem; color: rgba(90,59,39,0.06); z-index: 1; line-height: 1; }
+
+  /* ===================================================
+     CONCEPT 4: THE READING ROOM — Victorian Dark Library
+  =================================================== */
+  .preview-4 {
+    background: #0F1F14;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+  }
+  .p4-glow { position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 200px; height: 200px; background: radial-gradient(circle, rgba(212,168,84,0.12) 0%, transparent 70%); pointer-events: none; z-index: 1; }
+  .p4-header {
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid rgba(212,168,84,0.3);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p4-logo { color: #F2EBD9; font-size: 1.1rem; font-style: italic; }
+  .p4-flame { font-size: 1rem; animation: flicker 2s ease-in-out infinite alternate; }
+  @keyframes flicker { 0% { opacity: 0.8; } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.7; } }
+  .p4-nav span { color: rgba(212,168,84,0.6); font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-left: 1.2rem; }
+  .p4-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p4-label { color: #D4A854; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.6rem; }
+  .p4-title { color: #F2EBD9; font-size: 1.85rem; line-height: 1.15; margin-bottom: 0.3rem; font-style: italic; }
+  .p4-rule { height: 1px; background: linear-gradient(to right, #D4A854, transparent); margin: 0.6rem 0; }
+  .p4-text { color: rgba(242,235,217,0.65); font-size: 0.83rem; line-height: 1.75; font-family: 'EB Garamond', serif; }
+  .p4-ornament { text-align: center; color: rgba(212,168,84,0.4); font-size: 1rem; margin: 0.75rem 0; letter-spacing: 0.5em; }
+  .p4-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p4-card { border: 1px solid rgba(212,168,84,0.15); padding: 0.75rem; background: rgba(212,168,84,0.03); }
+  .p4-card-label { color: rgba(212,168,84,0.5); font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p4-card-title { color: rgba(242,235,217,0.8); font-size: 0.82rem; margin-top: 0.2rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 5: REGATTA — Yacht Club Classic
+  =================================================== */
+  .preview-5 {
+    background: #F9F7F2;
+    font-family: 'Libre Baskerville', serif;
+  }
+  .p5-stripe { height: 5px; background: repeating-linear-gradient(90deg, #1E2F44 0, #1E2F44 20px, #F9F7F2 20px, #F9F7F2 40px); }
+  .p5-header {
+    background: #1E2F44;
+    padding: 1.1rem 1.8rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .p5-logo { color: #fff; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; font-family: 'Cinzel', serif; }
+  .p5-nav span { color: rgba(255,255,255,0.6); font-size: 0.6rem; letter-spacing: 0.18em; font-family: 'Cinzel', serif; margin-left: 1.2rem; text-transform: uppercase; }
+  .p5-red-stripe { height: 3px; background: #B23A2B; }
+  .p5-body { padding: 1.4rem 1.8rem; }
+  .p5-edition { color: #B23A2B; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
+  .p5-title { color: #1E2F44; font-size: 1.85rem; line-height: 1.15; margin-bottom: 0.25rem; }
+  .p5-date { color: #8a9aaa; font-size: 0.7rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p5-text { color: #2a3545; font-size: 0.83rem; line-height: 1.7; }
+  .p5-h-rule { border: none; border-top: 1px solid #1E2F44; margin: 0.85rem 0; opacity: 0.15; }
+  .p5-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p5-card { border-top: 3px solid #1E2F44; padding-top: 0.6rem; }
+  .p5-card-ed { color: #B23A2B; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p5-card-title { color: #1E2F44; font-size: 0.82rem; margin-top: 0.15rem; }
+  .p5-bottom-stripe { height: 5px; background: repeating-linear-gradient(90deg, #1E2F44 0, #1E2F44 20px, #B23A2B 20px, #B23A2B 40px); margin-top: auto; }
+
+  /* ===================================================
+     CONCEPT 6: VIA COMO — Italian Lakeside Summer
+  =================================================== */
+  .preview-6 {
+    background: linear-gradient(160deg, #EEF4F7 0%, #F7F3EB 50%, #F2EBE4 100%);
+    font-family: 'Cormorant Garamond', serif;
+    position: relative;
+  }
+  .p6-watercolor {
+    position: absolute; top: 0; left: 0; right: 0; height: 160px;
+    background: linear-gradient(180deg, rgba(111,163,184,0.25) 0%, rgba(200,106,74,0.05) 60%, transparent 100%);
+    pointer-events: none;
+  }
+  .p6-header {
+    padding: 1.4rem 1.8rem 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p6-logo { color: #2a5a72; font-size: 1.2rem; font-weight: 300; letter-spacing: 0.06em; font-style: italic; }
+  .p6-nav span { color: rgba(42,90,114,0.6); font-size: 0.62rem; letter-spacing: 0.18em; font-family: 'Cinzel', serif; margin-left: 1.2rem; }
+  .p6-rule { height: 1px; background: linear-gradient(to right, transparent, #6FA3B8, #C86A4A, transparent); margin: 0 1.8rem; }
+  .p6-body { padding: 1.3rem 1.8rem; position: relative; z-index: 2; }
+  .p6-tag { color: #C86A4A; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
+  .p6-title { color: #1a3a4a; font-size: 1.9rem; line-height: 1.15; font-weight: 300; margin-bottom: 0.2rem; }
+  .p6-title em { font-weight: 500; color: #2a5a72; }
+  .p6-loc { color: #6FA3B8; font-size: 0.75rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p6-text { color: #2a3535; font-size: 0.85rem; line-height: 1.75; }
+  .p6-divider { text-align: center; color: #C86A4A; margin: 0.75rem 0; opacity: 0.5; font-size: 0.9rem; letter-spacing: 0.4em; }
+  .p6-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p6-card { background: rgba(111,163,184,0.08); padding: 0.75rem; border-bottom: 2px solid #C86A4A; }
+  .p6-card-loc { color: #6FA3B8; font-size: 0.55rem; letter-spacing: 0.18em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p6-card-title { color: #1a3a4a; font-size: 0.83rem; margin-top: 0.2rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 7: THE GILT PRESS — High Editorial
+  =================================================== */
+  .preview-7 {
+    background: #FAFAF7;
+    font-family: 'Playfair Display', serif;
+  }
+  .p7-header {
+    background: #111;
+    padding: 1.2rem 1.8rem;
+    text-align: center;
+    border-bottom: 3px solid #C9A84C;
+  }
+  .p7-masthead { color: #fff; font-size: 1.6rem; font-style: italic; letter-spacing: 0.04em; }
+  .p7-masthead span { color: #C9A84C; }
+  .p7-nav { display: flex; gap: 1.5rem; justify-content: center; margin-top: 0.5rem; }
+  .p7-nav span { color: rgba(255,255,255,0.5); font-size: 0.58rem; letter-spacing: 0.22em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p7-body { padding: 1.5rem 1.8rem; }
+  .p7-featured { border-top: 4px solid #111; padding-top: 0.8rem; margin-bottom: 1rem; }
+  .p7-label { color: #C9A84C; font-size: 0.58rem; letter-spacing: 0.3em; font-family: 'Cinzel', serif; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .p7-title { color: #111; font-size: 1.9rem; line-height: 1.1; margin-bottom: 0.25rem; }
+  .p7-byline { color: #888; font-size: 0.72rem; font-style: italic; margin-bottom: 0.7rem; }
+  .p7-text { color: #333; font-size: 0.83rem; line-height: 1.7; font-family: 'EB Garamond', serif; }
+  .p7-rule { border: none; border-top: 1px solid #ddd; margin: 0.85rem 0; }
+  .p7-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.7rem; }
+  .p7-card { border-top: 2px solid #111; padding-top: 0.6rem; }
+  .p7-card-label { color: #C9A84C; font-size: 0.52rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p7-card-title { color: #111; font-size: 0.78rem; margin-top: 0.15rem; line-height: 1.3; }
+
+  /* ===================================================
+     CONCEPT 8: MAHOGANY & BRASS — Golden Age Seafarer
+  =================================================== */
+  .preview-8 {
+    background: #1F3D3A;
+    font-family: 'EB Garamond', serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .p8-texture {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(198,161,91,0.03) 2px,
+      rgba(198,161,91,0.03) 4px
+    );
+    pointer-events: none;
+  }
+  .p8-header {
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid rgba(198,161,91,0.4);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p8-logo { color: #F3E9D2; font-size: 1.1rem; font-style: italic; font-weight: 500; }
+  .p8-nav span { color: rgba(198,161,91,0.6); font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-left: 1.1rem; text-transform: uppercase; }
+  .p8-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p8-label { color: #C6A15B; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.6rem; }
+  .p8-title { color: #F3E9D2; font-size: 1.85rem; line-height: 1.15; margin-bottom: 0.25rem; }
+  .p8-title em { color: #C6A15B; }
+  .p8-date { color: rgba(198,161,91,0.55); font-size: 0.73rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p8-text { color: rgba(243,233,210,0.72); font-size: 0.84rem; line-height: 1.72; }
+  .p8-compass { text-align: center; color: rgba(198,161,91,0.25); margin: 0.8rem 0; font-size: 1.2rem; letter-spacing: 0.5em; }
+  .p8-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p8-card { border: 1px solid rgba(198,161,91,0.18); padding: 0.75rem; }
+  .p8-card-label { color: #C6A15B; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p8-card-title { color: rgba(243,233,210,0.8); font-size: 0.82rem; margin-top: 0.2rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 9: WHITE SAIL — Pure Minimal Literary
+  =================================================== */
+  .preview-9 {
+    background: #FDFCF9;
+    font-family: 'Sorts Mill Goudy', serif;
+  }
+  .p9-header {
+    padding: 2rem 3rem 1.2rem;
+    border-bottom: 1px solid #e0d8cc;
+  }
+  .p9-logo { color: #1a1a1a; font-size: 1.1rem; letter-spacing: 0.04em; }
+  .p9-gold-rule { height: 1px; background: #b8965a; width: 40px; margin-top: 0.4rem; }
+  .p9-body { padding: 1.6rem 3rem; }
+  .p9-title { color: #1a1a1a; font-size: 2rem; line-height: 1.1; margin-bottom: 0.3rem; }
+  .p9-date { color: #b8965a; font-size: 0.72rem; letter-spacing: 0.15em; font-family: 'Cinzel', serif; margin-bottom: 0.85rem; }
+  .p9-text { color: #2a2520; font-size: 0.87rem; line-height: 1.85; }
+  .p9-text::first-letter { font-size: 3.2rem; float: left; line-height: 0.75; margin: 0.05rem 0.4rem 0 0; color: #1a1a1a; }
+  .p9-divider { border: none; border-top: 1px solid #e0d8cc; margin: 1.1rem 0; }
+  .p9-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .p9-card-title { color: #1a1a1a; font-size: 0.85rem; font-style: italic; }
+  .p9-card-date { color: #b8965a; font-size: 0.58rem; letter-spacing: 0.15em; font-family: 'Cinzel', serif; margin-top: 0.15rem; }
+
+  /* ===================================================
+     CONCEPT 10: THE CORRESPONDENT — Dateline Journal
+  =================================================== */
+  .preview-10 {
+    background: #F6F0E6;
+    font-family: 'Lora', serif;
+    position: relative;
+  }
+  .p10-header {
+    background: #2a1f14;
+    padding: 1.1rem 1.8rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .p10-logo { color: #F6F0E6; font-size: 1.05rem; font-style: italic; }
+  .p10-nav span { color: rgba(246,240,230,0.5); font-size: 0.6rem; letter-spacing: 0.18em; font-family: 'Cinzel', serif; margin-left: 1.1rem; }
+  .p10-dateline-bar {
+    background: #C9A84C;
+    padding: 0.35rem 1.8rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .p10-dateline-item { color: #2a1f14; font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p10-body { padding: 1.4rem 1.8rem; }
+  .p10-dateline { color: #2a1f14; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.5rem; }
+  .p10-dateline span { color: #888; font-weight: 400; margin-left: 0.5rem; }
+  .p10-title { color: #1a1008; font-size: 1.8rem; line-height: 1.15; margin-bottom: 0.3rem; }
+  .p10-byline { color: #8B6B47; font-size: 0.72rem; font-style: italic; margin-bottom: 0.75rem; }
+  .p10-text { color: #2a1f14; font-size: 0.83rem; line-height: 1.72; }
+  .p10-divider { border: none; border-top: 1px solid rgba(42,31,20,0.15); margin: 0.85rem 0; }
+  .p10-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p10-card { }
+  .p10-card-dateline { color: #C9A84C; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p10-card-title { color: #1a1008; font-size: 0.82rem; margin-top: 0.15rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 11: THE CRYPT — Gothic Dark Academia
+  =================================================== */
+  .preview-11 {
+    background: #0d0d0d;
+    font-family: 'Spectral', serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .p11-vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none; z-index: 1;
+  }
+  .p11-header {
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid rgba(180,60,60,0.25);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p11-logo { color: #d4c5b2; font-size: 1rem; letter-spacing: 0.08em; font-style: italic; font-weight: 300; }
+  .p11-nav span { color: rgba(180,60,60,0.7); font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-left: 1.1rem; text-transform: uppercase; }
+  .p11-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p11-label { color: #7a3535; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.6rem; }
+  .p11-title { color: #d4c5b2; font-size: 1.85rem; line-height: 1.1; font-weight: 300; margin-bottom: 0.3rem; font-style: italic; }
+  .p11-title strong { font-weight: 600; color: #c5b09a; }
+  .p11-rule { height: 1px; background: linear-gradient(to right, #7a3535, transparent); margin: 0.65rem 0; }
+  .p11-text { color: rgba(212,197,178,0.65); font-size: 0.83rem; line-height: 1.78; font-weight: 300; }
+  .p11-ornament { text-align: center; color: rgba(122,53,53,0.4); margin: 0.75rem 0; letter-spacing: 0.6em; font-size: 0.8rem; }
+  .p11-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p11-card { border: 1px solid rgba(122,53,53,0.2); padding: 0.75rem; }
+  .p11-card-label { color: rgba(122,53,53,0.6); font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p11-card-title { color: rgba(212,197,178,0.75); font-size: 0.82rem; margin-top: 0.2rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 12: BROADSIDE — Newspaper Broadsheet
+  =================================================== */
+  .preview-12 {
+    background: #F2EDD8;
+    font-family: 'Playfair Display', serif;
+  }
+  .p12-header {
+    text-align: center;
+    padding: 1rem 1.8rem;
+    border-bottom: 3px double #1a1a1a;
+  }
+  .p12-top-rule { border: none; border-top: 1px solid #1a1a1a; margin-bottom: 0.5rem; }
+  .p12-masthead { font-size: 2.2rem; color: #1a1a1a; font-style: italic; line-height: 1; letter-spacing: -0.01em; }
+  .p12-tagline { font-size: 0.62rem; letter-spacing: 0.28em; color: #555; font-family: 'Cinzel', serif; text-transform: uppercase; margin-top: 0.2rem; }
+  .p12-date-bar { display: flex; justify-content: space-between; font-size: 0.62rem; color: #555; font-family: 'Cinzel', serif; padding: 0.3rem 0; border-top: 1px solid #1a1a1a; margin-top: 0.4rem; }
+  .p12-body { padding: 0.8rem 1.8rem; display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+  .p12-main { border-right: 1px solid rgba(26,26,26,0.2); padding-right: 1rem; }
+  .p12-kicker { color: #1a1a1a; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; font-family: 'Cinzel', serif; }
+  .p12-title { font-size: 1.7rem; line-height: 1.1; color: #1a1a1a; margin-bottom: 0.3rem; }
+  .p12-deck { color: #555; font-size: 0.8rem; font-style: italic; margin-bottom: 0.5rem; font-family: 'EB Garamond', serif; }
+  .p12-text { color: #222; font-size: 0.78rem; line-height: 1.65; font-family: 'EB Garamond', serif; }
+  .p12-text::first-letter { font-size: 2.5rem; float: left; line-height: 0.8; margin: 0.05rem 0.3rem 0 0; font-weight: 700; }
+  .p12-sidebar { }
+  .p12-sidebar-item { border-top: 1px solid rgba(26,26,26,0.2); padding-top: 0.6rem; margin-bottom: 0.75rem; }
+  .p12-sidebar-kicker { color: #555; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p12-sidebar-title { color: #1a1a1a; font-size: 0.85rem; line-height: 1.25; margin-top: 0.15rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 13: EMBER — Warm Minimalist Lantern Glow
+  =================================================== */
+  .preview-13 {
+    background: #1a1208;
+    font-family: 'Crimson Text', serif;
+    position: relative;
+  }
+  .p13-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 300px; height: 250px; background: radial-gradient(ellipse, rgba(220,140,40,0.1) 0%, transparent 70%); pointer-events: none; }
+  .p13-header {
+    padding: 1.3rem 1.8rem;
+    border-bottom: 1px solid rgba(220,140,40,0.15);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p13-logo { color: #e8d5b0; font-size: 1.15rem; font-style: italic; font-weight: 600; letter-spacing: 0.02em; }
+  .p13-nav span { color: rgba(220,140,40,0.5); font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-left: 1.1rem; text-transform: uppercase; }
+  .p13-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p13-label { color: #DC8C28; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.55rem; }
+  .p13-title { color: #e8d5b0; font-size: 2rem; line-height: 1.1; margin-bottom: 0.25rem; font-weight: 600; }
+  .p13-title em { color: #DC8C28; font-weight: 400; }
+  .p13-date { color: rgba(220,140,40,0.45); font-size: 0.72rem; font-style: italic; margin-bottom: 0.75rem; font-family: 'Cinzel', serif; letter-spacing: 0.1em; }
+  .p13-text { color: rgba(232,213,176,0.68); font-size: 0.86rem; line-height: 1.8; }
+  .p13-rule { border: none; border-top: 1px solid rgba(220,140,40,0.12); margin: 0.85rem 0; }
+  .p13-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p13-card { padding: 0.7rem; background: rgba(220,140,40,0.04); border-left: 2px solid rgba(220,140,40,0.25); }
+  .p13-card-label { color: rgba(220,140,40,0.5); font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p13-card-title { color: rgba(232,213,176,0.8); font-size: 0.82rem; margin-top: 0.15rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 14: THE ATLAS — Illustrated Travel Tome
+  =================================================== */
+  .preview-14 {
+    background: #EDE7D9;
+    font-family: 'GFS Didot', serif;
+    position: relative;
+  }
+  .p14-border { position: absolute; inset: 8px; border: 1px solid rgba(80,60,30,0.2); pointer-events: none; z-index: 5; }
+  .p14-corner { position: absolute; width: 16px; height: 16px; border-color: #8B6B3A; border-style: solid; z-index: 6; }
+  .p14-corner.tl { top: 5px; left: 5px; border-width: 2px 0 0 2px; }
+  .p14-corner.tr { top: 5px; right: 5px; border-width: 2px 2px 0 0; }
+  .p14-corner.bl { bottom: 5px; left: 5px; border-width: 0 0 2px 2px; }
+  .p14-corner.br { bottom: 5px; right: 5px; border-width: 0 2px 2px 0; }
+  .p14-header {
+    padding: 1.4rem 2.2rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(80,60,30,0.2);
+    position: relative; z-index: 2;
+  }
+  .p14-logo { color: #2C1F10; font-size: 1.3rem; letter-spacing: 0.06em; font-style: italic; }
+  .p14-logo span { font-style: normal; color: #8B6B3A; }
+  .p14-nav { display: flex; justify-content: center; gap: 1.5rem; margin-top: 0.4rem; }
+  .p14-nav span { color: #8B6B3A; font-size: 0.58rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p14-body { padding: 1.2rem 2.2rem; position: relative; z-index: 2; }
+  .p14-roman { color: #8B6B3A; font-size: 0.65rem; letter-spacing: 0.3em; font-family: 'Cinzel', serif; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .p14-title { color: #1a1008; font-size: 1.85rem; line-height: 1.1; margin-bottom: 0.25rem; }
+  .p14-place { color: #8B6B3A; font-size: 0.78rem; font-style: italic; margin-bottom: 0.7rem; }
+  .p14-text { color: #2a1f14; font-size: 0.84rem; line-height: 1.72; }
+  .p14-rule { height: 1px; background: linear-gradient(to right, transparent, rgba(80,60,30,0.3), transparent); margin: 0.85rem 0; }
+  .p14-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p14-card { border: 1px solid rgba(80,60,30,0.15); padding: 0.7rem; }
+  .p14-card-roman { color: #8B6B3A; font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p14-card-title { color: #2a1f14; font-size: 0.82rem; margin-top: 0.15rem; font-style: italic; }
+
+  /* ===================================================
+     CONCEPT 15: INDIGO INK — Moody Coastal Midnight
+  =================================================== */
+  .preview-15 {
+    background: #0C1B2E;
+    font-family: 'Spectral', serif;
+    position: relative;
+    overflow: hidden;
+  }
+  .p15-stars {
+    position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 50%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.15) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.15) 0%, transparent 100%),
+      radial-gradient(2px 2px at 70% 5%, rgba(200,220,255,0.35) 0%, transparent 100%);
+  }
+  .p15-header {
+    padding: 1.2rem 1.8rem;
+    border-bottom: 1px solid rgba(100,140,200,0.2);
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative; z-index: 2;
+  }
+  .p15-logo { color: #b8cce8; font-size: 1.1rem; font-style: italic; font-weight: 300; letter-spacing: 0.05em; }
+  .p15-nav span { color: rgba(100,140,200,0.5); font-size: 0.6rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; margin-left: 1.1rem; text-transform: uppercase; }
+  .p15-body { padding: 1.5rem 1.8rem; position: relative; z-index: 2; }
+  .p15-label { color: #4A7FB5; font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 0.6rem; }
+  .p15-title { color: #d4e4f8; font-size: 1.85rem; line-height: 1.1; font-weight: 300; margin-bottom: 0.25rem; }
+  .p15-title em { color: #7aaed6; font-style: italic; }
+  .p15-rule { height: 1px; background: linear-gradient(to right, #4A7FB5, transparent); margin: 0.65rem 0; opacity: 0.4; }
+  .p15-text { color: rgba(180,204,232,0.68); font-size: 0.84rem; line-height: 1.78; font-weight: 300; }
+  .p15-moon { position: absolute; top: 60px; right: 30px; width: 40px; height: 40px; border-radius: 50%; background: rgba(200,220,255,0.06); border: 1px solid rgba(200,220,255,0.1); z-index: 2; }
+  .p15-moon::after { content: ''; position: absolute; top: -3px; right: -3px; width: 38px; height: 38px; border-radius: 50%; background: #0C1B2E; }
+  .p15-wave { height: 1px; background: linear-gradient(to right, transparent, rgba(74,127,181,0.3), rgba(74,127,181,0.5), rgba(74,127,181,0.3), transparent); margin: 0.85rem 0; }
+  .p15-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .p15-card { border: 1px solid rgba(74,127,181,0.15); padding: 0.75rem; }
+  .p15-card-label { color: rgba(74,127,181,0.6); font-size: 0.55rem; letter-spacing: 0.2em; font-family: 'Cinzel', serif; text-transform: uppercase; }
+  .p15-card-title { color: rgba(212,228,248,0.75); font-size: 0.82rem; margin-top: 0.2rem; font-style: italic; }
+
+  /* ---- LABEL TAGS ---- */
+  .concept-label {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 0.7rem 1.8rem;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 25;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+  .concept-card:hover .concept-label { opacity: 1; }
+  .label-name { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.25em; color: #fff; text-transform: uppercase; }
+  .label-tag { font-size: 0.62rem; color: rgba(255,255,255,0.55); font-style: italic; font-family: 'EB Garamond', serif; }
+
+  /* ---- FOOTER ---- */
+  .page-footer {
+    text-align: center;
+    padding: 2.5rem;
+    border-top: 1px solid var(--ui-border);
+    color: var(--ui-muted);
+    font-size: 0.78rem;
+    font-style: italic;
+  }
+  .page-footer strong { color: var(--ui-accent); font-style: normal; font-family: 'Cinzel', serif; letter-spacing: 0.1em; font-size: 0.65rem; }
+</style>
+</head>
+<body>
+
+<header class="chrome-header">
+  <div class="chrome-eyebrow">Isaac Lindell · Blog Branding</div>
+  <h1 class="chrome-title">15 Brand Concepts</h1>
+  <p class="chrome-sub">Hover any concept to reveal its name and spirit. Click to select.</p>
+</header>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterAll(this)">All 15</button>
+  <button class="filter-btn" onclick="filterGroup(this, 'dark')">Dark Themes</button>
+  <button class="filter-btn" onclick="filterGroup(this, 'light')">Light Themes</button>
+  <button class="filter-btn" onclick="filterGroup(this, 'nautical')">Nautical</button>
+  <button class="filter-btn" onclick="filterGroup(this, 'literary')">Literary</button>
+  <button class="filter-btn" onclick="filterGroup(this, 'travel')">Travel</button>
+</div>
+
+<div class="concepts-grid" id="grid">
+
+  <!-- 1: THE LOGBOOK -->
+  <div class="concept-card" data-tags="nautical dark" onclick="selectConcept(1)">
+    <div class="concept-number">01</div>
+    <div class="concept-label">
+      <span class="label-name">The Logbook</span>
+      <span class="label-tag">Nautical Captain's Journal</span>
+    </div>
+    <div class="concept-preview preview-1">
+      <div class="p1-header">
+        <div class="p1-logo">Isaac Lindell</div>
+        <div class="p1-nav">
+          <span>Log</span><span>Dispatches</span><span>Charts</span>
+        </div>
+      </div>
+      <div style="padding: 1.5rem 1.8rem;">
+        <div class="p1-coords">44°28′N · 11°20′E · MARCH 2026</div>
+        <div class="p1-entry-label">Log Entry — Fiction</div>
+        <div class="p1-title">Dirt</div>
+        <div class="p1-dateline">Wyoming Desert · August 9th, 1958</div>
+        <div class="p1-excerpt">The best. That's what he wanted. The best, nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="p1-divider"></div>
+      </div>
+      <div class="p1-cards">
+        <div class="p1-card">
+          <div class="p1-card-coords">48°N · 2°E</div>
+          <div class="p1-card-title">The Greatest Beer Run of All Time</div>
+        </div>
+        <div class="p1-card">
+          <div class="p1-card-coords">53°N · 6°W</div>
+          <div class="p1-card-title">RIP Charlie Kirk</div>
+        </div>
+      </div>
+      <div class="p1-anchor">⚓</div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Logbook</div>
+      <div class="overlay-desc">Ship captain's log. Entries dated with coordinates. Navy + brass.</div>
+    </div>
+  </div>
+
+  <!-- 2: PUB NOTEBOOK -->
+  <div class="concept-card" data-tags="literary light" onclick="selectConcept(2)">
+    <div class="concept-number">02</div>
+    <div class="concept-label">
+      <span class="label-name">Pub Notebook</span>
+      <span class="label-tag">Irish Literary Corner</span>
+    </div>
+    <div class="concept-preview preview-2">
+      <div class="p2-noise"></div>
+      <div class="p2-header">
+        <div class="p2-logo">Lindell</div>
+        <div class="p2-nav">
+          <span>Essays</span><span>Stories</span><span>Notes</span>
+        </div>
+      </div>
+      <div class="p2-gold-rule"></div>
+      <div class="p2-body">
+        <div class="p2-kicker">Short Story · Creative Writing</div>
+        <div class="p2-title">Dirt</div>
+        <div class="p2-date">16 November, 2025</div>
+        <div class="p2-text">The best. That's what he wanted. Nothing subpar, nothing lesser — only prestige. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        <hr class="p2-divider">
+        <div class="p2-cards">
+          <div class="p2-card">
+            <div class="p2-card-cat">Travel · Humor</div>
+            <div class="p2-card-title">The Greatest Beer Run of All Time</div>
+          </div>
+          <div class="p2-card">
+            <div class="p2-card-cat">Cultural Commentary</div>
+            <div class="p2-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Pub Notebook</div>
+      <div class="overlay-desc">Racing green header, cream paper, gold dividers. After-midnight notes.</div>
+    </div>
+  </div>
+
+  <!-- 3: THE FIELD DISPATCH -->
+  <div class="concept-card" data-tags="travel light" onclick="selectConcept(3)">
+    <div class="concept-number">03</div>
+    <div class="concept-label">
+      <span class="label-name">The Field Dispatch</span>
+      <span class="label-tag">Explorer's Journal</span>
+    </div>
+    <div class="concept-preview preview-3">
+      <div class="p3-map-bg"></div>
+      <div class="p3-header">
+        <div class="p3-logo">Lindell's Journal</div>
+        <div class="p3-compass">✦</div>
+      </div>
+      <div class="p3-body">
+        <div class="p3-tag">Field Notes · Fiction</div>
+        <div class="p3-title">Dirt</div>
+        <div class="p3-sub">Wyoming Territory, Summer 1958</div>
+        <div class="p3-text">The best. That's what he wanted. Nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="p3-dotpath">
+          <div class="p3-dot"></div><div class="p3-path"></div><div class="p3-dot"></div><div class="p3-path"></div><div class="p3-dot"></div>
+        </div>
+        <div class="p3-cards">
+          <div class="p3-card">
+            <div class="p3-card-tag">Adventure · Travel</div>
+            <div class="p3-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p3-card">
+            <div class="p3-card-tag">Commentary</div>
+            <div class="p3-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+      <div class="p3-watermark">✦</div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Field Dispatch</div>
+      <div class="overlay-desc">Parchment + leather, dotted map paths, drop-cap letters. Victorian expedition notebook.</div>
+    </div>
+  </div>
+
+  <!-- 4: THE READING ROOM -->
+  <div class="concept-card" data-tags="literary dark" onclick="selectConcept(4)">
+    <div class="concept-number">04</div>
+    <div class="concept-label">
+      <span class="label-name">The Reading Room</span>
+      <span class="label-tag">Victorian Dark Library</span>
+    </div>
+    <div class="concept-preview preview-4">
+      <div class="p4-glow"></div>
+      <div class="p4-header">
+        <div class="p4-logo">Isaac Lindell</div>
+        <div>
+          <div class="p4-flame">🕯</div>
+        </div>
+        <div class="p4-nav">
+          <span>Library</span><span>Volumes</span>
+        </div>
+      </div>
+      <div class="p4-body">
+        <div class="p4-label">Volume I · Short Fiction</div>
+        <div class="p4-title">Dirt</div>
+        <div class="p4-rule"></div>
+        <div class="p4-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        <div class="p4-ornament">· · · ✦ · · ·</div>
+        <div class="p4-cards">
+          <div class="p4-card">
+            <div class="p4-card-label">Volume II</div>
+            <div class="p4-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p4-card">
+            <div class="p4-card-label">Commentary</div>
+            <div class="p4-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Reading Room</div>
+      <div class="overlay-desc">Dark forest green, ivory text, candle animation. Victorian reading room.</div>
+    </div>
+  </div>
+
+  <!-- 5: REGATTA -->
+  <div class="concept-card" data-tags="nautical light" onclick="selectConcept(5)">
+    <div class="concept-number">05</div>
+    <div class="concept-label">
+      <span class="label-name">Regatta</span>
+      <span class="label-tag">Yacht Club Classic</span>
+    </div>
+    <div class="concept-preview preview-5" style="display:flex;flex-direction:column;">
+      <div class="p5-stripe"></div>
+      <div class="p5-header">
+        <div class="p5-logo">Isaac Lindell</div>
+        <div class="p5-nav">
+          <span>Editions</span><span>Log</span><span>Gallery</span>
+        </div>
+      </div>
+      <div class="p5-red-stripe"></div>
+      <div class="p5-body">
+        <div class="p5-edition">Edition No. 7 · Short Fiction</div>
+        <div class="p5-title">Dirt</div>
+        <div class="p5-date">November 16, 2025 — Wyoming, 1958</div>
+        <div class="p5-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <hr class="p5-h-rule">
+        <div class="p5-cards">
+          <div class="p5-card">
+            <div class="p5-card-ed">Edition No. 5</div>
+            <div class="p5-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p5-card">
+            <div class="p5-card-ed">Edition No. 6</div>
+            <div class="p5-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:auto;"><div class="p5-bottom-stripe"></div></div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Regatta</div>
+      <div class="overlay-desc">Navy + white + regatta red. Posts as "Editions." New England yacht club.</div>
+    </div>
+  </div>
+
+  <!-- 6: VIA COMO -->
+  <div class="concept-card" data-tags="travel light" onclick="selectConcept(6)">
+    <div class="concept-number">06</div>
+    <div class="concept-label">
+      <span class="label-name">Via Como</span>
+      <span class="label-tag">Italian Lakeside Summer</span>
+    </div>
+    <div class="concept-preview preview-6">
+      <div class="p6-watercolor"></div>
+      <div class="p6-header">
+        <div class="p6-logo">Isaac Lindell</div>
+        <div class="p6-nav">
+          <span>Dispatches</span><span>Portraits</span><span>Notes</span>
+        </div>
+      </div>
+      <div class="p6-rule"></div>
+      <div class="p6-body">
+        <div class="p6-tag">Fiction · Wyoming</div>
+        <div class="p6-title"><em>Dirt</em></div>
+        <div class="p6-loc">☀ Wyoming Desert · August 1958</div>
+        <div class="p6-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="p6-divider">· · ·</div>
+        <div class="p6-cards">
+          <div class="p6-card">
+            <div class="p6-card-loc">Adventure</div>
+            <div class="p6-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p6-card">
+            <div class="p6-card-loc">Commentary</div>
+            <div class="p6-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Via Como</div>
+      <div class="overlay-desc">Watercolor header, terracotta + lake blue. European summer travel diary.</div>
+    </div>
+  </div>
+
+  <!-- 7: THE GILT PRESS -->
+  <div class="concept-card" data-tags="literary light" onclick="selectConcept(7)">
+    <div class="concept-number">07</div>
+    <div class="concept-label">
+      <span class="label-name">The Gilt Press</span>
+      <span class="label-tag">High Editorial Magazine</span>
+    </div>
+    <div class="concept-preview preview-7">
+      <div class="p7-header">
+        <div class="p7-masthead"><span>The</span> Lindell <span>Press</span></div>
+        <div class="p7-nav">
+          <span>Fiction</span><span>Essays</span><span>Commentary</span><span>Travel</span>
+        </div>
+      </div>
+      <div class="p7-body">
+        <div class="p7-featured">
+          <div class="p7-label">Lead Essay · Short Fiction</div>
+          <div class="p7-title">Dirt</div>
+          <div class="p7-byline">By Isaac Lindell · November 2025</div>
+          <div class="p7-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. The butterflies in Paisley's stomach were not from excitement.</div>
+        </div>
+        <hr class="p7-rule">
+        <div class="p7-grid">
+          <div class="p7-card">
+            <div class="p7-card-label">Adventure</div>
+            <div class="p7-card-title">The Greatest Beer Run of All Time</div>
+          </div>
+          <div class="p7-card">
+            <div class="p7-card-label">Politics</div>
+            <div class="p7-card-title">RIP Charlie Kirk</div>
+          </div>
+          <div class="p7-card">
+            <div class="p7-card-label">Books</div>
+            <div class="p7-card-title">On Reading Well</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Gilt Press</div>
+      <div class="overlay-desc">Black masthead, gold accents, editorial hierarchy. High-end magazine.</div>
+    </div>
+  </div>
+
+  <!-- 8: MAHOGANY & BRASS -->
+  <div class="concept-card" data-tags="nautical dark" onclick="selectConcept(8)">
+    <div class="concept-number">08</div>
+    <div class="concept-label">
+      <span class="label-name">Mahogany & Brass</span>
+      <span class="label-tag">Golden Age Seafarer</span>
+    </div>
+    <div class="concept-preview preview-8">
+      <div class="p8-texture"></div>
+      <div class="p8-header">
+        <div class="p8-logo">Isaac Lindell</div>
+        <div class="p8-nav">
+          <span>Charts</span><span>Log</span><span>Ports</span>
+        </div>
+      </div>
+      <div class="p8-body">
+        <div class="p8-label">Chart No. I · Short Fiction</div>
+        <div class="p8-title">Dirt</div>
+        <div class="p8-date">Wyoming Territory · Anno Domini 1958</div>
+        <div class="p8-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="p8-compass">✦ · ✦ · ✦</div>
+        <div class="p8-cards">
+          <div class="p8-card">
+            <div class="p8-card-label">Voyage II</div>
+            <div class="p8-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p8-card">
+            <div class="p8-card-label">Dispatch</div>
+            <div class="p8-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Mahogany & Brass</div>
+      <div class="overlay-desc">Deep sea green, brass gold, antique chart texture. Age of Sail.</div>
+    </div>
+  </div>
+
+  <!-- 9: WHITE SAIL -->
+  <div class="concept-card" data-tags="literary light" onclick="selectConcept(9)">
+    <div class="concept-number">09</div>
+    <div class="concept-label">
+      <span class="label-name">White Sail</span>
+      <span class="label-tag">Pure Minimal Literary</span>
+    </div>
+    <div class="concept-preview preview-9">
+      <div class="p9-header">
+        <div class="p9-logo">Isaac Lindell</div>
+        <div class="p9-gold-rule"></div>
+      </div>
+      <div class="p9-body">
+        <div class="p9-title">Dirt</div>
+        <div class="p9-date">November · 2025</div>
+        <div class="p9-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement.</div>
+        <hr class="p9-divider">
+        <div class="p9-cards">
+          <div>
+            <div class="p9-card-title">The Greatest Beer Run of All Time</div>
+            <div class="p9-card-date">May · 2025</div>
+          </div>
+          <div>
+            <div class="p9-card-title">RIP Charlie Kirk</div>
+            <div class="p9-card-date">September · 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">White Sail</div>
+      <div class="overlay-desc">Extreme minimalism. Cream + single gold rule. Like a beautifully typeset novella.</div>
+    </div>
+  </div>
+
+  <!-- 10: THE CORRESPONDENT -->
+  <div class="concept-card" data-tags="travel light" onclick="selectConcept(10)">
+    <div class="concept-number">10</div>
+    <div class="concept-label">
+      <span class="label-name">The Correspondent</span>
+      <span class="label-tag">Foreign Dateline Journal</span>
+    </div>
+    <div class="concept-preview preview-10">
+      <div class="p10-header">
+        <div class="p10-logo">The Lindell Dispatch</div>
+        <div class="p10-nav">
+          <span>Filed</span><span>Cities</span><span>Archive</span>
+        </div>
+      </div>
+      <div class="p10-dateline-bar">
+        <span class="p10-dateline-item">🌍 Dublin</span>
+        <span class="p10-dateline-item">⚓ Naples</span>
+        <span class="p10-dateline-item">✈ Nashville</span>
+      </div>
+      <div class="p10-body">
+        <div class="p10-dateline">Wyoming <span>— August 9, 1958</span></div>
+        <div class="p10-title">Dirt</div>
+        <div class="p10-byline">Filed by Isaac Lindell · Short Fiction</div>
+        <div class="p10-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <hr class="p10-divider">
+        <div class="p10-cards">
+          <div class="p10-card">
+            <div class="p10-card-dateline">Worldwide · May 2025</div>
+            <div class="p10-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p10-card">
+            <div class="p10-card-dateline">Nashville · Sep 2025</div>
+            <div class="p10-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Correspondent</div>
+      <div class="overlay-desc">Dateline bar, foreign correspondent framing. Dispatches from everywhere.</div>
+    </div>
+  </div>
+
+  <!-- 11: THE CRYPT -->
+  <div class="concept-card" data-tags="literary dark" onclick="selectConcept(11)">
+    <div class="concept-number">11</div>
+    <div class="concept-label">
+      <span class="label-name">The Crypt</span>
+      <span class="label-tag">Gothic Dark Academia</span>
+    </div>
+    <div class="concept-preview preview-11">
+      <div class="p11-vignette"></div>
+      <div class="p11-header">
+        <div class="p11-logo">Isaac Lindell</div>
+        <div class="p11-nav">
+          <span>Writings</span><span>Confessions</span>
+        </div>
+      </div>
+      <div class="p11-body">
+        <div class="p11-label">Confession I · Short Fiction</div>
+        <div class="p11-title"><strong>Dirt</strong></div>
+        <div class="p11-rule"></div>
+        <div class="p11-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        <div class="p11-ornament">· · · ✝ · · ·</div>
+        <div class="p11-cards">
+          <div class="p11-card">
+            <div class="p11-card-label">Confession II</div>
+            <div class="p11-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p11-card">
+            <div class="p11-card-label">Elegy</div>
+            <div class="p11-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Crypt</div>
+      <div class="overlay-desc">Near-black, crimson accents, vignette glow. Gothic dark academia.</div>
+    </div>
+  </div>
+
+  <!-- 12: BROADSIDE -->
+  <div class="concept-card" data-tags="literary light" onclick="selectConcept(12)">
+    <div class="concept-number">12</div>
+    <div class="concept-label">
+      <span class="label-name">Broadside</span>
+      <span class="label-tag">Newspaper Broadsheet</span>
+    </div>
+    <div class="concept-preview preview-12">
+      <div class="p12-header">
+        <div class="p12-top-rule"></div>
+        <div class="p12-masthead">The Lindell Broadside</div>
+        <div class="p12-tagline">Letters, Stories & Commentary from Nashville</div>
+        <div class="p12-date-bar">
+          <span>Vol. I · No. 7</span>
+          <span>Tuesday, March 10, 2026</span>
+          <span>Free of Charge</span>
+        </div>
+      </div>
+      <div class="p12-body">
+        <div class="p12-main">
+          <div class="p12-kicker">Short Fiction</div>
+          <div class="p12-title">Dirt</div>
+          <div class="p12-deck">A young woman drives into the Wyoming desert with a loose professor and growing dread.</div>
+          <div class="p12-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        </div>
+        <div class="p12-sidebar">
+          <div class="p12-sidebar-item">
+            <div class="p12-sidebar-kicker">Travel</div>
+            <div class="p12-sidebar-title">A Plan for the Greatest Beer Run of All Time</div>
+          </div>
+          <div class="p12-sidebar-item">
+            <div class="p12-sidebar-kicker">Commentary</div>
+            <div class="p12-sidebar-title">RIP Charlie Kirk</div>
+          </div>
+          <div class="p12-sidebar-item">
+            <div class="p12-sidebar-kicker">Literature</div>
+            <div class="p12-sidebar-title">On Reading Well in a Distracted Age</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Broadside</div>
+      <div class="overlay-desc">Newspaper broadsheet. Masthead, columns, sidebar. Vol. I, No. 7.</div>
+    </div>
+  </div>
+
+  <!-- 13: EMBER -->
+  <div class="concept-card" data-tags="literary dark" onclick="selectConcept(13)">
+    <div class="concept-number">13</div>
+    <div class="concept-label">
+      <span class="label-name">Ember</span>
+      <span class="label-tag">Warm Lantern Glow</span>
+    </div>
+    <div class="concept-preview preview-13">
+      <div class="p13-glow"></div>
+      <div class="p13-header">
+        <div class="p13-logo">Isaac Lindell</div>
+        <div class="p13-nav">
+          <span>Stories</span><span>Essays</span><span>Notes</span>
+        </div>
+      </div>
+      <div class="p13-body">
+        <div class="p13-label">By Firelight · Short Fiction</div>
+        <div class="p13-title">Dirt</div>
+        <div class="p13-date">November · 2025</div>
+        <div class="p13-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies were not from excitement.</div>
+        <hr class="p13-rule">
+        <div class="p13-cards">
+          <div class="p13-card">
+            <div class="p13-card-label">Adventure</div>
+            <div class="p13-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p13-card">
+            <div class="p13-card-label">Commentary</div>
+            <div class="p13-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Ember</div>
+      <div class="overlay-desc">Near-black with amber glow. Warm, intimate. Like reading by firelight.</div>
+    </div>
+  </div>
+
+  <!-- 14: THE ATLAS -->
+  <div class="concept-card" data-tags="travel light" onclick="selectConcept(14)">
+    <div class="concept-number">14</div>
+    <div class="concept-label">
+      <span class="label-name">The Atlas</span>
+      <span class="label-tag">Illustrated Travel Tome</span>
+    </div>
+    <div class="concept-preview preview-14">
+      <div class="p14-border"></div>
+      <div class="p14-corner tl"></div>
+      <div class="p14-corner tr"></div>
+      <div class="p14-corner bl"></div>
+      <div class="p14-corner br"></div>
+      <div class="p14-header">
+        <div class="p14-logo">The <span>Lindell</span> Atlas</div>
+        <div class="p14-nav">
+          <span>Territories</span><span>Expeditions</span><span>Notes</span>
+        </div>
+      </div>
+      <div class="p14-body">
+        <div class="p14-roman">Entry I · Short Fiction</div>
+        <div class="p14-title">Dirt</div>
+        <div class="p14-place">Wyoming Territory · August, 1958</div>
+        <div class="p14-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+        <div class="p14-rule"></div>
+        <div class="p14-cards">
+          <div class="p14-card">
+            <div class="p14-card-roman">Entry V</div>
+            <div class="p14-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p14-card">
+            <div class="p14-card-roman">Entry VI</div>
+            <div class="p14-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">The Atlas</div>
+      <div class="overlay-desc">Corner ornaments, Roman numerals, bordered parchment. Illustrated travel tome.</div>
+    </div>
+  </div>
+
+  <!-- 15: INDIGO INK -->
+  <div class="concept-card" data-tags="nautical dark" onclick="selectConcept(15)">
+    <div class="concept-number">15</div>
+    <div class="concept-label">
+      <span class="label-name">Indigo Ink</span>
+      <span class="label-tag">Coastal Midnight</span>
+    </div>
+    <div class="concept-preview preview-15">
+      <div class="p15-stars"></div>
+      <div class="p15-moon"></div>
+      <div class="p15-header">
+        <div class="p15-logo">Isaac Lindell</div>
+        <div class="p15-nav">
+          <span>Tides</span><span>Depths</span><span>Shores</span>
+        </div>
+      </div>
+      <div class="p15-body">
+        <div class="p15-label">Night Watch · Short Fiction</div>
+        <div class="p15-title"><em>Dirt</em></div>
+        <div class="p15-rule"></div>
+        <div class="p15-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from excitement.</div>
+        <div class="p15-wave"></div>
+        <div class="p15-cards">
+          <div class="p15-card">
+            <div class="p15-card-label">High Seas</div>
+            <div class="p15-card-title">The Greatest Beer Run</div>
+          </div>
+          <div class="p15-card">
+            <div class="p15-card-label">Shore</div>
+            <div class="p15-card-title">RIP Charlie Kirk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <div class="overlay-name">Indigo Ink</div>
+      <div class="overlay-desc">Deep midnight indigo, star-field, crescent moon silhouette. Coastal after dark.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SELECTED CONCEPT MODAL -->
+<div id="modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; display:none; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(8px);">
+  <div style="background:#161616; border:1px solid #2a2a2a; max-width:500px; width:100%; padding:2.5rem; position:relative;">
+    <button onclick="closeModal()" style="position:absolute; top:1rem; right:1rem; background:transparent; border:none; color:#555; font-size:1.2rem; cursor:pointer;">✕</button>
+    <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.3em; color:#b8965a; margin-bottom:0.5rem;" id="modal-num"></div>
+    <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:#e8dfd0; margin-bottom:0.25rem; font-style:italic;" id="modal-name"></div>
+    <div style="font-size:0.85rem; color:#666; font-style:italic; font-family:'EB Garamond',serif; margin-bottom:1.5rem;" id="modal-sub"></div>
+    <div style="border-top:1px solid #2a2a2a; padding-top:1.5rem; color:#888; font-size:0.82rem; line-height:1.65; font-family:'EB Garamond',serif;" id="modal-body"></div>
+    <div style="margin-top:1.5rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+      <button onclick="closeModal()" style="background:transparent; border:1px solid #333; color:#666; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; padding:0.5rem 1.2rem; cursor:pointer;">KEEP BROWSING</button>
+      <button onclick="selectFinal()" style="background:#b8965a; border:none; color:#0e0e0e; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; padding:0.5rem 1.5rem; cursor:pointer; font-weight:700;">✓ CHOOSE THIS ONE</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <p><strong>LINDELL BLOG</strong> — 15 Brand Concepts · Hover to preview · Click to select</p>
+  <p style="margin-top:0.4rem;">Built for Vercel deployment via GitHub</p>
+</footer>
+
+<script>
+const concepts = {
+  1: { name: "The Logbook", sub: "Nautical Captain's Journal", body: "Navy + brass palette. Each entry dated with GPS-style coordinates — 44°N 11°E, like a ship's log. Rope-style dividers, structured log-entry formatting. Posts feel like dispatches from sea." },
+  2: { name: "Pub Notebook", sub: "Irish Literary Corner", body: "British racing green header, cream paper body with subtle texture, leather brown accents, gold dividers. Feels like scribbled notes from a quiet corner booth at closing time. Drop-cap letters on every story." },
+  3: { name: "The Field Dispatch", sub: "Explorer's Journal", body: "Parchment background, brown leather accents, ink-black type. Dotted map-path dividers between sections. Drop-cap letters. A faint compass rose watermarks each article. Like a 19th-century expedition notebook." },
+  4: { name: "The Reading Room", sub: "Victorian Dark Library", body: "Dark forest green backgrounds, ivory text, gold accents. A flickering candle emoji animates at the top of every page. Articles labeled as 'Volumes.' Feels like a private Victorian reading room." },
+  5: { name: "Regatta", sub: "Yacht Club Classic", body: "Navy + white + regatta red horizontal stripe accents. Posts labeled as 'Editions' like a sailing club newsletter. Clean, crisp, New England coastal energy. The most buttoned-up of the 15." },
+  6: { name: "Via Como", sub: "Italian Lakeside Summer", body: "The lightest, airiest concept. Villa cream, terracotta accents, lake blue, olive green. A watercolor-wash header tints each article. European summer travel diary feeling." },
+  7: { name: "The Gilt Press", sub: "High Editorial Magazine", body: "Bold black masthead with gold lettering. Strong typographic hierarchy. Posts divided into Fiction, Essays, Commentary, Travel. Feels like a high-end literary magazine." },
+  8: { name: "Mahogany & Brass", sub: "Golden Age Seafarer", body: "Deep sea green backgrounds, brass gold accents, subtle diagonal hatching texture suggesting old nautical charts. Compass rose section dividers. Posts labeled as 'Charts' and 'Voyages.'" },
+  9: { name: "White Sail", sub: "Pure Minimal Literary", body: "Extreme minimalism. Pure cream paper, one serif typeface, one thin gold rule — that's it. No nav clutter, no color. Drop-cap first letter. Reads like a beautifully typeset novella. Best for long-form fiction and essays." },
+  10: { name: "The Correspondent", sub: "Foreign Dateline Journal", body: "Every post opens with a newspaper-style dateline — 'DUBLIN — March 10, 2026.' A top bar shows cities you've filed from. Amber dateline stripe. Feels like dispatches from a traveling journalist." },
+  11: { name: "The Crypt", sub: "Gothic Dark Academia", body: "Near-black background, deep crimson accents, corner vignette. Posts labeled as 'Confessions.' Gothic dark academia aesthetic — moody, intellectual, slightly ominous. Best for darker fiction and introspective essays." },
+  12: { name: "Broadside", sub: "Old Newspaper Broadsheet", body: "Two-column newspaper layout with a centered masthead, volume number, and date bar. Featured story left, sidebar right. Drop-cap first letter. Like a personal literary gazette — Vol. I, No. 7." },
+  13: { name: "Ember", sub: "Warm Lantern Glow", body: "Deep near-black background with a radial amber glow at the top — like a lantern or fireside. Amber accent color throughout. The warmest of the dark themes. Intimate, inviting." },
+  14: { name: "The Atlas", sub: "Illustrated Travel Tome", body: "Parchment background with decorative corner ornaments (like an old book). Roman numerals label each entry. Thin ruled border around the entire page. Posts labeled as 'Territories' and 'Expeditions.'" },
+  15: { name: "Indigo Ink", sub: "Coastal Midnight", body: "Deep midnight indigo background with a faint star-field and a crescent moon silhouette. Wave-line dividers. Nav items: Tides, Depths, Shores. The most poetic and atmospheric of all 15 concepts." }
+};
+
+let currentConcept = null;
+
+function selectConcept(n) {
+  currentConcept = n;
+  const c = concepts[n];
+  document.getElementById('modal-num').textContent = `CONCEPT ${String(n).padStart(2,'0')}`;
+  document.getElementById('modal-name').textContent = c.name;
+  document.getElementById('modal-sub').textContent = c.sub;
+  document.getElementById('modal-body').textContent = c.body;
+  const modal = document.getElementById('modal');
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function selectFinal() {
+  const c = concepts[currentConcept];
+  alert(`✓ "${c.name}" selected! Tell Claude you want to build this one and we'll start the full Vercel build.`);
+  closeModal();
+}
+
+function filterAll(btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.concept-card').forEach(c => c.style.display = '');
+}
+
+function filterGroup(btn, tag) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.concept-card').forEach(c => {
+    const tags = c.dataset.tags || '';
+    c.style.display = tags.includes(tag) ? '' : 'none';
+  });
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
