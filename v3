@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell's Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --white:      #ffffff;
+  --off-white:  #f8f8f6;
+  --surface:    #f2f2f0;
+  --border:     #e8e8e4;
+  --border-mid: #d0d0cb;
+  --text:       #111110;
+  --muted:      #888884;
+  --faint:      #c8c8c4;
+  --accent:     #b07b4a;
+  --accent-lt:  #d4a472;
+  --lake:       #5a8fa0;
+  --nav-h:      64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  transition: background 0.35s, border-color 0.35s;
+  border-bottom: 1px solid transparent;
+}
+.nav.solid {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: var(--border);
+}
+.nav-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav.solid .nav-logo { color: var(--text); }
+.nav-links {
+  display: flex;
+  gap: 2.8rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav.solid .nav-links a { color: var(--muted); }
+.nav-links a:hover { color: var(--accent) !important; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 580px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.08) 0%,
+      rgba(0,0,0,0.0) 30%,
+      rgba(0,0,0,0.5) 100%
+    ),
+    url('/mnt/user-data/uploads/1773805067650_image.png') center/cover no-repeat;
+  will-change: transform;
+  transform: scale(1.06);
+}
+.hero-bottom {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 3.5rem 3.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.hero-title-block { flex: 1; }
+.hero-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.9rem;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.2s forwards;
+}
+.hero h1 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(3.8rem, 8vw, 8rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 0.93;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.35s forwards;
+}
+.hero-right {
+  text-align: right;
+  flex-shrink: 0;
+  max-width: 280px;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.55s forwards;
+}
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  margin-bottom: 1.4rem;
+}
+.hero-cta {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.hero-cta:hover { border-color: #fff; }
+
+/* scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1s forwards;
+}
+.hero-scroll-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  animation: blink 2s ease-in-out infinite;
+}
+.hero-scroll-dot:nth-child(2) { animation-delay: 0.25s; }
+.hero-scroll-dot:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes blink {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* ─── INTRO STRIP ─── */
+.intro-strip {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.intro-strip-left {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.intro-strip-center {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  text-align: center;
+  flex: 1;
+}
+.intro-strip-right {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-align: right;
+}
+
+/* ─── PAGE LAYOUT ─── */
+.page {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 5rem 3.5rem 8rem;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* ─── FEATURED ─── */
+.featured {
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4rem;
+}
+.tag-label {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+.featured h2 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+}
+.featured h2 a { color: inherit; text-decoration: none; }
+.featured h2 a:hover { color: var(--accent); }
+.post-meta {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.post-meta-sep { color: var(--border-mid); }
+.excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.85;
+  color: #444;
+  margin-bottom: 2.2rem;
+  max-width: 620px;
+}
+.excerpt::first-letter {
+  font-size: 3.8rem;
+  font-weight: 400;
+  float: left;
+  line-height: 0.8;
+  margin: 0.06em 0.08em 0 0;
+  color: var(--accent);
+  font-style: normal;
+}
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+}
+.read-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--text);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.read-link:hover::after { transform: scaleX(0.4); }
+.read-link-arrow { transition: transform 0.25s; }
+.read-link:hover .read-link-arrow { transform: translateX(4px); }
+
+/* ─── POST ROWS ─── */
+.section-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+.posts { list-style: none; }
+.post-row {
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  align-items: start;
+  gap: 0 1.8rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.post-row.show { opacity: 1; transform: none; }
+.post-row:hover .prow-title { color: var(--accent); }
+
+.prow-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--faint);
+  padding-top: 0.25rem;
+  text-align: right;
+  line-height: 1;
+}
+.prow-num span {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.prow-body {}
+.prow-cat {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-lt);
+  margin-bottom: 0.3rem;
+}
+.prow-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 0.45rem;
+  transition: color 0.2s;
+}
+.prow-snippet {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.prow-arrow {
+  font-size: 0.9rem;
+  color: var(--faint);
+  padding-top: 0.3rem;
+  transition: color 0.2s, transform 0.2s;
+  align-self: center;
+}
+.post-row:hover .prow-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+}
+.sb-block { margin-bottom: 3rem; }
+.sb-label {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+/* About */
+.about-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.about-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.about-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.about-bio {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--muted);
+}
+/* Archive */
+.arch-list { list-style: none; }
+.arch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.arch-row:last-child { border-bottom: none; }
+.arch-row a {
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.arch-row a:hover { color: var(--accent); }
+.arch-n {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--faint);
+  background: var(--surface);
+  padding: 0.15rem 0.55rem;
+  border-radius: 20px;
+}
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  transition: all 0.18s;
+}
+.tag:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(176,123,74,0.05);
+}
+
+/* ─── QUOTE BAND ─── */
+.quote-band {
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 5rem 3.5rem;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.quote-band::before {
+  content: '\201C';
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16rem;
+  font-weight: 300;
+  color: var(--border);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+.quote-band blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 760px;
+  margin: 0 auto 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+.quote-band cite {
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--text);
+  padding: 4rem 3.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--lake), var(--accent), transparent);
+}
+.foot-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.04em;
+}
+.foot-rule {
+  width: 40px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+}
+.foot-copy {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.show { opacity: 1; transform: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 860px) {
+  .page { grid-template-columns: 1fr; gap: 3rem; padding: 3.5rem 1.5rem 5rem; }
+  .sidebar { position: static; }
+  .nav { padding: 0 1.5rem; }
+  .hero-bottom { padding: 0 1.5rem 2.5rem; flex-direction: column; align-items: flex-start; }
+  .hero-right { text-align: left; max-width: 100%; }
+  .intro-strip { padding: 1.5rem; flex-wrap: wrap; }
+  .post-row { grid-template-columns: 44px 1fr; }
+  .prow-arrow { display: none; }
+  .quote-band { padding: 3.5rem 1.5rem; }
+  footer { padding: 3rem 1.5rem 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Lindell</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Stories</a></li>
+    <li><a href="#">Essays</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo" id="hero-photo"></div>
+
+  <div class="hero-bottom">
+    <div class="hero-title-block">
+      <p class="hero-eyebrow">Isaac Lindell &nbsp;·&nbsp; Nashville, TN &nbsp;·&nbsp; Est. 2025</p>
+      <h1>Lindell's<br>Blog</h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-sub">Stories, reflections &amp; the occasional spirited argument</p>
+      <a class="hero-cta" href="#posts">Read the latest ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-dot"></div>
+    <div class="hero-scroll-dot"></div>
+    <div class="hero-scroll-dot"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip reveal">
+  <span class="intro-strip-left">Writing since 2025</span>
+  <span class="intro-strip-center">Essays · Fiction · Cultural Commentary · Humor</span>
+  <span class="intro-strip-right">7 posts · 5 topics</span>
+</div>
+
+<!-- MAIN -->
+<div class="page" id="posts">
+  <main>
+    <!-- FEATURED -->
+    <article class="featured reveal">
+      <div class="tag-label">Featured Story</div>
+      <h2><a href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">DIRT</a></h2>
+      <div class="post-meta">
+        <span>Nov 16, 2025</span>
+        <span class="post-meta-sep">·</span>
+        <span>Creative Writing</span>
+        <span class="post-meta-sep">·</span>
+        <span>Short Story</span>
+      </div>
+      <p class="excerpt">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. The butterflies in Paisley's stomach were not from nervous excitement. These were bees, yellowjackets, swarming rampantly as she drove atop the dusty soil on Oil Springs Road...</p>
+      <a class="read-link" href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">
+        Continue Reading <span class="read-link-arrow">→</span>
+      </a>
+    </article>
+
+    <!-- POST LIST -->
+    <div class="section-eyebrow">Recent Posts</div>
+    <ul class="posts">
+
+      <li class="post-row" tabindex="0" onclick="window.open('https://lindellsblog.blogspot.com/2025/09/rip-charlie-kirk.html')">
+        <div class="prow-num">10<span>Sep</span></div>
+        <div class="prow-body">
+          <div class="prow-cat">Personal Reflections</div>
+          <div class="prow-title">RIP Charlie Kirk</div>
+          <p class="prow-snippet">A call for grace in a frightening moment — a dad lost his son, a wife lost her husband. Don't retaliate. Sit and reflect.</p>
+        </div>
+        <div class="prow-arrow">→</div>
+      </li>
+
+      <li class="post-row" tabindex="0" onclick="window.open('https://lindellsblog.blogspot.com/2025/05/a-plan-for-greatest-beer-run-of-all.html')">
+        <div class="prow-num">04<span>May</span></div>
+        <div class="prow-body">
+          <div class="prow-cat">Travel · Humor</div>
+          <div class="prow-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+          <p class="prow-snippet">There's nothing left to explore — so we must make the same journeys in impossibly stylised and more difficult fashions.</p>
+        </div>
+        <div class="prow-arrow">→</div>
+      </li>
+
+      <li class="post-row" tabindex="0" onclick="window.open('https://lindellsblog.blogspot.com/2025/04/')">
+        <div class="prow-num">—<span>Apr</span></div>
+        <div class="prow-body">
+          <div class="prow-cat">Archive · 3 Posts</div>
+          <div class="prow-title">April 2025 Collection</div>
+          <p class="prow-snippet">Books, culture, relationships, and everyday debates from a productive spring.</p>
+        </div>
+        <div class="prow-arrow">→</div>
+      </li>
+
+      <li class="post-row" tabindex="0" onclick="window.open('https://lindellsblog.blogspot.com/2025/03/')">
+        <div class="prow-num">—<span>Mar</span></div>
+        <div class="prow-body">
+          <div class="prow-cat">Origins</div>
+          <div class="prow-title">March 2025</div>
+          <p class="prow-snippet">Where it all began.</p>
+        </div>
+        <div class="prow-arrow">→</div>
+      </li>
+
+    </ul>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sb-block reveal">
+      <div class="sb-label">The Author</div>
+      <div class="about-wrap">
+        <img class="about-avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEeoUn0cBcf1xWSoc2HNSWRh-JgSBt9D0jKY6TAMNC3sXegXQw6Ww_FO80eMKLOCeFPBiGqwCbhhFgWW6WzFeS4jKc7JBz4A77q2zDV1o35KrjKqia1bc_pipxybX53DgFtwz9MDc1CortTfPBXKy6ev4IiWgPuvVoJICp4FpkkvFmV1c/s220/IMG_5233.JPG" alt="Isaac Lindell">
+        <div>
+          <div class="about-name">Isaac Lindell</div>
+          <p class="about-bio">Writer. Storyteller. Arguing about things that matter and some that definitely don't.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-block reveal">
+      <div class="sb-label">Archive</div>
+      <ul class="arch-list">
+        <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/11/">November 2025</a><span class="arch-n">1</span></li>
+        <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/09/">September 2025</a><span class="arch-n">1</span></li>
+        <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/05/">May 2025</a><span class="arch-n">1</span></li>
+        <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/04/">April 2025</a><span class="arch-n">3</span></li>
+        <li class="arch-row"><a href="https://lindellsblog.blogspot.com/2025/03/">March 2025</a><span class="arch-n">1</span></li>
+      </ul>
+    </div>
+
+    <div class="sb-block reveal">
+      <div class="sb-label">Topics</div>
+      <div class="tags">
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/creative%20writing">Writing</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/humor">Humor</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Sports">Sports</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Books">Books</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/travel">Travel</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Cultural%20Commentary">Culture</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Movies">Movies</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Personal%20Reflections">Reflections</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/short%20story">Short Story</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Relationships">Relationships</a>
+        <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Everyday%20Debates">Debates</a>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- QUOTE BAND -->
+<div class="quote-band reveal">
+  <blockquote>"There is nothing left to explore — so we must make the same journeys, but in stylised and more difficult fashions."</blockquote>
+  <cite>— Isaac Lindell, May 2025</cite>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Lindell</div>
+  <div class="foot-rule"></div>
+  <div class="foot-copy">Nashville, Tennessee &nbsp;·&nbsp; Est. 2025 &nbsp;·&nbsp; All Rights Reserved</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+const photo = document.getElementById('hero-photo');
+
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  nav.classList.toggle('solid', y > 50);
+  if (photo) photo.style.transform = `scale(1.06) translateY(${y * 0.22}px)`;
+}, { passive: true });
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    if (el.classList.contains('post-row')) {
+      const rows = [...document.querySelectorAll('.post-row')];
+      setTimeout(() => el.classList.add('show'), rows.indexOf(el) * 100);
+    } else {
+      el.classList.add('show');
+    }
+    io.unobserve(el);
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal, .post-row').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
