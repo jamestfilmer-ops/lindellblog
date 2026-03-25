@@ -1,0 +1,222 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  /* Palette tokens */
+  :root{
+    --p1:#F2EDE4;
+    --p2:#EDE4D8;
+    --a1:#B41818;
+    --a2:#C07818;
+    --t1:#D4A860;
+    --t2:#C06050;
+    --tx:#1C1208;
+    --bd:#885030;
+    --cream:#F7F3EC;
+    --ink:#2A1A0C;
+    --muted:#7A5838;
+    --rule:rgba(136,80,48,.18);
+  }
+
+  .page{background:var(--p1);font-family:Georgia,serif;color:var(--ink)}
+
+  /* NAV */
+  .nav{background:var(--p2);border-bottom:1.5px solid var(--rule);display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:52px}
+  .nav-logo{font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--a1)}
+  .nav-links{display:flex;gap:28px}
+  .nav-links a{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;font-family:Georgia,serif}
+  .nav-links a:hover{color:var(--a1)}
+  .nav-cta{background:var(--a1);color:#F7EDE4;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:none;padding:7px 16px;border-radius:3px;cursor:pointer;font-family:Georgia,serif}
+
+  /* HERO */
+  .hero{background:var(--p2);border-bottom:1.5px solid var(--rule);padding:52px 28px 48px;display:flex;gap:40px;align-items:flex-start}
+  .hero-left{flex:1;min-width:0}
+  .hero-eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:12px;font-family:Georgia,serif}
+  .hero-h1{font-size:36px;font-weight:700;line-height:1.12;color:var(--tx);margin-bottom:16px;letter-spacing:-.01em}
+  .hero-h1 em{color:var(--a1);font-style:normal}
+  .hero-body{font-size:14px;line-height:1.75;color:var(--muted);max-width:380px;margin-bottom:24px}
+  .hero-actions{display:flex;gap:12px;align-items:center}
+  .btn-primary{background:var(--a1);color:#F7EDE4;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;padding:11px 22px;border-radius:3px;cursor:pointer;font-family:Georgia,serif}
+  .btn-ghost{background:transparent;color:var(--a2);font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:1.5px solid var(--a2);padding:10px 20px;border-radius:3px;cursor:pointer;font-family:Georgia,serif}
+
+  /* HERO COURT CARD */
+  .court-card{width:210px;flex-shrink:0;background:var(--cream);border:1.5px solid var(--rule);border-radius:6px;overflow:hidden}
+  .court-img{height:120px;background:var(--t1);display:flex;align-items:center;justify-content:center;position:relative}
+  .court-lines{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+  .court-meta{padding:14px}
+  .court-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .court-name{font-size:14px;font-weight:700;color:var(--tx)}
+  .court-sub{font-size:12px;color:var(--muted);margin-top:2px}
+  .court-badge{display:inline-block;margin-top:8px;background:var(--a1);color:#F7EDE4;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+
+  /* STATS STRIP */
+  .stats-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1.5px solid var(--rule)}
+  .stat-cell{padding:20px 24px;border-right:1.5px solid var(--rule)}
+  .stat-cell:last-child{border-right:none}
+  .stat-num{font-size:28px;font-weight:700;color:var(--a1);letter-spacing:-.02em;line-height:1}
+  .stat-lbl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+  /* CONTENT GRID */
+  .content{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:0;border-bottom:1.5px solid var(--rule)}
+  .content-main{padding:28px;border-right:1.5px solid var(--rule)}
+  .content-sidebar{padding:28px;background:var(--p2)}
+
+  .section-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--a2);margin-bottom:16px}
+
+  /* ARTICLE CARDS */
+  .article-list{display:flex;flex-direction:column;gap:1px;background:var(--rule)}
+  .article{background:var(--p1);padding:14px 0;display:flex;gap:14px;align-items:flex-start}
+  .article-num{font-size:11px;font-weight:700;color:var(--t1);min-width:20px;padding-top:2px}
+  .article-body{}
+  .article-tag{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);margin-bottom:3px}
+  .article-title{font-size:13px;font-weight:700;color:var(--tx);line-height:1.35;margin-bottom:3px}
+  .article-meta{font-size:11px;color:var(--muted)}
+
+  /* SIDEBAR */
+  .schedule-list{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1.5px solid var(--rule);border-radius:4px;overflow:hidden;margin-bottom:20px}
+  .game-row{background:var(--cream);padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+  .game-date{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .game-opp{font-size:13px;font-weight:700;color:var(--tx)}
+  .game-loc{font-size:11px;color:var(--muted)}
+  .game-result{font-size:12px;font-weight:700}
+  .game-result.w{color:var(--a1)}
+  .game-result.l{color:var(--muted)}
+
+  .quote-block{border-left:3px solid var(--a1);padding:10px 14px;background:var(--cream);border-radius:0 4px 4px 0}
+  .quote-text{font-size:13px;line-height:1.6;color:var(--tx);font-style:italic;margin-bottom:6px}
+  .quote-attr{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  /* FOOTER */
+  .footer{background:var(--tx);padding:20px 28px;display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--t1)}
+  .footer-copy{font-size:11px;color:var(--muted)}
+</style>
+
+<div class="page">
+
+  <nav class="nav">
+    <div class="nav-logo">Hickory Huskers</div>
+    <div class="nav-links">
+      <a href="#">Roster</a>
+      <a href="#">Schedule</a>
+      <a href="#">History</a>
+      <a href="#">Community</a>
+    </div>
+    <button class="nav-cta">Get tickets</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">1951–52 season — Hickory, Indiana</div>
+      <h1 class="hero-h1">Small town.<br><em>Big heart.</em><br>One shot.</h1>
+      <p class="hero-body">Every great team starts somewhere. Ours started on a cracked driveway hoop at dusk, with nothing but grit and a coach who believed in the long game.</p>
+      <div class="hero-actions">
+        <button class="btn-primary">Follow the team</button>
+        <button class="btn-ghost">Watch highlights</button>
+      </div>
+    </div>
+    <div class="court-card">
+      <div class="court-img">
+        <svg viewBox="0 0 210 120" width="210" height="120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="210" height="120" fill="#C07818"/>
+          <rect x="20" y="15" width="170" height="90" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <circle cx="105" cy="60" r="22" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <line x1="105" y1="15" x2="105" y2="105" stroke="#F2EDE4" stroke-width="1"/>
+          <rect x="20" y="35" width="40" height="50" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <rect x="150" y="35" width="40" height="50" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <circle cx="40" cy="60" r="6" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <circle cx="170" cy="60" r="6" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+          <line x1="20" y1="60" x2="60" y2="60" stroke="#B41818" stroke-width="1.5"/>
+          <line x1="150" y1="60" x2="190" y2="60" stroke="#B41818" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="court-meta">
+        <div class="court-label">Home court</div>
+        <div class="court-name">Hickory gym</div>
+        <div class="court-sub">Capacity 1,100 — sold out</div>
+        <div class="court-badge">Regional finalists</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-cell"><div class="stat-num">18</div><div class="stat-lbl">Wins this season</div></div>
+    <div class="stat-cell"><div class="stat-num">3</div><div class="stat-lbl">Losses</div></div>
+    <div class="stat-cell"><div class="stat-num">62.4</div><div class="stat-lbl">Points per game</div></div>
+    <div class="stat-cell"><div class="stat-num">6</div><div class="stat-lbl">Players on roster</div></div>
+  </div>
+
+  <div class="content">
+    <div class="content-main">
+      <div class="section-label">Latest from Hickory</div>
+      <div class="article-list">
+        <div class="article">
+          <div class="article-num">01</div>
+          <div class="article-body">
+            <div class="article-tag">Feature</div>
+            <div class="article-title">How Coach Dale turned a broken team into believers</div>
+            <div class="article-meta">Nov 14, 1951 &nbsp;·&nbsp; 8 min read</div>
+          </div>
+        </div>
+        <div class="article" style="border-top:1px solid var(--rule)">
+          <div class="article-num">02</div>
+          <div class="article-body">
+            <div class="article-tag">Game recap</div>
+            <div class="article-title">Huskers hold off South Bend in overtime thriller</div>
+            <div class="article-meta">Dec 2, 1951 &nbsp;·&nbsp; 4 min read</div>
+          </div>
+        </div>
+        <div class="article" style="border-top:1px solid var(--rule)">
+          <div class="article-num">03</div>
+          <div class="article-body">
+            <div class="article-tag">Profile</div>
+            <div class="article-title">Jimmy Chitwood and the art of the open shot</div>
+            <div class="article-meta">Dec 9, 1951 &nbsp;·&nbsp; 6 min read</div>
+          </div>
+        </div>
+        <div class="article" style="border-top:1px solid var(--rule)">
+          <div class="article-num">04</div>
+          <div class="article-body">
+            <div class="article-tag">Community</div>
+            <div class="article-title">The town that bet everything on six boys</div>
+            <div class="article-meta">Dec 18, 1951 &nbsp;·&nbsp; 5 min read</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-sidebar">
+      <div class="section-label">Upcoming games</div>
+      <div class="schedule-list">
+        <div class="game-row">
+          <div><div class="game-date">Dec 28</div><div class="game-opp">vs. Linton</div><div class="game-loc">Away</div></div>
+          <div class="game-result w">W 54–48</div>
+        </div>
+        <div class="game-row">
+          <div><div class="game-date">Jan 4</div><div class="game-opp">vs. Jasper</div><div class="game-loc">Home</div></div>
+          <div class="game-result w">W 61–52</div>
+        </div>
+        <div class="game-row">
+          <div><div class="game-date">Jan 11</div><div class="game-opp">vs. Terre Haute</div><div class="game-loc">Away</div></div>
+          <div class="game-result" style="color:var(--t1)">Upcoming</div>
+        </div>
+        <div class="game-row">
+          <div><div class="game-date">Jan 18</div><div class="game-opp">Regional finals</div><div class="game-loc">Neutral site</div></div>
+          <div class="game-result" style="color:var(--t1)">Upcoming</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:20px">From the bench</div>
+      <div class="quote-block">
+        <div class="quote-text">"Five players on the floor functioning as one single unit — team, team, team. No one more important than the other."</div>
+        <div class="quote-attr">— Coach Norman Dale</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">Hickory Huskers</div>
+    <div class="footer-copy" style="color:#7A5838">Hickory, Indiana &nbsp;·&nbsp; Est. 1951</div>
+  </div>
+
+</div>

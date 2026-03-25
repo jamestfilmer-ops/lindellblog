@@ -1,0 +1,202 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0;display:flex;flex-direction:column;gap:28px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden}
+.card-head{padding:10px 16px 9px;display:flex;align-items:baseline;gap:10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.card-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.card-tag{font-size:11px;color:var(--color-text-secondary)}
+.bar-row{display:flex;height:56px}
+.seg{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:5px;transition:flex .2s ease;cursor:default;position:relative;overflow:hidden}
+.seg:hover{flex:3!important}
+.seg-pct{font-size:9px;font-weight:500;letter-spacing:.04em}
+.breakdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.slot{padding:7px 10px 8px;border-right:0.5px solid var(--color-border-tertiary);border-top:0.5px solid var(--color-border-tertiary)}
+.slot:nth-child(4n){border-right:none}
+.slot-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle;flex-shrink:0}
+.slot-name{font-size:10px;color:var(--color-text-secondary);display:flex;align-items:center;margin-bottom:2px}
+.slot-hex{font-size:10px;font-weight:500;color:var(--color-text-primary);font-family:var(--font-mono)}
+.slot-pct{font-size:10px;color:var(--color-text-secondary);float:right}
+.fonts-row{padding:7px 16px 8px;font-size:11px;color:var(--color-text-secondary);border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:18px;flex-wrap:wrap}
+.fonts-row b{color:var(--color-text-primary);font-weight:500}
+</style>
+<div class="wrap" id="root"></div>
+<script>
+const P=[
+  {
+    name:"Polar Passage",tag:"Arctic exploration",
+    serif:"Cormorant Garamond",sans:"Inter",
+    swatches:[
+      {label:"Primary 1",hex:"#D6E8EF",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#C4D9E6",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#1F6A8C",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#12435C",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#8BBCCE",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#5E9BB4",pct:4,role:"tert"},
+      {label:"Text",      hex:"#0F2D3E",pct:3,role:"text"},
+      {label:"Borders",   hex:"#3A7A96",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Svalbard Light",tag:"Arctic exploration",
+    serif:"Playfair Display",sans:"Nunito Sans",
+    swatches:[
+      {label:"Primary 1",hex:"#E2EDE8",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#D4E6DF",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#2A7A60",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#14503F",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#88C2AF",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#55A48C",pct:4,role:"tert"},
+      {label:"Text",      hex:"#0E2C24",pct:3,role:"text"},
+      {label:"Borders",   hex:"#3D8870",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Villa Carlotta",tag:"Lake Como",
+    serif:"EB Garamond",sans:"Raleway",
+    swatches:[
+      {label:"Primary 1",hex:"#EEF4F0",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#E2EBF6",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#2E5F9A",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#4E7A3C",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#91B8DC",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#92B882",pct:4,role:"tert"},
+      {label:"Text",      hex:"#162236",pct:3,role:"text"},
+      {label:"Borders",   hex:"#4A6878",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Cernobbio",tag:"Lake Como",
+    serif:"Crimson Pro",sans:"Jost",
+    swatches:[
+      {label:"Primary 1",hex:"#F4F1E8",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#E6EDE0",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#B07230",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#4A6830",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#D4B07A",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#8AB070",pct:4,role:"tert"},
+      {label:"Text",      hex:"#221A0C",pct:3,role:"text"},
+      {label:"Borders",   hex:"#7A6040",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"The Estate",tag:"Old money greens & golds",
+    serif:"Cormorant Garamond",sans:"Montserrat",
+    swatches:[
+      {label:"Primary 1",hex:"#EAF0E4",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#F2EEE0",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#A8860A",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#2E5228",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#CCB44A",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#6A9E5A",pct:4,role:"tert"},
+      {label:"Text",      hex:"#181C14",pct:3,role:"text"},
+      {label:"Borders",   hex:"#546848",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Huntsman Green",tag:"Old money greens & golds",
+    serif:"Freight Display",sans:"Work Sans",
+    swatches:[
+      {label:"Primary 1",hex:"#E4EAE0",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#EDE8DC",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#8C6C12",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#224A1C",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#BCA055",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#5A8C4A",pct:4,role:"tert"},
+      {label:"Text",      hex:"#141A10",pct:3,role:"text"},
+      {label:"Borders",   hex:"#445C38",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Cotswold Morning",tag:"Oxfordshire",
+    serif:"Playfair Display",sans:"Source Sans Pro",
+    swatches:[
+      {label:"Primary 1",hex:"#F0EDE4",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#E8ECE0",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#6C4422",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#3C5E2A",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#C4A476",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#8AB070",pct:4,role:"tert"},
+      {label:"Text",      hex:"#201A10",pct:3,role:"text"},
+      {label:"Borders",   hex:"#7A6A50",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Blenheim",tag:"Oxfordshire",
+    serif:"EB Garamond",sans:"DM Sans",
+    swatches:[
+      {label:"Primary 1",hex:"#ECF0E8",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#EEEBE2",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#003670",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#4A6E38",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#7AAAC4",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#96B882",pct:4,role:"tert"},
+      {label:"Text",      hex:"#141C20",pct:3,role:"text"},
+      {label:"Borders",   hex:"#3E5A4A",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"The Snug",tag:"Irish pub",
+    serif:"Lora",sans:"Nunito",
+    swatches:[
+      {label:"Primary 1",hex:"#EDF0E7",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#F0E8DC",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#7A3010",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#2E5420",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#C08050",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#70A058",pct:4,role:"tert"},
+      {label:"Text",      hex:"#1A1208",pct:3,role:"text"},
+      {label:"Borders",   hex:"#5C4430",pct:3,role:"text"},
+    ]
+  },
+  {
+    name:"Trad Session",tag:"Irish pub",
+    serif:"Crimson Text",sans:"Work Sans",
+    swatches:[
+      {label:"Primary 1",hex:"#E8EEE2",pct:30,role:"primary"},
+      {label:"Primary 2",hex:"#F0EAE0",pct:30,role:"primary"},
+      {label:"Accent 1", hex:"#3A6028",pct:8, role:"accent"},
+      {label:"Accent 2", hex:"#B85010",pct:8, role:"accent"},
+      {label:"Tertiary 1",hex:"#80AA6A",pct:4,role:"tert"},
+      {label:"Tertiary 2",hex:"#D49060",pct:4,role:"tert"},
+      {label:"Text",      hex:"#181E10",pct:3,role:"text"},
+      {label:"Borders",   hex:"#5A6848",pct:3,role:"text"},
+    ]
+  },
+];
+
+function luminance(hex){
+  const r=parseInt(hex.slice(1,3),16)/255,g=parseInt(hex.slice(3,5),16)/255,b=parseInt(hex.slice(5,7),16)/255;
+  const toL=c=>c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);
+  return 0.2126*toL(r)+0.7152*toL(g)+0.0722*toL(b);
+}
+function textOn(hex){return luminance(hex)>0.35?'#1a1a1a':'#f5f5f5';}
+
+const root=document.getElementById('root');
+P.forEach(p=>{
+  const card=document.createElement('div');
+  card.className='card';
+
+  const barSegs=p.swatches.map(s=>`<div class="seg" style="flex:${s.pct}" title="${s.label}: ${s.hex}"><span class="seg-pct" style="color:${textOn(s.hex)}">${s.pct}%</span></div>`).join('');
+
+  const slots=p.swatches.map(s=>`
+    <div class="slot">
+      <div class="slot-name"><span class="slot-dot" style="background:${s.hex};border:0.5px solid rgba(0,0,0,0.12)"></span>${s.label}<span class="slot-pct">${s.pct}%</span></div>
+      <div class="slot-hex">${s.hex}</div>
+    </div>`).join('');
+
+  card.innerHTML=`
+    <div class="card-head"><span class="card-name">${p.name}</span><span class="card-tag">— ${p.tag}</span></div>
+    <div class="bar-row" id="bar-${p.name.replace(/\s/g,'_')}">${barSegs}</div>
+    <div class="breakdown">${slots}</div>
+    <div class="fonts-row"><span><b>Serif:</b> ${p.serif}</span><span><b>Sans:</b> ${p.sans}</span></div>
+  `;
+
+  const bar=card.querySelector(`#bar-${p.name.replace(/\s/g,'_')}`);
+  p.swatches.forEach((s,i)=>{
+    bar.children[i].style.background=s.hex;
+  });
+
+  root.appendChild(card);
+});
+</script>

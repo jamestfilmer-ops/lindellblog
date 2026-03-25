@@ -1,0 +1,159 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0;display:flex;flex-direction:column;gap:32px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary);padding:0 0 10px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:4px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.card:last-child{margin-bottom:0}
+.card-head{padding:10px 16px 9px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.card-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.card-sub{font-size:11px;color:var(--color-text-secondary)}
+.bar{display:flex;height:60px}
+.seg{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:5px;transition:flex .2s ease;cursor:default;overflow:hidden}
+.seg:hover{flex:3!important}
+.seg-pct{font-size:9px;font-weight:600;letter-spacing:.05em}
+.seg-name{font-size:8px;letter-spacing:.03em;margin-top:1px;opacity:.75}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:0.5px solid var(--color-border-tertiary)}
+.slot{padding:7px 10px 8px;border-right:0.5px solid var(--color-border-tertiary);border-bottom:0.5px solid var(--color-border-tertiary)}
+.slot:nth-child(4n){border-right:none}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle;border:0.5px solid rgba(0,0,0,0.1)}
+.sn{font-size:10px;color:var(--color-text-secondary);display:flex;align-items:center;margin-bottom:2px}
+.sh{font-size:10px;font-weight:500;color:var(--color-text-primary);font-family:var(--font-mono)}
+.sp{font-size:10px;color:var(--color-text-secondary);float:right}
+.fonts{padding:7px 16px 8px;font-size:11px;color:var(--color-text-secondary);border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:18px;flex-wrap:wrap}
+.fonts b{font-weight:500;color:var(--color-text-primary)}
+.ref-strip{display:flex;height:16px;border-radius:4px;overflow:hidden;margin:0 16px 10px}
+</style>
+<div class="wrap" id="root"></div>
+<script>
+function lum(h){const r=parseInt(h.slice(1,3),16)/255,g=parseInt(h.slice(3,5),16)/255,b=parseInt(h.slice(5,7),16)/255,f=c=>c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4);return .2126*f(r)+.7152*f(g)+.0722*f(b)}
+function tc(h){return lum(h)>.38?'#111':'#f5f5f5'}
+
+const sections=[
+  {
+    label:"Loara Saxons — scarlet & gold (Anaheim, CA, 1970s)",
+    palettes:[
+      {
+        name:"Varsity scarlet",
+        sub:"Bold, primary-forward — home jersey energy",
+        serif:"Clarendon",sans:"Barlow Condensed",
+        sw:[
+          {l:"Primary 1",h:"#F5E8E8",p:30},{l:"Primary 2",h:"#F0DEDE",p:30},
+          {l:"Accent 1", h:"#B81C1C",p:8}, {l:"Accent 2", h:"#7A1010",p:8},
+          {l:"Tertiary 1",h:"#C8A020",p:4},{l:"Tertiary 2",h:"#A07C10",p:4},
+          {l:"Text",     h:"#2A0C0C",p:3},{l:"Borders",  h:"#8C3A1A",p:3},
+        ]
+      },
+      {
+        name:"Gold standard",
+        sub:"Gold leads — richer, more editorial",
+        serif:"Freight Display",sans:"Montserrat",
+        sw:[
+          {l:"Primary 1",h:"#F5F0E0",p:30},{l:"Primary 2",h:"#EEE8D0",p:30},
+          {l:"Accent 1", h:"#C8920A",p:8}, {l:"Accent 2", h:"#8C600A",p:8},
+          {l:"Tertiary 1",h:"#CC2828",p:4},{l:"Tertiary 2",h:"#9A1818",p:4},
+          {l:"Text",     h:"#1E1608",p:3},{l:"Borders",  h:"#7A5C18",p:3},
+        ]
+      },
+      {
+        name:"Scarlet & chalk",
+        sub:"Softer ground — worn-in, vintage feel",
+        serif:"Playfair Display",sans:"Work Sans",
+        sw:[
+          {l:"Primary 1",h:"#F7F0EB",p:30},{l:"Primary 2",h:"#F2E8E2",p:30},
+          {l:"Accent 1", h:"#C02020",p:8}, {l:"Accent 2", h:"#D49010",p:8},
+          {l:"Tertiary 1",h:"#DEB880",p:4},{l:"Tertiary 2",h:"#C87060",p:4},
+          {l:"Text",     h:"#281410",p:3},{l:"Borders",  h:"#9A6040",p:3},
+        ]
+      },
+      {
+        name:"Saxon midnight",
+        sub:"Dark accents — premium, away-jersey restraint",
+        serif:"Cormorant Garamond",sans:"Inter",
+        sw:[
+          {l:"Primary 1",h:"#F4EAE8",p:30},{l:"Primary 2",h:"#EDE4DC",p:30},
+          {l:"Accent 1", h:"#8C1010",p:8}, {l:"Accent 2", h:"#B8880C",p:8},
+          {l:"Tertiary 1",h:"#D48060",p:4},{l:"Tertiary 2",h:"#C8A840",p:4},
+          {l:"Text",     h:"#1A0C08",p:3},{l:"Borders",  h:"#784428",p:3},
+        ]
+      },
+    ]
+  },
+  {
+    label:"Hickory Huskers — red & white (Hoosiers, 1951/1986)",
+    palettes:[
+      {
+        name:"Gym floor red",
+        sub:"Classic red-white — pure Hickory home court",
+        serif:"Clarendon",sans:"Barlow Condensed",
+        sw:[
+          {l:"Primary 1",h:"#F5E8E6",p:30},{l:"Primary 2",h:"#F0E0DC",p:30},
+          {l:"Accent 1", h:"#C01818",p:8}, {l:"Accent 2", h:"#801010",p:8},
+          {l:"Tertiary 1",h:"#E09090",p:4},{l:"Tertiary 2",h:"#C86060",p:4},
+          {l:"Text",     h:"#220808",p:3},{l:"Borders",  h:"#9C4040",p:3},
+        ]
+      },
+      {
+        name:"Husker cream",
+        sub:"Warm off-white ground — worn cotton, hardwood",
+        serif:"Freight Display",sans:"Source Sans Pro",
+        sw:[
+          {l:"Primary 1",h:"#F4EEE8",p:30},{l:"Primary 2",h:"#EDE6DC",p:30},
+          {l:"Accent 1", h:"#B81414",p:8}, {l:"Accent 2", h:"#781010",p:8},
+          {l:"Tertiary 1",h:"#D4A898",p:4},{l:"Tertiary 2",h:"#B87870",p:4},
+          {l:"Text",     h:"#1E0C08",p:3},{l:"Borders",  h:"#8A4840",p:3},
+        ]
+      },
+      {
+        name:"Indiana winter",
+        sub:"Cooler whites — state tournament, big-gym energy",
+        serif:"Playfair Display",sans:"DM Sans",
+        sw:[
+          {l:"Primary 1",h:"#EEF0F0",p:30},{l:"Primary 2",h:"#E6ECEC",p:30},
+          {l:"Accent 1", h:"#C21C1C",p:8}, {l:"Accent 2", h:"#821414",p:8},
+          {l:"Tertiary 1",h:"#B8CCCC",p:4},{l:"Tertiary 2",h:"#D48888",p:4},
+          {l:"Text",     h:"#141C1C",p:3},{l:"Borders",  h:"#5C3030",p:3},
+        ]
+      },
+      {
+        name:"Shooter's barn",
+        sub:"Amber-warm — small-town, woodsmoke, dusk practice",
+        serif:"Lora",sans:"Nunito",
+        sw:[
+          {l:"Primary 1",h:"#F2EDE4",p:30},{l:"Primary 2",h:"#EDE4D8",p:30},
+          {l:"Accent 1", h:"#B41818",p:8}, {l:"Accent 2", h:"#C07818",p:8},
+          {l:"Tertiary 1",h:"#D4A860",p:4},{l:"Tertiary 2",h:"#C06050",p:4},
+          {l:"Text",     h:"#1C1208",p:3},{l:"Borders",  h:"#885030",p:3},
+        ]
+      },
+    ]
+  }
+];
+
+const root=document.getElementById('root');
+sections.forEach(sec=>{
+  const wrap=document.createElement('div');
+  const lbl=document.createElement('div');
+  lbl.className='section-label';
+  lbl.textContent=sec.label;
+  wrap.appendChild(lbl);
+
+  sec.palettes.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='card';
+
+    const barHTML=p.sw.map(s=>`<div class="seg" style="flex:${s.p};background:${s.h}" title="${s.l} ${s.p}%"><span class="seg-pct" style="color:${tc(s.h)}">${s.p}%</span><span class="seg-name" style="color:${tc(s.h)}">${s.l.replace('Primary ','P').replace('Accent ','A').replace('Tertiary ','T')}</span></div>`).join('');
+
+    const gridHTML=p.sw.map(s=>`<div class="slot"><div class="sn"><span class="dot" style="background:${s.h}"></span>${s.l}<span class="sp">${s.p}%</span></div><div class="sh">${s.h}</div></div>`).join('');
+
+    card.innerHTML=`
+      <div class="card-head"><span class="card-name">${p.name}</span><span class="card-sub">— ${p.sub}</span></div>
+      <div class="bar">${barHTML}</div>
+      <div class="grid">${gridHTML}</div>
+      <div class="fonts"><span><b>Serif:</b> ${p.serif}</span><span><b>Sans:</b> ${p.sans}</span></div>
+    `;
+    wrap.appendChild(card);
+  });
+  root.appendChild(wrap);
+});
+</script>
