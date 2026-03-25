@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell's Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Perandory via @font-face (Google Fonts doesn't host it; load from CDN fallback) -->
+<style>
+/* ── PERANDORY (display font) ── */
+@font-face {
+  font-family: 'Perandory';
+  src: url('https://fonts.cdnfonts.com/css/perandory') format('woff2');
+  font-display: swap;
+}
+
+:root {
+  --mahogany:   #7c3b1e;
+  --cognac:     #b55a2a;
+  --amber:      #d4863a;
+  --gold:       #c9952a;
+  --cream:      #f2ebe0;
+  --ivory:      #faf7f2;
+  --water:      #4a8fa3;
+  --deep-water: #2b6278;
+  --ink:        #1a1208;
+  --warm-gray:  #6b6055;
+  --rule:       #d4c9ba;
+  --glass:      rgba(242,235,224,0.92);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -10%;
+  background: url('https://lindellsblog.blogspot.com/') center/cover no-repeat;
+  /* Layered gradient over a rich amber/teal scene */
+  background: 
+    linear-gradient(
+      to bottom,
+      rgba(26,18,8,0.3) 0%,
+      rgba(26,18,8,0.15) 40%,
+      rgba(26,18,8,0.55) 100%
+    ),
+    linear-gradient(135deg, #7c3b1e 0%, #b55a2a 25%, #4a8fa3 60%, #2b6278 100%);
+  transform: scale(1.12);
+  will-change: transform;
+  transition: none;
+}
+
+/* Boat silhouette layer */
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 70%, rgba(74,143,163,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 20% 80%, rgba(180,88,40,0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Water shimmer */
+.hero-shimmer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(74,143,163,0.12) 40%,
+    rgba(43,98,120,0.3) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(242,235,224,0.7);
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: fadeDown 0.8s ease 0.3s forwards;
+}
+
+.hero h1 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.5s forwards;
+  text-shadow: 0 4px 40px rgba(26,18,8,0.4);
+}
+
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: rgba(242,235,224,0.8);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.75s forwards;
+  margin-bottom: 3rem;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+  color: rgba(242,235,224,0.6);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(242,235,224,0.6), transparent);
+  animation: pulse-line 2s ease-in-out infinite;
+}
+
+/* ── NAV ── */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s, backdrop-filter 0.4s, padding 0.3s;
+}
+
+.site-nav.scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.9rem 3rem;
+}
+
+.nav-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+}
+
+.site-nav.scrolled .nav-logo { color: var(--ink); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(242,235,224,0.8);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.site-nav.scrolled .nav-links a { color: var(--warm-gray); }
+.nav-links a:hover { color: var(--amber) !important; }
+
+/* ── DIVIDER ORNAMENT ── */
+.ornament {
+  text-align: center;
+  padding: 3.5rem 0 2rem;
+  color: var(--rule);
+  font-size: 1.2rem;
+  letter-spacing: 0.5em;
+  user-select: none;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cognac);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 5rem;
+  padding: 5rem 0 7rem;
+  align-items: start;
+}
+
+/* ── FEATURED POST ── */
+.featured {
+  position: relative;
+  margin-bottom: 5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.featured-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8rem;
+  font-weight: 300;
+  color: rgba(197,149,42,0.12);
+  line-height: 1;
+  position: absolute;
+  top: -2rem;
+  left: -1rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.featured-category {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cognac);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.featured-category::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--cognac);
+}
+
+.featured h2 {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+  position: relative;
+}
+
+.featured h2 a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.featured h2 a:hover { color: var(--cognac); }
+
+.featured-meta {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.featured-meta span { opacity: 0.4; }
+
+.featured-excerpt {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.22rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #3a2e24;
+  margin-bottom: 2rem;
+  font-style: italic;
+  max-width: 680px;
+}
+.featured-excerpt::first-letter {
+  font-size: 4.2rem;
+  font-weight: 400;
+  float: left;
+  line-height: 0.78;
+  margin-right: 0.1em;
+  margin-top: 0.1em;
+  color: var(--cognac);
+}
+
+.btn-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.9rem 1.8rem;
+  border: 1px solid var(--ink);
+  transition: background 0.25s, color 0.25s;
+}
+.btn-read:hover {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn-read::after {
+  content: '→';
+  font-size: 0.85rem;
+  transition: transform 0.2s;
+}
+.btn-read:hover::after { transform: translateX(4px); }
+
+/* ── POST LIST ── */
+.posts-label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 2rem;
+}
+
+.post-list { list-style: none; }
+
+.post-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.8rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  cursor: pointer;
+}
+.post-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.post-item:first-child { border-top: 1px solid var(--rule); }
+
+.post-date-block {
+  text-align: right;
+  padding-top: 0.2rem;
+}
+.post-day {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink);
+}
+.post-month {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-top: 2px;
+}
+
+.post-info {}
+.post-cat {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.post-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+.post-item:hover .post-title { color: var(--cognac); }
+.post-snippet {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--warm-gray);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: sticky;
+  top: 5rem;
+}
+
+.sidebar-block {
+  margin-bottom: 3rem;
+}
+
+.sidebar-heading {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.5rem;
+}
+
+/* About card */
+.about-card {
+  background: var(--cream);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cognac), var(--water));
+}
+.about-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--rule);
+  margin-bottom: 1rem;
+  display: block;
+}
+.about-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+.about-bio {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--warm-gray);
+}
+
+/* Archive */
+.archive-list { list-style: none; }
+.archive-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+.archive-list li:last-child { border-bottom: none; }
+.archive-list a {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.archive-list a:hover { color: var(--cognac); }
+.archive-count {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.68rem;
+  color: var(--rule);
+  font-weight: 400;
+}
+
+/* Tags */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tag {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.75rem;
+  transition: all 0.2s;
+}
+.tag:hover {
+  background: var(--cognac);
+  color: var(--cream);
+  border-color: var(--cognac);
+}
+
+/* ── PARALLAX BAND ── */
+.parallax-band {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.parallax-inner {
+  position: absolute;
+  inset: -15%;
+  background: linear-gradient(
+    160deg,
+    #4a8fa3 0%,
+    #2b6278 35%,
+    #7c3b1e 65%,
+    #b55a2a 100%
+  );
+  will-change: transform;
+}
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(26,18,8,0.45), rgba(26,18,8,0.55));
+}
+.parallax-quote {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem 3rem;
+  max-width: 800px;
+}
+.parallax-quote blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.parallax-quote cite {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(242,235,224,0.6);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 3.5rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--deep-water), var(--cognac), var(--gold));
+}
+.footer-logo {
+  font-family: 'Perandory', 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+.footer-sub {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(242,235,224,0.35);
+  margin-bottom: 2rem;
+}
+.footer-rule {
+  width: 60px;
+  height: 1px;
+  background: rgba(242,235,224,0.2);
+  margin: 1.5rem auto;
+}
+.footer-copy {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(242,235,224,0.25);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-line {
+  0%, 100% { opacity: 0.6; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.85); }
+}
+
+/* ── REVEAL ON SCROLL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .main-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .sidebar { position: static; }
+  .site-nav { padding: 1rem 1.5rem; }
+  .site-nav.scrolled { padding: 0.8rem 1.5rem; }
+  .container { padding: 0 1.5rem; }
+  .nav-links { gap: 1.2rem; }
+  .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav" id="site-nav">
+  <a href="#" class="nav-logo">Lindell</a>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Stories</a></li>
+    <li><a href="#">Essays</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-shimmer"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. 2025 &nbsp;·&nbsp; Isaac Lindell &nbsp;·&nbsp; Nashville</p>
+    <h1>Lindell's<br>Blog</h1>
+    <p class="hero-sub">Stories, Reflections & Spirited Arguments</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="ornament">⸻&nbsp;&nbsp;✦&nbsp;&nbsp;⸻</div>
+
+  <div class="main-grid">
+    <!-- FEED -->
+    <main>
+      <div class="section-label">Featured</div>
+
+      <!-- FEATURED -->
+      <article class="featured reveal">
+        <div class="featured-number">01</div>
+        <div class="featured-category">Creative Writing</div>
+        <h2><a href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">DIRT</a></h2>
+        <div class="featured-meta">
+          November 16, 2025
+          <span>|</span>
+          Short Story
+        </div>
+        <p class="featured-excerpt">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. The butterflies in Paisley's stomach were not from nervous excitement. These were bees, yellowjackets, swarming rampantly as she drove atop the dusty soil on Oil Springs Road...</p>
+        <a class="btn-read" href="https://lindellsblog.blogspot.com/2025/11/dirt-best.html">Continue Reading</a>
+      </article>
+
+      <!-- POST LIST -->
+      <div class="posts-label">Recent Posts</div>
+      <ul class="post-list">
+
+        <li class="post-item" onclick="window.open('https://lindellsblog.blogspot.com/2025/09/rip-charlie-kirk.html')">
+          <div class="post-date-block">
+            <span class="post-day">10</span>
+            <span class="post-month">Sep '25</span>
+          </div>
+          <div class="post-info">
+            <div class="post-cat">Personal Reflections</div>
+            <div class="post-title">RIP Charlie Kirk</div>
+            <p class="post-snippet">A call for grace in a frightening moment. A dad lost his son, a wife lost her husband. Don't retaliate. Don't celebrate. Sit and reflect.</p>
+          </div>
+        </li>
+
+        <li class="post-item" onclick="window.open('https://lindellsblog.blogspot.com/2025/05/a-plan-for-greatest-beer-run-of-all.html')">
+          <div class="post-date-block">
+            <span class="post-day">04</span>
+            <span class="post-month">May '25</span>
+          </div>
+          <div class="post-info">
+            <div class="post-cat">Travel &nbsp;·&nbsp; Humor</div>
+            <div class="post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+            <p class="post-snippet">There is nothing left to explore except the depths of the sea and the vastness of space — so we must make ordinary journeys extraordinary.</p>
+          </div>
+        </li>
+
+        <li class="post-item" onclick="window.open('https://lindellsblog.blogspot.com/2025/04/')">
+          <div class="post-date-block">
+            <span class="post-day">—</span>
+            <span class="post-month">Apr '25</span>
+          </div>
+          <div class="post-info">
+            <div class="post-cat">Archive &nbsp;·&nbsp; 3 Posts</div>
+            <div class="post-title">April 2025 Collection</div>
+            <p class="post-snippet">Books, culture, relationships, and everyday debates. Three essays from a productive spring.</p>
+          </div>
+        </li>
+
+        <li class="post-item" onclick="window.open('https://lindellsblog.blogspot.com/2025/03/')">
+          <div class="post-date-block">
+            <span class="post-day">—</span>
+            <span class="post-month">Mar '25</span>
+          </div>
+          <div class="post-info">
+            <div class="post-cat">Archive &nbsp;·&nbsp; Origins</div>
+            <div class="post-title">March 2025</div>
+            <p class="post-snippet">Where it all began.</p>
+          </div>
+        </li>
+
+      </ul>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-block reveal">
+        <div class="sidebar-heading">The Author</div>
+        <div class="about-card">
+          <img class="about-avatar" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEeoUn0cBcf1xWSoc2HNSWRh-JgSBt9D0jKY6TAMNC3sXegXQw6Ww_FO80eMKLOCeFPBiGqwCbhhFgWW6WzFeS4jKc7JBz4A77q2zDV1o35KrjKqia1bc_pipxybX53DgFtwz9MDc1CortTfPBXKy6ev4IiWgPuvVoJICp4FpkkvFmV1c/s220/IMG_5233.JPG" alt="Isaac Lindell">
+          <div class="about-name">Isaac Lindell</div>
+          <p class="about-bio">Writer. Storyteller. Arguing about things that matter and some that definitely don't.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-block reveal">
+        <div class="sidebar-heading">Archive</div>
+        <ul class="archive-list">
+          <li><a href="https://lindellsblog.blogspot.com/2025/11/">November 2025</a><span class="archive-count">1</span></li>
+          <li><a href="https://lindellsblog.blogspot.com/2025/09/">September 2025</a><span class="archive-count">1</span></li>
+          <li><a href="https://lindellsblog.blogspot.com/2025/05/">May 2025</a><span class="archive-count">1</span></li>
+          <li><a href="https://lindellsblog.blogspot.com/2025/04/">April 2025</a><span class="archive-count">3</span></li>
+          <li><a href="https://lindellsblog.blogspot.com/2025/03/">March 2025</a><span class="archive-count">1</span></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-block reveal">
+        <div class="sidebar-heading">Topics</div>
+        <div class="tag-cloud">
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/creative%20writing">Writing</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/humor">Humor</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Sports">Sports</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Books">Books</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/travel">Travel</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Cultural%20Commentary">Culture</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Movies">Movies</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Personal%20Reflections">Reflections</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/short%20story">Short Story</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Relationships">Relationships</a>
+          <a class="tag" href="https://lindellsblog.blogspot.com/search/label/Everyday%20Debates">Debates</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- PARALLAX BAND -->
+<section class="parallax-band" id="parallax-band">
+  <div class="parallax-inner" id="parallax-inner"></div>
+  <div class="parallax-overlay"></div>
+  <div class="parallax-quote reveal">
+    <blockquote>"There is nothing left to explore except the depths of the sea and the vastness of space — so we must make the same journeys, but in stylised and more difficult fashions."</blockquote>
+    <cite>— Isaac Lindell, May 2025</cite>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Lindell</div>
+  <div class="footer-sub">A blog by Isaac Lindell</div>
+  <div class="footer-rule"></div>
+  <div class="footer-copy">Nashville, Tennessee &nbsp;·&nbsp; Est. 2025 &nbsp;·&nbsp; All Rights Reserved</div>
+</footer>
+
+<script>
+  /* ── NAV SCROLL ── */
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── PARALLAX ── */
+  const heroBg = document.getElementById('hero-bg');
+  const parallaxInner = document.getElementById('parallax-inner');
+  const parallaxBand = document.getElementById('parallax-band');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (heroBg) heroBg.style.transform = `scale(1.12) translateY(${y * 0.3}px)`;
+    if (parallaxInner) {
+      const rect = parallaxBand.getBoundingClientRect();
+      const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * 0.25;
+      parallaxInner.style.transform = `translateY(${offset}px)`;
+    }
+  }, { passive: true });
+
+  /* ── INTERSECTION OBSERVER ── */
+  const reveals = document.querySelectorAll('.reveal, .post-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.classList.contains('post-item')
+          ? [...document.querySelectorAll('.post-item')].indexOf(el) * 120
+          : 0;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
