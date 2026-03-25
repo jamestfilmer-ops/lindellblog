@@ -1,0 +1,358 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{font-family:'Lora',Georgia,serif;}
+
+.outer{padding:0 0 2rem;}
+
+.palette-tabs{display:flex;border-bottom:1px solid #d0cec8;margin-bottom:0;}
+.ptab{padding:12px 22px;font-size:13px;font-family:'Lora',serif;cursor:pointer;letter-spacing:.4px;border-bottom:2px solid transparent;margin-bottom:-1px;color:#888;transition:all .2s;}
+.ptab.active{color:#1a1a1a;border-bottom-color:#1a1a1a;}
+
+.palette-panel{display:none;}
+.palette-panel.active{display:block;}
+
+.swatch-row{display:flex;gap:0;height:56px;border-radius:6px;overflow:hidden;margin:0 0 8px;}
+.swatch{flex:1;display:flex;align-items:flex-end;padding:5px 8px;font-size:10px;letter-spacing:.5px;}
+
+.ratio-row{display:flex;gap:6px;margin-bottom:20px;font-size:11px;color:#888;font-family:'Lora',serif;}
+.ratio-pill{padding:3px 10px;border-radius:20px;border:1px solid #e0ddd6;font-size:11px;}
+
+.section-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#aaa;margin:20px 0 10px;font-family:'Lora',serif;}
+
+.demo-area{border-radius:10px;overflow:hidden;border:1px solid #e0ddd6;}
+
+.tabs-demo{display:flex;border-bottom:1px solid;}
+.tab-item{padding:11px 18px;font-size:12px;letter-spacing:.5px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-family:'Lora',serif;}
+
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.piece-card{padding:20px;border-right:1px solid;cursor:pointer;transition:background .15s;}
+.piece-card:last-child{border-right:none;}
+
+.card-genre{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:10px;font-family:'Lora',serif;}
+.card-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:500;line-height:1.3;margin-bottom:8px;}
+.card-snip{font-size:12px;line-height:1.65;font-style:italic;margin-bottom:14px;}
+.card-meta{font-size:11px;letter-spacing:.3px;}
+
+.skeleton-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid;}
+.skel-card{padding:20px;border-right:1px solid;}
+.skel-card:last-child{border-right:none;}
+.skel-line{border-radius:3px;margin-bottom:8px;}
+
+@keyframes shimmer{0%{opacity:.5}50%{opacity:1}100%{opacity:.5}}
+.shimmer{animation:shimmer 1.4s ease-in-out infinite;}
+
+.progress-demo{height:3px;border-radius:0;width:100%;}
+.progress-inner{height:100%;width:62%;border-radius:0;transition:width .3s;}
+
+.nav-demo{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid;}
+.nav-name{font-family:'Playfair Display',serif;font-size:18px;}
+.nav-links{display:flex;gap:20px;font-size:12px;letter-spacing:.5px;}
+
+.fade-demo{padding:20px;display:flex;flex-direction:column;gap:10px;}
+.fade-item{border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid;font-size:13px;
+  opacity:0;transform:translateY(16px);transition:opacity .45s ease, transform .45s ease;}
+.fade-item.visible{opacity:1;transform:translateY(0);}
+.fade-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid;}
+
+.info-box{padding:16px 20px;}
+.info-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-family:'Lora',serif;}
+.info-value{font-size:13px;line-height:1.6;}
+
+</style>
+
+<div class="outer">
+<div class="palette-tabs">
+  <div class="ptab active" onclick="switchPalette('ink')">Ink & Stone</div>
+  <div class="ptab" onclick="switchPalette('forest')">Forest Ledger</div>
+  <div class="ptab" onclick="switchPalette('dusk')">Dusk & Copper</div>
+  <div class="ptab" onclick="switchPalette('slate')">Slate & Rust</div>
+</div>
+
+<div id="panel-ink" class="palette-panel active"></div>
+<div id="panel-forest" class="palette-panel"></div>
+<div id="panel-dusk" class="palette-panel"></div>
+<div id="panel-slate" class="palette-panel"></div>
+</div>
+
+<script>
+const palettes = {
+  ink: {
+    name: 'Ink & Stone',
+    bg: '#F6F5F2',
+    primary: '#1C1C1A',
+    secondary: '#4A4845',
+    accent: '#2D4A3E',
+    accentLight: '#E8EDE9',
+    border: '#D8D6D0',
+    muted: '#8A8880',
+    skeletonBase: '#E0DED8',
+    skeletonShimmer: '#F0EEE8',
+    swatches: [
+      {color:'#F6F5F2',label:'off-white · 60%',dark:false},
+      {color:'#D8D6D0',label:'stone · 30%',dark:false},
+      {color:'#1C1C1A',label:'ink · 10%',dark:true},
+    ],
+    accent_swatch: {color:'#2D4A3E',label:'accent'},
+    ratio: ['60% — warm off-white (#F6F5F2)','30% — cool stone (#D8D6D0)','10% — near-black ink (#1C1C1A)'],
+    genres: [{label:'Essay',color:'#2D4A3E'},{label:'Story',color:'#4A2D3E'},{label:'Poem',color:'#3E3D2D'}],
+    tabActive: '#1C1C1A',
+    tabBorder: '#D8D6D0',
+    progressColor: '#2D4A3E',
+    cardHover: '#EFEDE7',
+    desc: 'Timeless. Serious without severity. The off-white has the warmth of old book pages.'
+  },
+  forest: {
+    name: 'Forest Ledger',
+    bg: '#F4F5F0',
+    primary: '#1E2420',
+    secondary: '#485448',
+    accent: '#3A6B44',
+    accentLight: '#E6EFE8',
+    border: '#CDD4CA',
+    muted: '#7A8A78',
+    skeletonBase: '#D8E0D5',
+    skeletonShimmer: '#EAF0E7',
+    swatches: [
+      {color:'#F4F5F0',label:'off-white · 60%',dark:false},
+      {color:'#CDD4CA',label:'sage gray · 30%',dark:false},
+      {color:'#1E2420',label:'deep forest · 10%',dark:true},
+    ],
+    accent_swatch: {color:'#3A6B44',label:'accent'},
+    ratio: ['60% — cool off-white (#F4F5F0)','30% — sage gray (#CDD4CA)','10% — deep forest (#1E2420)'],
+    genres: [{label:'Essay',color:'#3A6B44'},{label:'Story',color:'#1E2420'},{label:'Poem',color:'#4A6B5A'}],
+    tabActive: '#1E2420',
+    tabBorder: '#CDD4CA',
+    progressColor: '#3A6B44',
+    cardHover: '#EBF0E8',
+    desc: 'Grounded and outdoorsy. Works beautifully for nature writing, place-based essays, lyric poems.'
+  },
+  dusk: {
+    name: 'Dusk & Copper',
+    bg: '#F7F4F0',
+    primary: '#241A10',
+    secondary: '#5C4A38',
+    accent: '#8B4513',
+    accentLight: '#F5EAE0',
+    border: '#E0D4C4',
+    muted: '#9A8A78',
+    skeletonBase: '#E8DDD0',
+    skeletonShimmer: '#F5EDE4',
+    swatches: [
+      {color:'#F7F4F0',label:'off-white · 60%',dark:false},
+      {color:'#E0D4C4',label:'linen · 30%',dark:false},
+      {color:'#241A10',label:'dark espresso · 10%',dark:true},
+    ],
+    accent_swatch: {color:'#8B4513',label:'accent'},
+    ratio: ['60% — warm off-white (#F7F4F0)','30% — linen (#E0D4C4)','10% — dark espresso (#241A10)'],
+    genres: [{label:'Essay',color:'#8B4513'},{label:'Story',color:'#5C2A0A'},{label:'Poem',color:'#4A3010'}],
+    tabActive: '#241A10',
+    tabBorder: '#E0D4C4',
+    progressColor: '#8B4513',
+    cardHover: '#F2EAE0',
+    desc: 'Warm and amber-toned. Feels like a study at golden hour. Strong for think pieces with some fire.'
+  },
+  slate: {
+    name: 'Slate & Rust',
+    bg: '#F5F4F6',
+    primary: '#1A1820',
+    secondary: '#4A4858',
+    accent: '#8B3A2A',
+    accentLight: '#F0E8E6',
+    border: '#D4D2DC',
+    muted: '#7A7888',
+    skeletonBase: '#E0DEE8',
+    skeletonShimmer: '#EDEAEF',
+    swatches: [
+      {color:'#F5F4F6',label:'off-white · 60%',dark:false},
+      {color:'#D4D2DC',label:'cool slate · 30%',dark:false},
+      {color:'#1A1820',label:'deep plum · 10%',dark:true},
+    ],
+    accent_swatch: {color:'#8B3A2A',label:'accent'},
+    ratio: ['60% — cool off-white (#F5F4F6)','30% — cool slate (#D4D2DC)','10% — deep plum (#1A1820)'],
+    genres: [{label:'Essay',color:'#8B3A2A'},{label:'Story',color:'#1A1820'},{label:'Poem',color:'#5A3A8B'}],
+    tabActive: '#1A1820',
+    tabBorder: '#D4D2DC',
+    progressColor: '#8B3A2A',
+    cardHover: '#EEEDF2',
+    desc: 'Cool and slightly Gothic. The rust accent creates tension. Strong for darker fiction and sharp essays.'
+  }
+};
+
+const cards = [
+  {genre:0,title:'Why We Confuse Comfort With Contentment',snip:'There is a quiet that settles over a life lived too carefully.',meta:'Mar 18 · 8 min'},
+  {genre:1,title:'The Man Who Returned the Keys',snip:'He had driven two hundred miles to return something he never should have kept.',meta:'Feb 28 · 12 min'},
+  {genre:2,title:'Pastoral, With Disturbance',snip:'The field was lovely / until it wasn\'t.',meta:'Feb 11 · 2 min'},
+];
+
+let currentSkel = {};
+let skelInterval = null;
+
+function buildPanel(key) {
+  const p = palettes[key];
+  const panel = document.getElementById('panel-'+key);
+
+  let swatchHtml = p.swatches.map(s=>`
+    <div class="swatch" style="background:${s.color};flex:${s.label.includes('60') ? 6 : s.label.includes('30') ? 3 : 1}">
+      <span style="font-size:10px;color:${s.dark?'rgba(255,255,255,.7)':'rgba(0,0,0,.45)'};">${s.label}</span>
+    </div>
+  `).join('');
+
+  swatchHtml += `<div class="swatch" style="background:${p.accent_swatch.color};flex:1;"><span style="font-size:10px;color:rgba(255,255,255,.7);">${p.accent_swatch.label}</span></div>`;
+
+  const cardHtml = cards.map((c,i)=>`
+    <div class="piece-card" style="border-color:${p.border};background:${p.bg};"
+      onmouseover="this.style.background='${p.cardHover}'" onmouseout="this.style.background='${p.bg}'">
+      <div class="card-genre" style="color:${p.genres[c.genre].color};">${p.genres[c.genre].label}</div>
+      <div class="card-title" style="color:${p.primary};">${c.title}</div>
+      <div class="card-snip" style="color:${p.secondary};">${c.snip}</div>
+      <div class="card-meta" style="color:${p.muted};">${c.meta}</div>
+    </div>
+  `).join('');
+
+  const skelHtml = [0,1,2].map(()=>`
+    <div class="skel-card" style="border-color:${p.border};background:${p.bg};">
+      <div class="skel-line shimmer" style="height:8px;width:40%;background:${p.skeletonBase};"></div>
+      <div class="skel-line shimmer" style="height:14px;width:85%;background:${p.skeletonBase};margin-top:10px;"></div>
+      <div class="skel-line shimmer" style="height:12px;width:60%;background:${p.skeletonBase};"></div>
+      <div class="skel-line shimmer" style="height:10px;width:75%;background:${p.skeletonBase};"></div>
+      <div class="skel-line shimmer" style="height:10px;width:50%;background:${p.skeletonBase};"></div>
+      <div class="skel-line shimmer" style="height:8px;width:30%;background:${p.skeletonBase};margin-top:6px;"></div>
+    </div>
+  `).join('');
+
+  const fadeItems = [
+    {text:'Why We Confuse Comfort With Contentment — Essay',delay:'0.05s'},
+    {text:'The Man Who Returned the Keys — Short Story',delay:'0.22s'},
+    {text:'Pastoral, With Disturbance — Poem',delay:'0.39s'},
+    {text:'Against Productivity Culture — Essay',delay:'0.56s'},
+  ];
+
+  const fadeHtml = fadeItems.map(f=>`
+    <div class="fade-item" data-key="${key}" style="background:${p.bg};border-color:${p.border};color:${p.primary};transition-delay:${f.delay}">
+      <div class="fade-dot" style="background:${p.accent};"></div>
+      <span style="font-size:13px;">${f.text}</span>
+    </div>
+  `).join('');
+
+  panel.innerHTML = `
+    <div style="padding:20px 0 0;">
+      <div style="font-size:11px;color:#999;letter-spacing:.5px;margin-bottom:10px;font-family:'Lora',serif;">${p.desc}</div>
+      <div class="swatch-row">${swatchHtml}</div>
+      <div class="ratio-row">${p.ratio.map(r=>`<span class="ratio-pill" style="border-color:${p.border};color:${p.secondary};">${r}</span>`).join('')}</div>
+
+      <div class="demo-area" style="border-color:${p.border};">
+
+        <div style="height:3px;background:${p.border};">
+          <div style="height:3px;width:62%;background:${p.accent};transition:width .3s;" id="prog-${key}"></div>
+        </div>
+
+        <div class="nav-demo" style="background:${p.bg};border-color:${p.border};">
+          <div class="nav-name" style="color:${p.primary};">Your Name</div>
+          <div class="nav-links" style="color:${p.muted};">
+            <span>Writing</span><span>About</span><span>Archive</span>
+          </div>
+        </div>
+
+        <div class="tabs-demo" style="background:${p.bg};border-color:${p.border};">
+          ${['All','Essays','Stories','Poems'].map((t,i)=>`
+            <div class="tab-item" id="tab-${key}-${i}"
+              style="color:${i===0?p.primary:p.muted};border-bottom-color:${i===0?p.accent:'transparent'};background:${p.bg};"
+              onclick="switchTab('${key}',${i})">
+              ${t}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="card-grid" id="cards-${key}" style="display:grid;">
+          ${cardHtml}
+        </div>
+
+        <div style="padding:12px 20px;display:flex;align-items:center;gap:12px;border-top:1px solid ${p.border};background:${p.bg};">
+          <span style="font-size:12px;color:${p.muted};">Skeleton loading demo</span>
+          <button onclick="showSkeleton('${key}')"
+            style="font-size:11px;padding:5px 12px;border:1px solid ${p.border};border-radius:4px;background:transparent;color:${p.primary};cursor:pointer;font-family:'Lora',serif;letter-spacing:.5px;">
+            Simulate Load
+          </button>
+        </div>
+
+        <div class="skeleton-row" id="skel-${key}" style="display:none;border-color:${p.border};">
+          ${skelHtml}
+        </div>
+
+        <div style="border-top:1px solid ${p.border};background:${p.bg};">
+          <div style="padding:10px 20px 4px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:${p.muted};font-family:'Lora',serif;">Scroll-fade animation</div>
+          <div class="fade-demo" id="fade-${key}">
+            ${fadeHtml}
+          </div>
+        </div>
+
+        <div class="two-col" style="border-color:${p.border};">
+          <div class="info-box" style="background:${p.bg};border-right:1px solid ${p.border};">
+            <div class="info-label" style="color:${p.muted};">Off-white hex</div>
+            <div class="info-value" style="color:${p.primary};font-family:monospace;font-size:15px;">${p.bg}</div>
+            <div style="margin-top:8px;height:24px;border-radius:4px;border:1px solid ${p.border};background:${p.bg};"></div>
+          </div>
+          <div class="info-box" style="background:${p.bg};">
+            <div class="info-label" style="color:${p.muted};">Accent hex</div>
+            <div class="info-value" style="color:${p.primary};font-family:monospace;font-size:15px;">${p.accent}</div>
+            <div style="margin-top:8px;height:24px;border-radius:4px;background:${p.accent};"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  setTimeout(()=>{
+    const items = panel.querySelectorAll('.fade-item');
+    items.forEach(el=>el.classList.add('visible'));
+  }, 300);
+}
+
+function switchPalette(key) {
+  document.querySelectorAll('.ptab').forEach((t,i)=>{
+    const keys = ['ink','forest','dusk','slate'];
+    t.classList.toggle('active', keys[i]===key);
+  });
+  document.querySelectorAll('.palette-panel').forEach(p=>p.classList.remove('active'));
+  const panel = document.getElementById('panel-'+key);
+  panel.classList.add('active');
+  if (!panel.innerHTML.trim()) buildPanel(key);
+  setTimeout(()=>{
+    const items = panel.querySelectorAll('.fade-item');
+    items.forEach(el=>{el.classList.remove('visible'); void el.offsetWidth; el.classList.add('visible');});
+  }, 100);
+}
+
+function switchTab(key, idx) {
+  ['ink','forest','dusk','slate'].forEach(()=>{});
+  const p = palettes[key];
+  [0,1,2,3].forEach(i=>{
+    const t = document.getElementById(`tab-${key}-${i}`);
+    if(t){
+      t.style.color = i===idx ? p.primary : p.muted;
+      t.style.borderBottomColor = i===idx ? p.accent : 'transparent';
+    }
+  });
+}
+
+function showSkeleton(key) {
+  const p = palettes[key];
+  const cards = document.getElementById('cards-'+key);
+  const skel = document.getElementById('skel-'+key);
+  cards.style.display = 'none';
+  skel.style.display = 'grid';
+  setTimeout(()=>{
+    skel.style.display = 'none';
+    cards.style.display = 'grid';
+  }, 2200);
+}
+
+buildPanel('ink');
+</script>

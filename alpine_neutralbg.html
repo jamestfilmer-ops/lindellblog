@@ -1,0 +1,214 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:       #F8F8F6;
+  --surface:  #F2F2F0;
+  --deep:     #042B44;
+  --teal:     #096B90;
+  --sky:      #A1CCDC;
+  --steel:    #71B7D5;
+  --border:   #DDE0E2;
+  --muted:    #7A8C94;
+  --secondary:#2A4A5C;
+  --glow:     #C8660A;
+  --glow-lt:  #FDF2EA;
+  --midnight: #08171E;
+}
+body{font-family:'Lora',Georgia,serif;background:var(--bg);}
+
+.wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg);}
+
+.progress{height:3px;background:var(--border);}
+.progress-fill{height:3px;width:47%;background:var(--glow);}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:1px solid var(--border);background:var(--bg);}
+.site-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--deep);}
+.site-sub{font-style:italic;font-size:13px;color:var(--muted);font-family:'Lora',serif;margin-left:8px;font-weight:400;}
+.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:.4px;cursor:pointer;}
+.nav-link:hover{color:var(--deep);}
+.nav-mood{font-size:11px;color:var(--glow);background:var(--glow-lt);border:1px solid #EDD0B4;padding:4px 11px;border-radius:20px;letter-spacing:.3px;}
+
+.palette-strip{display:flex;border-bottom:1px solid var(--border);}
+.swatch{flex:1;padding:10px 14px;display:flex;flex-direction:column;justify-content:flex-end;}
+.sw-hex{font-family:monospace;font-size:11px;font-weight:500;}
+.sw-role{font-size:10px;letter-spacing:.4px;margin-top:3px;opacity:.85;}
+
+.hero{display:grid;grid-template-columns:3fr 2fr;border-bottom:1px solid var(--border);}
+.hero-left{padding:32px 36px;border-right:1px solid var(--border);background:var(--bg);}
+.hero-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--glow);margin-bottom:12px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:24px;line-height:1.25;color:var(--deep);margin-bottom:12px;}
+.hero-excerpt{font-style:italic;color:var(--secondary);line-height:1.75;font-size:13px;margin-bottom:16px;}
+.hero-meta{font-size:11px;color:var(--muted);display:flex;gap:14px;align-items:center;}
+.honest-badge{font-size:10px;background:var(--glow-lt);border:1px solid #EDD0B4;padding:3px 9px;border-radius:20px;color:var(--glow);font-style:italic;}
+
+.hero-right{padding:28px 26px;background:var(--surface);display:flex;flex-direction:column;justify-content:space-between;}
+.pull-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;line-height:1.6;color:var(--deep);border-left:2px solid var(--glow);padding-left:14px;border-radius:0;}
+.pull-attr{font-size:11px;color:var(--muted);margin-top:10px;}
+.aside-note{font-size:12px;color:var(--secondary);font-style:italic;border-top:1px solid var(--border);padding-top:12px;line-height:1.6;}
+
+.cards-row{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
+.card{padding:20px 22px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;background:var(--bg);}
+.card:last-child{border-right:none;}
+.card:hover{background:var(--surface);}
+.card-type{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.card-title{font-family:'Playfair Display',serif;font-size:14px;line-height:1.3;color:var(--deep);margin-bottom:7px;}
+.card-snip{font-size:12px;font-style:italic;color:var(--secondary);line-height:1.6;margin-bottom:10px;}
+.card-foot{display:flex;justify-content:space-between;align-items:center;}
+.card-date{font-size:11px;color:var(--muted);}
+.card-note{font-size:10px;color:var(--muted);font-style:italic;}
+
+.footer{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;background:var(--surface);border-top:1px solid var(--border);}
+.nl-text{font-size:13px;color:var(--secondary);}
+.nl-aside{font-size:11px;font-style:italic;color:var(--muted);margin-top:2px;}
+.nl-right{display:flex;gap:8px;align-items:center;}
+.nl-input{font-family:'Lora',serif;font-size:12px;padding:6px 12px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--deep);width:170px;}
+.nl-btn{font-family:'Lora',serif;font-size:11px;letter-spacing:.8px;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--deep);cursor:pointer;transition:background .15s;}
+.nl-btn:hover{background:var(--bg);}
+.footer-right{font-size:11px;color:var(--muted);font-style:italic;text-align:right;line-height:1.7;}
+
+.tokens{padding:20px 24px;background:var(--bg);border-top:1px solid var(--border);}
+.tok-label{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.tok-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.tok{border:1px solid var(--border);border-radius:6px;padding:10px 12px;background:var(--surface);}
+.tok-name{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.tok-val{font-family:monospace;font-size:12px;color:var(--deep);}
+.tok-bar{height:14px;border-radius:3px;margin-top:6px;}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.compare-card{border:1px solid var(--border);border-radius:6px;padding:10px 12px;}
+.compare-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.compare-swatch{height:28px;border-radius:4px;margin-bottom:4px;}
+.compare-hex{font-family:monospace;font-size:11px;}
+.compare-note{font-size:11px;font-style:italic;margin-top:3px;}
+</style>
+
+<div class="wrap">
+
+  <div class="progress"><div class="progress-fill"></div></div>
+
+  <div class="palette-strip">
+    <div class="swatch" style="background:#F8F8F6;border-right:1px solid #DDE0E2;flex:1.5;">
+      <div class="sw-hex" style="color:#096B90;">#F8F8F6</div>
+      <div class="sw-role" style="color:#7A8C94;">page bg</div>
+    </div>
+    <div class="swatch" style="background:#F2F2F0;border-right:1px solid #DDE0E2;flex:1.5;">
+      <div class="sw-hex" style="color:#096B90;">#F2F2F0</div>
+      <div class="sw-role" style="color:#7A8C94;">surface</div>
+    </div>
+    <div class="swatch" style="background:#DDE0E2;border-right:1px solid #C8CDD0;flex:1;">
+      <div class="sw-hex" style="color:#042B44;">#DDE0E2</div>
+      <div class="sw-role" style="color:#2A4A5C;">border</div>
+    </div>
+    <div class="swatch" style="background:#096B90;flex:1.5;">
+      <div class="sw-hex" style="color:#A1CCDC;">#096B90</div>
+      <div class="sw-role" style="color:#A1CCDC;">teal · mid</div>
+    </div>
+    <div class="swatch" style="background:#042B44;flex:1.5;">
+      <div class="sw-hex" style="color:#71B7D5;">#042B44</div>
+      <div class="sw-role" style="color:#71B7D5;">deep · headings</div>
+    </div>
+    <div class="swatch" style="background:#08171E;flex:1;">
+      <div class="sw-hex" style="color:#71B7D5;">#08171E</div>
+      <div class="sw-role" style="color:#71B7D5;">midnight</div>
+    </div>
+    <div class="swatch" style="background:#C8660A;flex:0.7;">
+      <div class="sw-hex" style="color:#FDF2EA;font-size:10px;">#C8660A</div>
+      <div class="sw-role" style="color:#FDF2EA;">glow · 4%</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="site-name">Your Name <span class="site-sub">writes things down</span></div>
+    <div class="nav-links">
+      <span class="nav-link">Writing</span>
+      <span class="nav-link">About</span>
+      <span class="nav-link">Archive</span>
+      <span class="nav-mood">currently: reading too much</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Featured Essay</div>
+      <div class="hero-title">Why We Confuse Comfort With Contentment</div>
+      <div class="hero-excerpt">There is a particular quiet that settles over a life lived too carefully — not the silence of peace, but the silence of things unsaid, roads untaken, arguments swallowed whole.</div>
+      <div class="hero-meta">
+        <span>March 18, 2026 · 8 min read</span>
+        <span class="honest-badge">took me three weeks to finish</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div>
+        <div class="pull-quote">"The question is not whether we suffer — it is whether we suffer toward something."</div>
+        <div class="pull-attr">— from the essay above, written at 11pm</div>
+      </div>
+      <div class="aside-note">This one surprised me. I thought I was writing about productivity. I wasn't.</div>
+    </div>
+  </div>
+
+  <div class="cards-row">
+    <div class="card">
+      <div class="card-type" style="color:var(--teal);">Essay</div>
+      <div class="card-title">Against Productivity Culture</div>
+      <div class="card-snip">We confused making things with living well, and nobody flagged it.</div>
+      <div class="card-foot"><span class="card-date">Jan 30 · 6 min</span><span class="card-note">mildly ranty</span></div>
+    </div>
+    <div class="card">
+      <div class="card-type" style="color:var(--steel);">Short Story</div>
+      <div class="card-title">The Man Who Returned the Keys</div>
+      <div class="card-snip">He had driven two hundred miles to return something he never should have kept.</div>
+      <div class="card-foot"><span class="card-date">Feb 28 · 12 min</span><span class="card-note">my favorite so far</span></div>
+    </div>
+    <div class="card">
+      <div class="card-type" style="color:var(--glow);">Poem</div>
+      <div class="card-title">Pastoral, With Disturbance</div>
+      <div class="card-snip">The field was lovely / until it wasn't.</div>
+      <div class="card-foot"><span class="card-date">Feb 11 · 2 min</span><span class="card-note">short on purpose</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="nl-text">New pieces, when I finish them —</div>
+      <div class="nl-aside">no schedule, no digest, just the writing</div>
+    </div>
+    <div class="nl-right">
+      <input class="nl-input" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <div class="footer-right">No ads · no algorithm<br>just me and a word processor</div>
+  </div>
+
+  <div class="tokens">
+    <div class="tok-label">Background contrast — before &amp; after</div>
+    <div class="compare">
+      <div class="compare-card" style="background:#F2F5F7;">
+        <div class="compare-label" style="color:#6A8A9A;">Before</div>
+        <div class="compare-swatch" style="background:#F2F5F7;border:1px solid #C2D4DD;"></div>
+        <div class="compare-hex" style="color:#096B90;">#F2F5F7</div>
+        <div class="compare-note" style="color:#6A8A9A;">blue-cast · pulled attention</div>
+      </div>
+      <div class="compare-card" style="background:#F8F8F6;">
+        <div class="compare-label" style="color:#7A8C94;">After</div>
+        <div class="compare-swatch" style="background:#F8F8F6;border:1px solid #DDE0E2;"></div>
+        <div class="compare-hex" style="color:#096B90;">#F8F8F6</div>
+        <div class="compare-note" style="color:#7A8C94;">barely-warm neutral · recedes</div>
+      </div>
+    </div>
+
+    <div class="tok-label" style="margin-top:18px;">Full token set</div>
+    <div class="tok-grid">
+      <div class="tok"><div class="tok-name">Page bg</div><div class="tok-val">#F8F8F6</div><div class="tok-bar" style="background:#F8F8F6;border:1px solid #DDE0E2;"></div></div>
+      <div class="tok"><div class="tok-name">Surface</div><div class="tok-val">#F2F2F0</div><div class="tok-bar" style="background:#F2F2F0;border:1px solid #DDE0E2;"></div></div>
+      <div class="tok"><div class="tok-name">Border</div><div class="tok-val">#DDE0E2</div><div class="tok-bar" style="background:#DDE0E2;"></div></div>
+      <div class="tok"><div class="tok-name">Muted</div><div class="tok-val">#7A8C94</div><div class="tok-bar" style="background:#7A8C94;"></div></div>
+      <div class="tok"><div class="tok-name">Body text</div><div class="tok-val">#2A4A5C</div><div class="tok-bar" style="background:#2A4A5C;"></div></div>
+      <div class="tok"><div class="tok-name">Heading</div><div class="tok-val">#042B44</div><div class="tok-bar" style="background:#042B44;"></div></div>
+      <div class="tok"><div class="tok-name">Teal</div><div class="tok-val">#096B90</div><div class="tok-bar" style="background:#096B90;"></div></div>
+      <div class="tok"><div class="tok-name">Alpenglow</div><div class="tok-val">#C8660A</div><div class="tok-bar" style="background:#C8660A;"></div></div>
+    </div>
+  </div>
+
+</div>

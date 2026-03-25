@@ -1,0 +1,273 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:       #F2F5F7;
+  --deep:     #042B44;
+  --teal:     #096B90;
+  --sky:      #A1CCDC;
+  --midnight: #08171E;
+  --steel:    #71B7D5;
+  --border:   #C2D4DD;
+  --muted:    #6A8A9A;
+  --secondary:#1E4055;
+  --glow:     #C8660A;
+  --glow-lt:  #FDF0E6;
+}
+
+body{font-family:'Lora',Georgia,serif;background:var(--bg);}
+
+.wrap{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg);}
+
+.progress{height:3px;background:var(--border);}
+.progress-fill{height:3px;width:47%;background:var(--glow);}
+
+.nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 28px;border-bottom:1px solid var(--border);background:var(--bg);
+}
+.site-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--deep);}
+.site-sub{font-style:italic;font-size:13px;color:var(--muted);font-family:'Lora',serif;margin-left:8px;font-weight:400;}
+.nav-links{display:flex;align-items:center;gap:22px;}
+.nav-link{font-size:12px;color:var(--muted);letter-spacing:.4px;cursor:pointer;}
+.nav-link:hover{color:var(--deep);}
+.nav-mood{
+  font-size:11px;color:var(--glow);background:var(--glow-lt);
+  border:1px solid #EAC9A8;
+  padding:4px 11px;border-radius:20px;letter-spacing:.3px;
+}
+
+.palette-strip{
+  display:flex;border-bottom:1px solid var(--border);
+}
+.swatch{flex:1;padding:10px 14px;display:flex;flex-direction:column;justify-content:flex-end;}
+.sw-hex{font-family:monospace;font-size:11px;font-weight:500;}
+.sw-role{font-size:10px;letter-spacing:.5px;margin-top:3px;opacity:.8;}
+
+.hero{
+  display:grid;grid-template-columns:3fr 2fr;
+  border-bottom:1px solid var(--border);
+}
+.hero-left{padding:32px 36px;border-right:1px solid var(--border);}
+.hero-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--glow);margin-bottom:12px;}
+.hero-title{
+  font-family:'Playfair Display',serif;font-size:24px;line-height:1.25;
+  color:var(--deep);margin-bottom:12px;
+}
+.hero-excerpt{font-style:italic;color:var(--secondary);line-height:1.75;font-size:13px;margin-bottom:16px;}
+.hero-meta{font-size:11px;color:var(--muted);display:flex;gap:14px;align-items:center;}
+.honest-badge{
+  font-size:10px;background:var(--glow-lt);border:1px solid #EAC9A8;
+  padding:3px 9px;border-radius:20px;color:var(--glow);font-style:italic;
+}
+
+.hero-right{
+  padding:28px 26px;background:#E8F1F6;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.pull-quote{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:16px;line-height:1.6;color:var(--deep);
+  border-left:2px solid var(--glow);padding-left:14px;border-radius:0;
+}
+.pull-attr{font-size:11px;color:var(--muted);margin-top:10px;}
+.aside-note{
+  font-size:12px;color:var(--secondary);font-style:italic;
+  border-top:1px solid var(--border);padding-top:12px;line-height:1.6;
+}
+
+.cards-row{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--border);}
+.card{padding:20px 22px;border-right:1px solid var(--border);cursor:pointer;transition:background .15s;}
+.card:last-child{border-right:none;}
+.card:hover{background:#E8F1F6;}
+.card-type{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.card-title{font-family:'Playfair Display',serif;font-size:14px;line-height:1.3;color:var(--deep);margin-bottom:7px;}
+.card-snip{font-size:12px;font-style:italic;color:var(--secondary);line-height:1.6;margin-bottom:10px;}
+.card-foot{display:flex;justify-content:space-between;align-items:center;}
+.card-date{font-size:11px;color:var(--muted);}
+.card-note{font-size:10px;color:var(--muted);font-style:italic;}
+
+.footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 28px;background:#E8F1F6;border-top:1px solid var(--border);
+}
+.nl-text{font-size:13px;color:var(--secondary);}
+.nl-aside{font-size:11px;font-style:italic;color:var(--muted);margin-top:2px;}
+.nl-right{display:flex;gap:8px;align-items:center;}
+.nl-input{
+  font-family:'Lora',serif;font-size:12px;padding:6px 12px;
+  border:1px solid var(--border);border-radius:4px;
+  background:var(--bg);color:var(--deep);width:170px;
+}
+.nl-btn{
+  font-family:'Lora',serif;font-size:11px;letter-spacing:.8px;
+  text-transform:uppercase;padding:7px 14px;
+  border:1px solid var(--border);border-radius:4px;
+  background:transparent;color:var(--deep);cursor:pointer;transition:background .15s;
+}
+.nl-btn:hover{background:var(--bg);}
+.footer-right{font-size:11px;color:var(--muted);font-style:italic;text-align:right;line-height:1.7;}
+
+.token-section{padding:20px 24px;background:var(--bg);border-top:1px solid var(--border);}
+.token-label{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.token-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.token{border:1px solid var(--border);border-radius:6px;padding:10px 12px;background:#E8F1F6;}
+.token-name{font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.token-val{font-family:monospace;font-size:12px;color:var(--deep);}
+.token-swatch{height:16px;border-radius:3px;margin-top:6px;}
+</style>
+
+<div class="wrap">
+
+  <div class="progress"><div class="progress-fill"></div></div>
+
+  <div class="palette-strip">
+    <div class="swatch" style="background:#042B44;flex:2;">
+      <div class="sw-hex" style="color:#A1CCDC;">#042B44</div>
+      <div class="sw-role" style="color:#A1CCDC;">deep · 60% bg family</div>
+    </div>
+    <div class="swatch" style="background:#096B90;flex:2;">
+      <div class="sw-hex" style="color:#A1CCDC;">#096B90</div>
+      <div class="sw-role" style="color:#A1CCDC;">teal · 30% mid</div>
+    </div>
+    <div class="swatch" style="background:#A1CCDC;flex:2;">
+      <div class="sw-hex" style="color:#042B44;">#A1CCDC</div>
+      <div class="sw-role" style="color:#042B44;">sky · borders / muted</div>
+    </div>
+    <div class="swatch" style="background:#08171E;flex:1.5;">
+      <div class="sw-hex" style="color:#71B7D5;">#08171E</div>
+      <div class="sw-role" style="color:#71B7D5;">midnight · text</div>
+    </div>
+    <div class="swatch" style="background:#F2F5F7;flex:2;border-left:1px solid #C2D4DD;">
+      <div class="sw-hex" style="color:#096B90;">#F2F5F7</div>
+      <div class="sw-role" style="color:#096B90;">off-white · page bg</div>
+    </div>
+    <div class="swatch" style="background:#C8660A;flex:0.8;">
+      <div class="sw-hex" style="color:#FDF0E6;font-size:10px;">#C8660A</div>
+      <div class="sw-role" style="color:#FDF0E6;">alpenglow · 4%</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="site-name" style="color:var(--deep);">
+      Your Name
+      <span class="site-sub">writes things down</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-link">Writing</span>
+      <span class="nav-link">About</span>
+      <span class="nav-link">Archive</span>
+      <span class="nav-mood">currently: reading too much</span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Featured Essay</div>
+      <div class="hero-title">Why We Confuse Comfort With Contentment</div>
+      <div class="hero-excerpt">There is a particular quiet that settles over a life lived too carefully — not the silence of peace, but the silence of things unsaid, roads untaken, arguments swallowed whole.</div>
+      <div class="hero-meta">
+        <span>March 18, 2026 · 8 min read</span>
+        <span class="honest-badge">took me three weeks to finish</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div>
+        <div class="pull-quote">"The question is not whether we suffer — it is whether we suffer toward something."</div>
+        <div class="pull-attr">— from the essay above, written at 11pm</div>
+      </div>
+      <div class="aside-note">This one surprised me when it came out. I thought I was writing about productivity. I wasn't.</div>
+    </div>
+  </div>
+
+  <div class="cards-row">
+    <div class="card">
+      <div class="card-type" style="color:var(--teal);">Essay</div>
+      <div class="card-title">Against Productivity Culture</div>
+      <div class="card-snip">We confused making things with living well, and nobody flagged it.</div>
+      <div class="card-foot">
+        <span class="card-date">Jan 30 · 6 min</span>
+        <span class="card-note">mildly ranty</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-type" style="color:var(--steel);">Short Story</div>
+      <div class="card-title">The Man Who Returned the Keys</div>
+      <div class="card-snip">He had driven two hundred miles to return something he never should have kept.</div>
+      <div class="card-foot">
+        <span class="card-date">Feb 28 · 12 min</span>
+        <span class="card-note">my favorite so far</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-type" style="color:var(--glow);">Poem</div>
+      <div class="card-title">Pastoral, With Disturbance</div>
+      <div class="card-snip">The field was lovely / until it wasn't.</div>
+      <div class="card-foot">
+        <span class="card-date">Feb 11 · 2 min</span>
+        <span class="card-note">short on purpose</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="nl-text">New pieces, when I finish them —</div>
+      <div class="nl-aside">no schedule, no digest, just the writing</div>
+    </div>
+    <div class="nl-right">
+      <input class="nl-input" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <div class="footer-right">No ads · no algorithm<br>just me and a word processor</div>
+  </div>
+
+  <div class="token-section">
+    <div class="token-label">Full palette tokens</div>
+    <div class="token-grid">
+      <div class="token">
+        <div class="token-name">Page bg</div>
+        <div class="token-val">#F2F5F7</div>
+        <div class="token-swatch" style="background:#F2F5F7;border:1px solid #C2D4DD;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Surface</div>
+        <div class="token-val">#E8F1F6</div>
+        <div class="token-swatch" style="background:#E8F1F6;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Border</div>
+        <div class="token-val">#C2D4DD</div>
+        <div class="token-swatch" style="background:#C2D4DD;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Muted text</div>
+        <div class="token-val">#6A8A9A</div>
+        <div class="token-swatch" style="background:#6A8A9A;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Body text</div>
+        <div class="token-val">#1E4055</div>
+        <div class="token-swatch" style="background:#1E4055;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Heading</div>
+        <div class="token-val">#042B44</div>
+        <div class="token-swatch" style="background:#042B44;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Mid blue</div>
+        <div class="token-val">#096B90</div>
+        <div class="token-swatch" style="background:#096B90;"></div>
+      </div>
+      <div class="token">
+        <div class="token-name">Alpenglow</div>
+        <div class="token-val">#C8660A</div>
+        <div class="token-swatch" style="background:#C8660A;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
