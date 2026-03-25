@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shooter's Barn — Claude Theme</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap');
+
+  /* ── PALETTE ────────────────────────────── */
+  :root {
+    --p1:   #F2EDE4;   /* 30% primary ground */
+    --p2:   #EDE4D8;   /* 30% secondary ground */
+    --a1:   #B41818;   /* 8%  red accent */
+    --a2:   #C07818;   /* 8%  amber accent */
+    --t1:   #D4A860;   /* 4%  gold tertiary */
+    --t2:   #C06050;   /* 4%  rust tertiary */
+    --tx:   #1C1208;   /* 3%  text */
+    --bd:   #885030;   /* 3%  borders */
+    --cream:#F7F3EC;
+    --ink:  #2A1A0C;
+    --muted:#7A5838;
+    --rule: rgba(136,80,48,.16);
+    --rule2:rgba(136,80,48,.28);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--p1);
+    color: var(--ink);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TYPOGRAPHY ─────────────────────────── */
+  h1, h2, h3, h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: .01em;
+    color: var(--tx);
+    line-height: 1.1;
+  }
+  .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--a2);
+  }
+  .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── GLOBAL DIVIDER ─────────────────────── */
+  hr { border: none; border-top: 1px solid var(--rule); }
+
+  /* ── BADGE ──────────────────────────────── */
+  .badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 3px 9px 2px;
+    border-radius: 2px;
+  }
+  .badge-red   { background: var(--a1); color: #F7EDE4; }
+  .badge-amber { background: var(--a2); color: #F7EDE4; }
+  .badge-ghost { border: 1px solid var(--bd); color: var(--muted); background: transparent; }
+
+  /* ── SITE WRAPPER ───────────────────────── */
+  .site { max-width: 1100px; margin: 0 auto; }
+
+  /* ══════════════════════════════════════════
+     NAV
+  ══════════════════════════════════════════ */
+  .nav {
+    background: var(--p2);
+    border-bottom: 1.5px solid var(--rule2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--a1);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--a2); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .15s;
+  }
+  .nav-links a:hover { color: var(--a1); }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    padding: 8px 18px;
+    border-radius: 3px;
+    transition: opacity .15s;
+  }
+  .nav-btn:hover { opacity: .85; }
+  .nav-btn-ghost {
+    background: transparent;
+    color: var(--a2);
+    border: 1.5px solid var(--a2);
+  }
+  .nav-btn-solid {
+    background: var(--a1);
+    color: #F7EDE4;
+  }
+
+  /* ══════════════════════════════════════════
+     HERO
+  ══════════════════════════════════════════ */
+  .hero {
+    background: var(--p2);
+    border-bottom: 1.5px solid var(--rule2);
+    padding: 64px 32px 60px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 56px;
+    align-items: start;
+  }
+  .hero-eyebrow { margin-bottom: 14px; }
+  .hero-h1 {
+    font-size: clamp(40px, 5vw, 62px);
+    margin-bottom: 20px;
+  }
+  .hero-h1 em { color: var(--a1); font-style: normal; }
+  .hero-body {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 28px;
+    font-style: italic;
+    line-height: 1.8;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 24px;
+    border-radius: 3px;
+    border: none;
+    transition: opacity .15s, transform .1s;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--a1); color: #F7EDE4; }
+  .btn-primary:hover { opacity: .88; }
+  .btn-secondary { background: transparent; color: var(--a2); border: 1.5px solid var(--a2); }
+  .btn-secondary:hover { background: rgba(192,120,24,.07); }
+
+  /* Court card */
+  .court-card {
+    background: var(--cream);
+    border: 1.5px solid var(--rule2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .court-svg { display: block; width: 100%; }
+  .court-info { padding: 16px 18px; }
+  .court-info .label { margin-bottom: 4px; }
+  .court-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--tx);
+    margin-bottom: 2px;
+  }
+  .court-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+
+  /* ══════════════════════════════════════════
+     STATS STRIP
+  ══════════════════════════════════════════ */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1.5px solid var(--rule2);
+  }
+  .stat {
+    padding: 24px 28px;
+    border-right: 1px solid var(--rule);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--a1);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .stat-lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  /* ══════════════════════════════════════════
+     MAIN CONTENT GRID
+  ══════════════════════════════════════════ */
+  .content-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  }
+  .main-col {
+    padding: 32px;
+    border-right: 1px solid var(--rule);
+  }
+  .side-col {
+    padding: 32px;
+    background: var(--p2);
+  }
+
+  /* ── ARTICLE LIST ───────────────────────── */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-head h2 {
+    font-size: 13px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .see-all {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--a2);
+    text-decoration: none;
+  }
+  .see-all:hover { color: var(--a1); }
+
+  .article-list { display: flex; flex-direction: column; }
+  .article {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+    cursor: pointer;
+    transition: background .12s;
+  }
+  .article:last-child { border-bottom: none; }
+  .article:hover { background: rgba(180,24,24,.03); margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+  .art-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--t1);
+    min-width: 22px;
+    padding-top: 2px;
+  }
+  .art-body {}
+  .art-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--t2);
+    margin-bottom: 3px;
+  }
+  .art-title {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tx);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .art-meta {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ── FEATURED STORY ─────────────────────── */
+  .feature-card {
+    background: var(--tx);
+    border-radius: 5px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .feature-card .eyebrow { color: var(--t1); margin-bottom: 10px; }
+  .feature-card h3 {
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .feature-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+  .feature-card .btn-primary { font-size: 11px; padding: 9px 18px; }
+
+  /* ── SIDEBAR ────────────────────────────── */
+  .schedule-section { margin-bottom: 28px; }
+  .schedule-list {
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 0;
+  }
+  .game {
+    background: var(--cream);
+    padding: 11px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .game:last-child { border-bottom: none; }
+  .game-left {}
+  .game-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .game-opp {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tx);
+  }
+  .game-loc { font-size: 11px; color: var(--muted); font-family: 'Barlow', sans-serif; font-weight: 300; }
+  .game-result {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .win  { color: var(--a1); }
+  .loss { color: var(--muted); }
+  .upcoming { color: var(--a2); }
+
+  /* Quote */
+  .pullquote {
+    border-left: 3px solid var(--a1);
+    padding: 12px 16px;
+    background: var(--cream);
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 28px;
+  }
+  .pullquote blockquote {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--tx);
+    margin-bottom: 8px;
+  }
+  .pullquote cite {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  /* Roster widget */
+  .roster-list { display: flex; flex-direction: column; gap: 1px; }
+  .player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .player:last-child { border-bottom: none; }
+  .player-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--t1);
+    min-width: 28px;
+    text-align: center;
+  }
+  .player-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--p2);
+    border: 1px solid var(--rule2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .player-info {}
+  .player-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--tx);
+  }
+  .player-pos { font-size: 11px; color: var(--muted); font-family: 'Barlow', sans-serif; }
+  .player-pts {
+    margin-left: auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--a1);
+  }
+
+  /* ══════════════════════════════════════════
+     STRIPE SECTION
+  ══════════════════════════════════════════ */
+  .stripe {
+    background: var(--tx);
+    border-top: 1.5px solid var(--rule2);
+    border-bottom: 1.5px solid var(--rule2);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .stripe-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: .04em;
+  }
+  .stripe-text em { color: var(--t1); font-style: normal; }
+  .stripe .btn-primary { white-space: nowrap; }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
+  .footer {
+    background: var(--tx);
+    padding: 32px 32px 24px;
+    border-top: 2px solid var(--a1);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(136,80,48,.3);
+    margin-bottom: 20px;
+  }
+  .footer-logo-area {}
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--t1);
+    margin-bottom: 8px;
+  }
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .footer-col-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .footer-links a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: rgba(242,237,228,.55);
+    text-decoration: none;
+    transition: color .12s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-copy {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: rgba(136,80,48,.7);
+  }
+
+  /* ══════════════════════════════════════════
+     PALETTE REFERENCE PANEL
+  ══════════════════════════════════════════ */
+  .palette-panel {
+    background: var(--p2);
+    border-top: 1.5px solid var(--rule2);
+    padding: 28px 32px;
+  }
+  .palette-panel h2 {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+  }
+  .palette-row { display: flex; gap: 3px; margin-bottom: 12px; }
+  .swatch {
+    flex: var(--flex, 1);
+    height: 44px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+    cursor: default;
+    transition: flex .2s ease;
+  }
+  .swatch:hover { flex: calc(var(--flex, 1) * 2.5) !important; }
+  .sw-pct {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+  }
+  .sw-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    letter-spacing: .04em;
+    opacity: .7;
+    margin-top: 1px;
+  }
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .sw-card {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 0.5px solid var(--rule);
+  }
+  .sw-color { height: 28px; }
+  .sw-info { padding: 4px 6px; background: var(--cream); }
+  .sw-hex { font-family: 'Barlow Condensed', sans-serif; font-size: 9px; font-weight: 600; color: var(--tx); }
+  .sw-label { font-family: 'Barlow Condensed', sans-serif; font-size: 8px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">Hickory <span>Huskers</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Roster</a></li>
+    <li><a href="#">Schedule</a></li>
+    <li><a href="#">History</a></li>
+    <li><a href="#">Community</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-btn nav-btn-ghost">Sign in</button>
+    <button class="nav-btn nav-btn-solid">Get tickets</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow hero-eyebrow">1951–52 season — Hickory, Indiana</div>
+    <h1 class="hero-h1">Small town.<br><em>Big heart.</em><br>One shot.</h1>
+    <p class="hero-body">Every great team starts somewhere. Ours started on a cracked driveway hoop at dusk, with nothing but grit and a coach who believed in the long game.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary">Follow the team</button>
+      <button class="btn btn-secondary">Watch highlights</button>
+    </div>
+  </div>
+  <div class="court-card">
+    <svg class="court-svg" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+      <rect width="280" height="160" fill="#C07818"/>
+      <!-- floorboards -->
+      <line x1="0" y1="26" x2="280" y2="26" stroke="#A86010" stroke-width=".8"/>
+      <line x1="0" y1="53" x2="280" y2="53" stroke="#A86010" stroke-width=".8"/>
+      <line x1="0" y1="80" x2="280" y2="80" stroke="#A86010" stroke-width=".8"/>
+      <line x1="0" y1="107" x2="280" y2="107" stroke="#A86010" stroke-width=".8"/>
+      <line x1="0" y1="134" x2="280" y2="134" stroke="#A86010" stroke-width=".8"/>
+      <!-- court lines -->
+      <rect x="22" y="18" width="236" height="124" fill="none" stroke="#F2EDE4" stroke-width="1.8"/>
+      <line x1="140" y1="18" x2="140" y2="142" stroke="#F2EDE4" stroke-width="1.2"/>
+      <circle cx="140" cy="80" r="28" fill="none" stroke="#F2EDE4" stroke-width="1.5"/>
+      <circle cx="140" cy="80" r="3" fill="#F2EDE4"/>
+      <!-- paint left -->
+      <rect x="22" y="46" width="52" height="68" fill="rgba(180,24,24,.18)" stroke="#F2EDE4" stroke-width="1.2"/>
+      <circle cx="74" cy="80" r="18" fill="none" stroke="#F2EDE4" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <!-- paint right -->
+      <rect x="206" y="46" width="52" height="68" fill="rgba(180,24,24,.18)" stroke="#F2EDE4" stroke-width="1.2"/>
+      <circle cx="206" cy="80" r="18" fill="none" stroke="#F2EDE4" stroke-width="1.2" stroke-dasharray="4 3"/>
+      <!-- baskets -->
+      <line x1="22" y1="80" x2="38" y2="80" stroke="#B41818" stroke-width="2"/>
+      <circle cx="38" cy="80" r="5" fill="none" stroke="#F2EDE4" stroke-width="1.8"/>
+      <line x1="258" y1="80" x2="242" y2="80" stroke="#B41818" stroke-width="2"/>
+      <circle cx="242" cy="80" r="5" fill="none" stroke="#F2EDE4" stroke-width="1.8"/>
+      <!-- three point arcs -->
+      <path d="M22 36 Q22 18 40 18" fill="none" stroke="#F2EDE4" stroke-width="1" stroke-dasharray="3 3"/>
+      <path d="M22 124 Q22 142 40 142" fill="none" stroke="#F2EDE4" stroke-width="1" stroke-dasharray="3 3"/>
+      <path d="M258 36 Q258 18 240 18" fill="none" stroke="#F2EDE4" stroke-width="1" stroke-dasharray="3 3"/>
+      <path d="M258 124 Q258 142 240 142" fill="none" stroke="#F2EDE4" stroke-width="1" stroke-dasharray="3 3"/>
+    </svg>
+    <div class="court-info">
+      <div class="label">Home court</div>
+      <div class="court-title">Hickory gymnasium</div>
+      <div class="court-sub">Capacity 1,100 — sold out every home game</div>
+      <span class="badge badge-red">Regional finalists</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat"><div class="stat-num">18</div><div class="stat-lbl">Wins this season</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Losses</div></div>
+  <div class="stat"><div class="stat-num">62.4</div><div class="stat-lbl">Points per game</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">Players on roster</div></div>
+</div>
+
+<!-- STRIPE CTA -->
+<div class="stripe">
+  <div class="stripe-text">Regional championship — <em>Jan 18 · Neutral site</em></div>
+  <button class="btn btn-primary">Get your tickets</button>
+</div>
+
+<!-- CONTENT GRID -->
+<div class="content-wrap">
+  <main class="main-col">
+
+    <div class="feature-card">
+      <div class="eyebrow">Featured story</div>
+      <h3>How Coach Dale turned a broken team into believers</h3>
+      <p>When Norman Dale arrived in Hickory, no one gave him a season. Here's the inside story of how an outsider rebuilt a town's faith — one practice at a time.</p>
+      <button class="btn btn-primary">Read the feature</button>
+    </div>
+
+    <div class="section-head">
+      <h2>Latest from Hickory</h2>
+      <a href="#" class="see-all">All stories →</a>
+    </div>
+    <div class="article-list">
+      <div class="article">
+        <div class="art-num">01</div>
+        <div class="art-body">
+          <div class="art-tag">Game recap</div>
+          <div class="art-title">Huskers hold off South Bend in overtime thriller</div>
+          <div class="art-meta">Dec 2, 1951 &nbsp;·&nbsp; 4 min read</div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="art-num">02</div>
+        <div class="art-body">
+          <div class="art-tag">Profile</div>
+          <div class="art-title">Jimmy Chitwood and the art of the open shot</div>
+          <div class="art-meta">Dec 9, 1951 &nbsp;·&nbsp; 6 min read</div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="art-num">03</div>
+        <div class="art-body">
+          <div class="art-tag">Community</div>
+          <div class="art-title">The town that bet everything on six boys</div>
+          <div class="art-meta">Dec 18, 1951 &nbsp;·&nbsp; 5 min read</div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="art-num">04</div>
+        <div class="art-body">
+          <div class="art-tag">Training</div>
+          <div class="art-title">Forty-four pass before the shot — Dale's discipline explained</div>
+          <div class="art-meta">Dec 22, 1951 &nbsp;·&nbsp; 7 min read</div>
+        </div>
+      </div>
+      <div class="article">
+        <div class="art-num">05</div>
+        <div class="art-body">
+          <div class="art-tag">History</div>
+          <div class="art-title">Milan 1954 and the miracle that started it all</div>
+          <div class="art-meta">Dec 28, 1951 &nbsp;·&nbsp; 9 min read</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <aside class="side-col">
+
+    <div class="schedule-section">
+      <div class="section-head">
+        <h2>Schedule</h2>
+        <a href="#" class="see-all">Full schedule →</a>
+      </div>
+      <div class="schedule-list">
+        <div class="game">
+          <div class="game-left"><div class="game-date">Dec 14</div><div class="game-opp">vs. Linton</div><div class="game-loc">Away</div></div>
+          <div class="game-result win">W 54–48</div>
+        </div>
+        <div class="game">
+          <div class="game-left"><div class="game-date">Dec 21</div><div class="game-opp">vs. Jasper</div><div class="game-loc">Home</div></div>
+          <div class="game-result win">W 61–52</div>
+        </div>
+        <div class="game">
+          <div class="game-left"><div class="game-date">Dec 28</div><div class="game-opp">vs. Bloomington</div><div class="game-loc">Away</div></div>
+          <div class="game-result win">W 57–50</div>
+        </div>
+        <div class="game">
+          <div class="game-left"><div class="game-date">Jan 4</div><div class="game-opp">vs. Columbus</div><div class="game-loc">Home</div></div>
+          <div class="game-result upcoming">Upcoming</div>
+        </div>
+        <div class="game">
+          <div class="game-left"><div class="game-date">Jan 18</div><div class="game-opp">Regional finals</div><div class="game-loc">Neutral site</div></div>
+          <div class="game-result upcoming">Upcoming</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <blockquote>"Five players on the floor functioning as one single unit — team, team, team. No one more important than the other."</blockquote>
+      <cite>— Coach Norman Dale</cite>
+    </div>
+
+    <div class="section-head">
+      <h2>Roster</h2>
+      <a href="#" class="see-all">Full roster →</a>
+    </div>
+    <div class="roster-list">
+      <div class="player">
+        <div class="player-num">12</div>
+        <div class="player-avatar">JC</div>
+        <div class="player-info"><div class="player-name">Jimmy Chitwood</div><div class="player-pos">Guard</div></div>
+        <div class="player-pts">18.4 ppg</div>
+      </div>
+      <div class="player">
+        <div class="player-num">5</div>
+        <div class="player-avatar">MH</div>
+        <div class="player-info"><div class="player-name">Merle Webb</div><div class="player-pos">Forward</div></div>
+        <div class="player-pts">12.1 ppg</div>
+      </div>
+      <div class="player">
+        <div class="player-num">7</div>
+        <div class="player-avatar">BH</div>
+        <div class="player-info"><div class="player-name">Buddy Walker</div><div class="player-pos">Center</div></div>
+        <div class="player-pts">9.8 ppg</div>
+      </div>
+      <div class="player">
+        <div class="player-num">4</div>
+        <div class="player-avatar">EH</div>
+        <div class="player-info"><div class="player-name">Rade Butcher</div><div class="player-pos">Guard</div></div>
+        <div class="player-pts">7.2 ppg</div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- PALETTE REFERENCE -->
+<div class="palette-panel">
+  <h2>Shooter's Barn — colour system reference</h2>
+  <div class="palette-row" id="palrow"></div>
+  <div class="swatch-grid" id="swgrid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-logo-area">
+      <div class="footer-logo">Hickory Huskers</div>
+      <div class="footer-tagline">"Forget about the past. Every game starts at zero."</div>
+    </div>
+    <div>
+      <div class="footer-col-label">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#">Roster</a></li>
+        <li><a href="#">Schedule</a></li>
+        <li><a href="#">Game recaps</a></li>
+        <li><a href="#">History</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-label">Community</div>
+      <ul class="footer-links">
+        <li><a href="#">Booster club</a></li>
+        <li><a href="#">Tickets</a></li>
+        <li><a href="#">Merchandise</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">Hickory, Indiana · Est. 1951 · Shooter's Barn palette</div>
+    <div class="footer-copy">Lora · Barlow Condensed · Barlow</div>
+  </div>
+</footer>
+
+<script>
+const swatches = [
+  { hex:'#F2EDE4', label:'Primary 1',  pct:30 },
+  { hex:'#EDE4D8', label:'Primary 2',  pct:30 },
+  { hex:'#B41818', label:'Accent 1',   pct:8  },
+  { hex:'#C07818', label:'Accent 2',   pct:8  },
+  { hex:'#D4A860', label:'Tertiary 1', pct:4  },
+  { hex:'#C06050', label:'Tertiary 2', pct:4  },
+  { hex:'#1C1208', label:'Text',       pct:3  },
+  { hex:'#885030', label:'Borders',    pct:3  },
+];
+
+function lum(h){
+  const r=parseInt(h.slice(1,3),16)/255,g=parseInt(h.slice(3,5),16)/255,b=parseInt(h.slice(5,7),16)/255;
+  const f=c=>c<=.03928?c/12.92:Math.pow((c+.055)/1.055,2.4);
+  return .2126*f(r)+.7152*f(g)+.0722*f(b);
+}
+function tc(h){ return lum(h)>.35?'#1a1208':'#f5ede4'; }
+
+const row = document.getElementById('palrow');
+swatches.forEach(s=>{
+  const d = document.createElement('div');
+  d.className = 'swatch';
+  d.style.cssText = `background:${s.hex};--flex:${s.pct}`;
+  d.innerHTML = `<span class="sw-pct" style="color:${tc(s.hex)}">${s.pct}%</span><span class="sw-name" style="color:${tc(s.hex)}">${s.label}</span>`;
+  d.title = `${s.label}: ${s.hex}`;
+  d.addEventListener('click',()=>{ navigator.clipboard?.writeText(s.hex); d.style.outline='2px solid '+tc(s.hex); setTimeout(()=>d.style.outline='',700); });
+  row.appendChild(d);
+});
+
+const grid = document.getElementById('swgrid');
+swatches.forEach(s=>{
+  const d = document.createElement('div');
+  d.className = 'sw-card';
+  d.innerHTML = `<div class="sw-color" style="background:${s.hex}"></div><div class="sw-info"><div class="sw-hex">${s.hex}</div><div class="sw-label">${s.label} · ${s.pct}%</div></div>`;
+  grid.appendChild(d);
+});
+</script>
+</body>
+</html>
