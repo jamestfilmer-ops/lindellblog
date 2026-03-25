@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>'Tis but a Flesh Wound — An Blog by Isaac Lindell</title>
+<meta name="description" content="Short stories, think pieces, and poems by Isaac Lindell. Independent writing. No ads. No comments.">
+<meta name="author" content="Isaac Lindell">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="'Tis but a Flesh Wound">
+<meta property="og:description" content="An Blog by Isaac Lindell — Short Stories, Think Pieces, Poems.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://tisbutafleshwound.com">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"'Tis but a Flesh Wound","description":"Short stories, think pieces, and poems by Isaac Lindell","author":{"@type":"Person","name":"Isaac Lindell"},"inLanguage":"en"}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700&family=Josefin+Sans:wght@200;300;400&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ice: #EFF3F7;
+  --cold: #F8FAFB;
+  --navy: #0E1C2C;
+  --deep: #07111C;
+  --brass: #7A5E28;
+  --brass-light: #A87E30;
+  --brass-dim: #4A3A18;
+  --fog: #6A7A8A;
+  --rule: #D4DDE6;
+  --mid: #4A5C6A;
+  --cold-rule: rgba(14,28,44,0.08);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cold);
+  color: var(--navy);
+  font-family: 'Cardo', serif;
+  overflow-x: hidden;
+}
+
+/* ── TOP NAVY STRIP ── */
+.top-strip {
+  height: 4px;
+  background: var(--deep);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 1s cubic-bezier(0.25,0.46,0.45,0.94), transform 1s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ── MASTHEAD ── */
+.masthead {
+  padding: 40px 64px 0;
+  border-bottom: 1px solid var(--rule);
+  margin-top: 4px;
+}
+.mh-top {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-bottom: 20px; border-bottom: 1px solid var(--rule); margin-bottom: 16px;
+}
+.mh-left {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--fog); line-height: 1.9;
+}
+.mh-logo {
+  text-align: center; text-decoration: none; display: block;
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: clamp(36px, 6vw, 72px); font-weight: 300;
+  letter-spacing: 0.04em; color: var(--navy); line-height: 1;
+  position: absolute; left: 50%; transform: translateX(-50%);
+  white-space: nowrap;
+}
+.mh-logo-sub {
+  display: block; font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px; font-weight: 300; letter-spacing: 0.7em;
+  text-transform: uppercase; color: var(--brass); margin-top: 6px;
+  text-align: center; opacity: 0.8;
+}
+.mh-right {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--fog); text-align: right; line-height: 1.9;
+}
+.mh-nav-row {
+  display: flex; justify-content: center; align-items: center;
+  gap: 28px; list-style: none; padding-bottom: 16px;
+  position: relative;
+}
+.mh-nav-row a {
+  font-family: 'Josefin Sans', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--navy); text-decoration: none; transition: color 0.2s;
+}
+.mh-nav-row a:hover { color: var(--brass); }
+.mh-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--brass); opacity: 0.35; }
+
+/* ── HERO ── */
+.hero {
+  display: grid; grid-template-columns: 3fr 1px 2fr;
+  min-height: calc(100vh - 140px);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-left {
+  padding: 64px; display: flex; flex-direction: column; justify-content: space-between;
+}
+.hl-top {}
+.h-tag {
+  font-family: 'Josefin Sans', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.6em; text-transform: uppercase;
+  color: var(--brass); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.h-tag::before { content: ''; display: block; width: 16px; height: 1px; background: var(--brass); opacity: 0.7; }
+.hero-title {
+  font-family: 'Frank Ruhl Libre', serif; font-weight: 300;
+  font-size: clamp(34px, 4.5vw, 66px); line-height: 1.05;
+  color: var(--navy); margin-bottom: 28px;
+  animation: coldEmerge 1.2s cubic-bezier(0.25,0.46,0.45,0.94) both;
+}
+@keyframes coldEmerge {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-dek {
+  font-size: 17px; font-style: italic; font-weight: 400;
+  color: var(--mid); line-height: 1.75; max-width: 520px; margin-bottom: 40px;
+  animation: coldEmerge 1.2s 0.15s both;
+}
+.hl-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 28px; border-top: 1px solid var(--rule);
+  animation: coldEmerge 1.2s 0.3s both;
+}
+.read-link {
+  font-family: 'Josefin Sans', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--navy); text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
+  transition: gap 0.3s, color 0.3s;
+}
+.read-link:hover { gap: 20px; color: var(--brass); }
+.hl-meta {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--fog);
+}
+
+.vert-rule { background: var(--rule); }
+
+.hero-right {
+  display: flex; flex-direction: column; border-bottom: 1px solid var(--rule);
+}
+.hr-label {
+  padding: 20px 40px; border-bottom: 1px solid var(--rule);
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.55em; text-transform: uppercase; color: var(--fog);
+  display: flex; align-items: center; gap: 10px;
+}
+.hr-label::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--brass); opacity: 0.4; flex-shrink: 0; }
+.hr-item {
+  flex: 1; padding: 24px 40px;
+  border-bottom: 1px solid var(--rule); cursor: pointer;
+  transition: background 0.2s;
+}
+.hr-item:last-child { border-bottom: none; }
+.hr-item:hover { background: var(--ice); }
+.hr-item:hover .hri-title { color: var(--brass); }
+.hri-type {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--brass); opacity: 0.7; margin-bottom: 7px;
+}
+.hri-title {
+  font-family: 'Cardo', serif; font-style: italic;
+  font-size: 18px; color: var(--navy); line-height: 1.25;
+  transition: color 0.2s; margin-bottom: 5px;
+}
+.hri-meta {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.15em; color: var(--fog);
+}
+
+/* ── NAVY CARD BAND ── */
+.card-band {
+  background: var(--navy); padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.cb-card {
+  padding: 48px 44px; border-right: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer; transition: background 0.25s;
+}
+.cb-card:last-child { border-right: none; }
+.cb-card:hover { background: rgba(255,255,255,0.02); }
+.cb-card:hover .cbc-title { color: rgba(239,243,247,0.9); }
+.cbc-type {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--brass-light); opacity: 0.55; margin-bottom: 12px;
+}
+.cbc-title {
+  font-family: 'Frank Ruhl Libre', serif; font-weight: 300;
+  font-size: 22px; color: rgba(239,243,247,0.6);
+  line-height: 1.2; transition: color 0.25s; margin-bottom: 10px;
+}
+.cbc-dek {
+  font-family: 'Cardo', serif; font-style: italic;
+  font-size: 13px; color: rgba(255,255,255,0.25); line-height: 1.65; margin-bottom: 14px;
+}
+.cbc-read {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.18);
+}
+
+/* POEM card in navy — distinct */
+.cb-card.poem-card .cbc-title { font-family: 'Cardo', serif; font-style: italic; font-size: 24px; }
+
+/* ── STATEMENT ── */
+.statement {
+  background: var(--ice); padding: 80px 100px;
+  text-align: center;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stmt-ornament {
+  display: flex; justify-content: center; align-items: center;
+  gap: 10px; margin-bottom: 32px;
+}
+.stmt-dash { width: 40px; height: 1px; background: var(--brass); opacity: 0.4; }
+.stmt-diamond { width: 4px; height: 4px; background: var(--brass); transform: rotate(45deg); opacity: 0.5; }
+.stmt-text {
+  font-family: 'Cardo', serif; font-style: italic;
+  font-size: clamp(22px, 3vw, 38px); color: var(--navy);
+  line-height: 1.45; max-width: 660px; margin: 0 auto 20px;
+}
+.stmt-attr {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase; color: var(--brass); opacity: 0.6;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep); padding: 36px 64px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.f-logo {
+  font-family: 'Frank Ruhl Libre', serif; font-size: 16px; font-weight: 300;
+  color: rgba(239,243,247,0.45); letter-spacing: 0.06em;
+}
+.f-links { display: flex; gap: 24px; list-style: none; }
+.f-links a {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s;
+}
+.f-links a:hover { color: var(--brass-light); }
+.f-copy {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.2em; color: rgba(255,255,255,0.18);
+}
+
+/* ── ARTICLE PAGES ── */
+.article-page { display: none; }
+.article-page.active { display: block; }
+.home-page.hidden { display: none; }
+
+.article-nav {
+  position: fixed; top: 4px; left: 0; right: 0; z-index: 200;
+  height: 56px; background: rgba(248,250,251,0.97); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; padding: 0 64px;
+}
+.back-btn {
+  font-family: 'Josefin Sans', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--fog); cursor: pointer; background: none; border: none;
+  display: flex; align-items: center; gap: 10px; transition: color 0.2s; padding: 0;
+  margin-right: auto;
+}
+.back-btn::before { content: '←'; font-size: 12px; }
+.back-btn:hover { color: var(--brass); }
+.an-logo {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-family: 'Frank Ruhl Libre', serif; font-size: 16px; font-weight: 300;
+  letter-spacing: 0.06em; color: var(--navy); text-decoration: none; cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ARTICLE HERO */
+.art-hero {
+  margin-top: 60px; background: var(--cold);
+  padding: 80px 64px 64px;
+  border-bottom: 3px solid var(--navy);
+  position: relative;
+}
+.art-hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--brass), transparent);
+  opacity: 0.4;
+}
+.art-type-tag {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.6em; text-transform: uppercase;
+  color: var(--brass); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 10px;
+}
+.art-type-tag::before { content: ''; display: block; width: 14px; height: 1px; background: var(--brass); opacity: 0.6; }
+.art-title {
+  font-family: 'Frank Ruhl Libre', serif; font-weight: 300;
+  font-size: clamp(30px, 4vw, 60px); line-height: 1.06;
+  color: var(--navy); max-width: 740px; margin-bottom: 24px;
+  animation: coldEmerge 1s both;
+}
+.art-dek {
+  font-family: 'Cardo', serif; font-style: italic;
+  font-size: 16px; color: var(--mid); line-height: 1.75;
+  max-width: 580px; margin-bottom: 32px;
+}
+.art-meta-row {
+  display: flex; align-items: center; gap: 16px;
+  padding-top: 24px; border-top: 1px solid var(--rule);
+}
+.art-meta-item {
+  font-family: 'Josefin Sans', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--fog);
+}
+.art-meta-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--rule); }
+
+/* BODY */
+.art-body { max-width: 660px; margin: 0 auto; padding: 72px 48px; }
+.art-body-content { font-size: 18px; line-height: 1.9; color: #0E1C2C; font-weight: 400; }
+.art-body-content p { margin-bottom: 1.6em; }
+.art-body-content p:first-child::first-letter {
+  font-family: 'Frank Ruhl Libre', serif; font-size: 72px; font-weight: 700;
+  float: left; line-height: 0.8; margin: 8px 10px 0 0; color: var(--brass);
+}
+.art-pull-quote {
+  margin: 56px -64px; padding: 40px 64px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  background: var(--ice);
+}
+.apq-text {
+  font-family: 'Cardo', serif; font-style: italic;
+  font-size: 23px; color: var(--navy); line-height: 1.45; text-align: center;
+}
+.apq-brass { color: var(--brass); }
+
+/* POEM page */
+.poem-hero {
+  margin-top: 60px; background: var(--ice);
+  padding: 80px 64px 60px; text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+.poem-hero .art-type-tag { justify-content: center; }
+.poem-hero .art-type-tag::before { display: none; }
+.poem-hero .art-title { margin: 0 auto 20px; font-family: 'Cardo', serif; font-style: italic; }
+.poem-hero .art-meta-row { justify-content: center; }
+.poem-body {
+  max-width: 500px; margin: 0 auto;
+  padding: 68px 40px; text-align: center;
+}
+.poem-epigraph {
+  font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 200;
+  letter-spacing: 0.2em; font-style: italic; color: var(--fog);
+  margin-bottom: 52px; padding-bottom: 18px; border-bottom: 1px solid var(--rule);
+}
+.poem-stanza { margin-bottom: 40px; }
+.poem-line {
+  font-family: 'Cardo', serif; font-size: 21px; font-style: italic;
+  line-height: 1.7; color: var(--navy); display: block;
+}
+.poem-line.brass { color: var(--brass); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .masthead { padding: 24px 20px 0; }
+  .mh-top { position: relative; padding-bottom: 80px; }
+  .mh-logo { position: relative; left: 0; transform: none; display: block; margin: 16px 0 8px; font-size: clamp(28px,8vw,48px); }
+  .mh-left, .mh-right { display: none; }
+  .mh-nav-row { gap: 16px; flex-wrap: wrap; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 40px 20px; }
+  .vert-rule { display: none; }
+  .hero-right { display: none; }
+  .card-band { grid-template-columns: 1fr; }
+  .cb-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .statement { padding: 56px 20px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 20px; }
+  .f-links { display: none; }
+  .art-hero, .poem-hero { padding: 80px 20px 48px; }
+  .art-title { font-size: clamp(26px, 7vw, 44px); }
+  .art-body, .poem-body { padding: 48px 20px; }
+  .art-pull-quote { margin: 40px -20px; padding: 28px 20px; }
+  .article-nav { padding: 0 20px; }
+}
+
+.theme-badge {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--brass); color: var(--cold);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 7px 12px; z-index: 9998; pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div class="top-strip"></div>
+<div class="theme-badge">J — Polar Esquire</div>
+
+<!-- HOME PAGE -->
+<div class="home-page" id="homePage">
+
+<header class="masthead">
+  <div class="mh-top" style="position:relative;padding-bottom:0;">
+    <div class="mh-left">Independent · Est. 2025<br>No Ads · No Comments</div>
+    <a href="#" class="mh-logo" onclick="showHome(event)">
+      'Tis but a Flesh Wound
+      <span class="mh-logo-sub">An Blog by Isaac Lindell</span>
+    </a>
+    <div class="mh-right">Short Stories<br>Think Pieces · Poems</div>
+  </div>
+  <ul class="mh-nav-row">
+    <li><a href="#">Short Stories</a></li>
+    <li><div class="mh-dot"></div></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><div class="mh-dot"></div></li>
+    <li><a href="#">Poems</a></li>
+    <li><div class="mh-dot"></div></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hl-top">
+      <div class="h-tag">Featured Essay</div>
+      <h1 class="hero-title">The Geography of Everything You Can't Say</h1>
+      <p class="hero-dek">There are ideas that have no name yet. They live in the white space of the map — between what is known and what can be said.</p>
+    </div>
+    <div class="hl-bottom">
+      <a href="#" class="read-link" onclick="showArticle(event, 'think')">Read the Piece →</a>
+      <span class="hl-meta">Think Pieces · 13 min</span>
+    </div>
+  </div>
+  <div class="vert-rule"></div>
+  <div class="hero-right">
+    <div class="hr-label">Also in this issue</div>
+    <div class="hr-item reveal" onclick="showArticle(event, 'story')">
+      <div class="hri-type">Short Stories</div>
+      <div class="hri-title">The Lighthouse Keeper's Register</div>
+      <div class="hri-meta">7 min read</div>
+    </div>
+    <div class="hr-item reveal reveal-delay-1" onclick="showArticle(event, 'poem')">
+      <div class="hri-type">Poems</div>
+      <div class="hri-title">Coordinates</div>
+      <div class="hri-meta">3 min read</div>
+    </div>
+    <div class="hr-item reveal reveal-delay-2" onclick="showArticle(event, 'think')">
+      <div class="hri-type">Think Pieces</div>
+      <div class="hri-title">In Praise of Not Arriving</div>
+      <div class="hri-meta">9 min read</div>
+    </div>
+    <div class="hr-item reveal reveal-delay-3">
+      <div class="hri-type">Short Stories</div>
+      <div class="hri-title">The Correspondent</div>
+      <div class="hri-meta">6 min read</div>
+    </div>
+  </div>
+</section>
+
+<div class="card-band">
+  <div class="cb-card reveal" onclick="showArticle(event, 'think')">
+    <div class="cbc-type">Think Pieces</div>
+    <div class="cbc-title">The Case for the Slow Conclusion</div>
+    <div class="cbc-dek">What you lose when you decide too quickly. On keeping the question open.</div>
+    <div class="cbc-read">9 min read</div>
+  </div>
+  <div class="cb-card reveal reveal-delay-1" onclick="showArticle(event, 'story')">
+    <div class="cbc-type">Short Stories</div>
+    <div class="cbc-title">The Cartographer's Mistake</div>
+    <div class="cbc-dek">He mapped the coastline twice. The second version was wrong. It was also more beautiful.</div>
+    <div class="cbc-read">5 min read</div>
+  </div>
+  <div class="cb-card poem-card reveal reveal-delay-2" onclick="showArticle(event, 'poem')">
+    <div class="cbc-type">Poems</div>
+    <div class="cbc-title">Equinox</div>
+    <div class="cbc-dek">The day that belongs to no season. The moment the year changes its mind.</div>
+    <div class="cbc-read">2 min read</div>
+  </div>
+</div>
+
+<div class="statement reveal">
+  <div class="stmt-ornament">
+    <div class="stmt-dash"></div>
+    <div class="stmt-diamond"></div>
+    <div class="stmt-dash"></div>
+  </div>
+  <p class="stmt-text">"The interesting country is always the one that isn't on the map yet."</p>
+  <div class="stmt-attr">'Tis but a Flesh Wound · Isaac Lindell · No Ads · No Comments</div>
+</div>
+
+<footer>
+  <div class="f-logo">'Tis but a Flesh Wound</div>
+  <ul class="f-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+  <div class="f-copy">Isaac Lindell · Independent · Ad-free · Est. 2025</div>
+</footer>
+</div>
+
+<!-- THINK PIECE PAGE -->
+<div class="article-page" id="thinkPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <a href="#" class="an-logo" onclick="showHome(event)">'Tis but a Flesh Wound</a>
+  <span style="font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:0.35em;text-transform:uppercase;color:var(--fog)">Think Pieces</span>
+</nav>
+<div class="art-hero">
+  <div class="art-type-tag">Think Pieces</div>
+  <h1 class="art-title">The Geography of Everything You Can't Say</h1>
+  <p class="art-dek">There are ideas that have no name yet. They live in the white space between what is known and what can be said.</p>
+  <div class="art-meta-row">
+    <span class="art-meta-item">Isaac Lindell</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">13 min read</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">Think Pieces</span>
+  </div>
+</div>
+<div class="art-body">
+  <div class="art-body-content">
+    <p>Before a thing has a name, it exists in a kind of limbo — present, detectable, exerting force on the world around it, but impossible to hand to someone else. You can gesture at it. You can describe its outline the way you might describe a shape in a dark room: "It's about yea high, roughly this shape, cold on one side." But the gestalt of the thing, its essence, remains untransferable until the name arrives.</p>
+    <p>I have been living with one of these unnamed things for some time now. It is something to do with the specific quality of awareness that comes in the space between two thoughts — not the thoughts themselves, but the gap. The pause. The moment the mind, having finished one thing, has not yet started the next. It feels important. I cannot tell you why.</p>
+    <div class="art-pull-quote">
+      <div class="apq-text">The map is not the territory. But without the map, <span class="apq-brass">the territory has no edges.</span></div>
+    </div>
+    <p>Language shapes thought. This is not a new observation. What is less often noted is the inverse: the absence of language shapes thought too. The thing you cannot name, you cannot fully think. You circle it. You approach from different angles. Sometimes you triangulate — if it's not quite this, and not quite that, then it must be somewhere in the middle of this triangle. Sometimes that's enough. Sometimes it isn't.</p>
+    <p>The best writing, I think, is the kind that names the previously unnamed — not by inventing a word, usually, but by describing the territory so precisely that the reader recognises the map as their own. "Yes," they think, "I have been there. I didn't know anyone else had." That recognition, that relief — that is what the best sentences do. They hand you a map for somewhere you already live.</p>
+  </div>
+</div>
+<div class="statement" style="padding:60px 80px;">
+  <p class="stmt-text" style="font-size:clamp(18px,2vw,26px);">"The best sentences hand you a map for somewhere you already live."</p>
+  <div class="stmt-attr">More Think Pieces →</div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links"><li><a href="#">Short Stories</a></li><li><a href="#">Think Pieces</a></li><li><a href="#">Poems</a></li></ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<!-- STORY PAGE -->
+<div class="article-page" id="storyPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <a href="#" class="an-logo" onclick="showHome(event)">'Tis but a Flesh Wound</a>
+  <span style="font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:0.35em;text-transform:uppercase;color:var(--fog)">Short Stories</span>
+</nav>
+<div class="art-hero">
+  <div class="art-type-tag">Short Stories</div>
+  <h1 class="art-title">The Lighthouse Keeper's Register</h1>
+  <p class="art-dek">He logged every ship. One night, he logged one that wasn't there.</p>
+  <div class="art-meta-row">
+    <span class="art-meta-item">Isaac Lindell</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">7 min read</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">Short Stories</span>
+  </div>
+</div>
+<div class="art-body">
+  <div class="art-body-content">
+    <p>The register was a large cloth-bound ledger that had been maintained, with occasional gaps, since 1887. Henrik had inherited it from his predecessor as one inherits furniture — not by choice, but by occupancy. He added to it each watch, recording in a hand slightly smaller than the one before him: the time, the vessel name where visible, the direction, the sea state, the sky.</p>
+    <p>On the night of the fourteenth of February, in the third winter of his tenure, he wrote: 22:14 — vessel, no visible name — bearing NNE — heading SW — sea state moderate — sky clear — note: lights in configuration I do not recognise. Have checked charts. Nothing scheduled. No response to signal.</p>
+    <p>In the morning he reviewed the entry. He considered crossing it out. He did not. Whatever he had seen was real enough that his hand had recorded it. He had learned, over three winters, to trust his hand.</p>
+    <p>He mentioned it once, to a colleague who visited in spring. The colleague made the expression people make when they are deciding whether to take something seriously. He took it seriously, for about thirty seconds, then moved on to the difficulty of sourcing decent coffee on the peninsula.</p>
+    <p>The register was eventually donated to a maritime museum. An archivist, cataloguing it sixty years later, paused at the February entry. She read it three times. She moved on. But she remembered it. She mentioned it once, years later, at a dinner party. Everyone made the expression.</p>
+  </div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links"><li><a href="#">Short Stories</a></li><li><a href="#">Think Pieces</a></li><li><a href="#">Poems</a></li></ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<!-- POEM PAGE -->
+<div class="article-page" id="poemPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <a href="#" class="an-logo" onclick="showHome(event)">'Tis but a Flesh Wound</a>
+  <span style="font-family:'Josefin Sans',sans-serif;font-size:7px;letter-spacing:0.35em;text-transform:uppercase;color:var(--fog)">Poems</span>
+</nav>
+<div class="poem-hero">
+  <div class="art-type-tag">Poems</div>
+  <h1 class="art-title" style="font-size:clamp(30px,4vw,52px);">Coordinates</h1>
+  <div class="art-meta-row">
+    <span class="art-meta-item" style="color:var(--mid)">Isaac Lindell</span>
+    <div class="art-meta-dot" style="background:var(--rule)"></div>
+    <span class="art-meta-item" style="color:var(--mid)">3 min read</span>
+  </div>
+</div>
+<div class="poem-body">
+  <div class="poem-epigraph">Found in the margin of an old atlas.</div>
+  <div class="poem-stanza">
+    <span class="poem-line">You can locate anything</span>
+    <span class="poem-line">if you know two numbers.</span>
+    <span class="poem-line brass">What you cannot locate</span>
+    <span class="poem-line">is why you went there.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">The map is patient.</span>
+    <span class="poem-line">It has been here longer</span>
+    <span class="poem-line">than any of the places</span>
+    <span class="poem-line">it claims to contain.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">I put my finger here.</span>
+    <span class="poem-line">This is where I am.</span>
+    <span class="poem-line brass">The map does not care.</span>
+    <span class="poem-line">That's what I like about it.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">North is always north.</span>
+    <span class="poem-line">The rest is opinion.</span>
+  </div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links"><li><a href="#">Short Stories</a></li><li><a href="#">Think Pieces</a></li><li><a href="#">Poems</a></li></ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function showArticle(e, type) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.add('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  const map = { think: 'thinkPage', story: 'storyPage', poem: 'poemPage' };
+  document.getElementById(map[type]).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showHome(e) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.remove('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

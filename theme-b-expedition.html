@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Footnote — Theme B: Expedition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --canvas: #EEF0EC;
+    --navy: #1E2E3D;
+    --slate: #3A5068;
+    --brass: #8B6A3A;
+    --fog: #8A9AA8;
+    --border: #CDD4D0;
+    --ink: #1A2530;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: 'Spectral', serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 68px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+  }
+  .nav-logo {
+    font-family: 'Cardo', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--canvas);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-logo sup {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    font-style: normal;
+    letter-spacing: 0.2em;
+    color: var(--brass);
+    vertical-align: super;
+    margin-left: 4px;
+  }
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--fog);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--canvas); }
+  .nav-coord {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--brass);
+  }
+
+  /* HERO — MAP GRID STYLE */
+  .hero {
+    padding-top: 68px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 56px 1fr 400px;
+    position: relative;
+  }
+  .hero-rule-left {
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .hero-rule-left span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--fog);
+    transform: rotate(180deg);
+  }
+  .hero-main {
+    padding: 80px 64px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 40px; left: 40px;
+    font-family: 'Cardo', serif;
+    font-size: 180px;
+    font-style: italic;
+    color: rgba(30,46,61,0.04);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .hero-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .hero-title {
+    font-family: 'Cardo', serif;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    color: var(--navy);
+    margin-bottom: 28px;
+    animation: riseUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  @keyframes riseUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-excerpt {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--slate);
+    line-height: 1.75;
+    max-width: 540px;
+    margin-bottom: 36px;
+    animation: riseUp 1.4s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  .hero-read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid var(--brass);
+    padding-bottom: 4px;
+    width: fit-content;
+    transition: gap 0.3s;
+  }
+  .hero-read-btn:hover { gap: 22px; }
+
+  /* SIDEBAR */
+  .hero-sidebar {
+    padding: 80px 40px 64px;
+    background: #E8ECEC;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .sidebar-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: padding-left 0.25s;
+  }
+  .sidebar-item:hover { padding-left: 8px; }
+  .si-type {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 6px;
+  }
+  .si-title {
+    font-family: 'Cardo', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  .si-meta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--fog);
+  }
+
+  /* EXPEDITION LOG SECTION */
+  .section-wrap {
+    padding: 80px 56px;
+  }
+  .section-title-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .section-title-row h2 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+  .section-title-row hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .section-title-row .section-count {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fog);
+  }
+
+  /* LOG ENTRIES */
+  .log-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  .log-entry {
+    border-top: 2px solid var(--navy);
+    padding-top: 24px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  .log-entry:hover { border-color: var(--brass); }
+  .log-entry:hover .le-title { color: var(--brass); }
+  .le-date {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fog);
+    margin-bottom: 12px;
+  }
+  .le-cat {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 8px;
+  }
+  .le-title {
+    font-family: 'Cardo', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    transition: color 0.25s;
+  }
+  .le-excerpt {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--slate);
+    line-height: 1.7;
+  }
+
+  /* FULL-WIDTH QUOTE */
+  .quote-band {
+    background: var(--navy);
+    padding: 80px 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-band::before {
+    content: '❝';
+    position: absolute;
+    top: -20px;
+    left: 60px;
+    font-size: 200px;
+    color: rgba(255,255,255,0.03);
+    font-family: 'Cardo', serif;
+  }
+  .quote-text {
+    font-family: 'Cardo', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-style: italic;
+    color: rgba(238,240,236,0.85);
+    line-height: 1.5;
+    max-width: 720px;
+    margin: 0 auto 24px;
+  }
+  .quote-attr {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #E0E4E0;
+    padding: 48px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .f-logo {
+    font-family: 'Cardo', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--navy);
+  }
+  .f-nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .f-nav a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fog);
+    text-decoration: none;
+  }
+  .f-copy {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fog);
+  }
+
+  .theme-label {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--brass);
+    color: var(--canvas);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    z-index: 200;
+  }
+</style>
+</head>
+<body>
+<div class="theme-label">Theme B — Expedition</div>
+
+<nav>
+  <a href="#" class="nav-logo">The Footnote<sup>journal</sup></a>
+  <ul class="nav-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <span class="nav-coord">78°N · 15°E</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-rule-left">
+    <span>Dispatch No. 41</span>
+  </div>
+  <div class="hero-main">
+    <div class="hero-bg-text">Journal</div>
+    <div class="hero-tag">Think Pieces</div>
+    <h1 class="hero-title">On the Virtue of<br>Going Nowhere<br>in Particular</h1>
+    <p class="hero-excerpt">The explorer who stopped exploring has something the young ones don't — the knowledge that the territory doesn't change when the map does. A dispatch from the still places.</p>
+    <a href="#" class="hero-read-btn">Read the piece →</a>
+  </div>
+  <aside class="hero-sidebar">
+    <div class="sidebar-label">From the Archive</div>
+    <div class="sidebar-item">
+      <div class="si-type">Short Stories</div>
+      <div class="si-title">The Harbour at the End of the Season</div>
+      <div class="si-meta">8 min read</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="si-type">Poems</div>
+      <div class="si-title">Latitude</div>
+      <div class="si-meta">3 min read</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="si-type">Think Pieces</div>
+      <div class="si-title">What Maps Leave Out</div>
+      <div class="si-meta">11 min read</div>
+    </div>
+    <div class="sidebar-item">
+      <div class="si-type">Short Stories</div>
+      <div class="si-title">Ice, the Long Kind</div>
+      <div class="si-meta">6 min read</div>
+    </div>
+  </aside>
+</section>
+
+<div class="section-wrap">
+  <div class="section-title-row">
+    <h2>Recent Entries</h2>
+    <hr>
+    <span class="section-count">41 dispatches</span>
+  </div>
+  <div class="log-grid">
+    <div class="log-entry">
+      <div class="le-date">March 2026</div>
+      <div class="le-cat">Think Pieces</div>
+      <div class="le-title">The Long Argument I Never Finished</div>
+      <div class="le-excerpt">Some conversations deserve to remain open. On the virtue of the unresolved position.</div>
+    </div>
+    <div class="log-entry">
+      <div class="le-date">February 2026</div>
+      <div class="le-cat">Short Stories</div>
+      <div class="le-title">The Postmaster of Tromsø</div>
+      <div class="le-excerpt">He'd received letters for thirty years from someone who never existed. He replied to all of them.</div>
+    </div>
+    <div class="log-entry">
+      <div class="le-date">February 2026</div>
+      <div class="le-cat">Poems</div>
+      <div class="le-title">The Light in February</div>
+      <div class="le-excerpt">Longer now. I notice it every year and pretend it's for the first time.</div>
+    </div>
+  </div>
+</div>
+
+<div class="quote-band">
+  <p class="quote-text">"The best writing is a long way from home — even when the desk is familiar."</p>
+  <div class="quote-attr">The Footnote · Independent Journal · No Comments</div>
+</div>
+
+<footer>
+  <div class="f-logo">The Footnote</div>
+  <ul class="f-nav">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <div class="f-copy">Independent · Ad-free · No Comments</div>
+</footer>
+</body>
+</html>

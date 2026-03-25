@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Footnote — Theme A: Maranello</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EF;
+    --black: #0D0D0D;
+    --red: #CC0000;
+    --mid: #888;
+    --border: #E0DDD8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-stripe {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--red);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--black);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-issue {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-left {
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 64px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInLeft 1.2s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .hero-left::before {
+    content: 'I';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 400px;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(204,0,0,0.06);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-category {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    font-style: italic;
+    color: #F7F4EF;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero-excerpt {
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 40px;
+  }
+  .hero-byline {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero-byline-line {
+    width: 32px;
+    height: 1px;
+    background: var(--red);
+  }
+  .hero-byline-text {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px;
+    border-left: 1px solid var(--border);
+    animation: fadeInRight 1.4s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .hero-secondary-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .secondary-article {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .secondary-article:hover { padding-left: 12px; }
+  .secondary-article:hover .sa-title { color: var(--red); }
+  .sa-cat {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+  .sa-title {
+    font-size: 22px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.2;
+    transition: color 0.25s;
+    margin-bottom: 6px;
+  }
+  .sa-meta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+  }
+
+  /* RED DIVIDER */
+  .red-rule {
+    height: 3px;
+    background: var(--red);
+    margin: 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 48px 64px 32px;
+  }
+  .section-header h2 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+  .section-header a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+  }
+
+  /* GRID */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 0 64px;
+  }
+  .article-card {
+    background: var(--cream);
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: background 0.3s;
+    animation: fadeUp 0.8s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  .article-card:nth-child(1) { animation-delay: 0.1s; }
+  .article-card:nth-child(2) { animation-delay: 0.2s; }
+  .article-card:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .article-card:hover { background: #F0EDE6; }
+  .article-card:hover .ac-title { color: var(--red); }
+  .ac-num {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--border);
+    margin-bottom: 20px;
+  }
+  .ac-cat {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .ac-title {
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 14px;
+    transition: color 0.25s;
+  }
+  .ac-excerpt {
+    font-size: 14px;
+    font-weight: 300;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .ac-byline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* MASTHEAD BAND */
+  .masthead-band {
+    margin: 64px 0 0;
+    background: var(--black);
+    padding: 48px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .masthead-band-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    color: #555;
+    text-transform: uppercase;
+  }
+  .masthead-band-quote {
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: #AAA;
+    max-width: 500px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .masthead-band-quote em { color: var(--red); font-style: normal; }
+  .masthead-band-issue {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: #444;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 64px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 64px;
+  }
+  footer .f-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--black);
+  }
+  footer .f-logo span { color: var(--red); }
+  footer .f-copy {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--mid);
+  }
+
+  /* THEME LABEL */
+  .theme-label {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--red);
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    z-index: 200;
+  }
+</style>
+</head>
+<body>
+
+<div class="theme-label">Theme A — Maranello</div>
+
+<nav>
+  <div class="nav-stripe"></div>
+  <a href="#" class="nav-logo">THE <span>FOOT</span>NOTE</a>
+  <ul class="nav-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <span class="nav-issue">Est. MMXXV</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-category">Think Pieces</span>
+    <h1 class="hero-title">Everything I Know About Failure I Learned at Speed</h1>
+    <p class="hero-excerpt">A meditation on what the racetrack teaches that the classroom never could. On pressure, precision, and the strange mercy of the unforgiving.</p>
+    <div class="hero-byline">
+      <div class="hero-byline-line"></div>
+      <span class="hero-byline-text">12 min read · Think Pieces</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-secondary-label">Also in this issue</div>
+    <div class="secondary-article">
+      <div class="sa-cat">Short Stories</div>
+      <div class="sa-title">The Man Who Collected Silences</div>
+      <div class="sa-meta">7 min read</div>
+    </div>
+    <div class="secondary-article">
+      <div class="sa-cat">Poems</div>
+      <div class="sa-title">Ode to the Last Train North</div>
+      <div class="sa-meta">3 min read</div>
+    </div>
+    <div class="secondary-article">
+      <div class="sa-cat">Think Pieces</div>
+      <div class="sa-title">In Defence of Not Having an Opinion</div>
+      <div class="sa-meta">9 min read</div>
+    </div>
+    <div class="secondary-article">
+      <div class="sa-cat">Short Stories</div>
+      <div class="sa-title">Tuesday, Probably</div>
+      <div class="sa-meta">5 min read</div>
+    </div>
+  </div>
+</section>
+
+<div class="red-rule"></div>
+
+<div class="section-header">
+  <h2>Recent Work</h2>
+  <a href="#">View Archive →</a>
+</div>
+
+<div class="articles-grid">
+  <div class="article-card">
+    <div class="ac-num">001</div>
+    <div class="ac-cat">Think Pieces</div>
+    <div class="ac-title">The Case for Knowing Nothing</div>
+    <div class="ac-excerpt">Why certainty is the enemy of insight, and what a lifetime of being wrong has given me.</div>
+    <div class="ac-byline">8 min read</div>
+  </div>
+  <div class="article-card">
+    <div class="ac-num">002</div>
+    <div class="ac-cat">Short Stories</div>
+    <div class="ac-title">A Room with Two Windows</div>
+    <div class="ac-excerpt">She watched the street for forty years. She saw everything. She told no one.</div>
+    <div class="ac-byline">6 min read</div>
+  </div>
+  <div class="article-card">
+    <div class="ac-num">003</div>
+    <div class="ac-cat">Poems</div>
+    <div class="ac-title">Self-Portrait as a Tuesday</div>
+    <div class="ac-excerpt">Unremarkable by design. Essential by absence. The day the week forgets to name.</div>
+    <div class="ac-byline">2 min read</div>
+  </div>
+</div>
+
+<div class="masthead-band">
+  <div class="masthead-band-title">The Footnote</div>
+  <div class="masthead-band-quote">"The best arguments live in the <em>margin</em>. The best stories live in the pause."</div>
+  <div class="masthead-band-issue">Independent · No Ads · No Comments</div>
+</div>
+
+<footer>
+  <div class="f-logo">THE <span>FOOT</span>NOTE</div>
+  <div class="f-copy">Short Stories · Think Pieces · Poems · No Comments · No Ads</div>
+</footer>
+
+</body>
+</html>

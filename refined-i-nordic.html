@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>'Tis but a Flesh Wound — An Blog by Isaac Lindell</title>
+<meta name="description" content="Short stories, think pieces, and poems by Isaac Lindell. Independent writing. No ads. No comments.">
+<meta name="author" content="Isaac Lindell">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="'Tis but a Flesh Wound">
+<meta property="og:description" content="An Blog by Isaac Lindell — Short Stories, Think Pieces, Poems.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://tisbutafleshwound.com">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"'Tis but a Flesh Wound","description":"Short stories, think pieces, and poems by Isaac Lindell","author":{"@type":"Person","name":"Isaac Lindell"},"inLanguage":"en"}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bone: #F4F4EF;
+  --white: #FAFAFA;
+  --char: #1C1C1A;
+  --mid: #6A6A66;
+  --light: #BBBBB6;
+  --sage: #607868;
+  --sage-dim: #9AB0A0;
+  --rule: #E2E2DC;
+  --warm: #EAEAE4;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--char);
+  font-family: 'Spectral', serif;
+  overflow-x: hidden;
+}
+
+/* ── SIDE RULE ── */
+.side-rule {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--rule); z-index: 50;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 54px; background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center;
+  padding: 0 72px 0 80px; gap: 0;
+}
+.nav-logo { text-decoration: none; margin-right: auto; display: flex; flex-direction: column; gap: 1px; }
+.nav-logo-main {
+  font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--char); line-height: 1;
+}
+.nav-logo-sub {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sage); line-height: 1;
+}
+.nav-links {
+  display: flex; gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--mid); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--char); }
+.nav-sep { width: 1px; height: 14px; background: var(--rule); margin: 0 20px; }
+.nav-label {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 200;
+  letter-spacing: 0.2em; color: var(--light);
+}
+
+/* ── HERO ── */
+.hero {
+  padding-top: 54px; min-height: 100vh;
+  display: grid; grid-template-columns: 80px 1fr 440px;
+}
+.hero-gutter {
+  border-right: 1px solid var(--rule);
+  display: flex; flex-direction: column;
+  align-items: center; padding-top: 72px;
+}
+.gutter-label {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.45em; text-transform: uppercase;
+  color: var(--rule); writing-mode: vertical-rl; transform: rotate(180deg);
+}
+.gutter-fade {
+  flex: 1; width: 1px;
+  background: linear-gradient(to bottom, var(--rule), transparent);
+  margin-top: 20px; margin-bottom: 40px;
+}
+
+.hero-main {
+  padding: 72px 72px 72px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--rule);
+}
+.h-label {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 28px;
+}
+.hero-title {
+  font-family: 'Spectral', serif; font-style: italic; font-weight: 300;
+  font-size: clamp(34px, 4vw, 60px); line-height: 1.1;
+  color: var(--char); margin-bottom: 28px;
+  animation: cleanRise 1.1s cubic-bezier(0.25,0.46,0.45,0.94) both;
+}
+@keyframes cleanRise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-body {
+  font-size: 16px; font-weight: 300; font-style: italic;
+  color: var(--mid); line-height: 1.85; max-width: 500px; margin-bottom: 44px;
+  animation: cleanRise 1.1s 0.15s both;
+}
+.hero-read {
+  display: inline-flex; align-items: center; gap: 14px;
+  text-decoration: none; width: fit-content;
+  animation: cleanRise 1.1s 0.3s both;
+}
+.hr-text {
+  font-family: 'Jost', sans-serif; font-size: 9px; font-weight: 400;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--char); transition: color 0.25s;
+}
+.hr-dash { width: 32px; height: 1px; background: var(--char); transition: width 0.3s, background 0.3s; }
+.hero-read:hover .hr-text { color: var(--sage); }
+.hero-read:hover .hr-dash { width: 56px; background: var(--sage); }
+
+.hero-aside {
+  background: var(--bone); padding: 72px 44px;
+  display: flex; flex-direction: column;
+}
+.aside-label {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.55em; text-transform: uppercase;
+  color: var(--light); margin-bottom: 36px;
+}
+.aside-item {
+  padding: 18px 0; border-top: 1px solid var(--rule);
+  cursor: pointer; transition: all 0.2s;
+}
+.aside-item:hover .ai-title { color: var(--sage); }
+.ai-type {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--sage); opacity: 0.7; margin-bottom: 6px;
+}
+.ai-title {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 19px; color: var(--char); line-height: 1.2;
+  transition: color 0.2s; margin-bottom: 4px;
+}
+.ai-meta {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 200;
+  letter-spacing: 0.15em; color: var(--light);
+}
+
+/* ── SAGE LINE ── */
+.sage-line { height: 1px; background: linear-gradient(to right, var(--sage), transparent); opacity: 0.3; }
+
+/* ── LIST SECTION ── */
+.list-section { padding: 72px 80px; }
+.list-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 40px; padding-bottom: 14px; border-bottom: 1px solid var(--rule);
+}
+.list-header h2 {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.55em; text-transform: uppercase; color: var(--char);
+}
+.list-header a {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sage); text-decoration: none; transition: letter-spacing 0.3s;
+}
+.list-header a:hover { letter-spacing: 0.45em; }
+
+.art-row {
+  display: grid; grid-template-columns: 72px 1fr 100px;
+  align-items: baseline; gap: 28px; padding: 24px 0;
+  border-bottom: 1px solid var(--rule); cursor: pointer;
+  transition: all 0.2s;
+}
+.art-row:hover { background: var(--bone); margin: 0 -28px; padding-left: 28px; padding-right: 28px; }
+.art-row:hover .ar-title { color: var(--sage); }
+.ar-num {
+  font-family: 'Jost', sans-serif; font-size: 10px; font-weight: 200;
+  letter-spacing: 0.1em; color: var(--rule);
+}
+.ar-type {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.5em; text-transform: uppercase;
+  color: var(--sage); opacity: 0.8; margin-bottom: 5px;
+}
+.ar-title {
+  font-family: 'Spectral', serif; font-style: italic; font-weight: 300;
+  font-size: 21px; color: var(--char); line-height: 1.2;
+  transition: color 0.2s; margin-bottom: 4px;
+}
+.ar-dek { font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.6; }
+.ar-read {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 200;
+  letter-spacing: 0.15em; color: var(--light); text-align: right;
+}
+
+/* Poem row — different */
+.art-row.poem-row .ar-title { font-size: 25px; font-family: 'Cormorant Garamond', serif; }
+.art-row.poem-row .ar-dek { font-style: italic; color: var(--light); }
+
+/* ── STATEMENT ── */
+.statement {
+  background: var(--bone); padding: 80px 120px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.stmt-text {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: clamp(24px, 3vw, 40px); color: var(--char);
+  line-height: 1.45; max-width: 680px; margin-bottom: 20px;
+}
+.stmt-attr {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--sage); opacity: 0.7;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 36px 80px; border-top: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.f-logo {
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--char);
+}
+.f-links { display: flex; gap: 24px; list-style: none; }
+.f-links a {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--light); text-decoration: none; transition: color 0.2s;
+}
+.f-links a:hover { color: var(--sage); }
+.f-copy {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 200;
+  letter-spacing: 0.2em; color: var(--light);
+}
+
+/* ── ARTICLE PAGES ── */
+.article-page { display: none; }
+.article-page.active { display: block; }
+.home-page.hidden { display: none; }
+
+.article-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 54px; background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; padding: 0 80px;
+}
+.back-btn {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--light); cursor: pointer; background: none; border: none;
+  display: flex; align-items: center; gap: 10px; transition: color 0.2s; padding: 0;
+  margin-right: auto;
+}
+.back-btn::before { content: '←'; font-size: 12px; }
+.back-btn:hover { color: var(--sage); }
+.art-nav-logo {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 300;
+  letter-spacing: 0.2em; color: var(--char); text-decoration: none; cursor: pointer;
+}
+
+/* ARTICLE HERO — light for think/story */
+.art-hero {
+  padding: 100px 80px 72px; background: var(--bone);
+  border-bottom: 1px solid var(--rule);
+}
+.art-type-tag {
+  font-family: 'Jost', sans-serif; font-size: 8px; font-weight: 300;
+  letter-spacing: 0.55em; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
+}
+.art-type-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--sage); opacity: 0.6; }
+.art-title {
+  font-family: 'Spectral', serif; font-style: italic; font-weight: 300;
+  font-size: clamp(32px, 4vw, 60px); line-height: 1.08;
+  color: var(--char); max-width: 760px; margin-bottom: 24px;
+  animation: cleanRise 1s both;
+}
+.art-dek {
+  font-size: 16px; font-weight: 300; font-style: italic;
+  color: var(--mid); line-height: 1.75; max-width: 560px; margin-bottom: 32px;
+}
+.art-meta-row {
+  display: flex; align-items: center; gap: 16px;
+  padding-top: 24px; border-top: 1px solid var(--rule);
+}
+.art-meta-item {
+  font-family: 'Jost', sans-serif; font-size: 7px; font-weight: 300;
+  letter-spacing: 0.3em; text-transform: uppercase; color: var(--light);
+}
+.art-meta-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--rule); }
+
+/* BODY */
+.art-body { max-width: 640px; margin: 0 auto; padding: 72px 48px; }
+.art-body-content { font-size: 18px; font-weight: 300; line-height: 1.9; color: #1C1C1A; }
+.art-body-content p { margin-bottom: 1.6em; }
+.art-body-content p:first-child::first-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px; font-weight: 300; font-style: italic;
+  float: left; line-height: 0.8; margin: 8px 10px 0 0; color: var(--sage);
+}
+.art-pull-quote {
+  margin: 52px -56px; padding: 36px 56px;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.apq-text {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+  font-size: 24px; color: var(--char); line-height: 1.4;
+}
+.apq-sage { color: var(--sage); }
+
+/* POEM page — centered, light background */
+.poem-hero {
+  padding: 100px 80px 60px; background: var(--white);
+  border-bottom: 1px solid var(--rule); text-align: center;
+}
+.poem-hero .art-type-tag { justify-content: center; }
+.poem-hero .art-type-tag::before { display: none; }
+.poem-hero .art-title { margin: 0 auto 20px; font-size: clamp(28px, 4vw, 52px); }
+.poem-hero .art-meta-row { justify-content: center; }
+.poem-body {
+  max-width: 480px; margin: 0 auto;
+  padding: 68px 40px; text-align: center;
+}
+.poem-epigraph {
+  font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 200;
+  letter-spacing: 0.15em; font-style: italic; color: var(--light);
+  margin-bottom: 52px; padding-bottom: 20px; border-bottom: 1px solid var(--rule);
+}
+.poem-stanza { margin-bottom: 40px; }
+.poem-line {
+  font-family: 'Spectral', serif; font-size: 20px; font-style: italic; font-weight: 300;
+  line-height: 1.75; color: var(--char); display: block;
+}
+.poem-line.sage { color: var(--sage); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .side-rule { display: none; }
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-sep, .nav-label { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-gutter { display: none; }
+  .hero-main { padding: 56px 24px; }
+  .hero-aside { display: none; }
+  .list-section { padding: 48px 20px; }
+  .art-row { grid-template-columns: 40px 1fr; }
+  .ar-read { display: none; }
+  .art-row:hover { margin: 0 -8px; padding-left: 8px; padding-right: 8px; }
+  .statement { padding: 56px 24px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 28px 20px; }
+  .f-links { display: none; }
+  .art-hero, .poem-hero { padding: 90px 24px 52px; }
+  .art-title { font-size: clamp(28px, 7vw, 44px); }
+  .art-body, .poem-body { padding: 48px 20px; }
+  .art-pull-quote { margin: 40px -20px; padding: 28px 20px; }
+  .article-nav { padding: 0 20px; }
+}
+
+.theme-badge {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--sage); color: white;
+  font-family: 'Jost', sans-serif; font-size: 8px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 7px 12px; z-index: 9998; pointer-events: none;
+}
+</style>
+</head>
+<body>
+<div class="side-rule"></div>
+<div class="theme-badge">I — Nordic</div>
+
+<!-- HOME PAGE -->
+<div class="home-page" id="homePage">
+
+<nav>
+  <a href="#" class="nav-logo" onclick="showHome(event)">
+    <span class="nav-logo-main">'Tis but a Flesh Wound</span>
+    <span class="nav-logo-sub">An Blog by Isaac Lindell</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <span class="nav-label">Independent · No Ads</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-gutter">
+    <div class="gutter-label">No. 01</div>
+    <div class="gutter-fade"></div>
+  </div>
+  <div class="hero-main">
+    <div class="h-label">Think Pieces · Featured</div>
+    <h1 class="hero-title">How to Sit with a Question You Can't Answer</h1>
+    <p class="hero-body">The useful thought is rarely the one that arrives quickly. On the discipline of remaining uncertain — long enough to find something true.</p>
+    <a href="#" class="hero-read" onclick="showArticle(event, 'think')">
+      <span class="hr-text">Read</span>
+      <div class="hr-dash"></div>
+    </a>
+  </div>
+  <aside class="hero-aside">
+    <div class="aside-label">Also this issue</div>
+    <div class="aside-item reveal" onclick="showArticle(event, 'story')">
+      <div class="ai-type">Short Stories</div>
+      <div class="ai-title">The Swimming Instructor in October</div>
+      <div class="ai-meta">6 min</div>
+    </div>
+    <div class="aside-item reveal reveal-delay-1" onclick="showArticle(event, 'poem')">
+      <div class="ai-type">Poems</div>
+      <div class="ai-title">First Frost</div>
+      <div class="ai-meta">2 min</div>
+    </div>
+    <div class="aside-item reveal reveal-delay-2" onclick="showArticle(event, 'think')">
+      <div class="ai-type">Think Pieces</div>
+      <div class="ai-title">In Defence of the Slow Read</div>
+      <div class="ai-meta">8 min</div>
+    </div>
+    <div class="aside-item reveal reveal-delay-3">
+      <div class="ai-type">Short Stories</div>
+      <div class="ai-title">The Last Ferry</div>
+      <div class="ai-meta">5 min</div>
+    </div>
+  </aside>
+</section>
+
+<div class="sage-line"></div>
+
+<div class="list-section">
+  <div class="list-header reveal">
+    <h2>Recent Work</h2>
+    <a href="#">Full Archive →</a>
+  </div>
+
+  <div class="art-row reveal" onclick="showArticle(event, 'think')">
+    <span class="ar-num">01</span>
+    <div>
+      <div class="ar-type">Think Pieces</div>
+      <div class="ar-title">The Argument Against Productivity</div>
+      <div class="ar-dek">What we lose when we optimise everything, including the time to think about whether we should.</div>
+    </div>
+    <div class="ar-read">9 min</div>
+  </div>
+  <div class="art-row reveal reveal-delay-1" onclick="showArticle(event, 'story')">
+    <span class="ar-num">02</span>
+    <div>
+      <div class="ar-type">Short Stories</div>
+      <div class="ar-title">The Bridge at the Edge of Town</div>
+      <div class="ar-dek">Nobody knew what happened to the woman who painted it. The painting stayed. So did the question.</div>
+    </div>
+    <div class="ar-read">5 min</div>
+  </div>
+  <div class="art-row poem-row reveal reveal-delay-2" onclick="showArticle(event, 'poem')">
+    <span class="ar-num">03</span>
+    <div>
+      <div class="ar-type">Poems</div>
+      <div class="ar-title">Winter Light, Domestic</div>
+      <div class="ar-dek">The particular quality of light through north-facing glass in February.</div>
+    </div>
+    <div class="ar-read">3 min</div>
+  </div>
+  <div class="art-row reveal" onclick="showArticle(event, 'think')">
+    <span class="ar-num">04</span>
+    <div>
+      <div class="ar-type">Think Pieces</div>
+      <div class="ar-title">On Not Having a Take</div>
+      <div class="ar-dek">The hot take is the enemy of the considered view. In praise of not knowing yet.</div>
+    </div>
+    <div class="ar-read">7 min</div>
+  </div>
+</div>
+
+<div class="statement reveal">
+  <p class="stmt-text">"Writing is the practice of sitting still long enough to find out what you actually think."</p>
+  <div class="stmt-attr">'Tis but a Flesh Wound · Isaac Lindell · No Comments · No Ads</div>
+</div>
+
+<footer>
+  <div class="f-logo">'Tis but a Flesh Wound</div>
+  <ul class="f-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <div class="f-copy">Isaac Lindell · Independent · Ad-free</div>
+</footer>
+</div>
+
+<!-- THINK PIECE PAGE -->
+<div class="article-page" id="thinkPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <span class="art-nav-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</span>
+  <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--light)">Think Pieces</span>
+</nav>
+<div class="art-hero">
+  <div class="art-type-tag">Think Pieces</div>
+  <h1 class="art-title">How to Sit with a Question You Can't Answer</h1>
+  <p class="art-dek">The useful thought is rarely the one that arrives quickly.</p>
+  <div class="art-meta-row">
+    <span class="art-meta-item">Isaac Lindell</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">9 min read</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">Think Pieces</span>
+  </div>
+</div>
+<div class="art-body">
+  <div class="art-body-content">
+    <p>The problem with most thinking is that it wants to arrive somewhere. There is a destination in mind from the start — an answer, a position, a view that can be defended — and the thinking is organised around reaching it. What this produces is not thought. It is the appearance of thought, arranged to confirm what was already suspected.</p>
+    <p>The useful kind of thinking is the kind that doesn't know where it's going. It is slow, circuitous, and slightly embarrassing — you end up in places you didn't expect, holding positions you're not sure you believe, asking questions that don't have clean answers. Most people, understandably, prefer the other kind.</p>
+    <div class="art-pull-quote">
+      <div class="apq-text">The question that sits with you is the one that's <span class="apq-sage">working on something real.</span> The quick answer is almost always borrowed.</div>
+    </div>
+    <p>The discipline — if that's the right word — is in staying with the question when you want to resolve it. The mind's instinct is to close. To reach for the nearest available explanation and declare the matter settled. This feels like intelligence. It is usually the opposite.</p>
+    <p>I have been practicing, with mixed results, the art of the unfinished thought. The piece left open. The conclusion deferred. It is uncomfortable in a way that feels productive — like the discomfort of a good stretch rather than a bad injury. You can usually tell the difference, if you're honest with yourself. The honest part, as always, is the difficult bit.</p>
+  </div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<!-- STORY PAGE -->
+<div class="article-page" id="storyPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <span class="art-nav-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</span>
+  <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--light)">Short Stories</span>
+</nav>
+<div class="art-hero">
+  <div class="art-type-tag">Short Stories</div>
+  <h1 class="art-title">The Swimming Instructor in October</h1>
+  <p class="art-dek">Every year, at the end of the season, she stayed in the water a little longer.</p>
+  <div class="art-meta-row">
+    <span class="art-meta-item">Isaac Lindell</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">6 min read</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item">Short Stories</span>
+  </div>
+</div>
+<div class="art-body">
+  <div class="art-body-content">
+    <p>The last lesson of the season was always on a Saturday in late October, when the temperature of the outdoor pool had dropped to the point where the council required it to close. Inger had been teaching there for twenty-two years. She knew, each year, which lesson would be the last before the notice went up on the gate.</p>
+    <p>She always volunteered to lock up. The caretaker was grateful — he had a long drive home and the locking-up took time, and there was nothing in the pool shed worth stealing. What he didn't know, and what Inger did not tell him, was that she stayed in the water after everyone left.</p>
+    <p>Not long. Twenty minutes, perhaps thirty. Long enough for the light to change. Long enough to be the only person in the water in October, which is a specific and unrepeatable experience — the cold, the silence, the sensation of occupying a space designed for summer that summer has abandoned.</p>
+    <p>She was not sure why she did it. She had never tried to explain it, even to herself. It felt like a small act of fidelity to something she couldn't name — the season, perhaps, or the water, or the version of herself who had first learned to swim in a pool not unlike this one, in another October, a long time ago.</p>
+    <p>She got out when her fingers went. Dried off quickly, the way you do when there's no one watching. Locked the gate. Drove home in wet hair. Every year the same. Every year it felt, somehow, necessary.</p>
+  </div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links"><li><a href="#">Short Stories</a></li><li><a href="#">Think Pieces</a></li><li><a href="#">Poems</a></li></ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<!-- POEM PAGE -->
+<div class="article-page" id="poemPage">
+<nav class="article-nav">
+  <button class="back-btn" onclick="showHome(event)">All Writing</button>
+  <span class="art-nav-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</span>
+  <span style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--light)">Poems</span>
+</nav>
+<div class="poem-hero">
+  <div class="art-type-tag">Poems</div>
+  <h1 class="art-title">Winter Light, Domestic</h1>
+  <div class="art-meta-row">
+    <span class="art-meta-item" style="color:var(--mid)">Isaac Lindell</span>
+    <div class="art-meta-dot"></div>
+    <span class="art-meta-item" style="color:var(--mid)">3 min read</span>
+  </div>
+</div>
+<div class="poem-body">
+  <div class="poem-epigraph">North-facing window. Early February. Someone already awake.</div>
+  <div class="poem-stanza">
+    <span class="poem-line">The light comes in at an angle</span>
+    <span class="poem-line">it hasn't used since November.</span>
+    <span class="poem-line sage">Someone in this house woke early.</span>
+    <span class="poem-line">I can tell by the coffee.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">The window holds the street</span>
+    <span class="poem-line">the way a frame holds a painting:</span>
+    <span class="poem-line">insisting it's art,</span>
+    <span class="poem-line">this ordinary thing.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">I have been in this room</span>
+    <span class="poem-line">for four winters now.</span>
+    <span class="poem-line sage">Each time the light returns</span>
+    <span class="poem-line">I am surprised.</span>
+  </div>
+  <div class="poem-stanza">
+    <span class="poem-line">I should know by now</span>
+    <span class="poem-line">that it always does.</span>
+    <span class="poem-line">I hope I never do.</span>
+  </div>
+</div>
+<footer>
+  <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'Tis but a Flesh Wound</div>
+  <ul class="f-links"><li><a href="#">Short Stories</a></li><li><a href="#">Think Pieces</a></li><li><a href="#">Poems</a></li></ul>
+  <div class="f-copy">Isaac Lindell · Independent</div>
+</footer>
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function showArticle(e, type) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.add('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  const map = { think: 'thinkPage', story: 'storyPage', poem: 'poemPage' };
+  document.getElementById(map[type]).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function showHome(e) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.remove('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

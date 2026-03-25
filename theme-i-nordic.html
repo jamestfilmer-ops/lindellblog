@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Footnote — Theme I: Nordic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bone: #F5F5F0;
+    --white: #FAFAFA;
+    --charcoal: #1E1E1C;
+    --mid-gray: #6A6A68;
+    --light: #C8C8C4;
+    --sage: #6A8070;
+    --rule: #E0E0DC;
+    --warm-rule: #D8D8D2;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--white);
+    color: var(--charcoal);
+    font-family: 'Spectral', serif;
+    overflow-x: hidden;
+  }
+
+  /* VERTICAL NAV LINE */
+  .nav-line {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+    z-index: 50;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 56px;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    gap: 0;
+  }
+  .nav-logo {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--charcoal);
+    text-decoration: none;
+    margin-right: auto;
+  }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-sep {
+    width: 1px;
+    height: 16px;
+    background: var(--rule);
+    margin: 0 24px;
+  }
+  .nav-meta {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: var(--light);
+  }
+
+  /* HERO — Nordic restraint */
+  .hero {
+    padding-top: 56px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 80px 1fr 480px;
+  }
+  .hero-gutter {
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    gap: 40px;
+  }
+  .gutter-num {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: var(--rule);
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+  .gutter-line {
+    flex: 1;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--rule), transparent);
+    margin-bottom: 40px;
+  }
+
+  .hero-main {
+    padding: 80px 80px 80px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--rule);
+  }
+  .h-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 32px;
+  }
+  .hero-title {
+    font-family: 'Spectral', serif;
+    font-size: clamp(36px, 4vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    animation: riseClean 1s cubic-bezier(0.25,0.46,0.45,0.94) both;
+  }
+  @keyframes riseClean {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.85;
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+  .hero-read {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+  }
+  .hr-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    transition: color 0.2s;
+  }
+  .hr-line {
+    width: 32px; height: 1px;
+    background: var(--charcoal);
+    transition: width 0.3s;
+  }
+  .hero-read:hover .hr-text { color: var(--sage); }
+  .hero-read:hover .hr-line { width: 56px; background: var(--sage); }
+
+  /* Sidebar */
+  .hero-aside {
+    padding: 80px 48px;
+    background: var(--bone);
+    display: flex;
+    flex-direction: column;
+  }
+  .aside-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 40px;
+  }
+  .aside-item {
+    padding: 20px 0;
+    border-top: 1px solid var(--warm-rule);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .aside-item:hover .ai-title { color: var(--sage); }
+  .ai-type {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+  .ai-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .ai-meta {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    color: var(--light);
+  }
+
+  /* SAGE BAND */
+  .sage-band {
+    height: 2px;
+    background: linear-gradient(to right, var(--sage), transparent);
+    opacity: 0.4;
+  }
+
+  /* ARTICLE LIST — Nordic editorial */
+  .article-list-section {
+    padding: 80px 80px 80px 144px;
+  }
+  .als-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .als-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .als-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+    text-decoration: none;
+  }
+
+  /* ARTICLE ROWS */
+  .article-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .article-row:hover { background: var(--bone); margin: 0 -32px; padding-left: 32px; padding-right: 32px; }
+  .article-row:hover .ar-title { color: var(--sage); }
+  .ar-num {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    color: var(--rule);
+  }
+  .ar-content {}
+  .ar-type {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+  .ar-title {
+    font-family: 'Spectral', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+  }
+  .ar-dek {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.6;
+  }
+  .ar-read {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: var(--light);
+    text-align: right;
+  }
+
+  /* STATEMENT */
+  .nordic-statement {
+    padding: 80px 144px;
+    background: var(--bone);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .ns-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3vw, 44px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.4;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+  .ns-attr {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sage);
+    opacity: 0.7;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 80px 40px 144px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--rule);
+  }
+  .f-logo {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--charcoal);
+  }
+  .f-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .f-links a {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .f-links a:hover { color: var(--sage); }
+  .f-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 8px;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: var(--light);
+  }
+
+  .theme-label {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--sage);
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    z-index: 200;
+  }
+</style>
+</head>
+<body>
+<div class="nav-line"></div>
+<div class="theme-label">Theme I — Nordic</div>
+
+<nav>
+  <a href="#" class="nav-logo">The Footnote</a>
+  <ul class="nav-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+  </ul>
+  <div class="nav-sep"></div>
+  <span class="nav-meta">Est. 2025</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-gutter">
+    <div class="gutter-num">No. 41</div>
+    <div class="gutter-line"></div>
+  </div>
+  <div class="hero-main">
+    <div class="h-label">Think Pieces · Featured</div>
+    <h1 class="hero-title">How to Sit<br>with a Question<br>You Can't Answer</h1>
+    <p class="hero-body">The useful thought is rarely the one that arrives quickly. On the discipline of remaining uncertain, and what it costs to stay there — long enough to find something true.</p>
+    <a href="#" class="hero-read">
+      <span class="hr-text">Read</span>
+      <div class="hr-line"></div>
+    </a>
+  </div>
+  <aside class="hero-aside">
+    <div class="aside-label">Also this issue</div>
+    <div class="aside-item">
+      <div class="ai-type">Short Stories</div>
+      <div class="ai-title">The Swimming Instructor in October</div>
+      <div class="ai-meta">6 min</div>
+    </div>
+    <div class="aside-item">
+      <div class="ai-type">Poems</div>
+      <div class="ai-title">First Frost</div>
+      <div class="ai-meta">2 min</div>
+    </div>
+    <div class="aside-item">
+      <div class="ai-type">Think Pieces</div>
+      <div class="ai-title">In Defence of the Slow Read</div>
+      <div class="ai-meta">8 min</div>
+    </div>
+    <div class="aside-item">
+      <div class="ai-type">Short Stories</div>
+      <div class="ai-title">The Last Ferry</div>
+      <div class="ai-meta">5 min</div>
+    </div>
+  </aside>
+</section>
+
+<div class="sage-band"></div>
+
+<div class="article-list-section">
+  <div class="als-header">
+    <span class="als-title">Recent Work</span>
+    <a href="#" class="als-link">Full Archive →</a>
+  </div>
+
+  <div class="article-row">
+    <span class="ar-num">01</span>
+    <div class="ar-content">
+      <div class="ar-type">Think Pieces</div>
+      <div class="ar-title">The Argument Against Productivity</div>
+      <div class="ar-dek">What we lose when we optimise everything, including the time to think about whether we should.</div>
+    </div>
+    <div class="ar-read">9 min read</div>
+  </div>
+
+  <div class="article-row">
+    <span class="ar-num">02</span>
+    <div class="ar-content">
+      <div class="ar-type">Short Stories</div>
+      <div class="ar-title">The Bridge at the Edge of Town</div>
+      <div class="ar-dek">Nobody knew what happened to the woman who painted it. The painting stayed. So did the question.</div>
+    </div>
+    <div class="ar-read">5 min read</div>
+  </div>
+
+  <div class="article-row">
+    <span class="ar-num">03</span>
+    <div class="ar-content">
+      <div class="ar-type">Poems</div>
+      <div class="ar-title">Winter Light, Domestic</div>
+      <div class="ar-dek">The particular quality of light through north-facing glass in February. Someone is always up before you.</div>
+    </div>
+    <div class="ar-read">3 min read</div>
+  </div>
+
+  <div class="article-row">
+    <span class="ar-num">04</span>
+    <div class="ar-content">
+      <div class="ar-type">Think Pieces</div>
+      <div class="ar-title">On Not Having a Take</div>
+      <div class="ar-dek">The hot take is the enemy of the considered view. A short essay in praise of not knowing yet.</div>
+    </div>
+    <div class="ar-read">7 min read</div>
+  </div>
+</div>
+
+<div class="nordic-statement">
+  <p class="ns-text">"Writing is the practice of sitting still long enough to find out what you actually think."</p>
+  <div class="ns-attr">The Footnote · Independent · No Comments · No Ads</div>
+</div>
+
+<footer>
+  <div class="f-logo">The Footnote</div>
+  <ul class="f-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+  <div class="f-copy">Independent · Ad-free · Est. 2025</div>
+</footer>
+</body>
+</html>

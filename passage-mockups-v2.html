@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>37 Blog Mockups — Isaac Lindell</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,300;0,400;1,300&family=Josefin+Sans:wght@100;300;400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Raleway:wght@100;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: #f0ece4;
+    color: #2a2010;
+    font-family: 'DM Mono', monospace;
+    padding: 40px 20px;
+  }
+
+  .page-title {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #9a8a7a;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    text-align: center;
+    color: #2a1808;
+    margin-bottom: 14px;
+  }
+
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #9a8a7a;
+    text-align: center;
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .section-label::before, .section-label::after { content: ''; flex: 1; height: 1px; background: #d0c8b8; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 28px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .card {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  .mockup {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-label {
+    padding: 10px 16px;
+    background: #fff;
+    border-top: 1px solid #e8e0d0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-label .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #bbb;
+    font-weight: 300;
+  }
+
+  .card-label .name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #9a8a7a;
+  }
+
+  /* ============================================================
+     ORIGINAL 29 MOCKUPS — all with light backgrounds
+  ============================================================ */
+
+  /* 01 - PASSAGE: Cream & Navy */
+  .m01 { background:#f5f0e8; padding:30px 32px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m01 .logo { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:300; color:#1a1a2e; letter-spacing:0.05em; }
+  .m01 .tagline { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:100; letter-spacing:0.3em; color:#8a7a6a; text-transform:uppercase; margin-top:4px; }
+  .m01 .divider { width:100%; height:1px; background:#c5b9a8; margin:16px 0; }
+  .m01 .post-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:400; color:#1a1a2e; line-height:1.3; }
+  .m01 .post-meta { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; color:#9a8a7a; text-transform:uppercase; margin-top:8px; }
+  .m01 .excerpt { font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:300; color:#4a3f35; line-height:1.7; margin-top:10px; }
+  .m01 .footer-bar { display:flex; gap:16px; }
+  .m01 .tag { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; border:1px solid #c5b9a8; padding:4px 8px; color:#7a6a5a; }
+
+  /* 02 - BLACK INK */
+  .m02 { background:#fff; padding:0; display:flex; flex-direction:column; }
+  .m02 .header { background:#111; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; }
+  .m02 .logo { font-family:'Bebas Neue',cursive; font-size:28px; color:#fff; letter-spacing:0.1em; }
+  .m02 .nav { display:flex; gap:20px; }
+  .m02 .nav span { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#888; }
+  .m02 .hero { padding:28px 24px; border-bottom:3px solid #111; flex:1; }
+  .m02 .category { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; background:#111; color:#fff; padding:4px 10px; display:inline-block; margin-bottom:12px; }
+  .m02 .post-title { font-family:'Bodoni Moda',serif; font-size:26px; font-weight:700; color:#111; line-height:1.2; }
+  .m02 .excerpt { font-family:'Libre Baskerville',serif; font-size:12px; color:#444; line-height:1.7; margin-top:10px; }
+  .m02 .row { display:flex; border-top:1px solid #111; }
+  .m02 .mini { padding:10px 24px; border-right:1px solid #ddd; flex:1; font-family:'Libre Baskerville',serif; font-size:11px; font-weight:700; color:#111; line-height:1.3; }
+
+  /* 03 - DEEP SEA → lightened to fog-of-morning sea */
+  .m03 { background:#dce8f0; padding:28px 32px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m03 .logo { font-family:'IM Fell English',serif; font-size:28px; font-style:italic; color:#1a3a52; }
+  .m03 .subtitle { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.35em; text-transform:uppercase; color:#5a8aaa; margin-top:4px; }
+  .m03 .rule { width:40px; height:1px; background:#4a7a9a; margin:16px 0; }
+  .m03 .post-title { font-family:'Playfair Display',serif; font-style:italic; font-size:24px; color:#1a3a52; line-height:1.3; }
+  .m03 .meta { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.25em; color:#5a8aaa; text-transform:uppercase; margin:10px 0; }
+  .m03 .excerpt { font-family:'Crimson Pro',serif; font-size:14px; font-weight:300; color:#2a5a7a; line-height:1.7; }
+  .m03 .tags { display:flex; gap:8px; margin-top:14px; }
+  .m03 .tag { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:#1a5a7a; border-bottom:1px solid #4a7a9a; padding-bottom:2px; }
+
+  /* 04 - FIELD NOTES */
+  .m04 { background:#d4b896; background-image:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(100,70,40,0.08) 24px,rgba(100,70,40,0.08) 25px); padding:28px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m04 .logo { font-family:'Old Standard TT',serif; font-size:20px; font-weight:700; color:#3a2a1a; text-transform:uppercase; letter-spacing:0.12em; }
+  .m04 .logo-sub { font-family:'Old Standard TT',serif; font-size:10px; font-style:italic; color:#6a4a2a; }
+  .m04 .post-title { font-family:'Old Standard TT',serif; font-size:22px; font-weight:700; color:#2a1a0a; line-height:1.3; margin-top:20px; }
+  .m04 .excerpt { font-family:'Old Standard TT',serif; font-size:12px; font-style:italic; color:#4a3020; line-height:1.8; margin-top:8px; }
+  .m04 .stamp { display:inline-block; border:2px solid #6a4a2a; padding:4px 10px; font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.25em; text-transform:uppercase; color:#6a4a2a; margin-top:14px; }
+
+  /* 05 - SIGNAL → light version: white with green accents */
+  .m05 { background:#f0f8f0; padding:0; display:flex; flex-direction:column; font-family:'DM Mono',monospace; }
+  .m05 .header { padding:14px 20px; border-bottom:1px solid #2a6a2a; display:flex; align-items:center; gap:12px; background:#fff; }
+  .m05 .dot { width:8px; height:8px; background:#2a6a2a; border-radius:50%; animation:pulse2 1.5s infinite; }
+  @keyframes pulse2 { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .m05 .logo { font-size:12px; letter-spacing:0.2em; color:#2a6a2a; text-transform:uppercase; }
+  .m05 .body { padding:20px; flex:1; }
+  .m05 .prompt { font-size:10px; color:#2a6a2a; margin-bottom:6px; }
+  .m05 .post-title { font-size:18px; color:#1a1a1a; line-height:1.4; margin:8px 0; text-transform:uppercase; }
+  .m05 .excerpt { font-size:10px; color:#7a9a7a; line-height:1.8; }
+  .m05 .bar { height:1px; background:#2a6a2a; margin:14px 0; width:60%; }
+  .m05 .meta { font-size:9px; color:#9aaa9a; }
+
+  /* 06 - LINEN */
+  .m06 { background:#f2ede4; padding:32px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m06 .logo { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:300; color:#2c2416; letter-spacing:-0.02em; }
+  .m06 .rule { display:flex; align-items:center; gap:10px; margin:14px 0; }
+  .m06 .rule-line { flex:1; height:1px; background:#c8baa8; }
+  .m06 .rule-text { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#9a8a7a; white-space:nowrap; }
+  .m06 .post-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; color:#2c2416; line-height:1.3; }
+  .m06 .excerpt { font-family:'Crimson Pro',serif; font-size:14px; font-weight:300; color:#5a4a3a; line-height:1.8; margin-top:10px; }
+  .m06 .footer { display:flex; justify-content:space-between; align-items:center; }
+  .m06 .date { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#9a8a7a; }
+  .m06 .read-more { font-family:'Cormorant Garamond',serif; font-size:12px; font-style:italic; color:#6a5a4a; text-decoration:underline; text-underline-offset:3px; }
+
+  /* 07 - ATLAS */
+  .m07 { background:#e8e0d0; padding:0; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .m07::before { content:''; position:absolute; inset:0; background:repeating-conic-gradient(#d4c8b0 0% 25%,transparent 0% 50%) 0 0/20px 20px; opacity:0.3; }
+  .m07 .content { position:relative; z-index:1; padding:28px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+  .m07 .logo { font-family:'Old Standard TT',serif; font-size:24px; font-weight:700; color:#2a2010; text-transform:uppercase; letter-spacing:0.2em; }
+  .m07 .coords { font-family:'DM Mono',monospace; font-size:9px; color:#7a6a5a; margin-top:4px; }
+  .m07 .post-title { font-family:'Playfair Display',serif; font-size:22px; color:#2a2010; line-height:1.3; margin-top:16px; }
+  .m07 .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#5a4a3a; line-height:1.7; margin-top:8px; }
+  .m07 .footer { display:flex; justify-content:space-between; align-items:flex-end; }
+  .m07 .stamp-circle { width:48px; height:48px; border:2px solid #8a7a6a; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Josefin Sans',sans-serif; font-size:7px; letter-spacing:0.1em; text-transform:uppercase; color:#8a7a6a; text-align:center; }
+
+  /* 08 - DUSK → lightened to golden hour */
+  .m08 { background:linear-gradient(160deg,#f5e8d8 0%,#edd5b5 100%); padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m08::before { content:''; position:absolute; right:-40px; top:-40px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(180,90,30,0.12) 0%,transparent 70%); }
+  .m08 .logo { font-family:'Bodoni Moda',serif; font-size:26px; font-style:italic; color:#8a4010; position:relative; }
+  .m08 .bar { width:30px; height:2px; background:#c87030; margin:12px 0; }
+  .m08 .post-title { font-family:'Playfair Display',serif; font-size:22px; color:#2a1008; line-height:1.3; position:relative; }
+  .m08 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#7a4020; line-height:1.7; margin-top:10px; position:relative; }
+  .m08 .meta { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#9a7050; position:relative; }
+
+  /* 09 - DISPATCH */
+  .m09 { background:#f8f4e8; padding:0; display:flex; flex-direction:column; }
+  .m09 .banner { text-align:center; padding:12px; border-bottom:3px double #1a1a1a; }
+  .m09 .date-line { display:flex; justify-content:space-between; font-family:'Old Standard TT',serif; font-size:9px; color:#555; padding:0 16px 8px; border-bottom:1px solid #ccc; margin-top:6px; }
+  .m09 .logo { font-family:'Old Standard TT',serif; font-size:30px; font-weight:700; color:#1a1a1a; text-transform:uppercase; letter-spacing:0.08em; }
+  .m09 .mast { font-family:'Old Standard TT',serif; font-size:9px; font-style:italic; color:#888; margin-top:-2px; }
+  .m09 .columns { display:grid; grid-template-columns:1.6fr 1fr; padding:14px 16px; gap:14px; flex:1; }
+  .m09 .col-main .headline { font-family:'Old Standard TT',serif; font-size:20px; font-weight:700; color:#1a1a1a; line-height:1.25; border-bottom:1px solid #ccc; padding-bottom:8px; margin-bottom:8px; }
+  .m09 .body-text { font-family:'Libre Baskerville',serif; font-size:10px; line-height:1.7; color:#2a2a2a; }
+  .m09 .col-side { border-left:1px solid #ccc; padding-left:14px; }
+  .m09 .side-item { padding-bottom:8px; margin-bottom:8px; border-bottom:1px dotted #ccc; }
+  .m09 .side-item h4 { font-family:'Old Standard TT',serif; font-size:11px; font-weight:700; color:#1a1a1a; line-height:1.3; }
+  .m09 .side-item p { font-family:'Libre Baskerville',serif; font-size:9px; color:#555; margin-top:4px; line-height:1.5; }
+
+  /* 11 - PAPER + PEN */
+  .m11 { background:#faf6f0; padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+  .m11 .logo { font-family:'IM Fell English',serif; font-size:14px; font-style:italic; color:#8a7060; letter-spacing:0.1em; text-transform:uppercase; }
+  .m11 .post-title { font-family:'Spectral',serif; font-size:28px; font-style:italic; font-weight:300; color:#1a1a1a; line-height:1.25; margin-top:16px; }
+  .m11 .underline-accent { width:50px; height:2px; background:#8a7060; margin:12px 0; }
+  .m11 .excerpt { font-family:'Spectral',serif; font-size:13px; font-weight:300; color:#5a4a3a; line-height:1.8; }
+  .m11 .footer { display:flex; justify-content:space-between; align-items:center; }
+  .m11 .date { font-family:'IM Fell English',serif; font-style:italic; font-size:11px; color:#9a8a7a; }
+  .m11 .flourish { font-size:20px; color:#c8b8a8; }
+
+  /* 12 - CHROME → light silver */
+  .m12 { background:linear-gradient(135deg,#f0f0f0 0%,#e0e0e0 100%); padding:0; display:flex; flex-direction:column; }
+  .m12 .accent-bar { height:3px; background:linear-gradient(90deg,#888,#ccc,#999); }
+  .m12 .body { padding:26px 28px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+  .m12 .logo { font-family:'Josefin Sans',sans-serif; font-weight:100; font-size:26px; letter-spacing:0.3em; text-transform:uppercase; color:#555; }
+  .m12 .post-title { font-family:'Bodoni Moda',serif; font-size:22px; color:#222; line-height:1.3; margin-top:20px; }
+  .m12 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#666; line-height:1.7; margin-top:8px; }
+  .m12 .meta { font-family:'DM Mono',monospace; font-size:9px; color:#aaa; }
+  .m12 .grid-row { display:flex; gap:12px; border-top:1px solid #ccc; padding-top:14px; }
+  .m12 .mini-card { flex:1; }
+  .m12 .mini-card span { font-family:'DM Mono',monospace; font-size:8px; color:#aaa; display:block; margin-bottom:4px; }
+  .m12 .mini-card p { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:0.05em; color:#666; line-height:1.4; }
+
+  /* 13 - BLOOD ORANGE */
+  .m13 { background:#fff; padding:0; display:flex; flex-direction:column; }
+  .m13 .header { background:#e84010; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; }
+  .m13 .logo { font-family:'Bodoni Moda',serif; font-size:22px; color:#fff; font-style:italic; }
+  .m13 .issue { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.6); }
+  .m13 .body { padding:24px; flex:1; }
+  .m13 .category { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:#e84010; margin-bottom:10px; }
+  .m13 .post-title { font-family:'Playfair Display',serif; font-size:26px; color:#111; line-height:1.2; }
+  .m13 .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; color:#555; line-height:1.7; margin-top:10px; }
+  .m13 .grid-row { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid #e84010; margin-top:14px; }
+  .m13 .mini { padding:10px; border-right:1px solid #eee; font-family:'Libre Baskerville',serif; font-size:10px; font-weight:700; color:#111; line-height:1.4; }
+
+  /* 14 - FOG */
+  .m14 { background:#f0f0f0; padding:36px 32px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m14 .logo { font-family:'Josefin Sans',sans-serif; font-weight:100; font-size:14px; letter-spacing:0.4em; text-transform:uppercase; color:#aaa; }
+  .m14 .post-title { font-family:'Spectral',serif; font-size:30px; font-weight:300; color:#222; line-height:1.2; margin-top:32px; }
+  .m14 .excerpt { font-family:'Spectral',serif; font-size:13px; font-weight:300; color:#777; line-height:1.8; margin-top:12px; }
+  .m14 .footer { display:flex; justify-content:space-between; align-items:flex-end; }
+  .m14 .date { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; }
+  .m14 .num { font-family:'Spectral',serif; font-size:48px; font-weight:300; color:#e0e0e0; line-height:1; }
+
+  /* 15 - GROVE → light sage */
+  .m15 { background:#e8f0dc; padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m15::after { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(100,140,60,0.12) 0%,transparent 70%); }
+  .m15 .logo { font-family:'IM Fell English',serif; font-size:22px; color:#2a5010; position:relative; }
+  .m15 .dot-row { display:flex; gap:6px; margin:12px 0; }
+  .m15 .dot-row span { width:4px; height:4px; background:#4a8020; border-radius:50%; opacity:0.35; }
+  .m15 .dot-row span:first-child { opacity:1; }
+  .m15 .post-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a3808; line-height:1.3; position:relative; }
+  .m15 .excerpt { font-family:'Cormorant Garamond',serif; font-size:14px; font-weight:300; color:#4a6030; line-height:1.7; margin-top:8px; position:relative; }
+  .m15 .tag-row { display:flex; gap:8px; }
+  .m15 .tag { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:#3a6010; border:1px solid rgba(60,96,16,0.3); padding:3px 8px; }
+
+  /* 16 - BROADSHEET */
+  .m16 { background:#f4f0e4; padding:0; display:flex; flex-direction:column; }
+  .m16 .top-bar { background:#2a2010; padding:6px 16px; display:flex; justify-content:space-between; }
+  .m16 .top-bar span { font-family:'Old Standard TT',serif; font-size:8px; color:#a09060; letter-spacing:0.15em; }
+  .m16 .masthead { text-align:center; padding:14px 16px 10px; border-bottom:2px solid #2a2010; }
+  .m16 .title { font-family:'Old Standard TT',serif; font-size:36px; font-weight:700; color:#1a1a0a; text-transform:uppercase; letter-spacing:-0.02em; line-height:1; }
+  .m16 .content { display:grid; grid-template-columns:1fr 1px 1.4fr 1px 1fr; padding:12px 14px; gap:0; flex:1; }
+  .m16 .col { padding:0 10px; }
+  .m16 .col:first-child { padding-left:0; }
+  .m16 .col:last-child { padding-right:0; }
+  .m16 .vr { background:#ccc; width:1px; }
+  .m16 .col-head { font-family:'Old Standard TT',serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#2a2010; border-bottom:1px solid #ccc; padding-bottom:4px; margin-bottom:6px; }
+  .m16 .col-body { font-family:'Libre Baskerville',serif; font-size:9.5px; line-height:1.65; color:#2a2010; }
+
+  /* 17 - NEGATIVE SPACE */
+  .m17 { background:#fff; padding:50px 40px 30px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m17 .logo { font-family:'Josefin Sans',sans-serif; font-weight:100; font-size:11px; letter-spacing:0.5em; text-transform:uppercase; color:#ccc; }
+  .m17 .post-title { font-family:'Cormorant Garamond',serif; font-size:34px; font-style:italic; font-weight:300; color:#111; line-height:1.2; margin-top:30px; }
+  .m17 .excerpt { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:11px; letter-spacing:0.1em; color:#aaa; line-height:2; margin-top:16px; }
+  .m17 .line { width:20px; height:1px; background:#ccc; margin-top:20px; }
+  .m17 .date { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.3em; text-transform:uppercase; color:#ccc; margin-top:6px; }
+
+  /* 18 - EMBER → light warm sand */
+  .m18 { background:linear-gradient(160deg,#f5e8dc 0%,#f0dcc8 100%); padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m18::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at bottom right,rgba(180,80,30,0.08) 0%,transparent 60%); }
+  .m18 .logo { font-family:'Bodoni Moda',serif; font-size:24px; font-style:italic; color:#a83010; position:relative; }
+  .m18 .rule { width:100%; height:1px; background:linear-gradient(90deg,#c84020,transparent); margin:14px 0; position:relative; }
+  .m18 .post-title { font-family:'Playfair Display',serif; font-size:24px; font-style:italic; color:#2a1008; line-height:1.3; position:relative; }
+  .m18 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#7a4030; line-height:1.7; margin-top:10px; position:relative; }
+  .m18 .footer { display:flex; justify-content:space-between; position:relative; }
+  .m18 .category { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#a83010; }
+  .m18 .date { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:#9a7060; }
+
+  /* 19 - CATALOG */
+  .m19 { background:#f8f8f8; display:grid; grid-template-columns:1fr 1fr; padding:0; }
+  .m19 .left { background:#222; padding:28px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m19 .right { padding:24px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m19 .logo { font-family:'Josefin Sans',sans-serif; font-weight:100; font-size:10px; letter-spacing:0.5em; text-transform:uppercase; color:#888; }
+  .m19 .left .post-title { font-family:'Bodoni Moda',serif; font-size:22px; color:#fff; line-height:1.3; }
+  .m19 .left .category { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#666; }
+  .m19 .right-items { display:flex; flex-direction:column; gap:12px; }
+  .m19 .right-item { padding-bottom:12px; border-bottom:1px solid #eee; }
+  .m19 .right-item h4 { font-family:'Spectral',serif; font-size:13px; font-weight:400; color:#111; line-height:1.3; }
+  .m19 .right-item span { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; }
+  .m19 .right .category { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#bbb; }
+
+  /* 20 - MARGIN NOTES */
+  .m20 { background:#fdf9f0; padding:0; display:flex; }
+  .m20 .margin { width:70px; background:#e8e0d0; border-right:2px solid #c8b8a0; padding:20px 10px; display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .m20 .margin-num { font-family:'DM Mono',monospace; font-size:9px; color:#9a8a7a; }
+  .m20 .margin-mark { width:20px; height:1px; background:#c8b8a0; }
+  .m20 .main { padding:20px 22px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+  .m20 .logo { font-family:'Old Standard TT',serif; font-size:13px; font-style:italic; color:#6a5a4a; }
+  .m20 .post-title { font-family:'Libre Baskerville',serif; font-size:20px; color:#1a1a1a; line-height:1.3; margin-top:12px; }
+  .m20 .excerpt { font-family:'Libre Baskerville',serif; font-size:10px; font-style:italic; color:#5a4a3a; line-height:1.8; margin-top:8px; }
+  .m20 .footnote { font-family:'DM Mono',monospace; font-size:8px; color:#aaa; border-top:1px solid #ddd; padding-top:8px; margin-top:8px; }
+
+  /* 21 - CONTINENTAL */
+  .m21 { background:#f0e8d8; padding:0; display:flex; flex-direction:column; }
+  .m21 .stripe-top { height:6px; background:repeating-linear-gradient(90deg,#1a3050 0 20px,#fff 20px 24px,#c83020 24px 44px,#fff 44px 48px); }
+  .m21 .header { padding:16px 24px; border-bottom:1px solid #c8b8a0; display:flex; justify-content:space-between; align-items:center; }
+  .m21 .logo { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; color:#1a3050; }
+  .m21 .edition { font-family:'Old Standard TT',serif; font-size:9px; color:#8a7a6a; }
+  .m21 .body { padding:18px 24px; flex:1; }
+  .m21 .post-title { font-family:'Old Standard TT',serif; font-size:20px; font-weight:700; color:#1a1a1a; line-height:1.3; }
+  .m21 .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#4a3a2a; line-height:1.7; margin-top:8px; }
+  .m21 .row { display:flex; gap:16px; margin-top:14px; border-top:1px solid #c8b8a0; padding-top:12px; }
+  .m21 .row-item { flex:1; font-family:'Old Standard TT',serif; font-size:10px; font-weight:700; color:#2a2010; line-height:1.4; }
+
+  /* 22 - PULSE → light blue */
+  .m22 { background:#e8eeff; padding:28px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m22 .logo { font-family:'Bebas Neue',cursive; font-size:28px; color:#1040c0; letter-spacing:0.15em; }
+  .m22 .freq { font-family:'DM Mono',monospace; font-size:9px; color:#6080c0; letter-spacing:0.2em; margin-top:2px; }
+  .m22 .wave { height:30px; margin:14px 0; display:flex; align-items:center; gap:2px; }
+  .m22 .wave span { display:inline-block; width:3px; background:#3060f0; border-radius:2px; opacity:0.4; }
+  .m22 .post-title { font-family:'Bodoni Moda',serif; font-size:22px; color:#0a1840; line-height:1.3; }
+  .m22 .excerpt { font-family:'DM Mono',monospace; font-size:10px; color:#4060a0; line-height:1.7; margin-top:8px; }
+  .m22 .meta { font-family:'DM Mono',monospace; font-size:9px; color:#8090c0; }
+
+  /* 23 - LATITUDE */
+  .m23 { background:#eae4d8; padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m23::before { content:'N 45°48\''; position:absolute; right:20px; top:20px; font-family:'DM Mono',monospace; font-size:9px; color:#c8b8a0; letter-spacing:0.15em; }
+  .m23 .logo { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:20px; letter-spacing:0.25em; text-transform:uppercase; color:#2a2010; }
+  .m23 .post-title { font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:#2a2010; line-height:1.25; margin-top:20px; }
+  .m23 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#7a6a5a; line-height:1.8; margin-top:10px; }
+  .m23 .footer { display:flex; align-items:center; gap:10px; }
+  .m23 .marker { width:6px; height:6px; border:1px solid #8a7a6a; border-radius:50%; }
+  .m23 .location { font-family:'DM Mono',monospace; font-size:9px; color:#9a8a7a; letter-spacing:0.15em; }
+
+  /* 24 - GRAIN → light film: off-white */
+  .m24 { background:#f4f0ea; padding:0; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .m24 .header { padding:16px 20px; border-bottom:1px solid #ddd; position:relative; background:#fff; }
+  .m24 .logo { font-family:'Bebas Neue',cursive; font-size:22px; color:#222; letter-spacing:0.2em; }
+  .m24 .body { padding:20px; flex:1; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+  .m24 .post-title { font-family:'Bodoni Moda',serif; font-style:italic; font-size:26px; color:#1a1a1a; line-height:1.2; }
+  .m24 .excerpt { font-family:'Spectral',serif; font-size:12px; font-weight:300; color:#777; line-height:1.7; margin-top:10px; }
+  .m24 .frame { border:1px solid #ccc; padding:8px 12px; display:inline-block; margin-top:14px; }
+  .m24 .frame-text { font-family:'DM Mono',monospace; font-size:9px; color:#aaa; letter-spacing:0.2em; text-transform:uppercase; }
+
+  /* 25 - STONE */
+  .m25 { background:#e8e8e8; padding:0; display:flex; flex-direction:column; }
+  .m25 .header { background:#444; padding:14px 24px; display:flex; justify-content:space-between; align-items:center; }
+  .m25 .logo { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:16px; letter-spacing:0.3em; text-transform:uppercase; color:#e8e8e8; }
+  .m25 .nav-dots { display:flex; gap:6px; }
+  .m25 .nav-dots span { width:6px; height:6px; border-radius:50%; background:#666; }
+  .m25 .nav-dots span:first-child { background:#e8e8e8; }
+  .m25 .body { padding:24px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+  .m25 .post-title { font-family:'Spectral',serif; font-size:26px; font-weight:300; color:#1a1a1a; line-height:1.3; }
+  .m25 .excerpt { font-family:'Spectral',serif; font-size:12px; font-weight:300; color:#666; line-height:1.7; margin-top:10px; }
+  .m25 .grid-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; border-top:1px solid #ccc; padding-top:14px; }
+  .m25 .grid-item { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:0.05em; color:#555; border-left:2px solid #ccc; padding-left:8px; }
+
+  /* 26 - ALMANAC */
+  .m26 { background:#f5f0e0; padding:0; display:flex; flex-direction:column; border:8px solid #2a2010; }
+  .m26 .banner { text-align:center; padding:10px; background:#2a2010; }
+  .m26 .banner-text { font-family:'Old Standard TT',serif; font-size:10px; font-style:italic; color:#c8a860; letter-spacing:0.15em; }
+  .m26 .logo { font-family:'Old Standard TT',serif; font-size:32px; font-weight:700; color:#2a2010; text-align:center; padding:16px 10px 6px; border-bottom:2px solid #2a2010; text-transform:uppercase; letter-spacing:0.05em; }
+  .m26 .body { padding:16px 20px; flex:1; }
+  .m26 .post-title { font-family:'Old Standard TT',serif; font-size:18px; font-weight:700; color:#1a1a0a; line-height:1.35; }
+  .m26 .ornament { text-align:center; color:#c8a860; font-size:20px; margin:10px 0; }
+  .m26 .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; color:#3a2a1a; line-height:1.75; text-align:justify; }
+  .m26 .footer { background:#2a2010; padding:8px 20px; display:flex; justify-content:space-between; }
+  .m26 .footer span { font-family:'Old Standard TT',serif; font-size:9px; color:#c8a860; }
+
+  /* 27 - SIGNAL TOWER → light: chalk white */
+  .m27 { background:#f8f8f8; padding:0; display:flex; font-family:'DM Mono',monospace; }
+  .m27 .sidebar { width:40px; background:#eee; border-right:1px solid #2a6a2a; display:flex; flex-direction:column; align-items:center; padding:16px 0; gap:12px; }
+  .m27 .sidebar-char { font-size:9px; color:#6aaa6a; writing-mode:vertical-rl; letter-spacing:0.2em; }
+  .m27 .main { padding:20px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+  .m27 .header-row { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #2a6a2a; padding-bottom:10px; margin-bottom:14px; }
+  .m27 .logo { font-size:11px; color:#2a6a2a; letter-spacing:0.3em; text-transform:uppercase; }
+  .m27 .blink { font-size:14px; color:#2a6a2a; animation:blink2 1s step-end infinite; }
+  @keyframes blink2 { 0%,100%{opacity:1} 50%{opacity:0} }
+  .m27 .post-title { font-size:16px; color:#1a1a1a; line-height:1.4; text-transform:uppercase; letter-spacing:0.05em; }
+  .m27 .excerpt { font-size:9px; color:#7aaa7a; line-height:1.8; margin-top:8px; }
+  .m27 .status { font-size:8px; color:#aacaaa; }
+
+  /* 28 - MONOGRAPH */
+  .m28 { background:#fafaf5; padding:28px 36px; display:flex; flex-direction:column; justify-content:space-between; }
+  .m28 .logo { font-family:'Libre Baskerville',serif; font-size:12px; color:#333; text-transform:uppercase; letter-spacing:0.3em; }
+  .m28 .num { font-family:'Cormorant Garamond',serif; font-size:80px; font-weight:300; color:#f0f0e8; line-height:1; position:absolute; right:28px; top:10px; }
+  .m28 .post-title { font-family:'Libre Baskerville',serif; font-size:20px; color:#111; line-height:1.4; margin-top:24px; position:relative; }
+  .m28 .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#555; line-height:1.8; margin-top:10px; }
+  .m28 .footer { border-top:1px solid #ddd; padding-top:12px; display:flex; justify-content:space-between; }
+  .m28 .footer span { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; }
+
+  /* 29 - DRIFTWOOD */
+  .m29 { background:#d4c4a8; background-image:repeating-linear-gradient(0deg,rgba(160,120,80,0.06) 0 1px,transparent 1px 32px); padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m29 .logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:#4a3020; letter-spacing:0.08em; }
+  .m29 .post-title { font-family:'Playfair Display',serif; font-size:24px; color:#2a1808; line-height:1.3; margin-top:20px; }
+  .m29 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#6a4830; line-height:1.8; margin-top:8px; }
+  .m29 .footer { display:flex; align-items:center; gap:12px; }
+  .m29 .tide-line { flex:1; height:1px; background:rgba(100,70,40,0.3); }
+  .m29 .date { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#8a6850; }
+
+  /* 30 - ENDPAPERS → light: aged vellum with gold spine */
+  .m30 { background:#f5ede0; padding:0; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .m30::before { content:''; position:absolute; inset:0; background:repeating-conic-gradient(rgba(180,140,60,0.03) 0% 25%,transparent 0% 50%) 0 0/16px 16px; }
+  .m30 .spine { position:absolute; left:0; top:0; bottom:0; width:10px; background:linear-gradient(180deg,#c8a840,#8a6820,#c8a840); }
+  .m30 .content { padding:24px 24px 24px 32px; flex:1; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+  .m30 .logo { font-family:'Cormorant Garamond',serif; font-size:22px; font-style:italic; color:#8a6010; }
+  .m30 .post-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-style:italic; color:#2a1808; line-height:1.3; }
+  .m30 .ornament { color:#c8a840; font-size:16px; margin:10px 0; }
+  .m30 .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#7a5a3a; line-height:1.7; }
+  .m30 .footer { display:flex; justify-content:space-between; align-items:center; }
+  .m30 .edition { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#9a7030; }
+  .m30 .page-num { font-family:'Cormorant Garamond',serif; font-size:16px; font-style:italic; color:#c8a840; }
+
+  /* ============================================================
+     NEW THEMED VARIANTS — 10A through 10H
+  ============================================================ */
+
+  /* 10A - GOLDEN AGE OF PIRACY */
+  .m10a { background:#f0e8d0; padding:0; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .m10a::before { content:''; position:absolute; inset:0; background:repeating-conic-gradient(rgba(150,120,60,0.05) 0% 25%,transparent 0% 50%) 0 0/12px 12px; }
+  .m10a .header { background:#8a2010; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; position:relative; }
+  .m10a .skull { font-size:16px; }
+  .m10a .logo { font-family:'Old Standard TT',serif; font-size:18px; font-weight:700; color:#f5e8c0; text-transform:uppercase; letter-spacing:0.15em; }
+  .m10a .year { font-family:'DM Mono',monospace; font-size:9px; color:#c8a080; }
+  .m10a .body { padding:20px; flex:1; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+  .m10a .post-title { font-family:'IM Fell English',serif; font-size:22px; color:#2a1008; line-height:1.3; }
+  .m10a .rule { display:flex; align-items:center; gap:8px; margin:10px 0; }
+  .m10a .rule-line { flex:1; height:1px; background:#c8a060; }
+  .m10a .rule-icon { font-size:10px; color:#c8a060; }
+  .m10a .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#5a3a1a; line-height:1.75; }
+  .m10a .footer { display:flex; justify-content:space-between; }
+  .m10a .tag { font-family:'Old Standard TT',serif; font-size:9px; font-style:italic; color:#8a4020; }
+  .m10a .coords { font-family:'DM Mono',monospace; font-size:8px; color:#b09070; letter-spacing:0.1em; }
+
+  /* 10B - ARCTIC EXPLORATION */
+  .m10b { background:#e8f0f8; padding:28px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+  .m10b::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#1a4060,#4a80a0,#c8e0f0,#4a80a0,#1a4060); }
+  .m10b::after { content:''; position:absolute; bottom:0; right:0; width:120px; height:120px; border-radius:50%; background:radial-gradient(circle,rgba(200,220,240,0.5) 0%,transparent 70%); }
+  .m10b .logo { font-family:'Josefin Sans',sans-serif; font-weight:100; font-size:16px; letter-spacing:0.5em; text-transform:uppercase; color:#1a4060; }
+  .m10b .expedition { font-family:'DM Mono',monospace; font-size:9px; color:#6a9aaa; letter-spacing:0.2em; margin-top:4px; }
+  .m10b .post-title { font-family:'Spectral',serif; font-size:24px; font-weight:300; color:#0a2030; line-height:1.3; }
+  .m10b .rule { width:60px; height:1px; background:#4a80a0; margin:12px 0; }
+  .m10b .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#2a5070; line-height:1.8; }
+  .m10b .footer { display:flex; justify-content:space-between; align-items:center; }
+  .m10b .bearing { font-family:'DM Mono',monospace; font-size:9px; color:#4a80a0; letter-spacing:0.15em; }
+  .m10b .date { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#8aaac0; }
+
+  /* 10C - SEA EXPLORATION / ROYAL NAVY */
+  .m10c { background:#f8f4e8; padding:0; display:flex; flex-direction:column; }
+  .m10c .top { background:#1a3050; padding:14px 22px; display:flex; justify-content:space-between; align-items:center; }
+  .m10c .logo { font-family:'Bebas Neue',cursive; font-size:24px; color:#e8d090; letter-spacing:0.2em; }
+  .m10c .rank { font-family:'Old Standard TT',serif; font-size:9px; font-style:italic; color:#7a9aaa; }
+  .m10c .rope { height:6px; background:repeating-linear-gradient(90deg,#c8a060 0 8px,#f8f4e8 8px 12px,#8a7040 12px 20px,#f8f4e8 20px 24px); }
+  .m10c .body { padding:18px 22px; flex:1; }
+  .m10c .post-title { font-family:'Old Standard TT',serif; font-size:20px; font-weight:700; color:#1a1a0a; line-height:1.3; }
+  .m10c .divider { display:flex; align-items:center; gap:8px; margin:10px 0; }
+  .m10c .d-line { flex:1; height:1px; background:#c8b8a0; }
+  .m10c .anchor { font-size:12px; color:#c8a060; }
+  .m10c .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#4a3a2a; line-height:1.7; }
+  .m10c .footer { padding:10px 22px; border-top:1px solid #d8c8a8; display:flex; justify-content:space-between; }
+  .m10c .footer span { font-family:'DM Mono',monospace; font-size:8px; color:#9a8a6a; letter-spacing:0.1em; }
+
+  /* 10D - OXFORDSHIRE PIPE PUB */
+  .m10d { background:#d4c4a0; padding:0; display:flex; flex-direction:column; position:relative; }
+  .m10d::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,rgba(100,70,30,0.04) 0 1px,transparent 1px 18px); }
+  .m10d .beam { height:14px; background:linear-gradient(180deg,#3a2010,#5a3520,#3a2010); position:relative; }
+  .m10d .header { padding:14px 20px 10px; border-bottom:3px solid #5a3010; position:relative; display:flex; justify-content:space-between; align-items:flex-end; }
+  .m10d .logo { font-family:'IM Fell English',serif; font-size:26px; font-style:italic; color:#2a1808; }
+  .m10d .established { font-family:'Old Standard TT',serif; font-size:9px; font-style:italic; color:#6a5030; }
+  .m10d .body { padding:16px 20px; flex:1; position:relative; }
+  .m10d .post-title { font-family:'Old Standard TT',serif; font-size:18px; font-weight:700; color:#1a1008; line-height:1.35; }
+  .m10d .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; font-style:italic; color:#4a3020; line-height:1.75; margin-top:10px; }
+  .m10d .footer { background:#3a2010; padding:8px 20px; display:flex; justify-content:space-between; position:relative; }
+  .m10d .footer span { font-family:'Old Standard TT',serif; font-size:9px; font-style:italic; color:#c8a060; }
+
+  /* 10E - IRISH PUB */
+  .m10e { background:#f0e8d8; padding:0; display:flex; flex-direction:column; }
+  .m10e .header { background:#1a4020; padding:14px 22px; display:flex; justify-content:space-between; align-items:center; }
+  .m10e .logo { font-family:'IM Fell English',serif; font-size:24px; font-style:italic; color:#c8e8a0; }
+  .m10e .shamrock { font-size:16px; }
+  .m10e .nav { display:flex; gap:16px; }
+  .m10e .nav span { font-family:'Old Standard TT',serif; font-size:9px; color:#7a9a6a; font-style:italic; }
+  .m10e .banner { background:#2a5030; padding:5px 22px; font-family:'Old Standard TT',serif; font-size:8px; font-style:italic; color:#8ac080; letter-spacing:0.1em; }
+  .m10e .body { padding:18px 22px; flex:1; }
+  .m10e .category { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.25em; text-transform:uppercase; color:#3a6030; margin-bottom:8px; }
+  .m10e .post-title { font-family:'Old Standard TT',serif; font-size:20px; font-weight:700; color:#1a1a0a; line-height:1.3; }
+  .m10e .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; color:#4a3a2a; line-height:1.7; margin-top:8px; }
+  .m10e .footer { border-top:2px solid #1a4020; padding:8px 22px; display:flex; justify-content:space-between; }
+  .m10e .footer span { font-family:'Old Standard TT',serif; font-size:9px; color:#3a5030; font-style:italic; }
+
+  /* 10F - PLAYBOY */
+  .m10f { background:#fff; padding:0; display:flex; flex-direction:column; }
+  .m10f .header { background:#fff; padding:16px 24px 12px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+  .m10f .logo { font-family:'Bodoni Moda',serif; font-size:28px; font-weight:700; font-style:italic; color:#111; letter-spacing:0.02em; }
+  .m10f .bunny { font-size:20px; color:#111; }
+  .m10f .date-bar { display:flex; gap:20px; padding:6px 24px; background:#f8f8f8; border-bottom:1px solid #eee; }
+  .m10f .date-bar span { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.3em; text-transform:uppercase; color:#888; }
+  .m10f .body { padding:20px 24px; flex:1; }
+  .m10f .feature { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.4em; text-transform:uppercase; color:#aaa; margin-bottom:10px; }
+  .m10f .post-title { font-family:'Bodoni Moda',serif; font-size:26px; color:#111; line-height:1.2; }
+  .m10f .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; color:#444; line-height:1.75; margin-top:10px; }
+  .m10f .rule { height:2px; background:#111; width:40px; margin:12px 0 8px; }
+  .m10f .byline { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#888; }
+
+  /* 10G - 1970S MODERNISM */
+  .m10g { background:#f5e8c0; padding:0; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+  .m10g::before { content:''; position:absolute; top:0; right:0; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle,rgba(200,100,20,0.15) 0%,transparent 70%); transform:translate(40px,-40px); }
+  .m10g .header { padding:18px 24px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .m10g .logo { font-family:'Raleway',sans-serif; font-weight:100; font-size:32px; letter-spacing:0.08em; text-transform:uppercase; color:#2a1a08; line-height:1; }
+  .m10g .logo-sub { font-family:'Josefin Sans',sans-serif; font-weight:300; font-size:8px; letter-spacing:0.4em; text-transform:uppercase; color:#b08040; margin-top:6px; }
+  .m10g .shape { width:60px; height:60px; border-radius:50%; border:3px solid #c87030; display:flex; align-items:center; justify-content:center; font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:#c87030; text-align:center; }
+  .m10g .body { padding:0 24px 20px; flex:1; }
+  .m10g .post-title { font-family:'Raleway',sans-serif; font-weight:300; font-size:24px; color:#2a1008; line-height:1.3; }
+  .m10g .geo-line { display:flex; gap:0; margin:12px 0; }
+  .m10g .geo-line span { height:3px; flex:1; }
+  .m10g .excerpt { font-family:'Crimson Pro',serif; font-size:13px; font-weight:300; color:#6a4820; line-height:1.75; }
+  .m10g .footer { padding:10px 24px; border-top:1px solid rgba(180,120,40,0.3); display:flex; justify-content:space-between; }
+  .m10g .footer span { font-family:'Josefin Sans',sans-serif; font-size:8px; letter-spacing:0.25em; text-transform:uppercase; color:#b08040; }
+
+  /* 10H - 1980S VINTAGE */
+  .m10h { background:#f5eedc; padding:0; display:flex; flex-direction:column; }
+  .m10h .top-stripe { height:8px; background:repeating-linear-gradient(90deg,#c84080 0 24px,#40a0c0 24px 48px,#f0c010 48px 72px,#40a0c0 72px 96px); }
+  .m10h .header { padding:14px 22px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #333; }
+  .m10h .logo { font-family:'Bebas Neue',cursive; font-size:28px; color:#111; letter-spacing:0.2em; }
+  .m10h .logo-outline { font-family:'Bebas Neue',cursive; font-size:14px; letter-spacing:0.3em; color:transparent; -webkit-text-stroke:1px #c84080; }
+  .m10h .body { padding:18px 22px; flex:1; }
+  .m10h .category { font-family:'Bebas Neue',cursive; font-size:12px; letter-spacing:0.3em; color:#40a0c0; margin-bottom:8px; }
+  .m10h .post-title { font-family:'Bebas Neue',cursive; font-size:30px; color:#111; line-height:1.1; letter-spacing:0.05em; }
+  .m10h .excerpt { font-family:'Libre Baskerville',serif; font-size:11px; color:#444; line-height:1.7; margin-top:10px; }
+  .m10h .footer { padding:8px 22px; background:#111; display:flex; justify-content:space-between; align-items:center; }
+  .m10h .footer-left { font-family:'Bebas Neue',cursive; font-size:10px; letter-spacing:0.2em; color:#f0c010; }
+  .m10h .footer-right { font-family:'DM Mono',monospace; font-size:8px; color:#666; }
+
+</style>
+</head>
+<body>
+
+<p class="page-title">Isaac Lindell · Personal Blog · Design Concepts</p>
+<h1 class="page-subtitle">37 Blog Mockups</h1>
+
+<!-- ===== ORIGINAL 29 ===== -->
+<div class="section-label">Original Concepts — 01 through 09 & 11 through 30</div>
+
+<div class="grid">
+
+  <!-- 01 -->
+  <div class="card">
+    <div class="mockup"><div class="m01">
+      <div>
+        <div class="m01 logo">Passage</div>
+        <div class="m01 tagline">A Journal by Isaac Lindell</div>
+        <div class="m01 divider"></div>
+        <div class="m01 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m01 post-meta">May 4, 2025 · Travel</div>
+        <div class="m01 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m01 footer-bar">
+        <div class="m01 tag">Travel</div><div class="m01 tag">Humor</div><div class="m01 tag">Adventure</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">01</span><span class="name">Passage — Cream & Navy</span></div>
+  </div>
+
+  <!-- 02 -->
+  <div class="card">
+    <div class="mockup"><div class="m02">
+      <div class="m02 header">
+        <div class="m02 logo">Lindell</div>
+        <div class="m02 nav"><span>Essays</span><span>Fiction</span><span>Notes</span></div>
+      </div>
+      <div class="m02 hero">
+        <div class="m02 category">Creative Writing</div>
+        <div class="m02 post-title">DIRT</div>
+        <div class="m02 excerpt">The best. That's what he wanted — only prestige, simply masterclass. It was hard to please Dr. Carvill.</div>
+      </div>
+      <div class="m02 row">
+        <div class="m02 mini">Greatest Beer Run of All Time</div>
+        <div class="m02 mini">RIP Charlie Kirk</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">02</span><span class="name">Black Ink — Stark Editorial</span></div>
+  </div>
+
+  <!-- 03 -->
+  <div class="card">
+    <div class="mockup"><div class="m03">
+      <div>
+        <div class="m03 logo">Passage</div>
+        <div class="m03 subtitle">Dispatches from Open Water</div>
+      </div>
+      <div>
+        <div class="m03 rule"></div>
+        <div class="m03 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m03 meta">May 2025 · Travel & Adventure</div>
+        <div class="m03 excerpt">There is nothing left to explore except the depths of the sea. We must make the same journeys, but in stylized and more difficult fashions.</div>
+      </div>
+      <div class="m03 tags"><span class="m03 tag">Travel</span><span class="m03 tag">Humor</span></div>
+    </div></div>
+    <div class="card-label"><span class="num">03</span><span class="name">Morning Sea — Blue Mist</span></div>
+  </div>
+
+  <!-- 04 -->
+  <div class="card">
+    <div class="mockup"><div class="m04">
+      <div>
+        <div class="m04 logo">Field Notes</div>
+        <div class="m04 logo-sub">Personal writings from I. Lindell</div>
+      </div>
+      <div>
+        <div class="m04 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m04 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in more difficult fashions.</div>
+      </div>
+      <div class="m04 stamp">Travel · May 2025</div>
+    </div></div>
+    <div class="card-label"><span class="num">04</span><span class="name">Field Notes — Kraft Paper</span></div>
+  </div>
+
+  <!-- 05 -->
+  <div class="card">
+    <div class="mockup"><div class="m05">
+      <div class="m05 header">
+        <div class="m05 dot"></div>
+        <div class="m05 logo">LINDELL.WRITES</div>
+      </div>
+      <div class="m05 body">
+        <div>
+          <div class="m05 prompt">&gt; loading latest entry_</div>
+          <div class="m05 post-title">DIRT — CHAPTER ONE</div>
+          <div class="m05 bar"></div>
+          <div class="m05 excerpt">The best. That's what he wanted. August 9th, 1958. The butterflies in Paisley's stomach were not from nervous excitement...</div>
+        </div>
+        <div class="m05 meta">CREATIVE_FICTION · NOV_2025 · 3842_WORDS</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">05</span><span class="name">Signal — Light Terminal</span></div>
+  </div>
+
+  <!-- 06 -->
+  <div class="card">
+    <div class="mockup"><div class="m06">
+      <div class="m06 logo">Passage</div>
+      <div class="m06 rule">
+        <div class="m06 rule-line"></div>
+        <div class="m06 rule-text">A Personal Journal</div>
+        <div class="m06 rule-line"></div>
+      </div>
+      <div>
+        <div class="m06 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m06 excerpt">In the olden days, explorers sought investments from prosperous businessmen. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m06 footer">
+        <div class="m06 date">May 4, 2025</div>
+        <div class="m06 read-more">Continue reading →</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">06</span><span class="name">Linen — Warm Luxury</span></div>
+  </div>
+
+  <!-- 07 -->
+  <div class="card">
+    <div class="mockup"><div class="m07">
+      <div class="m07 content">
+        <div>
+          <div class="m07 logo">ATLAS</div>
+          <div class="m07 coords">N 41° 54' · E 12° 29'</div>
+        </div>
+        <div>
+          <div class="m07 post-title">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m07 excerpt">In the olden days, explorers sought investments to finance their grand adventures across the globe.</div>
+        </div>
+        <div class="m07 footer">
+          <div class="m07 stamp-circle">Travel May 2025</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">07</span><span class="name">Atlas — Explorer's Map</span></div>
+  </div>
+
+  <!-- 08 -->
+  <div class="card">
+    <div class="mockup"><div class="m08">
+      <div class="m08 logo">Passage</div>
+      <div class="m08 bar"></div>
+      <div class="m08 post-title">A Plan for the Greatest Beer Run of All Time</div>
+      <div class="m08 excerpt">There is nothing left to explore. We must make the same journeys in stylized, more difficult fashions — tightrope across Niagara, freefall from the atmosphere.</div>
+      <div class="m08 meta">Travel · May 4, 2025</div>
+    </div></div>
+    <div class="card-label"><span class="num">08</span><span class="name">Golden Hour — Warm Amber</span></div>
+  </div>
+
+  <!-- 09 -->
+  <div class="card">
+    <div class="mockup"><div class="m09">
+      <div class="m09 banner">
+        <div class="m09 logo">THE LINDELL DISPATCH</div>
+        <div class="m09 mast">Personal Essays & Cultural Commentary</div>
+      </div>
+      <div class="m09 date-line"><span>Vol. III, No. 7</span><span>May 4, 2025</span><span>Est. 2023</span></div>
+      <div class="m09 columns">
+        <div class="col-main">
+          <div class="m09 col-main headline">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m09 body-text">In the olden days, explorers would seek investments from prosperous businessmen and governments to finance their grand adventures...</div>
+        </div>
+        <div class="m09 col-side">
+          <div class="m09 side-item"><h4>DIRT — Short Fiction</h4><p>August 9th, 1958. The butterflies in Paisley's stomach were not from nervous excitement...</p></div>
+          <div class="m09 side-item"><h4>RIP Charlie Kirk</h4><p>On political violence and what it means for a divided America.</p></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">09</span><span class="name">Dispatch — Newspaper Front</span></div>
+  </div>
+
+  <!-- 11 -->
+  <div class="card">
+    <div class="mockup"><div class="m11">
+      <div class="m11 logo">isaac lindell</div>
+      <div>
+        <div class="m11 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m11 underline-accent"></div>
+        <div class="m11 excerpt">In the olden days, explorers sought investments from prosperous businessmen to finance their grand adventures. Now we must make the same journeys in more difficult fashions.</div>
+      </div>
+      <div class="m11 footer">
+        <div class="m11 date">May the fourth, 2025</div>
+        <div class="m11 flourish">✦</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">11</span><span class="name">Paper & Pen — Handwritten</span></div>
+  </div>
+
+  <!-- 12 -->
+  <div class="card">
+    <div class="mockup"><div class="m12">
+      <div class="m12 accent-bar"></div>
+      <div class="m12 body">
+        <div>
+          <div class="m12 logo">Lindell</div>
+          <div class="m12 post-title">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m12 excerpt">There is nothing left to explore. We must make the same journeys in stylized, more difficult fashions.</div>
+        </div>
+        <div>
+          <div class="m12 meta">05 · 04 · 2025</div>
+          <div class="m12 grid-row">
+            <div class="m12 mini-card"><span>↗ recent</span><p>DIRT — Short Fiction</p></div>
+            <div class="m12 mini-card"><span>↗ culture</span><p>RIP Charlie Kirk</p></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">12</span><span class="name">Chrome — Silver Light</span></div>
+  </div>
+
+  <!-- 13 -->
+  <div class="card">
+    <div class="mockup"><div class="m13">
+      <div class="m13 header">
+        <div class="m13 logo">Passage</div>
+        <div class="m13 issue">No. 7 · 2025</div>
+      </div>
+      <div class="m13 body">
+        <div class="m13 category">Travel & Adventure</div>
+        <div class="m13 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m13 excerpt">There is nothing left to explore. We must make the same journeys in stylized, more difficult fashions.</div>
+        <div class="m13 grid-row">
+          <div class="m13 mini">DIRT — Short Fiction</div>
+          <div class="m13 mini">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">13</span><span class="name">Blood Orange — Saturated</span></div>
+  </div>
+
+  <!-- 14 -->
+  <div class="card">
+    <div class="mockup"><div class="m14">
+      <div class="m14 logo">Isaac Lindell</div>
+      <div>
+        <div class="m14 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m14 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now consider the current day.</div>
+      </div>
+      <div class="m14 footer">
+        <div class="m14 date">May 2025 · Travel</div>
+        <div class="m14 num">07</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">14</span><span class="name">Fog — Radical Minimal</span></div>
+  </div>
+
+  <!-- 15 -->
+  <div class="card">
+    <div class="mockup"><div class="m15">
+      <div>
+        <div class="m15 logo">Passage</div>
+        <div class="m15 dot-row"><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div>
+        <div class="m15 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m15 excerpt">There is nothing left to explore. We must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m15 tag-row">
+        <span class="m15 tag">Travel</span><span class="m15 tag">Humor</span>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">15</span><span class="name">Grove — Sage Green</span></div>
+  </div>
+
+  <!-- 16 -->
+  <div class="card">
+    <div class="mockup"><div class="m16">
+      <div class="m16 top-bar"><span>Personal Essays & Dispatches</span><span>Est. 2023</span></div>
+      <div class="m16 masthead"><div class="m16 title">The Lindell Review</div></div>
+      <div class="m16 content">
+        <div class="m16 col"><div class="m16 col-head">Fiction</div><div class="m16 col-body">The best. That's what he wanted. August 9th, 1958. Butterflies in Paisley's stomach — not nervous excitement but bees, yellowjackets, swarming rampantly.</div></div>
+        <div class="m16 vr"></div>
+        <div class="m16 col"><div class="m16 col-head">Travel</div><div class="m16 col-body">In the olden days, explorers would seek investments from businessmen and governments to finance their grand adventures. Now we make the same journeys in harder ways.</div></div>
+        <div class="m16 vr"></div>
+        <div class="m16 col"><div class="m16 col-head">Commentary</div><div class="m16 col-body">There is a USA where we disagree fervently but respect one another — not because of who you vote for, but because we are made in the same image.</div></div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">16</span><span class="name">Broadsheet — Dense Columns</span></div>
+  </div>
+
+  <!-- 17 -->
+  <div class="card">
+    <div class="mockup"><div class="m17">
+      <div class="m17 logo">Isaac Lindell</div>
+      <div>
+        <div class="m17 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m17 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div>
+        <div class="m17 line"></div>
+        <div class="m17 date">May 4, 2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">17</span><span class="name">Negative Space — Radical Minimal</span></div>
+  </div>
+
+  <!-- 18 -->
+  <div class="card">
+    <div class="mockup"><div class="m18">
+      <div class="m18 logo">Passage</div>
+      <div class="m18 rule"></div>
+      <div class="m18 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+      <div class="m18 excerpt">There is nothing left to explore except the depths of the sea. We must make the same journeys in stylized, more difficult fashions.</div>
+      <div class="m18 footer">
+        <div class="m18 category">Travel</div>
+        <div class="m18 date">May 2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">18</span><span class="name">Warm Sand — Ember Tones</span></div>
+  </div>
+
+  <!-- 19 -->
+  <div class="card">
+    <div class="mockup"><div class="m19">
+      <div class="m19 left">
+        <div class="m19 logo">Passage</div>
+        <div class="m19 left post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m19 left category">Travel · May 2025</div>
+      </div>
+      <div class="m19 right">
+        <div class="m19 logo">Latest</div>
+        <div class="m19 right-items">
+          <div class="m19 right-item"><h4>DIRT — Short Fiction</h4><span>Creative Writing · Nov 2025</span></div>
+          <div class="m19 right-item"><h4>RIP Charlie Kirk</h4><span>Commentary · Sep 2025</span></div>
+          <div class="m19 right-item"><h4>Beer Run</h4><span>Travel · May 2025</span></div>
+        </div>
+        <div class="m19 right category">All Posts →</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">19</span><span class="name">Catalog — Fashion Editorial</span></div>
+  </div>
+
+  <!-- 20 -->
+  <div class="card">
+    <div class="mockup"><div class="m20">
+      <div class="m20 margin">
+        <span class="m20 margin-num">01</span><div class="m20 margin-mark"></div>
+        <span class="m20 margin-num">02</span><div class="m20 margin-mark"></div>
+        <span class="m20 margin-num">03</span>
+      </div>
+      <div class="m20 main">
+        <div class="m20 logo">Margin Notes</div>
+        <div>
+          <div class="m20 post-title">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m20 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in more difficult fashions...</div>
+        </div>
+        <div class="m20 footnote">¹ See also: DIRT · Beer & Travel · Personal Reflections</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">20</span><span class="name">Margin Notes — Scholar</span></div>
+  </div>
+
+  <!-- 21 -->
+  <div class="card">
+    <div class="mockup"><div class="m21">
+      <div class="m21 stripe-top"></div>
+      <div class="m21 header">
+        <div class="m21 logo">Le Passage</div>
+        <div class="m21 edition">Édition du soir · 2025</div>
+      </div>
+      <div class="m21 body">
+        <div class="m21 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m21 excerpt">In the olden days, explorers sought investments from prosperous businessmen and governments to finance their grand adventures across the globe.</div>
+        <div class="m21 row">
+          <div class="m21 row-item">DIRT — Short Fiction</div>
+          <div class="m21 row-item">RIP Charlie Kirk</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">21</span><span class="name">Continental — Café European</span></div>
+  </div>
+
+  <!-- 22 -->
+  <div class="card">
+    <div class="mockup"><div class="m22">
+      <div>
+        <div class="m22 logo">PULSE</div>
+        <div class="m22 freq">440Hz · BROADCAST LIVE</div>
+      </div>
+      <div class="m22 wave">
+        <span style="height:8px"></span><span style="height:14px"></span><span style="height:22px"></span><span style="height:16px"></span><span style="height:28px"></span><span style="height:12px"></span><span style="height:20px"></span><span style="height:24px"></span><span style="height:10px"></span><span style="height:18px"></span><span style="height:26px"></span><span style="height:14px"></span><span style="height:8px"></span>
+      </div>
+      <div>
+        <div class="m22 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m22 excerpt">There is nothing left to explore. We must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m22 meta">TRAVEL · 05.04.2025 · ENTRY_007</div>
+    </div></div>
+    <div class="card-label"><span class="num">22</span><span class="name">Pulse — Sky Blue</span></div>
+  </div>
+
+  <!-- 23 -->
+  <div class="card">
+    <div class="mockup"><div class="m23">
+      <div><div class="m23 logo">Latitude</div></div>
+      <div>
+        <div class="m23 post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m23 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now there is nothing left to discover except in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m23 footer">
+        <div class="m23 marker"></div>
+        <div class="m23 location">TRAVEL · MAY 2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">23</span><span class="name">Latitude — Exploration</span></div>
+  </div>
+
+  <!-- 24 -->
+  <div class="card">
+    <div class="mockup"><div class="m24">
+      <div class="m24 header"><div class="m24 logo">LINDELL</div></div>
+      <div class="m24 body">
+        <div>
+          <div class="m24 post-title">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m24 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+        </div>
+        <div class="m24 frame"><div class="m24 frame-text">Travel · May 2025 · 8 min read</div></div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">24</span><span class="name">Grain — Film Vellum</span></div>
+  </div>
+
+  <!-- 25 -->
+  <div class="card">
+    <div class="mockup"><div class="m25">
+      <div class="m25 header">
+        <div class="m25 logo">Passage</div>
+        <div class="m25 nav-dots"><span></span><span></span><span></span></div>
+      </div>
+      <div class="m25 body">
+        <div>
+          <div class="m25 post-title">A Plan for the Greatest Beer Run of All Time</div>
+          <div class="m25 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in more difficult fashions.</div>
+        </div>
+        <div class="m25 grid-row">
+          <div class="m25 grid-item">Fiction</div>
+          <div class="m25 grid-item">Travel</div>
+          <div class="m25 grid-item">Essays</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">25</span><span class="name">Stone — Cool Architecture</span></div>
+  </div>
+
+  <!-- 26 -->
+  <div class="card">
+    <div class="mockup"><div class="m26">
+      <div class="m26 banner"><div class="m26 banner-text">Personal Writings & Dispatches from Indiana</div></div>
+      <div class="m26 logo">Lindell's Almanac</div>
+      <div class="m26 body">
+        <div class="m26 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m26 ornament">✦ ✦ ✦</div>
+        <div class="m26 excerpt">In the olden days, explorers would seek investments from prosperous businessmen and governments to finance their grand adventures...</div>
+      </div>
+      <div class="m26 footer"><span>Travel</span><span>May 4, 2025</span></div>
+    </div></div>
+    <div class="card-label"><span class="num">26</span><span class="name">Almanac — Illustrated Reference</span></div>
+  </div>
+
+  <!-- 27 -->
+  <div class="card">
+    <div class="mockup"><div class="m27">
+      <div class="m27 sidebar"><span class="m27 sidebar-char">TRANSMISSION</span></div>
+      <div class="m27 main">
+        <div class="m27 header-row">
+          <div class="m27 logo">LINDELL.SYS</div>
+          <div class="m27 blink">█</div>
+        </div>
+        <div>
+          <div class="m27 post-title">A PLAN FOR THE GREATEST BEER RUN OF ALL TIME</div>
+          <div class="m27 excerpt">In the olden days, explorers sought investments to finance their adventures. Now: nothing left to explore. Same journeys, stylized, difficult.</div>
+        </div>
+        <div class="m27 status">STATUS: PUBLISHED · TRAVEL · 05.04.2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">27</span><span class="name">Signal Tower — Light Terminal</span></div>
+  </div>
+
+  <!-- 28 -->
+  <div class="card">
+    <div class="mockup" style="position:relative"><div class="m28">
+      <div class="m28 logo">Isaac Lindell</div>
+      <div class="m28 num">07</div>
+      <div>
+        <div class="m28 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m28 excerpt">In the olden days, explorers sought investments from prosperous businessmen. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m28 footer"><span>Travel</span><span>May 4, 2025</span></div>
+    </div></div>
+    <div class="card-label"><span class="num">28</span><span class="name">Monograph — Academic Serif</span></div>
+  </div>
+
+  <!-- 29 -->
+  <div class="card">
+    <div class="mockup"><div class="m29">
+      <div class="m29 logo">Passage</div>
+      <div class="m29 post-title">A Plan for the Greatest Beer Run of All Time</div>
+      <div class="m29 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      <div class="m29 footer">
+        <div class="m29 tide-line"></div>
+        <div class="m29 date">May 2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">29</span><span class="name">Driftwood — Organic Coastal</span></div>
+  </div>
+
+  <!-- 30 -->
+  <div class="card">
+    <div class="mockup"><div class="m30">
+      <div class="m30 spine"></div>
+      <div class="m30 content">
+        <div class="m30 logo">Passage</div>
+        <div>
+          <div class="m30 post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+          <div class="m30 ornament">— ✦ —</div>
+          <div class="m30 excerpt">In the olden days, explorers sought investments to finance their grand adventures. Trips to the Poles were incredibly costly...</div>
+        </div>
+        <div class="m30 footer">
+          <div class="m30 edition">Travel · Vol. I</div>
+          <div class="m30 page-num">vii</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">30</span><span class="name">Endpapers — Luxury Bookbinding</span></div>
+  </div>
+
+</div>
+
+<!-- ===== NEW THEMED CONCEPTS ===== -->
+<div class="section-label">New Themed Concepts — based on No. 10</div>
+
+<div class="grid">
+
+  <!-- 10A - GOLDEN AGE OF PIRACY -->
+  <div class="card">
+    <div class="mockup"><div class="m10a">
+      <div class="m10a header">
+        <span class="m10a skull">☠</span>
+        <div class="m10a logo">The Black Articles</div>
+        <div class="m10a year">Anno 1714</div>
+      </div>
+      <div class="m10a body">
+        <div>
+          <div class="m10a post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+          <div class="m10a rule"><div class="m10a rule-line"></div><span class="m10a rule-icon">⚓</span><div class="m10a rule-line"></div></div>
+          <div class="m10a excerpt">In the olden days, explorers sought investments from prosperous businessmen to finance their grand adventures. Trips to the Poles and journeys to discover new trade routes were incredibly costly...</div>
+        </div>
+        <div class="m10a footer">
+          <div class="m10a tag">Travel & Pillage</div>
+          <div class="m10a coords">17°N · 65°W</div>
+        </div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10A</span><span class="name">Golden Age of Piracy</span></div>
+  </div>
+
+  <!-- 10B - ARCTIC EXPLORATION -->
+  <div class="card">
+    <div class="mockup"><div class="m10b">
+      <div>
+        <div class="m10b logo">Passage</div>
+        <div class="m10b expedition">Northwest Passage Expedition · 1845</div>
+      </div>
+      <div>
+        <div class="m10b post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m10b rule"></div>
+        <div class="m10b excerpt">There is nothing left to explore except the depths of the sea and the vastness of space. We must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m10b footer">
+        <div class="m10b bearing">BEARING 352° NNW</div>
+        <div class="m10b date">May 2025</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10B</span><span class="name">Arctic Exploration</span></div>
+  </div>
+
+  <!-- 10C - SEA EXPLORATION / ROYAL NAVY -->
+  <div class="card">
+    <div class="mockup"><div class="m10c">
+      <div class="m10c top">
+        <div class="m10c logo">HMS PASSAGE</div>
+        <div class="m10c rank">His Majesty's Journal</div>
+      </div>
+      <div class="m10c rope"></div>
+      <div class="m10c body">
+        <div class="m10c post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m10c divider"><div class="m10c d-line"></div><span class="m10c anchor">⚓</span><div class="m10c d-line"></div></div>
+        <div class="m10c excerpt">In the olden days, explorers sought investments from prosperous businessmen to finance their grand adventures. Trips to the Poles were incredibly costly...</div>
+      </div>
+      <div class="m10c footer">
+        <span>TRAVEL · MAY 2025</span>
+        <span>LAT 51°N · LONG 0°W</span>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10C</span><span class="name">Royal Navy Sea Exploration</span></div>
+  </div>
+
+  <!-- 10D - OXFORDSHIRE PIPE PUB -->
+  <div class="card">
+    <div class="mockup"><div class="m10d">
+      <div class="m10d beam"></div>
+      <div class="m10d header">
+        <div>
+          <div class="m10d logo">The Passage Inn</div>
+          <div class="m10d established">Est. 1742, Oxfordshire</div>
+        </div>
+        <span style="font-size:20px;">🍺</span>
+      </div>
+      <div class="m10d body">
+        <div class="m10d post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m10d excerpt">In the olden days, explorers sought investments from prosperous businessmen and governments to finance their grand adventures. Now consider the current day — there is nothing left to explore.</div>
+      </div>
+      <div class="m10d footer">
+        <span>Travel & Ale</span>
+        <span>May the Fourth, 2025</span>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10D</span><span class="name">Oxfordshire Pipe Pub</span></div>
+  </div>
+
+  <!-- 10E - IRISH PUB -->
+  <div class="card">
+    <div class="mockup"><div class="m10e">
+      <div class="m10e header">
+        <div class="m10e logo">Tigh Passage</div>
+        <span class="m10e shamrock">☘</span>
+      </div>
+      <div class="m10e banner">Since 1888 · Galway · Uisce beatha</div>
+      <div class="m10e body">
+        <div class="m10e category">Travel & Stories</div>
+        <div class="m10e post-title">A Plan for the Greatest Beer Run of All Time, and Why You'd Need a Passport</div>
+        <div class="m10e excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m10e footer">
+        <span>Travel · May 2025</span>
+        <span>Sláinte</span>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10E</span><span class="name">Irish Pub</span></div>
+  </div>
+
+  <!-- 10F - PLAYBOY -->
+  <div class="card">
+    <div class="mockup"><div class="m10f">
+      <div class="m10f header">
+        <div class="m10f logo">Passage</div>
+        <div style="font-size:22px;color:#111;font-family:'Bodoni Moda',serif;">♦</div>
+      </div>
+      <div class="m10f date-bar">
+        <span>May 2025</span>
+        <span>Vol. III · No. 7</span>
+        <span>Isaac Lindell</span>
+      </div>
+      <div class="m10f body">
+        <div class="m10f feature">Featured Essay</div>
+        <div class="m10f post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m10f excerpt">In the olden days, explorers sought investments from prosperous businessmen to finance their grand adventures. Now consider the current day — there is nothing left to explore.</div>
+        <div class="m10f rule"></div>
+        <div class="m10f byline">By Isaac Lindell</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10F</span><span class="name">Playboy Magazine</span></div>
+  </div>
+
+  <!-- 10G - 1970S MODERNISM -->
+  <div class="card">
+    <div class="mockup"><div class="m10g">
+      <div class="m10g header">
+        <div>
+          <div class="m10g logo">Passage</div>
+          <div class="m10g logo-sub">A Journal · Est. 1973</div>
+        </div>
+        <div class="m10g shape">No. 7<br>1973</div>
+      </div>
+      <div class="m10g body">
+        <div class="m10g post-title">A Plan for the Greatest Beer Run of All Time</div>
+        <div class="m10g geo-line">
+          <span style="background:#c87030;"></span>
+          <span style="background:#f5e8c0;width:6px;flex:none;"></span>
+          <span style="background:#2a6030;"></span>
+          <span style="background:#f5e8c0;width:6px;flex:none;"></span>
+          <span style="background:#c87030;"></span>
+        </div>
+        <div class="m10g excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m10g footer">
+        <span>Travel · Essays</span>
+        <span>May 2025</span>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10G</span><span class="name">1970s Modernism</span></div>
+  </div>
+
+  <!-- 10H - 1980S VINTAGE -->
+  <div class="card">
+    <div class="mockup"><div class="m10h">
+      <div class="m10h top-stripe"></div>
+      <div class="m10h header">
+        <div>
+          <div class="m10h logo">PASSAGE</div>
+          <div class="m10h logo-outline">MAGAZINE</div>
+        </div>
+        <div style="font-family:'Bebas Neue',cursive;font-size:10px;letter-spacing:0.3em;color:#c84080;text-align:right;">MAY<br>2025</div>
+      </div>
+      <div class="m10h body">
+        <div class="m10h category">Travel · Adventure</div>
+        <div class="m10h post-title">Greatest Beer Run of All Time</div>
+        <div class="m10h excerpt">In the olden days, explorers sought investments to finance their grand adventures. Now we must make the same journeys in stylized, more difficult fashions.</div>
+      </div>
+      <div class="m10h footer">
+        <div class="m10h footer-left">Isaac Lindell</div>
+        <div class="m10h footer-right">VOL.III · NO.7</div>
+      </div>
+    </div></div>
+    <div class="card-label"><span class="num">10H</span><span class="name">1980s Vintage</span></div>
+  </div>
+
+</div>
+
+<p style="font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:#9a8a7a;text-align:center;margin-top:60px;padding-bottom:40px;">Isaac Lindell · 37 Blog Concepts · 2025</p>
+
+</body>
+</html>

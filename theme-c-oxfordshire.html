@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Footnote — Theme C: Oxfordshire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vellum: #F5F0E6;
+    --ink: #141210;
+    --gold: #7A5C1E;
+    --light-gold: #B8912A;
+    --mid: #6A6058;
+    --rule: #D8D0C0;
+    --col-bg: #EDE8DC;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--vellum);
+    color: var(--ink);
+    font-family: 'Spectral', serif;
+    overflow-x: hidden;
+  }
+
+  /* TOP STRIP — Broadsheet date bar */
+  .date-bar {
+    background: var(--ink);
+    padding: 8px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .date-bar-left {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #666;
+  }
+  .date-bar-center {
+    font-family: 'Spectral', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: #555;
+  }
+  .date-bar-right {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    color: #555;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    padding: 40px 48px 24px;
+    text-align: center;
+    border-bottom: 3px double var(--ink);
+    position: relative;
+  }
+  .masthead-top-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .masthead-top-rule hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+  .masthead-ornament {
+    font-family: 'Spectral', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--rule);
+    letter-spacing: 0.1em;
+  }
+  .masthead h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 0.9;
+    margin-bottom: 16px;
+  }
+  .masthead h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .masthead-sub {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 20px;
+  }
+  .masthead-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    list-style: none;
+  }
+  .masthead-nav a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .masthead-nav a:hover { color: var(--gold); }
+  .masthead-nav .nav-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+
+  /* BROADSHEET GRID */
+  .broadsheet {
+    display: grid;
+    grid-template-columns: 1fr 2px 2fr 2px 1fr;
+    padding: 40px 48px;
+    gap: 0;
+    min-height: calc(100vh - 200px);
+  }
+  .col-rule { background: var(--rule); }
+
+  /* Column 1 */
+  .col-left {
+    padding: 0 32px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .col-item {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .col-item:last-child { border-bottom: none; }
+  .col-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .col-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .col-title:hover { color: var(--gold); }
+  .col-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--mid);
+    line-height: 1.75;
+  }
+  .col-byline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: #A09080;
+    margin-top: 8px;
+  }
+
+  /* Column center — HERO */
+  .col-center {
+    padding: 0 48px;
+  }
+  .center-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .center-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .center-rule-ornament {
+    text-align: center;
+    margin: 20px 0;
+    font-family: 'Spectral', serif;
+    font-size: 18px;
+    color: var(--rule);
+    letter-spacing: 0.5em;
+  }
+  .center-text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ink);
+    text-align: justify;
+    hyphens: auto;
+    columns: 2;
+    column-gap: 32px;
+    margin-bottom: 24px;
+  }
+  .center-text::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 8px;
+    color: var(--ink);
+  }
+  .center-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    margin-top: 24px;
+  }
+  .center-bottom-read {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: letter-spacing 0.3s;
+  }
+  .center-bottom-read:hover { letter-spacing: 0.55em; }
+  .center-bottom-meta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--mid);
+  }
+
+  /* Column right */
+  .col-right {
+    padding: 0 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .gold-band-item {
+    background: var(--col-bg);
+    padding: 20px;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* PULL QUOTE */
+  .pullquote-band {
+    background: var(--ink);
+    padding: 56px 120px;
+    text-align: center;
+    border-top: 3px double var(--ink);
+    border-bottom: 3px double var(--ink);
+    position: relative;
+  }
+  .pullquote-band::before, .pullquote-band::after {
+    content: '—';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Spectral', serif;
+    font-size: 24px;
+    color: rgba(255,255,255,0.1);
+  }
+  .pullquote-band::before { left: 48px; }
+  .pullquote-band::after { right: 48px; }
+  .pq-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-style: italic;
+    color: var(--vellum);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .pq-attr {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* MORE ARTICLES */
+  .more-section {
+    padding: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .more-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .more-label hr { flex: 1; border: none; border-top: 1px solid var(--rule); }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+  }
+  .more-card {
+    background: var(--vellum);
+    padding: 28px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .more-card:hover { background: var(--col-bg); }
+  .more-card:hover .mc-title { color: var(--gold); }
+  .mc-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .mc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .mc-meta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: #A09080;
+  }
+
+  footer {
+    background: var(--ink);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .f-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--vellum);
+  }
+  .f-links {
+    display: flex; gap: 24px; list-style: none;
+  }
+  .f-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #666;
+    text-decoration: none;
+  }
+  .f-copy {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: #555;
+  }
+
+  .theme-label {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--gold);
+    color: var(--vellum);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    z-index: 200;
+  }
+</style>
+</head>
+<body>
+<div class="theme-label">Theme C — Oxfordshire</div>
+
+<div class="date-bar">
+  <span class="date-bar-left">Independent · Est. 2025</span>
+  <span class="date-bar-center">Short Stories · Think Pieces · Poems</span>
+  <span class="date-bar-right">No Comments · No Advertisements</span>
+</div>
+
+<header class="masthead">
+  <div class="masthead-top-rule">
+    <hr>
+    <span class="masthead-ornament">❧ An Independent Publication ❧</span>
+    <hr>
+  </div>
+  <h1><em>The</em> Footnote</h1>
+  <div class="masthead-sub">Short Stories · Think Pieces · Poems</div>
+  <ul class="masthead-nav">
+    <li><a href="#">Short Stories</a></li>
+    <li><div class="nav-dot"></div></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><div class="nav-dot"></div></li>
+    <li><a href="#">Poems</a></li>
+    <li><div class="nav-dot"></div></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+</header>
+
+<main class="broadsheet">
+  <div class="col-left">
+    <div class="col-item">
+      <div class="col-label">Short Stories</div>
+      <div class="col-title">The Watchmaker of Broad Street</div>
+      <p class="col-text">He had repaired the same clock four hundred times. He suspected it preferred to be broken.</p>
+      <div class="col-byline">6 min read</div>
+    </div>
+    <div class="col-item">
+      <div class="col-label">Poems</div>
+      <div class="col-title">Elegy for a Postbox</div>
+      <p class="col-text">They painted it gold for the Games. I preferred it red and slightly wrong.</p>
+      <div class="col-byline">2 min read</div>
+    </div>
+    <div class="col-item">
+      <div class="col-label">Think Pieces</div>
+      <div class="col-title">Against the Considered Opinion</div>
+      <p class="col-text">There is a particular arrogance in the person who knows exactly what they think. A short defence of the honest muddle.</p>
+      <div class="col-byline">9 min read</div>
+    </div>
+  </div>
+
+  <div class="col-rule"></div>
+
+  <div class="col-center">
+    <div class="center-label">Featured · Think Pieces</div>
+    <h2 class="center-title">The Quiet English Art of Saying Everything by Saying Nothing</h2>
+    <div class="center-rule-ornament">· · ·</div>
+    <div class="center-text">There is a particular genius in the English way of not saying things. It is misread, constantly, by everyone who doesn't grow up inside it. The nod that means disapproval. The "quite" that means catastrophic. The invitation for tea that means "I'd like you to leave now, and possibly forever." This is not dishonesty. It is something more interesting — a language of implication so precise that it conveys more than direct speech could. The problem, if it is one, is that you have to be inside the code to read it. Outsiders see reserve. Insiders see an entire emotional library, cross-referenced and indexed.</div>
+    <div class="center-bottom">
+      <a href="#" class="center-bottom-read">Continue reading →</a>
+      <span class="center-bottom-meta">11 min read · Think Pieces</span>
+    </div>
+  </div>
+
+  <div class="col-rule"></div>
+
+  <div class="col-right">
+    <div class="col-item gold-band-item">
+      <div class="col-label">Short Stories</div>
+      <div class="col-title">The Last Passenger on the 6:18</div>
+      <p class="col-text">He rode the same train for thirty years. When they cancelled the line, he didn't know what to do with Tuesdays.</p>
+      <div class="col-byline">5 min read</div>
+    </div>
+    <div class="col-item">
+      <div class="col-label">Think Pieces</div>
+      <div class="col-title">On Being Half-Right</div>
+      <p class="col-text">The most interesting ideas are always incomplete. A meditation on the virtue of the unfinished argument.</p>
+      <div class="col-byline">7 min read</div>
+    </div>
+    <div class="col-item">
+      <div class="col-label">Poems</div>
+      <div class="col-title">Portrait of the Town at Closing Time</div>
+      <p class="col-text">The chairs go up. The last glass is rinsed. The barmaid checks her phone. This is the true moment of the day.</p>
+      <div class="col-byline">3 min read</div>
+    </div>
+  </div>
+</main>
+
+<div class="pullquote-band">
+  <p class="pq-text">"Writing is the long way round to saying something short."</p>
+  <div class="pq-attr">The Footnote · An Independent Journal · Est. 2025</div>
+</div>
+
+<div class="more-section">
+  <div class="more-label"><hr>Recent Issues<hr></div>
+  <div class="more-grid">
+    <div class="more-card">
+      <div class="mc-label">Think Pieces</div>
+      <div class="mc-title">The Genius of the Second Opinion</div>
+      <div class="mc-meta">8 min read</div>
+    </div>
+    <div class="more-card">
+      <div class="mc-label">Short Stories</div>
+      <div class="mc-title">Everything That Happened on Coronation Street</div>
+      <div class="mc-meta">4 min read</div>
+    </div>
+    <div class="more-card">
+      <div class="mc-label">Poems</div>
+      <div class="mc-title">The Motorway in Rain</div>
+      <div class="mc-meta">2 min read</div>
+    </div>
+    <div class="more-card">
+      <div class="mc-label">Think Pieces</div>
+      <div class="mc-title">Why the British Don't Trust Enthusiasm</div>
+      <div class="mc-meta">10 min read</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">The Footnote</div>
+  <ul class="f-links">
+    <li><a href="#">Short Stories</a></li>
+    <li><a href="#">Think Pieces</a></li>
+    <li><a href="#">Poems</a></li>
+    <li><a href="#">Archive</a></li>
+  </ul>
+  <div class="f-copy">Independent · Ad-free · No Comments</div>
+</footer>
+</body>
+</html>

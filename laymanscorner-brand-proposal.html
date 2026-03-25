@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layman's Corner — Brand Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Frank+Ruhl+Libre:wght@300;400;700&family=Josefin+Sans:wght@300;400&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;500&family=Forum&family=Tenor+Sans&family=Jost:wght@300;400;500&family=Gilda+Display&family=Unbounded:wght@300;400&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  body {
+    background: #f5f3ef;
+    font-family: 'Cormorant Garamond', serif;
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .proposal-header {
+    background: #0d0d0d;
+    color: #f5f3ef;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proposal-header::before {
+    content: 'BRAND';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 120px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.04);
+    white-space: nowrap;
+  }
+
+  .proposal-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .proposal-header h1 em {
+    font-style: italic;
+    color: #c8a96e;
+  }
+
+  .proposal-header .subtitle {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 24px;
+  }
+
+  .proposal-header .meta {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .proposal-header .meta-item {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .proposal-header .meta-item span {
+    display: block;
+    font-size: 13px;
+    color: #ccc;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== INTRO ===== */
+  .intro-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    text-align: center;
+  }
+
+  .intro-section p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    font-weight: 300;
+  }
+
+  .intro-section p strong {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  /* ===== SECTION HEADERS ===== */
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #999;
+    text-align: center;
+    padding: 40px 20px 20px;
+  }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 60px;
+    margin-bottom: 40px;
+  }
+
+  .section-divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .section-divider span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: #bbb;
+    white-space: nowrap;
+  }
+
+  /* ===== GRID ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    gap: 2px;
+    padding: 0;
+  }
+
+  /* ===== CARD ===== */
+  .brand-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .brand-card:hover .card-inner {
+    transform: scale(1.015);
+  }
+
+  .card-inner {
+    transition: var(--transition);
+    height: 100%;
+  }
+
+  .card-preview {
+    height: 320px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    overflow: hidden;
+  }
+
+  .card-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .card-number {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    z-index: 2;
+  }
+
+  .card-tag {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid currentColor;
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  .card-preview-title {
+    position: relative;
+    z-index: 2;
+    line-height: 1.1;
+  }
+
+  .card-preview-title .concept-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* ===== CARD BODY ===== */
+  .card-body {
+    padding: 32px 36px;
+    background: #fff;
+  }
+
+  .card-body h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .card-body .tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .palette-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+  }
+
+  .swatch-color {
+    width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.06);
+    position: relative;
+  }
+
+  .swatch-pct {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: #aaa;
+  }
+
+  .swatch-hex {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    color: #bbb;
+  }
+
+  .fonts-section {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .font-pair {
+    padding: 14px 16px;
+    background: #fafafa;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+  }
+
+  .font-pair .pair-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 8px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .font-pair .display-font {
+    font-size: 20px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+  }
+
+  .font-pair .body-font {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .mood-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+  }
+
+  .mood-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: #888;
+    background: #f5f5f5;
+  }
+
+  /* ===== FOOTNOTE ===== */
+  .proposal-footer {
+    background: #0d0d0d;
+    color: #555;
+    padding: 60px;
+    margin-top: 80px;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+
+  .proposal-footer p {
+    margin-bottom: 8px;
+  }
+
+  /* ===== INDIVIDUAL CARD THEMES ===== */
+
+  /* 01 — Ferrari/Maranello */
+  .c01 .card-preview {
+    background: #0f0f0f;
+    background-image:
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(180,0,0,0.03) 60px, rgba(180,0,0,0.03) 61px);
+  }
+  .c01 .card-preview-title h2 { color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; }
+  .c01 .card-number, .c01 .card-tag { color: #CC0000; }
+  .c01 .stripe { position: absolute; left: 0; top: 0; height: 100%; width: 5px; background: #CC0000; }
+  .c01 .ornament { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-family: 'Cinzel', serif; font-size: 80px; color: rgba(204,0,0,0.12); letter-spacing: -0.05em; }
+
+  /* 02 — British Racing */
+  .c02 .card-preview {
+    background: #0C3224;
+  }
+  .c02 .card-preview-title h2 { color: #f5f0e8; font-family: 'EB Garamond', serif; font-size: 38px; font-style: italic; }
+  .c02 .card-number { color: #c8a96e; }
+  .c02 .card-tag { color: #c8a96e; }
+  .c02 .gold-line { position: absolute; bottom: 80px; left: 40px; width: 60px; height: 1px; background: #c8a96e; }
+
+  /* 03 — Irish Pub */
+  .c03 .card-preview {
+    background: #1a0f00;
+    background-image: radial-gradient(ellipse at 30% 50%, rgba(101,60,20,0.4) 0%, transparent 60%);
+  }
+  .c03 .card-preview-title h2 { color: #e8d5b0; font-family: 'Libre Baskerville', serif; font-size: 34px; }
+  .c03 .card-number { color: #b5893a; }
+  .c03 .card-tag { color: #b5893a; }
+
+  /* 04 — English Oxfordshire */
+  .c04 .card-preview {
+    background: #f2ede4;
+    background-image: linear-gradient(180deg, #e8e0d0 0%, #f2ede4 100%);
+  }
+  .c04 .card-preview-title h2 { color: #1a1512; font-family: 'Playfair Display', serif; font-size: 34px; }
+  .c04 .card-preview::after { background: none; }
+  .c04 .card-number { color: #666; }
+  .c04 .card-tag { color: #666; }
+  .c04 .ink-line { position: absolute; bottom: 40px; left: 40px; right: 40px; height: 1px; background: #1a1512; opacity: 0.15; }
+
+  /* 05 — Polar Exploration */
+  .c05 .card-preview {
+    background: #e8eef2;
+    background-image:
+      linear-gradient(180deg, #d5e0e8 0%, #e8eef2 50%, #f0f0ec 100%);
+  }
+  .c05 .card-preview-title h2 { color: #1a2530; font-family: 'Cardo', serif; font-size: 36px; }
+  .c05 .card-preview::after { background: none; }
+  .c05 .card-number { color: #4a6070; }
+  .c05 .card-tag { color: #4a6070; }
+
+  /* 06 — Sea Exploration */
+  .c06 .card-preview {
+    background: #0a1a2e;
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(15,50,90,0.8) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(5,20,45,0.9) 0%, transparent 50%);
+  }
+  .c06 .card-preview-title h2 { color: #d4e8f5; font-family: 'Spectral', serif; font-size: 36px; font-style: italic; }
+  .c06 .card-number { color: #7ab8d4; }
+  .c06 .card-tag { color: #7ab8d4; }
+
+  /* 07 — Golden Age of Piracy */
+  .c07 .card-preview {
+    background: #0e0c08;
+    background-image: radial-gradient(ellipse at 50% 0%, rgba(100,75,20,0.3) 0%, transparent 60%);
+  }
+  .c07 .card-preview-title h2 { color: #e8d4a0; font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 300; font-style: italic; }
+  .c07 .card-number { color: #c8a84a; }
+  .c07 .card-tag { color: #c8a84a; }
+
+  /* 08 — Wood & Pipe Smoking Bar */
+  .c08 .card-preview {
+    background: #1a1008;
+    background-image: radial-gradient(ellipse at 40% 60%, rgba(80,45,10,0.6) 0%, transparent 55%);
+  }
+  .c08 .card-preview-title h2 { color: #d4c4a0; font-family: 'EB Garamond', serif; font-size: 38px; }
+  .c08 .card-number { color: #a07840; }
+  .c08 .card-tag { color: #a07840; }
+
+  /* 09 — 1970s Modern */
+  .c09 .card-preview {
+    background: #f5f0e5;
+    background-image: linear-gradient(135deg, #e8dfc8 0%, #f5f0e5 60%, #ede5d0 100%);
+  }
+  .c09 .card-preview-title h2 { color: #1a1410; font-family: 'Gilda Display', serif; font-size: 40px; }
+  .c09 .card-preview::after { background: none; }
+  .c09 .card-number { color: #c07030; }
+  .c09 .card-tag { color: #c07030; }
+  .c09 .retro-shape { position: absolute; right: -20px; top: -20px; width: 160px; height: 160px; border-radius: 50%; background: rgba(192,112,48,0.12); }
+
+  /* 10 — Playboy/Penthouse */
+  .c10 .card-preview {
+    background: #0a0a0a;
+  }
+  .c10 .card-preview-title h2 { color: #fff; font-family: 'Josefin Sans', sans-serif; font-size: 36px; font-weight: 300; letter-spacing: 0.15em; }
+  .c10 .card-number { color: #fff; }
+  .c10 .card-tag { color: rgba(255,255,255,0.5); }
+  .c10 .accent-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #fff; }
+
+  /* 11 — Luxury Yacht Brochure */
+  .c11 .card-preview {
+    background: #f7f5f2;
+    background-image: linear-gradient(160deg, #f0ede8 0%, #f7f5f2 100%);
+  }
+  .c11 .card-preview-title h2 { color: #0d1a2a; font-family: 'Tenor Sans', serif; font-size: 36px; letter-spacing: 0.08em; }
+  .c11 .card-preview::after { background: none; }
+  .c11 .card-number { color: #1a3a5c; }
+  .c11 .card-tag { color: #1a3a5c; }
+  .c11 .navy-accent { position: absolute; bottom: 40px; left: 40px; width: 40px; height: 2px; background: #1a3a5c; }
+
+  /* 12 — Old Money Lake Como */
+  .c12 .card-preview {
+    background: #e8edf0;
+    background-image: linear-gradient(180deg, #dce4e8 0%, #e8edf0 60%, #f0ece6 100%);
+  }
+  .c12 .card-preview-title h2 { color: #1a1f2a; font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; font-style: italic; }
+  .c12 .card-preview::after { background: none; }
+  .c12 .card-number { color: #8090a0; }
+  .c12 .card-tag { color: #8090a0; }
+
+  /* 13 — Italian Wooden Yacht */
+  .c13 .card-preview {
+    background: #1c0e04;
+    background-image:
+      radial-gradient(ellipse at 30% 50%, rgba(100,55,10,0.5) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 50%, rgba(15,45,80,0.4) 0%, transparent 50%);
+  }
+  .c13 .card-preview-title h2 { color: #d4c8b0; font-family: 'Cardo', serif; font-size: 38px; font-style: italic; }
+  .c13 .card-number { color: #4a7898; }
+  .c13 .card-tag { color: #4a7898; }
+
+  /* 14 — Interstellar */
+  .c14 .card-preview {
+    background: #04050a;
+    background-image:
+      radial-gradient(ellipse at 50% 50%, rgba(20,30,60,0.8) 0%, transparent 60%);
+  }
+  .c14 .card-preview-title h2 { color: #e8ecf8; font-family: 'Unbounded', sans-serif; font-size: 26px; font-weight: 300; letter-spacing: 0.05em; }
+  .c14 .card-number { color: #8090d0; }
+  .c14 .card-tag { color: #8090d0; }
+  .c14 .stars { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px); background-size: 40px 40px; opacity: 0.15; }
+
+  /* 15 — The Godfather */
+  .c15 .card-preview {
+    background: #0a0804;
+    background-image: radial-gradient(ellipse at 30% 30%, rgba(30,20,5,0.9) 0%, transparent 60%);
+  }
+  .c15 .card-preview-title h2 { color: #d4c8a8; font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; }
+  .c15 .card-number { color: #8c7840; }
+  .c15 .card-tag { color: #8c7840; }
+  .c15 .rose { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-size: 60px; opacity: 0.08; }
+
+  /* 16 — Goodfellas */
+  .c16 .card-preview {
+    background: #0d0d0d;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 15px,
+      rgba(255,255,255,0.01) 15px,
+      rgba(255,255,255,0.01) 16px
+    );
+  }
+  .c16 .card-preview-title h2 { color: #fff; font-family: 'DM Serif Display', serif; font-size: 40px; }
+  .c16 .card-number { color: #e04040; }
+  .c16 .card-tag { color: #e04040; }
+
+  /* 17 — Atelier/Studio Art (new) */
+  .c17 .card-preview {
+    background: #f0ece4;
+    background-image: linear-gradient(160deg, #e8e2d6 0%, #f0ece4 100%);
+  }
+  .c17 .card-preview-title h2 { color: #1a1610; font-family: 'Frank Ruhl Libre', serif; font-size: 36px; font-weight: 300; }
+  .c17 .card-preview::after { background: none; }
+  .c17 .card-number { color: #666; }
+  .c17 .card-tag { color: #666; }
+  .c17 .ink-splash { position: absolute; right: 30px; top: 30px; width: 80px; height: 80px; border-radius: 50% 30% 50% 30%; background: rgba(26,22,16,0.05); transform: rotate(20deg); }
+
+  /* 18 — Continental Grand Hotel (new) */
+  .c18 .card-preview {
+    background: #1a1208;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(180,140,60,0.03) 30px, rgba(180,140,60,0.03) 31px),
+      repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(180,140,60,0.03) 30px, rgba(180,140,60,0.03) 31px);
+  }
+  .c18 .card-preview-title h2 { color: #e8d8b0; font-family: 'Cinzel', serif; font-size: 28px; font-weight: 400; letter-spacing: 0.12em; }
+  .c18 .card-number { color: #c8a040; }
+  .c18 .card-tag { color: #c8a040; }
+  .c18 .border-ornament { position: absolute; inset: 16px; border: 1px solid rgba(200,160,64,0.2); pointer-events: none; }
+
+  /* 19 — Scandinavian Modernist (new) */
+  .c19 .card-preview {
+    background: #f5f5f0;
+    background-image: linear-gradient(180deg, #eeeeea 0%, #f5f5f0 100%);
+  }
+  .c19 .card-preview-title h2 { color: #1a1a18; font-family: 'Jost', sans-serif; font-size: 38px; font-weight: 300; letter-spacing: 0.04em; }
+  .c19 .card-preview::after { background: none; }
+  .c19 .card-number { color: #999; }
+  .c19 .card-tag { color: #999; }
+  .c19 .line-accent { position: absolute; left: 40px; top: 40px; bottom: 40px; width: 2px; background: #1a1a18; opacity: 0.12; }
+
+  /* 20 — Fin de Siècle / Art Nouveau (new) */
+  .c20 .card-preview {
+    background: #f5f0e0;
+    background-image:
+      radial-gradient(ellipse at 80% 20%, rgba(140,100,40,0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(60,90,50,0.08) 0%, transparent 40%);
+  }
+  .c20 .card-preview-title h2 { color: #1a1408; font-family: 'Gilda Display', serif; font-size: 36px; }
+  .c20 .card-preview::after { background: none; }
+  .c20 .card-number { color: #8c7040; }
+  .c20 .card-tag { color: #8c7040; }
+  .c20 .vine { position: absolute; right: 30px; bottom: 20px; font-size: 50px; opacity: 0.1; color: #4a7040; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .proposal-header { padding: 40px 24px; }
+    .fonts-section { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="proposal-header">
+  <h1><em>Layman's</em> Corner</h1>
+  <h1 style="color:#555;font-size:clamp(14px,2vw,20px);font-family:'Josefin Sans',sans-serif;font-weight:300;letter-spacing:0.35em;text-transform:uppercase;margin-top:8px;">Brand Identity Proposal</h1>
+  <p class="subtitle">20 Aesthetic Directions · Colour Palettes · Font Pairings · Mood Language</p>
+  <div class="meta">
+    <div class="meta-item">Sections <span>Short Stories · Think Pieces · Poems</span></div>
+    <div class="meta-item">Format <span>60% Base · 30% Primary · 10% Accent</span></div>
+    <div class="meta-item">Designs <span>20 Proposals</span></div>
+  </div>
+</div>
+
+<div class="intro-section">
+  <p>Each direction below is designed to be <strong>subtle, literary, and elegant</strong> — never theme-park. The strongest blogs feel like a world, not a costume. Review the palette, fonts, and mood. Choose your direction and the full site will be built to match.</p>
+</div>
+
+<div class="section-label">The Twenty Directions</div>
+<div class="section-divider"><hr><span>01 – 10</span><hr></div>
+
+<div class="cards-grid">
+
+  <!-- 01 FERRARI -->
+  <div class="brand-card c01">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="stripe"></div>
+        <div class="ornament">LC</div>
+        <span class="card-number">01</span>
+        <span class="card-tag">Maranello</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Ferrari / Italian Racing Heritage</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cormorant Garamond',serif;">The Prancing Horse Editorial</h3>
+        <p class="tagline">"Speed distilled into stillness. Passion expressed in restraint."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F8F6F2;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F8F6F2</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0D0D0D;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0D0D0D</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#CC0000;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#CC0000</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;">Cormorant Garamond</div>
+            <div class="body-font" style="font-family:'Josefin Sans',sans-serif;letter-spacing:0.08em;">JOSEFIN SANS — body text, calm and geometric</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Cinzel',serif;">Cinzel</div>
+            <div class="body-font" style="font-family:'Crimson Pro',serif;">Crimson Pro — long-form reading</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Italian Heritage</span>
+          <span class="mood-tag">Controlled Power</span>
+          <span class="mood-tag">Monochrome Precision</span>
+          <span class="mood-tag">Red Accent Moments</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 BRITISH RACING -->
+  <div class="brand-card c02">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="gold-line"></div>
+        <span class="card-number">02</span>
+        <span class="card-tag">BRG</span>
+        <div class="card-preview-title">
+          <span class="concept-name">British Racing Green</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'EB Garamond',serif;font-style:italic;">The Club Room</h3>
+        <p class="tagline">"The paddock, the gentlemen's enclosure, the fading glory of Silverstone."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F4F1EC;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F4F1EC</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0C3224;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0C3224</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C8A96E;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C8A96E</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'EB Garamond',serif;font-style:italic;">EB Garamond</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;letter-spacing:0.06em;">Raleway Light — refined sans body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Playfair Display',serif;">Playfair Display</div>
+            <div class="body-font" style="font-family:'Source Serif 4',serif;">Source Serif 4 — editorial body</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Racing Heritage</span>
+          <span class="mood-tag">English Restraint</span>
+          <span class="mood-tag">Gold Trim Elegance</span>
+          <span class="mood-tag">Club Atmosphere</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 IRISH PUB -->
+  <div class="brand-card c03">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">03</span>
+        <span class="card-tag">The Local</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Interior of an Irish Pub</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Libre Baskerville',serif;">The Snug</h3>
+        <p class="tagline">"Dark wood, Guinness light, conversation that goes nowhere and everywhere."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F2EDE0;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F2EDE0</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#2E1A00;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#2E1A00</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#B5893A;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#B5893A</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Libre Baskerville',serif;">Libre Baskerville</div>
+            <div class="body-font" style="font-family:'Lora',serif;">Lora — warm, story-ready serif body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Frank Ruhl Libre',serif;font-weight:700;">Frank Ruhl Libre</div>
+            <div class="body-font" style="font-family:'Crimson Pro',serif;">Crimson Pro Italic for pull quotes</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Amber Warmth</span>
+          <span class="mood-tag">Storytelling</span>
+          <span class="mood-tag">Working Class Literary</span>
+          <span class="mood-tag">Tobacco & Timber</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 OXFORDSHIRE -->
+  <div class="brand-card c04">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="ink-line"></div>
+        <span class="card-number" style="color:#555;">04</span>
+        <span class="card-tag" style="color:#555;">Oxfordshire</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Old English Black & White</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Playfair Display',serif;">The Ink & Stone</h3>
+        <p class="tagline">"The Bodleian at dusk. Handwritten marginalia. The smell of old vellum."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F1E8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F1E8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A1512;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A1512</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8B6914;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#8B6914</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Playfair Display',serif;font-style:italic;">Playfair Display</div>
+            <div class="body-font" style="font-family:'Spectral',serif;">Spectral — cold, scholarly, precise</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'EB Garamond',serif;font-weight:500;">EB Garamond Medium</div>
+            <div class="body-font" style="font-family:'Josefin Sans',sans-serif;letter-spacing:0.08em;font-weight:300;">Josefin Sans Light subheads</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Academic</span>
+          <span class="mood-tag">Cotswolds Stone</span>
+          <span class="mood-tag">Newspaper Heritage</span>
+          <span class="mood-tag">Understated</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 POLAR EXPLORATION -->
+  <div class="brand-card c05">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number" style="color:#4a6070;">05</span>
+        <span class="card-tag" style="color:#4a6070;">Expedition</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Polar & Jungle Exploration, 1900s</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cardo',serif;">The Field Journal</h3>
+        <p class="tagline">"Shackleton's log. The smell of canvas and cold air. Pencil on paper under the aurora."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#EEF2F5;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#EEF2F5</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#2A3D50;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#2A3D50</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8B5E3C;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#8B5E3C</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cardo',serif;">Cardo</div>
+            <div class="body-font" style="font-family:'Spectral',serif;font-weight:300;">Spectral Light — maps and journals</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Frank Ruhl Libre',serif;">Frank Ruhl Libre</div>
+            <div class="body-font" style="font-family:'Lora',serif;font-style:italic;">Lora Italic — field notes voice</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Cartographic</span>
+          <span class="mood-tag">Ice & Canvas</span>
+          <span class="mood-tag">Edwardian Adventure</span>
+          <span class="mood-tag">Muted Courage</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 SEA EXPLORATION -->
+  <div class="brand-card c06">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">06</span>
+        <span class="card-tag">Oceanic</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Age of Maritime Discovery</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Spectral',serif;font-style:italic;">The Nautical Chart</h3>
+        <p class="tagline">"Here be no monsters — only ideas, half-formed and vast as the open ocean."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#EEF3F8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#EEF3F8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0A1A2E;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0A1A2E</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#7AB8D4;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#7AB8D4</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Spectral',serif;font-style:italic;">Spectral Italic</div>
+            <div class="body-font" style="font-family:'Source Serif 4',serif;font-weight:300;">Source Serif 4 Light — nautical charts</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'DM Serif Display',serif;">DM Serif Display</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;font-weight:300;letter-spacing:0.06em;">Raleway Light — navigation labels</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Deep Navy</span>
+          <span class="mood-tag">Horizon Light</span>
+          <span class="mood-tag">Cartographic Detail</span>
+          <span class="mood-tag">Patient & Vast</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 PIRACY -->
+  <div class="brand-card c07">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">07</span>
+        <span class="card-tag">Nassau</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Golden Age of Piracy</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-style:italic;">The Republic of Letters</h3>
+        <p class="tagline">"Nassau, 1715. Men who chose lawlessness over servitude. Inky pragmatism."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F0E8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F0E8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0E0C08;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0E0C08</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C8A84A;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C8A84A</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">Cormorant Garamond</div>
+            <div class="body-font" style="font-family:'EB Garamond',serif;">EB Garamond — broadsheet body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Cardo',serif;font-style:italic;">Cardo Italic</div>
+            <div class="body-font" style="font-family:'Lora',serif;">Lora — weathered and trustworthy</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Candlelight</span>
+          <span class="mood-tag">Parchment</span>
+          <span class="mood-tag">Terse & Dangerous</span>
+          <span class="mood-tag">18th c. Pamphlet</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 08 PIPE BAR -->
+  <div class="brand-card c08">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">08</span>
+        <span class="card-tag">The Club</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Old English Wood & Pipe Bar</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'EB Garamond',serif;">The Reading Room</h3>
+        <p class="tagline">"Leather-bound silence. The tobacco pouch. Wingback chairs and dim lamps."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F0E8D8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F0E8D8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#2A1808;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#2A1808</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#A07840;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#A07840</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'EB Garamond',serif;font-weight:500;">EB Garamond Medium</div>
+            <div class="body-font" style="font-family:'Libre Baskerville',serif;">Libre Baskerville — solid body weight</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Playfair Display',serif;font-style:italic;">Playfair Display Italic</div>
+            <div class="body-font" style="font-family:'Spectral',serif;font-weight:300;">Spectral Light — quieter prose</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Dark Walnut</span>
+          <span class="mood-tag">Amber Lamp</span>
+          <span class="mood-tag">Gentlemen's Club</span>
+          <span class="mood-tag">Heavy & Still</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 09 1970s MODERN -->
+  <div class="brand-card c09">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="retro-shape"></div>
+        <span class="card-number" style="color:#c07030;">09</span>
+        <span class="card-tag" style="color:#c07030;">Midcentury+</span>
+        <div class="card-preview-title">
+          <span class="concept-name">1970s Modernism</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Gilda Display',serif;">The Studio Voice</h3>
+        <p class="tagline">"Brutalist optimism. IBM Selectric. The Sunday supplements. Wes Anderson's warm whites."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F0E5;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F0E5</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A1510;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A1510</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C07030;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C07030</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Gilda Display',serif;">Gilda Display</div>
+            <div class="body-font" style="font-family:'Jost',sans-serif;font-weight:300;letter-spacing:0.04em;">Jost Light — clean 70s sans</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'DM Serif Display',serif;">DM Serif Display</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;font-weight:300;">Raleway — editorial geometry</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Burnt Orange</span>
+          <span class="mood-tag">Grid Layout</span>
+          <span class="mood-tag">Print Magazine</span>
+          <span class="mood-tag">Optimistic Brutalism</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 PLAYBOY -->
+  <div class="brand-card c10">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="accent-bar"></div>
+        <span class="card-number">10</span>
+        <span class="card-tag">Editorial</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Playboy / Penthouse — the Literary Side</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Josefin Sans',sans-serif;font-weight:300;letter-spacing:0.15em;">THE INTERVIEW</h3>
+        <p class="tagline">"The magazine before the pictures. Nabokov in the centrefold. Hemingway over Scotch."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F8F8F5;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F8F8F5</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0A0A0A;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0A0A0A</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C8A060;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C8A060</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Josefin Sans',sans-serif;font-weight:300;letter-spacing:0.2em;">JOSEFIN SANS</div>
+            <div class="body-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;">Cormorant Garamond Italic — body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Raleway',sans-serif;font-weight:300;letter-spacing:0.15em;">RALEWAY THIN</div>
+            <div class="body-font" style="font-family:'Spectral',serif;">Spectral — long reads, cool authority</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Monochrome First</span>
+          <span class="mood-tag">Literary Authority</span>
+          <span class="mood-tag">After Midnight</span>
+          <span class="mood-tag">Confident Minimalism</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section-divider" style="margin-top:40px;"><hr><span>11 – 20</span><hr></div>
+<div class="cards-grid">
+
+  <!-- 11 LUXURY YACHT -->
+  <div class="brand-card c11">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="navy-accent"></div>
+        <span class="card-number">11</span>
+        <span class="card-tag">Brochure</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Luxury Yacht Brochure</span>
+          <h2>Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Tenor Sans',serif;letter-spacing:0.06em;">The Charter</h3>
+        <p class="tagline">"Superyacht minimalism. Teak decks. The Côte d'Azur seen from the stern."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F7F5F2;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F7F5F2</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A3A5C;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A3A5C</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C8A060;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C8A060</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Tenor Sans',serif;letter-spacing:0.08em;">Tenor Sans</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;font-weight:300;">Raleway Light — brochure copy</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Josefin Sans',sans-serif;font-weight:300;letter-spacing:0.18em;">JOSEFIN CAPS</div>
+            <div class="body-font" style="font-family:'Cormorant Garamond',serif;">Cormorant Garamond — story body</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Ivory & Navy</span>
+          <span class="mood-tag">Sparse Luxury</span>
+          <span class="mood-tag">Warm White Space</span>
+          <span class="mood-tag">Mediterranean Light</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12 LAKE COMO -->
+  <div class="brand-card c12">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number" style="color:#8090a0;">12</span>
+        <span class="card-tag" style="color:#8090a0;">Old Money</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Old Money — Lake Como</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:40px;color:#1a1f2a;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-style:italic;">Villa Carlotta</h3>
+        <p class="tagline">"The money so old it barely speaks. Frayed linen. Silver on the terrace."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F0EDE8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F0EDE8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#5A7080;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#5A7080</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8B6050;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#8B6050</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;">Cormorant Light Italic</div>
+            <div class="body-font" style="font-family:'Source Serif 4',serif;font-weight:300;">Source Serif 4 Light — prose body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Gilda Display',serif;">Gilda Display</div>
+            <div class="body-font" style="font-family:'Spectral',serif;font-style:italic;">Spectral Italic — inherited ease</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Faded Grandeur</span>
+          <span class="mood-tag">Lake Mist</span>
+          <span class="mood-tag">Inherited Ease</span>
+          <span class="mood-tag">Dusty Rose Accent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 ITALIAN WOODEN YACHT -->
+  <div class="brand-card c13">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">13</span>
+        <span class="card-tag">Riva</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Wooden Italian Yacht — Blue & Brown</span>
+          <h2 style="font-family:'Cardo',serif;font-style:italic;font-size:38px;color:#d4c8b0;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cardo',serif;font-style:italic;">The Aquarama</h3>
+        <p class="tagline">"Mahogany and chrome. The Riva on Lake Garda. Sunlight splitting through teak."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#EEF0F0;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#EEF0F0</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#3A2010;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#3A2010</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#4A7898;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#4A7898</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cardo',serif;font-style:italic;">Cardo Italic</div>
+            <div class="body-font" style="font-family:'Lora',serif;">Lora — warm Roman body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'EB Garamond',serif;font-style:italic;">EB Garamond Italic</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;font-weight:300;">Raleway Light — captions, labels</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Mahogany Warmth</span>
+          <span class="mood-tag">Adriatic Blue</span>
+          <span class="mood-tag">Lacquered Surface</span>
+          <span class="mood-tag">Italian Craft</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 INTERSTELLAR -->
+  <div class="brand-card c14">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="stars"></div>
+        <span class="card-number">14</span>
+        <span class="card-tag">Interstellar</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Interstellar / Kubrick Space</span>
+          <h2 style="font-family:'Unbounded',sans-serif;font-weight:300;font-size:26px;color:#e8ecf8;letter-spacing:0.04em;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Unbounded',sans-serif;font-weight:300;letter-spacing:0.05em;font-size:16px;">THE TESSERACT</h3>
+        <p class="tagline">"Do not go gentle. Love as gravity. The silence between stars as punctuation."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F0F2F8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F0F2F8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#04050A;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#04050A</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8090D0;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#8090D0</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Unbounded',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.08em;">UNBOUNDED</div>
+            <div class="body-font" style="font-family:'Jost',sans-serif;font-weight:300;">Jost Light — precise, dimensional</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Josefin Sans',sans-serif;font-weight:300;letter-spacing:0.2em;">JOSEFIN THIN</div>
+            <div class="body-font" style="font-family:'Spectral',serif;font-weight:300;">Spectral Light — cosmic prose</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Deep Space Dark</span>
+          <span class="mood-tag">Periwinkle Accent</span>
+          <span class="mood-tag">Silence & Scale</span>
+          <span class="mood-tag">Monolith Geometry</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 15 GODFATHER -->
+  <div class="brand-card c15">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="rose">🌹</div>
+        <span class="card-number">15</span>
+        <span class="card-tag">Coppola</span>
+        <div class="card-preview-title">
+          <span class="concept-name">The Godfather — Sicilian Weight</span>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;color:#d4c8a8;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;">The Olive Grove</h3>
+        <p class="tagline">"Corleone light. The heavy pause. Ochre walls and black suits. The weight of loyalty."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F2ECD8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F2ECD8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0A0804;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0A0804</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8C7840;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#8C7840</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-style:italic;">Cormorant Light Italic</div>
+            <div class="body-font" style="font-family:'EB Garamond',serif;">EB Garamond — operatic body text</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Libre Baskerville',serif;">Libre Baskerville</div>
+            <div class="body-font" style="font-family:'Crimson Pro',serif;font-style:italic;">Crimson Pro — deliberate, weighty</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Baroque Shadow</span>
+          <span class="mood-tag">Warm Parchment</span>
+          <span class="mood-tag">Understated Power</span>
+          <span class="mood-tag">Sicilian Gold</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16 GOODFELLAS -->
+  <div class="brand-card c16">
+    <div class="card-inner">
+      <div class="card-preview">
+        <span class="card-number">16</span>
+        <span class="card-tag">The Copacabana</span>
+        <div class="card-preview-title">
+          <span class="concept-name">Goodfellas — NYC Mob Energy</span>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:40px;color:#fff;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'DM Serif Display',serif;">One Long Take</h3>
+        <p class="tagline">"The Copa entrance. No velvet ropes for us. Confidence as primary colour."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F5F2;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F5F2</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0D0D0D;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#0D0D0D</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#E04040;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#E04040</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'DM Serif Display',serif;">DM Serif Display</div>
+            <div class="body-font" style="font-family:'Lora',serif;">Lora — punchy story body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Libre Baskerville',serif;font-weight:700;">Libre Baskerville Bold</div>
+            <div class="body-font" style="font-family:'Jost',sans-serif;font-weight:300;">Jost Light — NY tabloid energy</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Red & Black</span>
+          <span class="mood-tag">NY Swagger</span>
+          <span class="mood-tag">Kinetic Restraint</span>
+          <span class="mood-tag">Sharp Edge</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17 ATELIER -->
+  <div class="brand-card c17">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="ink-splash"></div>
+        <span class="card-number" style="color:#666;">17</span>
+        <span class="card-tag" style="color:#666;">Atelier</span>
+        <div class="card-preview-title">
+          <span class="concept-name" style="color:#888;">Parisian Atelier / Studio Art</span>
+          <h2 style="font-family:'Frank Ruhl Libre',serif;font-weight:300;font-size:36px;color:#1a1610;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Frank Ruhl Libre',serif;font-weight:300;">L'Espace Blanc</h3>
+        <p class="tagline">"The artist's studio on the left bank. Negative space as intention. Words on unprimed linen."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F4F0E8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F4F0E8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A1610;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A1610</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#7A6A50;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#7A6A50</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Frank Ruhl Libre',serif;font-weight:300;">Frank Ruhl Libre</div>
+            <div class="body-font" style="font-family:'Raleway',sans-serif;font-weight:300;letter-spacing:0.08em;">Raleway Light — white-wall captions</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Gilda Display',serif;">Gilda Display</div>
+            <div class="body-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;">Cormorant Italic — gallery text</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">White Wall</span>
+          <span class="mood-tag">Unbleached Linen</span>
+          <span class="mood-tag">Studio Light</span>
+          <span class="mood-tag">Conceptual Restraint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18 CONTINENTAL GRAND HOTEL -->
+  <div class="brand-card c18">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="border-ornament"></div>
+        <span class="card-number">18</span>
+        <span class="card-tag">Grand Hotel</span>
+        <div class="card-preview-title">
+          <span class="concept-name">The Continental Grand Hotel</span>
+          <h2 style="font-family:'Cinzel',serif;font-size:28px;font-weight:400;letter-spacing:0.1em;color:#e8d8b0;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Cinzel',serif;font-weight:400;letter-spacing:0.1em;font-size:16px;">THE GRAND SUITE</h3>
+        <p class="tagline">"Vienna, 1913. The concierge who remembers everything. The lobby of endless beginnings."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F2EDD8;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F2EDD8</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A1208;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A1208</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C8A040;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#C8A040</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Cinzel',serif;letter-spacing:0.12em;font-size:18px;">CINZEL</div>
+            <div class="body-font" style="font-family:'EB Garamond',serif;">EB Garamond — hotel stationery body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Forum',serif;font-size:20px;">Forum</div>
+            <div class="body-font" style="font-family:'Crimson Pro',serif;">Crimson Pro — concierge script</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Gilded Frame</span>
+          <span class="mood-tag">Belle Époque</span>
+          <span class="mood-tag">Warm Vellum</span>
+          <span class="mood-tag">Old World Ceremony</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 19 SCANDINAVIAN MODERNIST -->
+  <div class="brand-card c19">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="line-accent"></div>
+        <span class="card-number" style="color:#999;">19</span>
+        <span class="card-tag" style="color:#999;">Nordic</span>
+        <div class="card-preview-title">
+          <span class="concept-name" style="color:#aaa;">Scandinavian Modernism</span>
+          <h2 style="font-family:'Jost',sans-serif;font-weight:300;font-size:38px;color:#1a1a18;letter-spacing:0.04em;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Jost',sans-serif;font-weight:300;letter-spacing:0.1em;font-size:16px;">HVID & SORT</h3>
+        <p class="tagline">"The long winter table. Pure light. A single candle and a sentence that changes everything."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F5F0;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F5F0</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1A1A18;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#1A1A18</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#6A8070;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#6A8070</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Jost',sans-serif;font-weight:300;letter-spacing:0.08em;">Jost Light</div>
+            <div class="body-font" style="font-family:'Spectral',serif;font-weight:300;">Spectral Light — clean body</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Raleway',sans-serif;font-weight:300;letter-spacing:0.12em;">RALEWAY</div>
+            <div class="body-font" style="font-family:'Cormorant Garamond',serif;font-weight:300;">Cormorant Light — nordic serif</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Bone White</span>
+          <span class="mood-tag">Sage Accent</span>
+          <span class="mood-tag">Breathable Minimalism</span>
+          <span class="mood-tag">Long-form Clarity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 FIN DE SIECLE -->
+  <div class="brand-card c20">
+    <div class="card-inner">
+      <div class="card-preview">
+        <div class="vine">❧</div>
+        <span class="card-number" style="color:#8c7040;">20</span>
+        <span class="card-tag" style="color:#8c7040;">Fin de Siècle</span>
+        <div class="card-preview-title">
+          <span class="concept-name" style="color:#a08040;">Art Nouveau / Fin de Siècle Paris</span>
+          <h2 style="font-family:'Gilda Display',serif;font-size:36px;color:#1a1408;">Layman's Corner</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <h3 style="font-family:'Gilda Display',serif;">The Yellow Book</h3>
+        <p class="tagline">"Beardsley, Wilde, the Café de Flore. Decadence that reads like virtue. Ink as vine."</p>
+        <div class="palette-row">
+          <div class="swatch"><div class="swatch-color" style="background:#F5F0E0;"></div><div class="swatch-pct">60%</div><div class="swatch-hex">#F5F0E0</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#2A2010;"></div><div class="swatch-pct">30%</div><div class="swatch-hex">#2A2010</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#6A8040;"></div><div class="swatch-pct">10%</div><div class="swatch-hex">#6A8040</div></div>
+        </div>
+        <div class="fonts-section">
+          <div class="font-pair">
+            <span class="pair-label">Display / Headers</span>
+            <div class="display-font" style="font-family:'Gilda Display',serif;">Gilda Display</div>
+            <div class="body-font" style="font-family:'EB Garamond',serif;font-style:italic;">EB Garamond Italic — literary lush</div>
+          </div>
+          <div class="font-pair">
+            <span class="pair-label">Alternate Pairing</span>
+            <div class="display-font" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;">Cormorant Semi-Bold</div>
+            <div class="body-font" style="font-family:'Libre Baskerville',serif;">Libre Baskerville — periodical body</div>
+          </div>
+        </div>
+        <div class="mood-tags">
+          <span class="mood-tag">Amber & Olive</span>
+          <span class="mood-tag">Ornamental Restraint</span>
+          <span class="mood-tag">Literary Decadence</span>
+          <span class="mood-tag">Turn-of-Century Print</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="proposal-footer">
+  <p style="font-size:14px;color:#888;font-family:'Cormorant Garamond',serif;font-style:italic;margin-bottom:16px;">Layman's Corner — Brand Identity Proposal</p>
+  <p>Choose your direction and the full site will be built to match — animations, scroll effects, SEO architecture, Vercel deployment.</p>
+  <p style="margin-top:8px;color:#333;">20 concepts presented · All palettes follow 60/30/10 rule · Light untextured base guaranteed</p>
+</div>
+
+</body>
+</html>
