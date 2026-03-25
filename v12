@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══ SEO ═══ -->
+<title>'Tis but a Flesh Wound — An Blog by Isaac Lindell</title>
+<meta name="description" content="Short stories, think pieces, and poems by Isaac Lindell. Independent writing. No ads. No comments. No algorithm.">
+<meta name="author" content="Isaac Lindell">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="short stories, think pieces, poems, independent writing, literary blog, Isaac Lindell, essays, fiction, poetry">
+
+<!-- Open Graph -->
+<meta property="og:title" content="'Tis but a Flesh Wound — An Blog">
+<meta property="og:description" content="Short stories, think pieces, and poems by Isaac Lindell. Independent. No ads. No comments.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tisbutafleshwound.com">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="'Tis but a Flesh Wound — Isaac Lindell">
+<meta name="twitter:description" content="Short stories, think pieces, and poems. Independent writing. No ads. No comments.">
+
+<link rel="canonical" href="https://tisbutafleshwound.com">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "'Tis but a Flesh Wound",
+  "description": "Short stories, think pieces, and poems by Isaac Lindell. Independent writing with no ads and no comments.",
+  "url": "https://tisbutafleshwound.com",
+  "author": {
+    "@type": "Person",
+    "name": "Isaac Lindell"
+  },
+  "inLanguage": "en",
+  "genre": ["Short Fiction", "Essays", "Poetry"],
+  "publisher": {
+    "@type": "Person",
+    "name": "Isaac Lindell"
+  }
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@200;300;400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — British Racing Green + Gold
+═══════════════════════════════════════════ */
+:root {
+  --bg:       #FDFCFA;
+  --bg-dark:  #0C1F10;
+  --bg-card:  #F4F5F0;
+  --bg-hover: #EBF0E6;
+  --green:    #1B4332;
+  --gold:     #B8A050;
+  --ink:      #0C1A0E;
+  --mid:      #7A826E;
+  --border:   #D8E0CC;
+  --sidebar:  #F2F5EE;
+}
+
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible        { opacity: 1; transform: translateY(0); }
+.reveal-delay-1        { transition-delay: 0.12s; }
+.reveal-delay-2        { transition-delay: 0.24s; }
+.reveal-delay-3        { transition-delay: 0.36s; }
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 62px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  transition: box-shadow 0.3s ease;
+}
+nav.scrolled {
+  box-shadow: 0 2px 28px rgba(12, 31, 16, 0.07);
+}
+.nav-green-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--green);
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-logo-main {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--ink);
+  line-height: 1;
+}
+.nav-logo-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 1;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-links a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 3px;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.nav-links a:hover         { color: var(--green); }
+.nav-links a:hover::after  { transform: scaleX(1); }
+
+.nav-right {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  padding-top: 62px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Left — dark panel */
+.hero-left {
+  background: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px 64px;
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-36px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Ghosted italic background letter */
+.hero-bg-glyph {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 400px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(27, 67, 50, 0.07);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 1.2s 0.15s both;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-size: clamp(32px, 3.8vw, 54px);
+  font-weight: 300;
+  font-style: italic;
+  color: #F7F4EF;
+  line-height: 1.08;
+  margin-bottom: 24px;
+  animation: fadeUp 1.3s 0.25s both;
+}
+
+.hero-excerpt {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(247, 244, 239, 0.42);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 44px;
+  animation: fadeUp 1.3s 0.35s both;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  animation: fadeUp 1.3s 0.45s both;
+  width: fit-content;
+}
+.hero-cta-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: rgba(247, 244, 239, 0.45);
+  border-bottom: 1px solid rgba(184, 160, 80, 0.4);
+  padding-bottom: 3px;
+  transition: color 0.3s, border-color 0.3s, letter-spacing 0.3s;
+}
+.hero-cta:hover .hero-cta-label {
+  color: #F7F4EF;
+  border-color: var(--gold);
+  letter-spacing: 0.68em;
+}
+.hero-cta-line {
+  width: 22px;
+  height: 1px;
+  background: rgba(184, 160, 80, 0.4);
+  transition: width 0.3s, background 0.3s;
+}
+.hero-cta:hover .hero-cta-line {
+  width: 38px;
+  background: var(--gold);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Right — sidebar */
+.hero-right {
+  background: var(--sidebar);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+  animation: slideInRight 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both;
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.sidebar-head {
+  padding: 32px 48px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sh-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.sh-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.sidebar-item {
+  flex: 1;
+  padding: 28px 48px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.25s ease, padding-left 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sidebar-item:hover          { background: #E3EBD9; padding-left: 58px; }
+.sidebar-item:hover .si-title { color: var(--green); }
+
+.si-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.si-title {
+  font-size: 21px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+  transition: color 0.25s;
+  margin-bottom: 6px;
+}
+.si-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 200;
+  letter-spacing: 0.22em;
+  color: var(--mid);
+}
+
+/* ═══════════════════════════════════════════
+   GREEN RULE
+═══════════════════════════════════════════ */
+.green-rule {
+  height: 3px;
+  background: var(--green);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════ */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 44px 52px 30px;
+}
+.section-head h2 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.section-head a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: letter-spacing 0.3s, color 0.2s;
+}
+.section-head a:hover {
+  letter-spacing: 0.48em;
+  color: var(--green);
+}
+
+/* ═══════════════════════════════════════════
+   ARTICLE GRID
+═══════════════════════════════════════════ */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin: 0 52px;
+}
+
+.article-card {
+  background: var(--bg-card);
+  padding: 36px 32px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+/* Bottom BRG underline sweep on hover */
+.article-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.article-card:hover              { background: var(--bg-hover); }
+.article-card:hover::before      { transform: scaleX(1); }
+.article-card:hover .ac-title    { color: var(--green); }
+
+.ac-num {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: var(--border);
+  margin-bottom: 20px;
+}
+.ac-type {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 7px;
+  font-weight: 300;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+.ac-title {
+  font-size: 24px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  transition: color 0.25s;
+  color: var(--ink);
+}
+.ac-excerpt {
+  font-size: 13px;
+  font-weight: 300;
+  color: #808878;
+  line-height: 1.78;
+  margin-bottom: 20px;
+}
+.ac-read {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* Poem card — slightly tinted */
+.article-card.poem-card {
+  background: #E8EEE0;
+}
+.article-card.poem-card:hover {
+  background: #DDE7D4;
+}
+.article-card.poem-card .ac-title {
+  font-size: 28px;
+}
+.article-card.poem-card .ac-excerpt {
+  font-style: italic;
+  color: #9AA08A;
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════
+   MASTHEAD BAND
+═══════════════════════════════════════════ */
+.masthead-band {
+  margin-top: 68px;
+  background: var(--bg-dark);
+  padding: 56px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.mb-wordmark {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: #2A3A2E;
+  white-space: nowrap;
+}
+.mb-quote {
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(247, 244, 239, 0.55);
+  line-height: 1.45;
+  text-align: center;
+  max-width: 520px;
+  flex: 1;
+}
+.mb-quote em {
+  color: var(--gold);
+  font-style: normal;
+}
+.mb-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #333D2E;
+  white-space: nowrap;
+  text-align: right;
+  line-height: 2;
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  padding: 40px 52px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0;
+}
+.f-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  color: var(--ink);
+  cursor: pointer;
+}
+.f-logo span { color: var(--green); }
+.f-copy {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+/* ═══════════════════════════════════════════
+   PAGE SWITCHING
+═══════════════════════════════════════════ */
+.home-page.hidden  { display: none; }
+.article-page      { display: none; }
+.article-page.active { display: block; }
+
+/* ═══════════════════════════════════════════
+   ARTICLE NAVIGATION
+═══════════════════════════════════════════ */
+.article-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: 62px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+}
+.article-nav .nav-green-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--green);
+}
+
+.back-btn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--mid);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.back-btn::before { content: '←'; font-size: 13px; }
+.back-btn:hover   { color: var(--green); }
+
+/* ═══════════════════════════════════════════
+   ARTICLE HERO
+═══════════════════════════════════════════ */
+.art-hero {
+  background: var(--bg-dark);
+  padding: 104px 64px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.art-hero-glyph {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 340px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(27, 67, 50, 0.055);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.art-type-tag {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 300;
+  letter-spacing: 0.62em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 0.9s both;
+}
+.art-type-tag::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.art-title {
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 300;
+  font-style: italic;
+  color: #F7F4EF;
+  line-height: 1.05;
+  max-width: 800px;
+  margin-bottom: 32px;
+  animation: fadeUp 1s 0.1s both;
+}
+.art-dek {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(247, 244, 239, 0.4);
+  line-height: 1.72;
+  max-width: 620px;
+  margin-bottom: 44px;
+  animation: fadeUp 1s 0.2s both;
+}
+.art-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  animation: fadeUp 1s 0.3s both;
+}
+.art-meta-item {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+}
+.art-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ═══════════════════════════════════════════
+   ARTICLE BODY — PROSE
+═══════════════════════════════════════════ */
+.art-body {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 88px 48px;
+}
+.art-body-content {
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.92;
+  color: #1A1C18;
+}
+.art-body-content p {
+  margin-bottom: 1.65em;
+}
+/* Drop cap */
+.art-body-content p:first-child::first-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 82px;
+  font-weight: 600;
+  font-style: italic;
+  float: left;
+  line-height: 0.72;
+  margin: 10px 10px 0 0;
+  color: var(--green);
+}
+
+/* Pull quote */
+.art-pull-quote {
+  margin: 60px -80px;
+  padding: 44px 80px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #E4EDD9;
+  text-align: center;
+}
+.apq-text {
+  font-size: 27px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.42;
+  color: var(--ink);
+}
+.apq-text em {
+  color: var(--green);
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════
+   ARTICLE BODY — POEM
+═══════════════════════════════════════════ */
+.poem-body {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 88px 48px;
+  text-align: center;
+}
+.poem-epigraph {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  font-style: italic;
+  color: var(--mid);
+  margin-bottom: 60px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.poem-stanza {
+  margin-bottom: 44px;
+}
+.poem-line {
+  font-size: 21px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.72;
+  color: var(--ink);
+  display: block;
+}
+.poem-line.gold { color: var(--gold); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav        { padding: 0 24px; }
+  .nav-links { display: none; }
+
+  .hero { grid-template-columns: 1fr; }
+  .hero-left {
+    padding: 64px 28px 52px;
+    min-height: 78vh;
+  }
+  .hero-bg-glyph { font-size: 200px; right: -10px; }
+  .hero-right    { display: none; }
+
+  .article-grid  { grid-template-columns: 1fr; margin: 0 24px; }
+  .section-head  { padding: 32px 24px 20px; }
+
+  .masthead-band {
+    flex-direction: column;
+    text-align: center;
+    padding: 44px 28px;
+    gap: 20px;
+  }
+  .mb-wordmark, .mb-meta { display: none; }
+
+  footer {
+    flex-direction: column;
+    gap: 14px;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .art-hero   { padding: 104px 28px 64px; }
+  .art-title  { font-size: clamp(28px, 8vw, 48px); }
+  .art-body   { padding: 52px 24px; }
+  .art-pull-quote { margin: 44px -24px; padding: 36px 24px; }
+  .poem-body  { padding: 52px 24px; }
+  .article-nav { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════════════════ -->
+<div class="home-page" id="homePage">
+
+  <nav id="mainNav">
+    <div class="nav-green-bar"></div>
+    <a class="nav-logo" href="#" onclick="showHome(event)">
+      <span class="nav-logo-main">'TIS BUT A FLESH WOUND</span>
+      <span class="nav-logo-sub">An Blog by Isaac Lindell</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="filterSection(event,'stories')">Short Stories</a></li>
+      <li><a href="#" onclick="filterSection(event,'think')">Think Pieces</a></li>
+      <li><a href="#" onclick="filterSection(event,'poems')">Poems</a></li>
+    </ul>
+    <span class="nav-right">Independent · No Ads</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Featured article">
+    <div class="hero-left">
+      <div class="hero-bg-glyph" aria-hidden="true">I</div>
+      <span class="hero-tag">Think Pieces</span>
+      <h1 class="hero-title">Everything I Know About Failure I Learned at Speed</h1>
+      <p class="hero-excerpt">A meditation on what the racetrack teaches that the classroom never could. On pressure, precision, and the strange mercy of the unforgiving.</p>
+      <a class="hero-cta" href="#" onclick="showArticle(event,'think')">
+        <span class="hero-cta-label">Read the piece</span>
+        <div class="hero-cta-line"></div>
+      </a>
+    </div>
+    <div class="hero-right" role="complementary" aria-label="More articles">
+      <div class="sidebar-head">
+        <div class="sh-pip"></div>
+        <span class="sh-label">Also in this issue</span>
+      </div>
+      <div class="sidebar-item reveal" onclick="showArticle(event,'story')">
+        <div class="si-type">Short Stories</div>
+        <div class="si-title">The Man Who Collected Silences</div>
+        <div class="si-meta">7 min read</div>
+      </div>
+      <div class="sidebar-item reveal reveal-delay-1" onclick="showArticle(event,'poem')">
+        <div class="si-type">Poems</div>
+        <div class="si-title">Ode to the Last Train North</div>
+        <div class="si-meta">3 min read</div>
+      </div>
+      <div class="sidebar-item reveal reveal-delay-2" onclick="showArticle(event,'think')">
+        <div class="si-type">Think Pieces</div>
+        <div class="si-title">In Defence of Not Having an Opinion</div>
+        <div class="si-meta">9 min read</div>
+      </div>
+      <div class="sidebar-item reveal reveal-delay-3">
+        <div class="si-type">Short Stories</div>
+        <div class="si-title">Tuesday, Probably</div>
+        <div class="si-meta">5 min read</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="green-rule"></div>
+
+  <!-- ARTICLE GRID -->
+  <div class="section-head reveal">
+    <h2>Recent Work</h2>
+    <a href="#">View Archive →</a>
+  </div>
+
+  <div class="article-grid" role="list">
+    <article class="article-card reveal" role="listitem" onclick="showArticle(event,'think')">
+      <div class="ac-num">001</div>
+      <div class="ac-type">Think Pieces</div>
+      <h2 class="ac-title">The Case for Knowing Nothing</h2>
+      <p class="ac-excerpt">Why certainty is the enemy of insight, and what a lifetime of being wrong has given me.</p>
+      <div class="ac-read">8 min read</div>
+    </article>
+    <article class="article-card reveal reveal-delay-1" role="listitem" onclick="showArticle(event,'story')">
+      <div class="ac-num">002</div>
+      <div class="ac-type">Short Stories</div>
+      <h2 class="ac-title">A Room with Two Windows</h2>
+      <p class="ac-excerpt">She watched the street for forty years. She saw everything. She told no one.</p>
+      <div class="ac-read">6 min read</div>
+    </article>
+    <article class="article-card poem-card reveal reveal-delay-2" role="listitem" onclick="showArticle(event,'poem')">
+      <div class="ac-num">003</div>
+      <div class="ac-type">Poems</div>
+      <h2 class="ac-title">Self-Portrait as a Tuesday</h2>
+      <p class="ac-excerpt">Unremarkable by design. Essential by absence. The day the week forgets to name.</p>
+      <div class="ac-read">2 min read</div>
+    </article>
+  </div>
+
+  <!-- MASTHEAD BAND -->
+  <div class="masthead-band reveal">
+    <div class="mb-wordmark">'Tis but a Flesh Wound</div>
+    <div class="mb-quote">"The best arguments live in the <em>margin</em>. The best stories live in the pause."</div>
+    <div class="mb-meta">Independent<br>No Ads · No Comments<br>Est. 2025</div>
+  </div>
+
+  <footer>
+    <div class="f-logo" onclick="showHome(event)">'TIS BUT A <span>FLESH</span> WOUND</div>
+    <div class="f-copy">Short Stories · Think Pieces · Poems · No Comments · No Ads</div>
+  </footer>
+
+</div><!-- /home-page -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     ARTICLE — THINK PIECE
+══════════════════════════════════════════════════════ -->
+<div class="article-page" id="thinkPage">
+
+  <nav class="article-nav">
+    <div class="nav-green-bar"></div>
+    <button class="back-btn" onclick="showHome(event)">All Writing</button>
+    <a class="nav-logo" href="#" style="position:absolute;left:50%;transform:translateX(-50%)" onclick="showHome(event)">
+      <span class="nav-logo-main">'TIS BUT A FLESH WOUND</span>
+      <span class="nav-logo-sub">An Blog by Isaac Lindell</span>
+    </a>
+    <span class="nav-right">Think Pieces</span>
+  </nav>
+
+  <div class="art-hero">
+    <div class="art-hero-glyph" aria-hidden="true">T</div>
+    <div class="art-type-tag">Think Pieces</div>
+    <h1 class="art-title">Everything I Know About Failure I Learned at Speed</h1>
+    <p class="art-dek">A meditation on what the racetrack teaches that the classroom never could.</p>
+    <div class="art-meta-row">
+      <span class="art-meta-item">Isaac Lindell</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">12 min read</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">Think Pieces</span>
+    </div>
+  </div>
+
+  <div class="art-body">
+    <div class="art-body-content">
+      <p>There is a particular kind of failure that is only available at speed. Not the slow catastrophe of the gradual mistake — the career taken wrong, the marriage quietly unloved — but the sudden, total, unambiguous failure that arrives in a fraction of a second and leaves you sitting in the gravel wondering which way is up.</p>
+      <p>I have had a few of those. Not behind a wheel, I should say immediately — I am not that interesting. My failures have been smaller. A pitch in front of thirty people. A conversation I thought I was winning until I clearly wasn't. The piece I published at twenty-four that I still cannot reread. But the mechanism is the same.</p>
+      <div class="art-pull-quote">
+        <div class="apq-text">The useful lesson is not <em>"don't fail."</em> The useful lesson is: learn to read the surface before you push.</div>
+      </div>
+      <p>What the racetrack teaches — or so I am told by people who actually drive on them — is that failure is information. The front wheels losing grip tells you something precise about what you asked them to do. The spin that comes from braking too late tells you where the threshold was. You did not know it was there until you crossed it. Now you do.</p>
+      <p>The classroom teaches you to avoid failure. Do not raise your hand unless you are certain. Do not submit until it is finished. Do not begin until you understand what you are doing. The racetrack teaches you to fail fast enough, and small enough, that you can still learn from it and drive home.</p>
+      <p>I am not sure I have fully learned the second lesson. I still have the classroom instinct — the deep reluctance to be wrong in public, the preference for the considered position over the honest guess. But I am working on it. Slowly. Which is, perhaps, the wrong speed for this particular lesson.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'TIS BUT A <span>FLESH</span> WOUND</div>
+    <div class="f-copy">Short Stories · Think Pieces · Poems · No Comments · No Ads</div>
+  </footer>
+
+</div><!-- /thinkPage -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     ARTICLE — SHORT STORY
+══════════════════════════════════════════════════════ -->
+<div class="article-page" id="storyPage">
+
+  <nav class="article-nav">
+    <div class="nav-green-bar"></div>
+    <button class="back-btn" onclick="showHome(event)">All Writing</button>
+    <a class="nav-logo" href="#" style="position:absolute;left:50%;transform:translateX(-50%)" onclick="showHome(event)">
+      <span class="nav-logo-main">'TIS BUT A FLESH WOUND</span>
+      <span class="nav-logo-sub">An Blog by Isaac Lindell</span>
+    </a>
+    <span class="nav-right">Short Stories</span>
+  </nav>
+
+  <div class="art-hero">
+    <div class="art-hero-glyph" aria-hidden="true">S</div>
+    <div class="art-type-tag">Short Stories</div>
+    <h1 class="art-title">The Man Who Collected Silences</h1>
+    <p class="art-dek">A short story about what we keep, and what we call it.</p>
+    <div class="art-meta-row">
+      <span class="art-meta-item">Isaac Lindell</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">7 min read</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">Short Stories</span>
+    </div>
+  </div>
+
+  <div class="art-body">
+    <div class="art-body-content">
+      <p>He had started, as most collectors do, without intending to. The first silence he kept was the one after his mother's last word to him, which had been his name, spoken from a hospital bed with something he chose to interpret as approval. He held it in his chest for the drive home. He did not play the radio.</p>
+      <p>The second was the silence of the flat when he returned from her funeral. Not the heavy silence of grief — he had expected that, had braced for it as one braces for cold water. It was the other kind. The silence of a space that had reorganised itself around an absence and found that it fit better this way.</p>
+      <p>By the third silence he understood that he was doing something deliberate. He began to keep notes. Not of what the silence followed, but of its quality — the way some silences rang slightly, like a glass that had just been set down, and others were flat and final, like felt.</p>
+      <p>He told no one about this. He was not embarrassed by it, precisely. He simply did not know how to explain a collection that had no form, no location, and no way of being shown to a visitor.</p>
+      <p>"What do you collect?" a woman asked him once, at a dinner party, the way people ask such questions — looking for the charming answer, the unusual hobby that would make the rest of the table lean in.</p>
+      <p>He thought for a moment. "Moments after things," he said. She nodded as if this was a normal answer. Perhaps, he thought, it was.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'TIS BUT A <span>FLESH</span> WOUND</div>
+    <div class="f-copy">Short Stories · Think Pieces · Poems · No Comments · No Ads</div>
+  </footer>
+
+</div><!-- /storyPage -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     ARTICLE — POEM
+══════════════════════════════════════════════════════ -->
+<div class="article-page" id="poemPage">
+
+  <nav class="article-nav">
+    <div class="nav-green-bar"></div>
+    <button class="back-btn" onclick="showHome(event)">All Writing</button>
+    <a class="nav-logo" href="#" style="position:absolute;left:50%;transform:translateX(-50%)" onclick="showHome(event)">
+      <span class="nav-logo-main">'TIS BUT A FLESH WOUND</span>
+      <span class="nav-logo-sub">An Blog by Isaac Lindell</span>
+    </a>
+    <span class="nav-right">Poems</span>
+  </nav>
+
+  <div class="art-hero" style="padding-bottom:64px;">
+    <div class="art-hero-glyph" aria-hidden="true">P</div>
+    <div class="art-type-tag">Poems</div>
+    <h1 class="art-title" style="font-size:clamp(36px,4.5vw,64px);">Ode to the Last Train North</h1>
+    <div class="art-meta-row">
+      <span class="art-meta-item">Isaac Lindell</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">3 min read</span>
+      <div class="art-meta-dot"></div>
+      <span class="art-meta-item">Poems</span>
+    </div>
+  </div>
+
+  <div class="poem-body">
+    <div class="poem-epigraph">Written on a platform in February. The train was late.</div>
+    <div class="poem-stanza">
+      <span class="poem-line">You arrive and I am already</span>
+      <span class="poem-line">half gone, coat on, bag at my feet,</span>
+      <span class="poem-line">which is how I love most things —</span>
+      <span class="poem-line gold">ready to leave before they start.</span>
+    </div>
+    <div class="poem-stanza">
+      <span class="poem-line">The platform empties around me.</span>
+      <span class="poem-line">A pigeon walks the yellow line</span>
+      <span class="poem-line">as if it knows the rule</span>
+      <span class="poem-line">does not apply to it.</span>
+    </div>
+    <div class="poem-stanza">
+      <span class="poem-line">I have not been north in three years.</span>
+      <span class="poem-line">What I am returning to</span>
+      <span class="poem-line">is not a place</span>
+      <span class="poem-line gold">but the person I was when I left it.</span>
+    </div>
+    <div class="poem-stanza">
+      <span class="poem-line">The train arrives on time.</span>
+      <span class="poem-line">I do not get on.</span>
+      <span class="poem-line">I stand there a moment longer,</span>
+      <span class="poem-line">watching it go.</span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="f-logo" onclick="showHome(event)" style="cursor:pointer">'TIS BUT A <span>FLESH</span> WOUND</div>
+    <div class="f-copy">Short Stories · Think Pieces · Poems · No Comments · No Ads</div>
+  </footer>
+
+</div><!-- /poemPage -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════ -->
+<script>
+// ── Nav shadow on scroll ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Scroll-reveal observer ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Page routing ──
+const PAGE_MAP = { think: 'thinkPage', story: 'storyPage', poem: 'poemPage' };
+
+function showArticle(e, type) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.add('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(PAGE_MAP[type]);
+  if (target) target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function showHome(e) {
+  if (e) e.preventDefault();
+  document.getElementById('homePage').classList.remove('hidden');
+  document.querySelectorAll('.article-page').forEach(p => p.classList.remove('active'));
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+function filterSection(e, section) {
+  if (e) e.preventDefault();
+  // Placeholder — wire up once you have more content
+  showHome(e);
+}
+</script>
+
+</body>
+</html>
