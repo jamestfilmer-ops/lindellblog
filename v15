@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lindell — Two New Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300;1,400;1,600&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400&family=GFS+Didot:ital@0;1&family=Tenor+Sans&family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;1,9..144,100;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #EEEAE2;
+  font-family: 'EB Garamond', Georgia, serif;
+  min-height: 100vh;
+}
+
+/* ─────────────────────────────────────
+   PAGE CHROME
+───────────────────────────────────── */
+.intro {
+  padding: 3.5rem 4rem 2.5rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.intro-left {}
+.intro-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+.intro-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  color: #111;
+  line-height: 1;
+}
+.intro-title em { font-style: italic; color: #666; }
+.intro-note {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: italic;
+  max-width: 380px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.concepts-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  background: rgba(0,0,0,0.08);
+}
+
+@media (max-width: 900px) {
+  .concepts-wrapper { grid-template-columns: 1fr; }
+  .intro { flex-direction: column; align-items: flex-start; padding: 2rem; }
+  .intro-note { text-align: left; }
+}
+
+/* ─────────────────────────────────────
+   SHARED CONCEPT SHELL
+───────────────────────────────────── */
+.concept {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  min-height: 100vh;
+}
+
+.concept-label-bar {
+  padding: 0.7rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.clb-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.clb-tag {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #aaa;
+}
+
+/* ══════════════════════════════════════════
+   CONCEPT N — THE OXFORD
+   British Racing Green · Cotswold off-white
+   Pandera-adjacent: Spectral Display + Cinzel
+══════════════════════════════════════════ */
+
+.oxford {
+  background: #F5F0E8;
+}
+
+.oxford .concept-label-bar {
+  background: #1F3B2A;
+}
+.oxford .clb-name { color: #C8B87A; }
+.oxford .clb-tag { color: rgba(200,184,122,0.5); font-family: 'Cinzel', serif; letter-spacing: 0.15em; font-style: normal; font-size: 0.55rem; }
+
+/* Oxford Nav */
+.ox-topbar {
+  background: #162B1E;
+  padding: 0.35rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ox-topbar-item {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(200,184,122,0.45);
+}
+
+.ox-nav {
+  background: #F5F0E8;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(31,59,42,0.12);
+}
+.ox-logo-block {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 0;
+}
+.ox-logo {
+  font-family: 'Spectral', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: #1F3B2A;
+  letter-spacing: 0.06em;
+}
+.ox-logo em {
+  font-style: italic;
+  font-weight: 200;
+  color: #4a6b55;
+}
+.ox-logo-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, #C8B87A, transparent);
+  margin-top: 0.3rem;
+}
+
+.ox-tabs {
+  display: flex;
+  align-items: stretch;
+}
+.ox-tab {
+  font-family: 'Cinzel', serif;
+  font-size: 0.57rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1.1rem 1.1rem;
+  color: #bbb;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ox-tab:hover { color: #1F3B2A; }
+.ox-tab.active {
+  color: #1F3B2A;
+  border-bottom-color: #C8B87A;
+}
+
+/* Hero feature */
+.ox-hero {
+  padding: 2.5rem 2.5rem 0;
+  border-bottom: 1px solid rgba(31,59,42,0.1);
+}
+.ox-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.ox-kicker-rule {
+  width: 24px;
+  height: 1px;
+  background: #C8B87A;
+}
+.ox-kicker-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C8B87A;
+}
+.ox-title {
+  font-family: 'Spectral', serif;
+  font-size: 3.2rem;
+  font-weight: 200;
+  color: #1a2a1f;
+  line-height: 0.95;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.ox-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: #3d6050;
+}
+.ox-dateline {
+  font-family: 'Cinzel', serif;
+  font-size: 0.57rem;
+  letter-spacing: 0.2em;
+  color: rgba(31,59,42,0.4);
+  margin-bottom: 1.2rem;
+  text-transform: uppercase;
+}
+.ox-drop-text {
+  font-family: 'Spectral', serif;
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: #2a2018;
+  font-weight: 300;
+  padding-bottom: 1.5rem;
+  max-width: 520px;
+}
+.ox-drop-text::first-letter {
+  font-size: 4rem;
+  float: left;
+  line-height: 0.72;
+  margin: 0.08rem 0.5rem 0 0;
+  color: #1F3B2A;
+  font-weight: 500;
+  font-family: 'Spectral', serif;
+}
+
+/* Divider */
+.ox-divider {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 1.5rem 2.5rem;
+}
+.ox-div-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(31,59,42,0.15), rgba(200,184,122,0.4), rgba(31,59,42,0.15));
+}
+.ox-div-diamond {
+  width: 6px;
+  height: 6px;
+  background: #C8B87A;
+  transform: rotate(45deg);
+  margin: 0 0.75rem;
+}
+
+/* Article cards */
+.ox-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0 2.5rem 2rem;
+}
+.ox-card {
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(31,59,42,0.1);
+}
+.ox-card:first-child {
+  padding-right: 2rem;
+  border-right: 1px solid rgba(31,59,42,0.1);
+}
+.ox-card:last-child { padding-left: 2rem; }
+.ox-card-kicker {
+  font-family: 'Cinzel', serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C8B87A;
+  margin-bottom: 0.4rem;
+}
+.ox-card-title {
+  font-family: 'Spectral', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: #1a2a1f;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+.ox-card-excerpt {
+  font-family: 'Spectral', serif;
+  font-size: 0.78rem;
+  color: #888;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Oxford crest-like footer bar */
+.ox-footer-bar {
+  margin-top: auto;
+  background: #1F3B2A;
+  padding: 1rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ox-footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: rgba(200,184,122,0.55);
+  text-transform: uppercase;
+}
+.ox-footer-ornament {
+  color: rgba(200,184,122,0.3);
+  font-size: 0.8rem;
+  letter-spacing: 0.5em;
+}
+
+/* Font callout */
+.ox-font-note {
+  background: rgba(31,59,42,0.04);
+  border-left: 3px solid #C8B87A;
+  padding: 1rem 2.5rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.fn-item {}
+.fn-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C8B87A;
+  margin-bottom: 0.2rem;
+}
+.fn-value {
+  font-size: 0.82rem;
+  color: #333;
+}
+.fn-sample {
+  font-size: 0.72rem;
+  color: #999;
+  font-style: italic;
+  margin-top: 0.05rem;
+}
+
+
+/* ══════════════════════════════════════════
+   CONCEPT O — AMALFI
+   Wooden yacht · champagne · blue Tyrrhenian
+   Fraunces + Josefin Sans ultralight
+══════════════════════════════════════════ */
+
+.amalfi {
+  background: #FAFCFD;
+}
+
+.amalfi .concept-label-bar {
+  background: #E8F0F5;
+}
+.amalfi .clb-name { color: #2A5F7A; }
+.amalfi .clb-tag { color: #9ab8c8; font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.15em; font-style: normal; font-size: 0.52rem; text-transform: uppercase; }
+
+/* Amalfi nav */
+.am-nav {
+  background: #fff;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2edf3;
+  box-shadow: 0 1px 12px rgba(42,95,122,0.04);
+}
+.am-logo-group {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 0;
+}
+.am-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 100;
+  font-style: italic;
+  color: #14354A;
+  letter-spacing: 0.04em;
+}
+.am-logo-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #C4A35A;
+  font-weight: 300;
+  margin-top: 0.1rem;
+}
+.am-tabs {
+  display: flex;
+}
+.am-tab {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  padding: 1.2rem 1rem;
+  color: #bbd0db;
+  border-bottom: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.am-tab:hover { color: #2A5F7A; }
+.am-tab.active {
+  color: #14354A;
+  border-bottom-color: #C4A35A;
+}
+
+/* Hero */
+.am-hero {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Sunlight shimmer — CSS only water reflection */
+.am-light-band {
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(196,163,90,0.15) 15%,
+    rgba(196,163,90,0.35) 28%,
+    rgba(255,240,180,0.5) 38%,
+    rgba(196,163,90,0.35) 48%,
+    rgba(255,240,180,0.4) 60%,
+    rgba(196,163,90,0.2) 72%,
+    transparent 100%
+  );
+  animation: shimmer 4s ease-in-out infinite alternate;
+}
+@keyframes shimmer {
+  0%   { background-position: -200px 0; opacity: 0.6; }
+  100% { background-position: 200px 0; opacity: 1; }
+}
+
+.am-feature {
+  padding: 2.2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid #e2edf3;
+  background: linear-gradient(180deg, rgba(240,248,253,0.6) 0%, rgba(255,255,255,1) 80%);
+}
+
+.am-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.am-kicker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #C4A35A;
+}
+.am-kicker-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.54rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #C4A35A;
+  font-weight: 300;
+}
+
+.am-title {
+  font-family: 'Fraunces', serif;
+  font-size: 3.4rem;
+  font-weight: 100;
+  font-style: italic;
+  color: #0d2535;
+  line-height: 0.92;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.am-title strong {
+  font-weight: 300;
+  font-style: normal;
+  color: #14354A;
+}
+
+.am-location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.am-location-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.56rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #7ab0c8;
+  font-weight: 300;
+}
+.am-location-wave {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(122,176,200,0.3), transparent);
+}
+
+.am-body-text {
+  font-family: 'Fraunces', serif;
+  font-size: 0.97rem;
+  line-height: 1.88;
+  color: #1a2d38;
+  font-weight: 300;
+  max-width: 500px;
+}
+.am-body-text::first-letter {
+  font-size: 4rem;
+  float: left;
+  line-height: 0.72;
+  margin: 0.1rem 0.5rem 0 0;
+  color: #14354A;
+  font-weight: 100;
+  font-style: italic;
+}
+
+/* Water rule */
+.am-wave-rule {
+  padding: 0.8rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.am-wave-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(42,95,122,0.12) 20%,
+    rgba(196,163,90,0.3) 50%,
+    rgba(42,95,122,0.12) 80%,
+    transparent
+  );
+}
+.am-wave-icon {
+  padding: 0 0.8rem;
+  font-size: 0.65rem;
+  color: #C4A35A;
+  letter-spacing: 0.2em;
+}
+
+/* Cards */
+.am-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0 2.5rem 2rem;
+}
+.am-card {
+  padding: 1.3rem 0;
+}
+.am-card:first-child {
+  border-right: 1px solid #e2edf3;
+  padding-right: 2rem;
+}
+.am-card:last-child { padding-left: 2rem; }
+
+.am-card-num {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C4A35A;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+.am-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 100;
+  font-style: italic;
+  color: #0d2535;
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+}
+.am-card-excerpt {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.68rem;
+  color: #aac4d0;
+  line-height: 1.65;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* Footer */
+.am-footer-band {
+  margin-top: auto;
+  background: linear-gradient(135deg, #0d2535 0%, #14354A 50%, #1a4a65 100%);
+  padding: 1.2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.am-footer-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 0.9rem;
+  font-weight: 100;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em;
+}
+.am-footer-champagne {
+  font-size: 1rem;
+  opacity: 0.5;
+  letter-spacing: 0.4em;
+}
+.am-footer-loc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(196,163,90,0.6);
+  font-weight: 300;
+}
+
+/* Font note — Amalfi */
+.am-font-note {
+  background: rgba(42,95,122,0.04);
+  border-left: 3px solid #C4A35A;
+  padding: 1rem 2.5rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────
+   FONT PALETTE SECTION
+───────────────────────────────────── */
+.font-section {
+  background: #F5F0E8;
+  padding: 3rem 4rem;
+  border-top: 3px solid rgba(0,0,0,0.08);
+}
+.fs-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 2rem;
+}
+.fs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.fp-card {
+  background: #fff;
+  padding: 1.5rem 1.8rem;
+  border-top: 3px solid;
+}
+.fp-card.oxford-card { border-top-color: #1F3B2A; }
+.fp-card.amalfi-card { border-top-color: #14354A; }
+
+.fp-concept {
+  font-family: 'Cinzel', serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.fp-concept.oxford-c { color: #C8B87A; }
+.fp-concept.amalfi-c { color: #C4A35A; }
+
+.fp-row {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #f0ebe3;
+}
+.fp-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.fp-role {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 0.3rem;
+}
+.fp-demo-oxford-display {
+  font-family: 'Spectral', serif;
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #1F3B2A;
+  line-height: 1;
+}
+.fp-demo-oxford-display em { font-style: italic; }
+.fp-demo-oxford-body {
+  font-family: 'Spectral', serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.7;
+}
+.fp-demo-oxford-ui {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C8B87A;
+}
+.fp-demo-amalfi-display {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  font-weight: 100;
+  font-style: italic;
+  color: #14354A;
+  line-height: 1;
+}
+.fp-demo-amalfi-body {
+  font-family: 'Fraunces', serif;
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.75;
+}
+.fp-demo-amalfi-ui {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C4A35A;
+  font-weight: 200;
+}
+.fp-note {
+  font-size: 0.72rem;
+  color: #aaa;
+  font-style: italic;
+  margin-top: 0.2rem;
+}
+
+/* Alt font options */
+.fp-alts {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #e8e0d4;
+}
+.fp-alts-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 0.6rem;
+}
+.fp-alt-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.fp-alt-name {
+  font-size: 0.72rem;
+  color: #888;
+  min-width: 140px;
+}
+.fp-alt-sample-1 { font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #1F3B2A; }
+.fp-alt-sample-2 { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: #1F3B2A; }
+.fp-alt-sample-3 { font-family: 'EB Garamond', serif; font-size: 1rem; color: #14354A; }
+.fp-alt-sample-4 { font-family: 'Lora', serif; font-size: 1rem; font-style: italic; color: #14354A; }
+.fp-alt-sample-5 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: #14354A; }
+.fp-alt-sample-6 { font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 300; color: #14354A; }
+
+</style>
+</head>
+<body>
+
+<!-- ─── INTRO ─── -->
+<header class="intro">
+  <div class="intro-left">
+    <div class="intro-eyebrow">Isaac Lindell · Brand Concepts · v3</div>
+    <h1 class="intro-title">Two New Directions<br><em>Oxford & Amalfi</em></h1>
+  </div>
+  <p class="intro-note">Hover the tabs. Read the typography. Scroll to the font palette at the bottom for every pairing option.</p>
+</header>
+
+<!-- ─── TWO CONCEPTS SIDE BY SIDE ─── -->
+<div class="concepts-wrapper">
+
+  <!-- ═══════════════════════════════════
+       CONCEPT N — THE OXFORD
+  ════════════════════════════════════ -->
+  <div class="concept oxford">
+
+    <div class="concept-label-bar">
+      <span class="clb-name">Concept N</span>
+      <span class="clb-tag">The Oxford · British Heritage</span>
+    </div>
+
+    <!-- Top announcement bar -->
+    <div class="ox-topbar">
+      <span class="ox-topbar-item">Short Stories</span>
+      <span class="ox-topbar-item">✦</span>
+      <span class="ox-topbar-item">Isaac Lindell · Nashville</span>
+      <span class="ox-topbar-item">✦</span>
+      <span class="ox-topbar-item">Think Pieces</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="ox-nav">
+      <div class="ox-logo-block">
+        <div class="ox-logo">Isaac <em>Lindell</em></div>
+        <div class="ox-logo-rule"></div>
+      </div>
+      <div class="ox-tabs">
+        <div class="ox-tab active">Short Stories</div>
+        <div class="ox-tab">Think Pieces</div>
+      </div>
+    </nav>
+
+    <!-- Hero article -->
+    <div class="ox-hero">
+      <div class="ox-kicker">
+        <div class="ox-kicker-rule"></div>
+        <span class="ox-kicker-text">Short Fiction · Creative Writing</span>
+      </div>
+      <div class="ox-title">Dirt</div>
+      <div class="ox-dateline">Wyoming Territory &nbsp;·&nbsp; August, 1958 &nbsp;·&nbsp; 6 min read</div>
+      <p class="ox-drop-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement. No, the last time she felt those was when Brady Jenkins asked her to the Junior Prom.</p>
+    </div>
+
+    <!-- Ornamental divider -->
+    <div class="ox-divider">
+      <div class="ox-div-line"></div>
+      <div class="ox-div-diamond"></div>
+      <div class="ox-div-line"></div>
+    </div>
+
+    <!-- Article cards -->
+    <div class="ox-cards">
+      <div class="ox-card">
+        <div class="ox-card-kicker">Travel · Humor</div>
+        <div class="ox-card-title">The Greatest Beer Run of All Time</div>
+        <div class="ox-card-excerpt">In the olden days, explorers sought investors for grand adventures. Now consider the current day...</div>
+      </div>
+      <div class="ox-card">
+        <div class="ox-card-kicker">Cultural Commentary</div>
+        <div class="ox-card-title">RIP Charlie Kirk</div>
+        <div class="ox-card-excerpt">This is an incredibly sad and frightening time for our country. A moment to sit and reflect.</div>
+      </div>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="ox-footer-bar">
+      <span class="ox-footer-logo">Isaac Lindell · Est. Nashville</span>
+      <span class="ox-footer-ornament">✦ · ✦ · ✦</span>
+      <span class="ox-footer-logo">Short Stories · Think Pieces</span>
+    </div>
+
+    <!-- Font note -->
+    <div class="ox-font-note">
+      <div>
+        <div class="fn-label">Display / Headlines</div>
+        <div class="fn-value">Spectral 200–300</div>
+        <div class="fn-sample">The closest freely available match to Pandera's optical weight</div>
+      </div>
+      <div>
+        <div class="fn-label">Body Text</div>
+        <div class="fn-value">Spectral 300 regular</div>
+        <div class="fn-sample">Warm, readable, slightly antiquarian</div>
+      </div>
+      <div>
+        <div class="fn-label">Navigation & Labels</div>
+        <div class="fn-value">Cinzel 400–600</div>
+        <div class="fn-sample">Roman-cut caps. Carved stone authority.</div>
+      </div>
+      <div>
+        <div class="fn-label">Accent Color</div>
+        <div class="fn-value">#C8B87A — antique gold</div>
+        <div class="fn-sample">Against BRG #1F3B2A + off-white #F5F0E8</div>
+      </div>
+    </div>
+
+  </div><!-- end oxford -->
+
+
+  <!-- ═══════════════════════════════════
+       CONCEPT O — AMALFI
+  ════════════════════════════════════ -->
+  <div class="concept amalfi">
+
+    <div class="concept-label-bar">
+      <span class="clb-name">Concept O</span>
+      <span class="clb-tag">Amalfi · Wooden Yacht · Champagne</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="am-nav">
+      <div class="am-logo-group">
+        <div class="am-logo">Isaac Lindell</div>
+        <div class="am-logo-sub">Amalfi · Naples · Lake Como</div>
+      </div>
+      <div class="am-tabs">
+        <div class="am-tab active">Short Stories</div>
+        <div class="am-tab">Think Pieces</div>
+      </div>
+    </nav>
+
+    <!-- Sunlight shimmer band -->
+    <div class="am-light-band"></div>
+
+    <!-- Hero -->
+    <div class="am-feature">
+      <div class="am-kicker">
+        <div class="am-kicker-dot"></div>
+        <span class="am-kicker-text">Short Fiction · Wyoming</span>
+      </div>
+
+      <div class="am-title">Dirt</div>
+
+      <div class="am-location">
+        <span class="am-location-text">Wyoming Desert &nbsp;·&nbsp; August 1958 &nbsp;·&nbsp; 6 min</span>
+        <div class="am-location-wave"></div>
+      </div>
+
+      <p class="am-body-text">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass. It was hard to please Dr. Carvill. The butterflies in Paisley's stomach were not from nervous excitement. No, the last time she felt those was when Brady Jenkins asked her to the Junior Prom.</p>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="am-wave-rule">
+      <div class="am-wave-line"></div>
+      <span class="am-wave-icon">⌇</span>
+      <div class="am-wave-line"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="am-cards">
+      <div class="am-card">
+        <div class="am-card-num">Adventure · May 2025</div>
+        <div class="am-card-title">The Greatest Beer Run of All Time</div>
+        <div class="am-card-excerpt">In the olden days, explorers sought wealthy investors. Now we must make the same journeys in stylized fashions.</div>
+      </div>
+      <div class="am-card">
+        <div class="am-card-num">Commentary · Sep 2025</div>
+        <div class="am-card-title">RIP Charlie Kirk</div>
+        <div class="am-card-excerpt">A moment to sit and reflect. A dad lost his son, a wife lost her husband, two kids lost their father.</div>
+      </div>
+    </div>
+
+    <!-- Footer band -->
+    <div class="am-footer-band">
+      <span class="am-footer-logo">Isaac Lindell</span>
+      <span class="am-footer-champagne">🥂 · ⛵ · 🥂</span>
+      <span class="am-footer-loc">Amalfi Coast · Est. Nashville</span>
+    </div>
+
+    <!-- Font note -->
+    <div class="am-font-note">
+      <div>
+        <div class="fn-label">Display / Headlines</div>
+        <div class="fn-value">Fraunces 100 italic</div>
+        <div class="fn-sample">Optical variable. Liquid at large sizes. Feels hand-lettered.</div>
+      </div>
+      <div>
+        <div class="fn-label">Body Text</div>
+        <div class="fn-value">Fraunces 300</div>
+        <div class="fn-sample">Featherweight. Reads like sun on water.</div>
+      </div>
+      <div>
+        <div class="fn-label">Navigation & Labels</div>
+        <div class="fn-value">Josefin Sans 200–300</div>
+        <div class="fn-sample">Geometric ultralight. Modern luxury.</div>
+      </div>
+      <div>
+        <div class="fn-label">Accent Color</div>
+        <div class="fn-value">#C4A35A — champagne gold</div>
+        <div class="fn-sample">Against deep navy #14354A + white #FAFCFD</div>
+      </div>
+    </div>
+
+  </div><!-- end amalfi -->
+
+</div><!-- end concepts wrapper -->
+
+
+<!-- ═══════════════════════════════════════════
+     FONT PALETTE — both concepts, all options
+════════════════════════════════════════════ -->
+<section class="font-section">
+  <div class="fs-title">Typography Palette — Chosen Fonts + Alternatives</div>
+  <div class="fs-grid">
+
+    <!-- Oxford font card -->
+    <div class="fp-card oxford-card">
+      <div class="fp-concept oxford-c">The Oxford · Font Palette</div>
+
+      <div class="fp-row">
+        <div class="fp-role">Display headline</div>
+        <div class="fp-demo-oxford-display"><em>Dirt</em></div>
+        <div class="fp-note">Spectral 200 italic — close to Pandera in optical weight &amp; elegance</div>
+      </div>
+
+      <div class="fp-row">
+        <div class="fp-role">Body reading text</div>
+        <div class="fp-demo-oxford-body">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass.</div>
+        <div class="fp-note">Spectral 300 — warm, refined, never clinical</div>
+      </div>
+
+      <div class="fp-row">
+        <div class="fp-role">Navigation / Labels</div>
+        <div class="fp-demo-oxford-ui">Short Stories &nbsp;·&nbsp; Think Pieces</div>
+        <div class="fp-note">Cinzel 500 — Roman authority. Works perfectly against BRG.</div>
+      </div>
+
+      <div class="fp-alts">
+        <div class="fp-alts-label">Alternative display options</div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">Libre Baskerville</span>
+          <span class="fp-alt-sample-1">Dirt — Wyoming</span>
+        </div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">Playfair Display italic</span>
+          <span class="fp-alt-sample-2">Dirt — Wyoming</span>
+        </div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">EB Garamond 400</span>
+          <span class="fp-alt-sample-1" style="font-family:'EB Garamond',serif; font-size:1rem; color:#1F3B2A;">Dirt — Wyoming</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amalfi font card -->
+    <div class="fp-card amalfi-card">
+      <div class="fp-concept amalfi-c">Amalfi · Font Palette</div>
+
+      <div class="fp-row">
+        <div class="fp-role">Display headline</div>
+        <div class="fp-demo-amalfi-display">Dirt</div>
+        <div class="fp-note">Fraunces 100 italic — optical variable. Thin at large sizes, weighted in body. Unique.</div>
+      </div>
+
+      <div class="fp-row">
+        <div class="fp-role">Body reading text</div>
+        <div class="fp-demo-amalfi-body">The best. That's what he wanted — nothing subpar, nothing lesser; only prestige, simply masterclass.</div>
+        <div class="fp-note">Fraunces 300 — airy, featherweight, reads like sunlight</div>
+      </div>
+
+      <div class="fp-row">
+        <div class="fp-role">Navigation / Labels</div>
+        <div class="fp-demo-amalfi-ui">Short Stories &nbsp;·&nbsp; Think Pieces</div>
+        <div class="fp-note">Josefin Sans 200 — geometric ultralight. Paired with serif = perfect contrast.</div>
+      </div>
+
+      <div class="fp-alts">
+        <div class="fp-alts-label">Alternative display options</div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">Cormorant Garamond 300</span>
+          <span class="fp-alt-sample-5">Dirt — Amalfi</span>
+        </div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">Lora italic</span>
+          <span class="fp-alt-sample-4">Dirt — Amalfi</span>
+        </div>
+        <div class="fp-alt-row">
+          <span class="fp-alt-name">Crimson Pro 300 italic</span>
+          <span class="fp-alt-sample-6">Dirt — Amalfi</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
